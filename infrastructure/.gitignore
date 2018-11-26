@@ -1,0 +1,21 @@
+*.ISO
+.DS_Store
+packer_cache/*
+*.box
+iso/*
+output-virtualbox-iso/*
+**/.vagrant/*
+*.vdi
+*.ovf
+*.vmdk
+swarm-client-3.9.jar
+SQLServer2014SP1.zip
+**/SPServer2013SP1/*
+SPServer2013SP1.zip
+**/VS2017/*
+VS2017.zip
+**/OOS/*
+OOS.zip
+*.exe
+**/output-hyperv-iso/Virtual Machines/*
+*.msu
