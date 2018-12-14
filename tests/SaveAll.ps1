@@ -1,10 +1,57 @@
 Save-Dynamics365Resource;
 $expectedDirectories = @(
     'Dynamics365Server90',
+    'VisualCPlusPlusRuntime',
+    'VisualCPlusPlus2010Runtime',
     'SQLNCli2012SP4',
     'SQLSysClrTypes2016',
     'SharedManagementObjects2016',
     'MSODBCSQL',
+    'Dynamics365Server90LanguagePackSau',
+    'Dynamics365Server90LanguagePackEus',
+    'Dynamics365Server90LanguagePackBgr',
+    'Dynamics365Server90LanguagePackCat',
+    'Dynamics365Server90LanguagePackChk',
+    'Dynamics365Server90LanguagePackChs',
+    'Dynamics365Server90LanguagePackCht',
+    'Dynamics365Server90LanguagePackHrv',
+    'Dynamics365Server90LanguagePackCsy',
+    'Dynamics365Server90LanguagePackDan',
+    'Dynamics365Server90LanguagePackNld',
+    'Dynamics365Server90LanguagePackEnu',
+    'Dynamics365Server90LanguagePackEti',
+    'Dynamics365Server90LanguagePackFin',
+    'Dynamics365Server90LanguagePackFra',
+    'Dynamics365Server90LanguagePackGlc',
+    'Dynamics365Server90LanguagePackDeu',
+    'Dynamics365Server90LanguagePackEll',
+    'Dynamics365Server90LanguagePackHeb',
+    'Dynamics365Server90LanguagePackHin',
+    'Dynamics365Server90LanguagePackHun',
+    'Dynamics365Server90LanguagePackInd',
+    'Dynamics365Server90LanguagePackIta',
+    'Dynamics365Server90LanguagePackJpn',
+    'Dynamics365Server90LanguagePackKkz',
+    'Dynamics365Server90LanguagePackKor',
+    'Dynamics365Server90LanguagePackLvi',
+    'Dynamics365Server90LanguagePackLth',
+    'Dynamics365Server90LanguagePackMsl',
+    'Dynamics365Server90LanguagePackNor',
+    'Dynamics365Server90LanguagePackPlk',
+    'Dynamics365Server90LanguagePackPtb',
+    'Dynamics365Server90LanguagePackPtg',
+    'Dynamics365Server90LanguagePackRom',
+    'Dynamics365Server90LanguagePackRus',
+    'Dynamics365Server90LanguagePackSrb',
+    'Dynamics365Server90LanguagePackSrl',
+    'Dynamics365Server90LanguagePackSky',
+    'Dynamics365Server90LanguagePackSlv',
+    'Dynamics365Server90LanguagePackEsn',
+    'Dynamics365Server90LanguagePackSve',
+    'Dynamics365Server90LanguagePackTha',
+    'Dynamics365Server90LanguagePackTrk',
+    'Dynamics365Server90LanguagePackUkr',
+    'Dynamics365Server90LanguagePackVit',
     'CRM2016',
     'SQLNCli2018R2',
     'SQLSysClrTypes2012',
@@ -65,12 +112,12 @@ $expectedDirectories | % {
     if ( !( Get-ChildItem $expectedDirectory -ErrorAction Ignore ) ) {
         Write-Host "Files not found in $expectedDirectory"
         Write-Host "Test not OK"
-        Remove-Item $expectedDirectory -Recurse -Force;    
+        #Remove-Item $expectedDirectory -Recurse -Force;
         Exit 1;
     } else {
         Write-Host "Files found in $expectedDirectory"
     }
-    Remove-Item $expectedDirectory -Recurse -Force;    
+    #Remove-Item $expectedDirectory -Recurse -Force;
 }
 Write-Host "Test OK"
 Exit 0;

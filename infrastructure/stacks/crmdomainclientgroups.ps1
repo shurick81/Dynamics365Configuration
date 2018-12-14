@@ -20,7 +20,14 @@ try
             {
                 GroupName           = "Administrators"
                 Credential          = $DomainAdminCredential
-                MembersToInclude    = "contoso\OG CRM Server Admin Prod","contoso\_crmsrv"
+                MembersToInclude    = "contoso\OG CRM Server Admin Prod"
+            }
+
+            Group PerformanceUserGroup
+            {
+                GroupName           = "Performance Log Users"
+                Credential          = $DomainAdminCredential
+                MembersToInclude    = "contoso\_crmasync", "contoso\_crmsrv"
             }
 
         }
