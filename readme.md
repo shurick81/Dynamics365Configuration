@@ -1,6 +1,6 @@
 # Introduction
 
-A module to ease infrastructure as code and configuration as code tasks for Dynamics 365.
+A module to ease infrastructure as code tasks for Dynamics 365.
 
 # Installation
 
@@ -31,7 +31,7 @@ Save-Dynamics365Resource
 
 #### -Resource
 
-The resource for downloading, possible values are [CRM2016, CRM2016LanguagePackXxx, CRM2016Update01, CRM2016ServicePack1, CRM2016ServicePack1Update01, CRM2016ServicePack2, CRM2016ServicePack2Update01, CRM2016ServicePack2Update02]
+The resource for downloading, possible values are [Dynamics365Server90,VisualCPlusPlusRuntime,VisualCPlusPlus2010Runtime,SQLNCli2012SP4,SQLSysClrTypes2016,SharedManagementObjects2016,MSODBCSQL,Dynamics365Server90LanguagePack<Language>,CRM2016,SQLNCli2018R2,SQLSysClrTypes2012,SharedManagementObjects2012,ReportViewer2012,CRM2016LanguagePack<Language>,CRM2016Update01,CRM2016ServicePack1,CRM2016ServicePack1Update01,CRM2016ServicePack2,CRM2016ServicePack2Update01,CRM2016ServicePack2Update02]
 
 #### -TargetDirectory
 
