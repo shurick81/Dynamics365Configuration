@@ -1,4 +1,4 @@
-Import-Module ..\src\Dynamics365Configuration\PSModule.psm1 -Force
+Import-Module ..\src\Dynamics365Configuration\RootModule.psm1 -Force
 Save-Dynamics365Resource -Resource Dynamics365Server90 -TargetDirectory c:\Install\CRM\Dynamics365Server90
 Save-Dynamics365Resource -Resource Dynamics365Server90LanguagePackSve -TargetDirectory c:\Install\CRM\Dynamics365Server90LanguagePackSve
 #Save-Dynamics365Resource -Resource CRM2016 -TargetDirectory c:\Install\CRM\CRM2016

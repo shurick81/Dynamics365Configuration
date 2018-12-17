@@ -1,4 +1,4 @@
-Import-Module ..\src\Dynamics365Configuration\PSModule.psm1 -Force
+Import-Module ..\src\Dynamics365Configuration\RootModule.psm1 -Force
 $securedPassword = ConvertTo-SecureString "c0mp1Expa~~" -AsPlainText -Force
 $CRMInstallAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmadmin", $securedPassword );
 $CRMServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmsrv", $securedPassword );
