@@ -307,13 +307,21 @@ function DownloadAndUnpack-Dynamics365Resource
             $filePath = "$tempDirPath\$resourceFileName";
             New-Item $tempDirPath -ItemType Directory -Force | Out-Null;
             Write-Host "Downloading $resourceUrl to $filePath";
-            Start-BitsTransfer -Source $resourceUrl -Destination $filePath;
+            $currentProgressPreference = $ProgressPreference;
+            $ProgressPreference = 'SilentlyContinue'
+            Invoke-WebRequest -Uri $resourceUrl -OutFile $filePath;
+            $ProgressPreference = $currentProgressPreference;
             Write-Host "Unpacking $filePath to $directoryPath";
             Start-Process -FilePath $filePath -ArgumentList "/extract:$directoryPath /passive /quiet" -Wait -NoNewWindow;
+            Sleep 10;
             Remove-Item $filePath;
         } else {
             $filePath = "$directoryPath\$resourceFileName";
-            Start-BitsTransfer -Source $resourceUrl -Destination $filePath;
+            Write-Host "Downloading $resourceUrl to $filePath";
+            $currentProgressPreference = $ProgressPreference;
+            $ProgressPreference = 'SilentlyContinue'
+            Invoke-WebRequest -Uri $resourceUrl -OutFile $filePath;
+            $ProgressPreference = $currentProgressPreference;
         }
     } else {
         Write-Host "The target directory is not empty. Skipped downloading."
