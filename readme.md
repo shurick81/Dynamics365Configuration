@@ -4,6 +4,10 @@ A module to ease infrastructure as code tasks for Dynamics 365.
 
 # Installation
 
+```PowerShell
+Install-Module -Name Dynamics365Configuration
+```
+
 # Usage
 
 ## Dynamics365Resources
