@@ -98,25 +98,18 @@ try
                 PasswordNeverExpires    = $true
             }
 
-            xADGroup CRMAdminGroup
-            {
-                GroupName   = "OG CRM Server Admin Prod"
-                MembersToInclude    = $CRMInstallAccountCredential.GetNetworkCredential().UserName
-                DependsOn           = "[xADUser]CRMInstallAccountUser"
-            }
-
             xADGroup CRMPrivUserGroup
             {
                 GroupName           = "CRM01PrivUserGroup"
                 MembersToInclude    = $CRMInstallAccountCredential.GetNetworkCredential().UserName
-                GroupScope          = "DomainLocal"
+                GroupScope          = "Universal"
                 DependsOn           = "[xADUser]CRMInstallAccountUser"
             }
             
             xADGroup CRMSQLAccessGroup
             {
                 GroupName   = "CRM01SQLAccessGroup"
-                GroupScope  = "DomainLocal"
+                GroupScope  = "Universal"
             }
 
             xADGroup CRMUserGroup
@@ -127,13 +120,13 @@ try
             xADGroup CRMReportingGroup
             {
                 GroupName   = "CRM01ReportingGroup"
-                GroupScope  = "DomainLocal"
+                GroupScope  = "Universal"
             }
 
             xADGroup CRMPrivReportingGroup
             {
                 GroupName   = "CRM01PrivReportingGroup"
-                GroupScope  = "DomainLocal"
+                GroupScope  = "Universal"
             }
 
             xADOrganizationalUnit CRMGroupsOU
@@ -146,7 +139,7 @@ try
             {
                 Ensure                             = 'Present'
                 Path                               = 'OU=CRM groups,DC=contoso,DC=local'
-                IdentityReference                  = 'contoso\OG CRM Server Admin Prod'
+                IdentityReference                  = 'contoso\CRM01PrivUserGroup'
                 ActiveDirectoryRights              = 'GenericAll'
                 AccessControlType                  = 'Allow'
                 ObjectType                         = '00000000-0000-0000-0000-000000000000'
@@ -158,13 +151,6 @@ try
             {
                 GroupName   = "Enterprise Admins"
                 MembersToInclude    = $CRMInstallAccountCredential.GetNetworkCredential().UserName
-            }
-
-            xADGroup SQLAdminGroup
-            {
-                GroupName   = "SQLAdmins"
-                MembersToInclude    = "OG CRM Server Admin Prod"
-                DependsOn           = "[xADGroup]CRMAdminGroup"
             }
 
         }

@@ -20,15 +20,16 @@ try
             {
                 GroupName           = "Administrators"
                 Credential          = $DomainAdminCredential
-                MembersToInclude    = "contoso\OG CRM Server Admin Prod"
+                MembersToInclude    = "contoso\CRM01PrivUserGroup", "contoso\_crmasync", "contoso\_crmsrv"
             }
 
-            Group PerformanceUserGroup
-            {
-                GroupName           = "Performance Log Users"
-                Credential          = $DomainAdminCredential
-                MembersToInclude    = "contoso\_crmasync", "contoso\_crmsrv"
-            }
+            #Faulty DCSResources throws "Server names cannot contain a space character"
+            #Group PerformanceUserGroup
+            #{
+            #    GroupName           = "Performance Log Users"
+            #    Credential          = $DomainAdminCredential
+            #    MembersToInclude    = "contoso\_crmasync", "contoso\_crmsrv"
+            #}
 
         }
     }
