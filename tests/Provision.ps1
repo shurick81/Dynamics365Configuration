@@ -26,7 +26,7 @@ Install-Dynamics365Server `
     -MonitoringServiceAccount $MonitoringServiceAccountCredential `
     -CreateWebSite `
     -WebSitePort 5555 `
-    -WebSiteUrl https://CRM01.contoso.local `
+    -WebSiteUrl https://$env:COMPUTERNAME.contoso.local `
     -Organization "Contoso Ltd." `
     -OrganizationUniqueName Contoso `
     -BaseISOCurrencyCode SEK `
@@ -57,7 +57,7 @@ Install-Dynamics365Language -MediaDir C:\Install\CRM\Dynamics365Server90Language
 #    -MonitoringServiceAccount $MonitoringServiceAccountCredential `
 #    -CreateWebSite `
 #    -WebSitePort 5555 `
-#    -WebSiteUrl https://CRM01.contoso.local `
+#    -WebSiteUrl https://$env:COMPUTERNAME.contoso.local `
 #    -Organization "Contoso Ltd." `
 #    -OrganizationUniqueName Contoso `
 #    -BaseISOCurrencyCode SEK `
