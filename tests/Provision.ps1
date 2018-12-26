@@ -1,4 +1,6 @@
 Import-Module ..\src\Dynamics365Configuration\RootModule.psm1 -Force
+$dbHostName = $env:VMDEVOPSSTARTER_DBHOST;
+if ( !$dbHostName ) { $dbHostName = $env:COMPUTERNAME }
 $securedPassword = ConvertTo-SecureString "c0mp1Expa~~" -AsPlainText -Force
 $CRMInstallAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmadmin", $securedPassword );
 $CRMServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmsrv", $securedPassword );
@@ -12,7 +14,7 @@ Install-Dynamics365Server `
     -LicenseKey KKNV2-4YYK8-D8HWD-GDRMW-29YTW `
     -InstallDir "c:\Program Files\Microsoft Dynamics CRM" `
     -CreateDatabase `
-    -SqlServer DB01\SPIntra01 `
+    -SqlServer $dbHostName\SPIntra01 `
     -PrivUserGroup "CN=CRM01PrivUserGroup,CN=Users,DC=contoso,DC=local" `
     -SQLAccessGroup "CN=CRM01SQLAccessGroup,CN=Users,DC=contoso,DC=local" `
     -UserGroup "CN=CRM01UserGroup,CN=Users,DC=contoso,DC=local" `
@@ -34,7 +36,7 @@ Install-Dynamics365Server `
     -BaseCurrencySymbol kr `
     -BaseCurrencyPrecision 2 `
     -OrganizationCollation Latin1_General_CI_AI `
-    -ReportingUrl http://db01/ReportServer_SPIntra01 `
+    -ReportingUrl http://$dbHostName/ReportServer_SPIntra01 `
     -InstallAccount $CRMInstallAccountCredential
 Install-Dynamics365Language -MediaDir C:\Install\CRM\Dynamics365Server90LanguagePackSve
 
@@ -43,7 +45,7 @@ Install-Dynamics365Language -MediaDir C:\Install\CRM\Dynamics365Server90Language
 #    -LicenseKey WCPQN-33442-VH2RQ-M4RKF-GXYH4 `
 #    -InstallDir "c:\Program Files\Microsoft Dynamics CRM" `
 #    -CreateDatabase `
-#    -SqlServer DB01\SPIntra01 `
+#    -SqlServer $dbHostName\SPIntra01 `
 #    -PrivUserGroup "CN=CRM01PrivUserGroup,CN=Users,DC=contoso,DC=local" `
 #    -SQLAccessGroup "CN=CRM01SQLAccessGroup,CN=Users,DC=contoso,DC=local" `
 #    -UserGroup "CN=CRM01UserGroup,CN=Users,DC=contoso,DC=local" `
@@ -65,7 +67,7 @@ Install-Dynamics365Language -MediaDir C:\Install\CRM\Dynamics365Server90Language
 #    -BaseCurrencySymbol kr `
 #    -BaseCurrencyPrecision 2 `
 #    -OrganizationCollation Latin1_General_CI_AI `
-#    -ReportingUrl http://db01/ReportServer_SPIntra01 `
+#    -ReportingUrl http://$dbHostName/ReportServer_SPIntra01 `
 #    -InstallAccount $CRMInstallAccountCredential
 #Install-Dynamics365Language -MediaDir C:\Install\CRM\CRM2016LanguagePackSve
 #Install-Dynamics365Update -MediaDir C:\Install\CRM\CRM2016ServicePack2Update02 -InstallAccount $CRMInstallAccountCredential
