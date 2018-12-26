@@ -1,0 +1,12 @@
+name: $(Date:yyyyMMdd).$(Rev:.r)
+trigger:
+  branches:
+    include:
+    - releases/*
+    - develop
+
+jobs:
+- job:
+  steps:
+  - powershell: cd ci; ./booknode.ps1
+    displayName: 'Infrastructure - Book'
