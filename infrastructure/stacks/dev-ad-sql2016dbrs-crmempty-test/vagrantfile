@@ -145,7 +145,6 @@ Vagrant.configure(2) do |config|
         vm_config.vm.provision :shell, path: "../xcredclient.ps1"
         vm_config.vm.provision "reload"
         vm_config.vm.provision :shell, path: "../crmdomainclientgroups.ps1", env: { "SPDEVOPSSTARTER_TRIALS" => 100 }
-        vm_config.vm.provision :shell, path: "../crmsslselfsignedcert.ps1"
         vm_config.vm.provision :file, source: "../../../src", destination: "c:/tmp/Dynamics365Configuration/src"
         vm_config.vm.provision :file, source: "../../../tests", destination: "c:/tmp/Dynamics365Configuration/tests"
         vm_config.vm.provision :shell, inline: "powershell -command 'cd c:/tmp/Dynamics365Configuration/tests; .\\PrepareMachine.ps1'"
