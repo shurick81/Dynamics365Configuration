@@ -8,19 +8,9 @@ jobs:
 - job:
   steps:
   - powershell: cd ci; ./booknode.ps1
-    displayName: 'Infrastructure - Book'
-  - powershell: |
-    cd infrastructure/images;
-    ./preparevmimages.ps1 sp-win2016-soe,sp-win2016-sql2016dbrs,sp-win2016-ad
-    if ( !( vagrant box list | ? { $_ -like "win2016-soe *" } ) ) { exit 1 }
-    if ( !( vagrant box list | ? { $_ -like "win2016-sql2016dbrs *" } ) ) { exit 1 }
-    if ( !( vagrant box list | ? { $_ -like "win2016-ad *" } ) ) { exit 1 }
-    exit 0;
-    displayName: 'Infrastructure - Building images'
-  - powershell: |
-    cd infrastructure/stacks/dev-ad-sql2016dbrs-crmempty-test;
-    vagrant destroy CRM01, DB01 --force;
-    vagrant up --provider virtualbox;
-    displayName: 'Infrastructure - Building the farm'
+  - powershell: cd infrastructure/images; ./preparevmimages.ps1 sp-win2016-soe,sp-win2016-sql2016dbrs,sp-win2016-ad
+  - powershell: if ( !( vagrant box list | ? { $_ -like "win2016-soe *" } ) ) { exit 1 }
+  - powershell: if ( !( vagrant box list | ? { $_ -like "win2016-sql2016dbrs *" } ) ) { exit 1 }
+  - powershell: if ( !( vagrant box list | ? { $_ -like "win2016-ad *" } ) ) { exit 1 }
+  - powershell: cd infrastructure/stacks/dev-ad-sql2016dbrs-crmempty-test; vagrant destroy CRM01, DB01 --force; vagrant up --provider virtualbox;
   - powershell: cd ci;./releasenode.ps1
-    displayName: 'Infrastructure - Release the booking'
