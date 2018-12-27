@@ -114,7 +114,8 @@
     "post-processors": [
         {
           "type": "vagrant",
-          "output": "{{user `box_name`}}.box"
+          "output": "{{user `box_name`}}.box",
+          "vagrantfile_template": "vagrantfile-windows.template"
         }
     ],
     "variables": {
