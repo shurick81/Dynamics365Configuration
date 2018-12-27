@@ -10,9 +10,19 @@ jobs:
   timeoutInMinutes: 1440
   steps:
   - powershell: cd ci; ./booknode.ps1
+    displayName: Booking the hypervisor node
   - powershell: cd infrastructure/images; ./preparevmimages.ps1 win2016-soe,win2016-sql2016dbrs,win2016-ad
+    displayName: Building images
   - powershell: if ( !( vagrant box list | ? { $_ -like "win2016-soe *" } ) ) { exit 1 }
+    displayName: Checking the win2016-soe image
   - powershell: if ( !( vagrant box list | ? { $_ -like "win2016-sql2016dbrs *" } ) ) { exit 1 }
+    displayName: Checking the win2016-sql2016dbrs image
   - powershell: if ( !( vagrant box list | ? { $_ -like "win2016-ad *" } ) ) { exit 1 }
-  - powershell: cd infrastructure/stacks/dev-ad-sql2016dbrs-crmempty-test; vagrant destroy CRM01, DB01 --force; vagrant up --provider virtualbox;
+    displayName: Checking the win2016-ad image
+  - powershell: cd infrastructure/stacks/dev-ad-sql2016dbrs-crmempty-test; vagrant destroy CRM01, DB01 --force;
+    displayName: Cleaning up the stack
+  - powershell: cd infrastructure/stacks/dev-ad-sql2016dbrs-crmempty-test; vagrant up --provider virtualbox;
+    displayName: Spinning up VMs
   - powershell: cd ci;./releasenode.ps1
+    condition: always()
+    displayName: Releasing the hypervisor node booking
