@@ -6,6 +6,8 @@ trigger:
     - develop
 jobs:
 - job:
+  displayName: Spinning up test infrastructure
+  timeoutInMinutes: 1440
   steps:
   - powershell: cd ci; ./booknode.ps1
   - powershell: cd infrastructure/images; ./preparevmimages.ps1 win2016-soe,win2016-sql2016dbrs,win2016-ad
