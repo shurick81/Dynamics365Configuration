@@ -1,9 +1,7 @@
 name: $(Date:yyyyMMdd).$(Rev:.r)
 trigger:
-  branches:
-    include:
-    - releases/*
-    - develop
+  - develop
+  - releases/*
 jobs:
 - job:
   displayName: Spinning up test infrastructure
