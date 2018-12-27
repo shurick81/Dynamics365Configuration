@@ -19,7 +19,7 @@ jobs:
     displayName: Checking the win2016-ad image
   - powershell: cd infrastructure/stacks/dev-ad-sql2016dbrs-crmempty-test; vagrant destroy CRM01, DB01 --force;
     displayName: Cleaning up the stack
-  - powershell: cd infrastructure/stacks/dev-ad-sql2016dbrs-crmempty-test; vagrant up --provider virtualbox;
+  - powershell: cd infrastructure/stacks/dev-ad-sql2016dbrs-crmempty-test; ..\localdeploy.ps1;
     displayName: Spinning up VMs
   - powershell: cd ci;./releasenode.ps1
     condition: always()
