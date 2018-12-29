@@ -1,4 +1,6 @@
 name: $(Date:yyyyMMdd).$(Rev:.r)
+pr:
+  - develop
 trigger:
   - develop
   - releases/*
