@@ -97,6 +97,7 @@ Vagrant.configure(2) do |config|
         vm_config.vm.provision :shell, path: "../dbservernamefix.ps1"
         vm_config.vm.provision :shell, path: "../sqlconfig.ps1"
         vm_config.vm.provision :shell, path: "../rsconfig.ps1"
+        vm_config.vm.provision :shell, path: "../rsserviceaccountupdate.ps1"
         vm_config.vm.provision :file, source: "../../../src", destination: "c:/tmp/Dynamics365Configuration/src"
         vm_config.vm.provision :file, source: "../../../tests", destination: "c:/tmp/Dynamics365Configuration/tests"
         vm_config.vm.provision :shell, inline: "powershell -command 'cd c:/tmp/Dynamics365Configuration/tests; .\\PrepareMachine.ps1'"
