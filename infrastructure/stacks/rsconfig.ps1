@@ -63,12 +63,6 @@ try
             #    ServiceAccount      = $SqlRSAccountCredential
             #    RestartService      = $true
             #}
-            #
-            #Service SqlRSService
-            #{
-            #    Name        = "ReportServer`$SPINTRA01"
-            #    Credential  = $SqlRSAccountCredential
-            #}
 
             SqlRS ReportingServicesConfig
             {
