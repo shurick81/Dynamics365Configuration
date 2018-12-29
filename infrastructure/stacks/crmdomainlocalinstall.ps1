@@ -17,7 +17,7 @@ try
             xADGroup AdminGroup
             {
                 GroupName           = "Administrators"
-                MembersToInclude    = "CRM01PrivUserGroup"
+                MembersToInclude    = "CRM01PrivUserGroup", "_ssrs"
             }
 
             xADGroup PerformanceUserGroup
