@@ -1,4 +1,5 @@
-$securedPassword = ConvertTo-SecureString "c0mp1Expa~~" -AsPlainText -Force
+$dbHostName = $env:VMDEVOPSSTARTER_DBHOST;
+if ( !$dbHostName ) { $dbHostName = $env:COMPUTERNAME }
 $securedPassword = ConvertTo-SecureString "c0mp1Expa~~" -AsPlainText -Force
 $CRMInstallAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmadmin", $securedPassword );
 $CRMServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmsrv", $securedPassword );
@@ -9,15 +10,15 @@ $AsyncServiceAccountCredential = New-Object System.Management.Automation.PSCrede
 $MonitoringServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmmon", $securedPassword );
 Install-Dynamics365Server `
     -MediaDir .\CRM2016 `
-    -LicenseKey KKNV2-4YYK8-D8HWD-GDRMW-29YTW `
+    -LicenseKey WCPQN-33442-VH2RQ-M4RKF-GXYH4 `
     -InstallDir "c:\Program Files\Microsoft Dynamics CRM" `
     -CreateDatabase `
-    -SqlServer DB01\SPIntra01 `
-    -PrivUserGroup "CN=CRM01PrivUserGroup,CN=Users,DC=contoso,DC=local" `
-    -SQLAccessGroup "CN=CRM01SQLAccessGroup,CN=Users,DC=contoso,DC=local" `
-    -UserGroup "CN=CRM01UserGroup,CN=Users,DC=contoso,DC=local" `
-    -ReportingGroup "CN=CRM01ReportingGroup,CN=Users,DC=contoso,DC=local" `
-    -PrivReportingGroup "CN=CRM01PrivReportingGroup,CN=Users,DC=contoso,DC=local" `
+    -SqlServer $dbHostName\SPIntra01 `
+    -PrivUserGroup "CN=CRM01PrivUserGroup,OU=CRM groups,DC=contoso,DC=local" `
+    -SQLAccessGroup "CN=CRM01SQLAccessGroup,OU=CRM groups,DC=contoso,DC=local" `
+    -UserGroup "CN=CRM01UserGroup,OU=CRM groups,DC=contoso,DC=local" `
+    -ReportingGroup "CN=CRM01ReportingGroup,OU=CRM groups,DC=contoso,DC=local" `
+    -PrivReportingGroup "CN=CRM01PrivReportingGroup,OU=CRM groups,DC=contoso,DC=local" `
     -CrmServiceAccount $CRMServiceAccountCredential `
     -DeploymentServiceAccount $DeploymentServiceAccountCredential `
     -SandboxServiceAccount $SandboxServiceAccountCredential `
@@ -34,5 +35,5 @@ Install-Dynamics365Server `
     -BaseCurrencySymbol kr `
     -BaseCurrencyPrecision 2 `
     -OrganizationCollation Latin1_General_CI_AI `
-    -ReportingUrl http://db01/ReportServer_SPIntra01 `
+    -ReportingUrl http://$dbHostName/ReportServer_SPIntra01 `
     -InstallAccount $CRMInstallAccountCredential

@@ -8,11 +8,7 @@ try
             [Parameter(Mandatory=$true)]
             [ValidateNotNullorEmpty()]
             [PSCredential]
-            $ShortDomainAdminCredential,
-            [Parameter(Mandatory=$true)]
-            [ValidateNotNullorEmpty()]
-            [PSCredential]
-            $DomainSafeModeAdministratorPasswordCredential
+            $SqlRSAccountCredential
         )
         Import-DscResource -ModuleName PSDesiredStateConfiguration
 #        Import-DscResource -ModuleName CertificateDsc -ModuleVersion 4.1.0.0
@@ -23,46 +19,55 @@ try
 
         Node $AllNodes.NodeName
         {
-#            $pfxPassword = "asd94y3475n";
-#            $securedPassword = ConvertTo-SecureString $pfxPassword -AsPlainText -Force
-#            $pfxCredential = New-Object System.Management.Automation.PSCredential( "fake", $securedPassword )
-#
-#            $hostName = "db01.contoso.local"
-#            $pfxPath = "c:\certs\$hostName.pfx";
-#            $cerPath = "c:\certs\$hostName.cer";
-#            $pfx = New-Object -TypeName "System.Security.Cryptography.X509Certificates.X509Certificate2";
-#            $pfx.Import($pfxPath,$pfxPassword,[System.Security.Cryptography.X509Certificates.X509KeyStorageFlags]::PersistKeySet);
-#
-#            PfxImport rshost
-#            {
-#                Thumbprint  = $pfx.thumbprint
-#                Path        = $pfxPath
-#                Location    = 'LocalMachine'
-#                Store       = 'My'
-#                Credential  = $pfxCredential
-#            }
-#
-#            CertificateExport rshost
-#            {
-#                Type        = 'CERT'
-#                Thumbprint  = $pfx.thumbprint
-#                Path        = $cerPath
-#                DependsOn   = "[PfxImport]rshost"
-#            }
-#
-#            CertificateImport rshost
-#            {
-#                Thumbprint  = $pfx.thumbprint
-#                Location    = 'LocalMachine'
-#                Store       = 'Root'
-#                Path        = $cerPath
-#                DependsOn   = "[CertificateExport]rshost"
-#            }
+            #$pfxPassword = "asd94y3475n";
+            #$securedPassword = ConvertTo-SecureString $pfxPassword -AsPlainText -Force
+            #$pfxCredential = New-Object System.Management.Automation.PSCredential( "fake", $securedPassword )
+            #
+            #$hostName = "db01.contoso.local"
+            #$pfxPath = "c:\certs\$hostName.pfx";
+            #$cerPath = "c:\certs\$hostName.cer";
+            #$pfx = New-Object -TypeName "System.Security.Cryptography.X509Certificates.X509Certificate2";
+            #$pfx.Import($pfxPath,$pfxPassword,[System.Security.Cryptography.X509Certificates.X509KeyStorageFlags]::PersistKeySet);
+            #
+            #PfxImport rshost
+            #{
+            #    Thumbprint  = $pfx.thumbprint
+            #    Path        = $pfxPath
+            #    Location    = 'LocalMachine'
+            #    Store       = 'My'
+            #    Credential  = $pfxCredential
+            #}
+            #
+            #CertificateExport rshost
+            #{
+            #    Type        = 'CERT'
+            #    Thumbprint  = $pfx.thumbprint
+            #    Path        = $cerPath
+            #    DependsOn   = "[PfxImport]rshost"
+            #}
+            #
+            #CertificateImport rshost
+            #{
+            #    Thumbprint  = $pfx.thumbprint
+            #    Location    = 'LocalMachine'
+            #    Store       = 'Root'
+            #    Path        = $cerPath
+            #    DependsOn   = "[CertificateExport]rshost"
+            #}
+
+            #SQLServiceAccount SqlRSServiceAccount
+            #{
+            #    InstanceName        = 'SPIntra01'
+            #    ServerName          = $NodeName
+            #    ServiceType         = "ReportingServices"
+            #    ServiceAccount      = $SqlRSAccountCredential
+            #    RestartService      = $true
+            #}
 
             SqlRS ReportingServicesConfig
             {
                 InstanceName                 = 'SPIntra01'
-                DatabaseServerName           = 'localhost'
+                DatabaseServerName           = $NodeName
                 DatabaseInstanceName         = 'SPIntra01'
                 #ReportServerVirtualDirectory = 'MyReportServer'
                 ReportServerReservedUrl      = @( 'http://+:80' )
@@ -97,17 +102,14 @@ $configurationData = @{ AllNodes = @(
     @{ NodeName = $env:COMPUTERNAME; PSDscAllowPlainTextPassword = $True; PsDscAllowDomainUser = $True }
 ) }
 
-$securedPassword = ConvertTo-SecureString "Fractalsol365" -AsPlainText -Force
-$ShortDomainAdminCredential = New-Object System.Management.Automation.PSCredential( "vagrant", $securedPassword )
-$securedPassword = ConvertTo-SecureString "sUp3rcomp1eX" -AsPlainText -Force
-$DomainSafeModeAdministratorPasswordCredential = New-Object System.Management.Automation.PSCredential( "fakeaccount", $securedPassword )
+$securedPassword = ConvertTo-SecureString "c0mp1Expa~~" -AsPlainText -Force
+$SqlRSAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_ssrs", $securedPassword );
 Write-Host "$(Get-Date) Compiling DSC"
 try
 {
     &$configName `
         -ConfigurationData $configurationData `
-        -ShortDomainAdminCredential $ShortDomainAdminCredential `
-        -DomainSafeModeAdministratorPasswordCredential $DomainSafeModeAdministratorPasswordCredential;
+        -SqlRSAccountCredential $SqlRSAccountCredential;
 }
 catch
 {
