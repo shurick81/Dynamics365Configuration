@@ -317,12 +317,12 @@ Install-Dynamics365Server `
     -LicenseKey KKNV2-4YYK8-D8HWD-GDRMW-29YTW `
     -InstallDir "c:\Program Files\Microsoft Dynamics CRM" `
     -CreateDatabase `
-    -SqlServer DB01\SPIntra01 `
-    -PrivUserGroup "CN=CRM01PrivUserGroup,CN=Users,DC=contoso,DC=local" `
-    -SQLAccessGroup "CN=CRM01SQLAccessGroup,CN=Users,DC=contoso,DC=local" `
-    -UserGroup "CN=CRM01UserGroup,CN=Users,DC=contoso,DC=local" `
-    -ReportingGroup "CN=CRM01ReportingGroup,CN=Users,DC=contoso,DC=local" `
-    -PrivReportingGroup "CN=CRM01PrivReportingGroup,CN=Users,DC=contoso,DC=local" `
+    -SqlServer $env:COMPUTERNAME\SPIntra01 `
+    -PrivUserGroup "CN=CRM01PrivUserGroup,OU=CRM groups,DC=contoso,DC=local" `
+    -SQLAccessGroup "CN=CRM01SQLAccessGroup,OU=CRM groups,DC=contoso,DC=local" `
+    -UserGroup "CN=CRM01UserGroup,OU=CRM groups,DC=contoso,DC=local" `
+    -ReportingGroup "CN=CRM01ReportingGroup,OU=CRM groups,DC=contoso,DC=local" `
+    -PrivReportingGroup "CN=CRM01PrivReportingGroup,OU=CRM groups,DC=contoso,DC=local" `
     -CrmServiceAccount $CRMServiceAccountCredential `
     -DeploymentServiceAccount $DeploymentServiceAccountCredential `
     -SandboxServiceAccount $SandboxServiceAccountCredential `
@@ -339,7 +339,7 @@ Install-Dynamics365Server `
     -BaseCurrencySymbol kr `
     -BaseCurrencyPrecision 2 `
     -OrganizationCollation Latin1_General_CI_AI `
-    -ReportingUrl http://db01/ReportServer_SPIntra01 `
+    -ReportingUrl http://$env:COMPUTERNAME/ReportServer_SPIntra01 `
     -InstallAccount $CRMInstallAccountCredential
 ```
 

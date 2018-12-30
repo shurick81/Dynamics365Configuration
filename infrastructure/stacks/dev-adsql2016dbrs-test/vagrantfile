@@ -1,0 +1,68 @@
+Vagrant.configure(2) do |config|
+    config.vm.communicator = "winrm"
+    config.winrm.username = "vagrant"
+    config.winrm.password = "Fractalsol365"
+    config.winrm.transport = :plaintext
+    config.winrm.basic_auth_only = true
+    config.vm.synced_folder ".", "/vagrant", disabled: true
+    config.vm.define "ADDBDYN01" do |vm_config|
+        vm_config.vm.hostname = "ADDBDYN01"
+        vm_config.vm.box = "win2016-ad-sql2016dbrs"
+        vm_config.vm.network "forwarded_port", guest: 3389, host: 13390, auto_correct: true
+        vm_config.vm.provider "virtualbox" do |vb, override|
+            override.vm.network :private_network, ip: "192.168.51.128", gateway: "192.168.51.1"
+            #vb.gui = true
+            vb.memory = "12288"
+            vb.cpus = 4
+        end
+        vm_config.vm.provider "hyperv" do |hv, override|
+            hv.memory = "4096"
+            hv.maxmemory = "16376"
+            hv.cpus = 4
+        end
+        vm_config.vm.provider :azure do |azure, override|
+            azure.tenant_id = ENV['ARM_TENANT_ID']
+            azure.client_id = ENV['ARM_CLIENT_ID']
+            azure.client_secret = ENV['ARM_CLIENT_SECRET']
+            azure.subscription_id = ENV['ARM_SUBSCRIPTION_ID']
+            azure.resource_group_name = 'dev-adsql2016dbrs-test'
+            azure.vm_managed_image_id = "/subscriptions/#{ENV['ARM_SUBSCRIPTION_ID']}/resourceGroups/CommonRG/providers/Microsoft.Compute/images/win2016-ad-dbrs-dynamics-code"
+            azure.instance_ready_timeout = 3600
+            azure.vm_name = 'addbdyn01'
+            azure.location = 'WestUS2'
+            azure.vm_size = 'Standard_DS2_v2'
+            azure.admin_username = "vagrant"
+            azure.admin_password = "Fractalsol365"
+            azure.dns_name = (0...15).map { (97 + rand(26)).chr }.join
+            azure.nsg_name = 'dev-adsql2016dbrs-test'
+            azure.wait_for_destroy = true
+            override.vm.guest = :windows
+            override.vm.box = "azure"
+            override.winrm.transport = :ssl
+            override.winrm.port = 5986
+            override.winrm.ssl_peer_verification = false # must be false if using a self signed cert
+            override.vm.synced_folder ".", "/vagrant", disabled: true
+        end
+        vm_config.vm.provision :shell, path: "../../images/basepsmodules.ps1"
+        vm_config.vm.provision :shell, path: "../../images/adpsmodules.ps1"
+        vm_config.vm.provision :shell, path: "../../images/sqlpsmodules.ps1"
+        vm_config.vm.provision :shell, path: "../../images/dynamicspsmodules.ps1"
+        vm_config.vm.provision :shell, path: "../domain.ps1", env: {"SPDEVOPSSTARTER_NODSCTEST" => "TRUE"}
+        vm_config.vm.provision "reload"
+        vm_config.vm.provision :shell, path: "../domain.ps1"
+        vm_config.vm.provision :shell, path: "../crmdomaincustomizations.ps1"
+        vm_config.vm.provision :shell, path: "../crmdomainlocalinstall.ps1"
+        vm_config.vm.provision :shell, path: "../xcredclient.ps1"
+        vm_config.vm.provision "reload"
+        vm_config.vm.provision :shell, path: "../dbservernamefix.ps1"
+        vm_config.vm.provision :shell, path: "../sqlconfig.ps1"
+        vm_config.vm.provision :shell, path: "../rsconfig.ps1"
+        vm_config.vm.provision :shell, path: "../rsserviceaccountupdate.ps1"
+        vm_config.vm.provision :file, source: "../../../src", destination: "c:/tmp/Dynamics365Configuration/src"
+        vm_config.vm.provision :file, source: "../../../tests", destination: "c:/tmp/Dynamics365Configuration/tests"
+        vm_config.vm.provision :shell, inline: "powershell -command 'cd c:/tmp/Dynamics365Configuration/tests; .\\PrepareMachine.ps1'"
+        vm_config.vm.provision "reload"
+        vm_config.vm.provision :shell, inline: "powershell -command 'cd c:/tmp/Dynamics365Configuration/tests; .\\Provision.ps1'"
+        vm_config.vm.boot_timeout = 600
+    end
+end
