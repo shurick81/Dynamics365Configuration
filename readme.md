@@ -94,7 +94,7 @@ Specifies where the file or files are located.
 Installing all Dynamics 365 9.0 prerequisites from the Internet:
 
 ```PowerShell
-Install-Dynamics365Prerequisites -DynamicsInstallationMediaDirectoryPath C:\Install\CRM\CRM9.0-Server-ENU-amd64
+Install-Dynamics365Prerequisites -DynamicsInstallationMediaDirectoryPath C:\Install\Dynamics\CRM9.0-Server-ENU-amd64
 ```
 
 Installing specific prerequisite from the Internet:
@@ -106,25 +106,25 @@ Install-Dynamics365Prerequisites -Prerequisite SQLNCli2012SP4
 Installing all prerequisites from the predownloaded files:
 
 ```PowerShell
-Install-Dynamics365Prerequisites -DynamicsInstallationMediaDirectoryPath C:\Install\CRM\CRM9.0-Server-ENU-amd64 -DynamicsPrerequisiteFilePath C:\Install\CRM
+Install-Dynamics365Prerequisites -DynamicsInstallationMediaDirectoryPath C:\Install\Dynamics\CRM9.0-Server-ENU-amd64 -DynamicsPrerequisiteFilePath C:\Install\Dynamics
 ```
 
 Installing specific prerequisite from the predownloaded file:
 
 ```PowerShell
-Install-Dynamics365Prerequisites -Prerequisite SQLNCli2012SP4 -DynamicsPrerequisiteFilePath C:\Install\CRM
+Install-Dynamics365Prerequisites -Prerequisite SQLNCli2012SP4 -DynamicsPrerequisiteFilePath C:\Install\Dynamics
 ```
 
 or
 
 ```PowerShell
-Install-Dynamics365Prerequisites -Prerequisite SQLNCli2012SP4 -DynamicsPrerequisiteFilePath C:\Install\CRM\SQLNCli2012SP4
+Install-Dynamics365Prerequisites -Prerequisite SQLNCli2012SP4 -DynamicsPrerequisiteFilePath C:\Install\Dynamics\SQLNCli2012SP4
 ```
 
 or
 
 ```PowerShell
-Install-Dynamics365Prerequisites -Prerequisite SQLNCli2012SP4 -DynamicsPrerequisiteFilePath C:\Install\CRM\SQLNCli2012SP4\sqlncli.msi
+Install-Dynamics365Prerequisites -Prerequisite SQLNCli2012SP4 -DynamicsPrerequisiteFilePath C:\Install\Dynamics\SQLNCli2012SP4\sqlncli.msi
 ```
 
 ## Install-Dynamics365Server
@@ -313,7 +313,7 @@ $VSSWriterServiceAccountCredential = New-Object System.Management.Automation.PSC
 $AsyncServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmasync", $securedPassword );
 $MonitoringServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmmon", $securedPassword );
 Install-Dynamics365Server `
-    -MediaDir C:\Install\CRM\Dynamics365Server90 `
+    -MediaDir C:\Install\Dynamics\Dynamics365Server90 `
     -LicenseKey KKNV2-4YYK8-D8HWD-GDRMW-29YTW `
     -InstallDir "c:\Program Files\Microsoft Dynamics CRM" `
     -CreateDatabase `
@@ -363,7 +363,7 @@ Specifies the location of the Dynamics 365 language pack installation files.
 ### Examples
 
 ```PowerShell
-Install-Dynamics365Language -MediaDir C:\Install\CRM\Dynamics365Server90LanguagePackSve
+Install-Dynamics365Language -MediaDir C:\Install\Dynamics\Dynamics365Server90LanguagePackSve
 ```
 
 ## Install-Dynamics365Update
@@ -393,5 +393,5 @@ An account that has permissions to install the software and update the database.
 ```PowerShell
 $securedPassword = ConvertTo-SecureString "c0mp1Expa~~" -AsPlainText -Force
 $CRMInstallAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmadmin", $securedPassword );
-Install-Dynamics365Update -MediaDir C:\Install\CRM\Dynamics365Server90LanguagePackSve -InstallAccount $CRMInstallAccountCredential
+Install-Dynamics365Update -MediaDir C:\Install\Dynamics\Dynamics365Server90LanguagePackSve -InstallAccount $CRMInstallAccountCredential
 ```

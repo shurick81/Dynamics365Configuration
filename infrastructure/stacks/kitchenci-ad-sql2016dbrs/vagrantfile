@@ -20,7 +20,7 @@ Vagrant.configure(2) do |config|
             azure.client_id = ENV['ARM_CLIENT_ID']
             azure.client_secret = ENV['ARM_CLIENT_SECRET']
             azure.subscription_id = ENV['ARM_SUBSCRIPTION_ID']
-            azure.resource_group_name = 'dev-ad-sql2016dbrs-test'
+            azure.resource_group_name = 'kitchenci-ad-sql2016dbrs'
             azure.vm_managed_image_id = "/subscriptions/#{ENV['ARM_SUBSCRIPTION_ID']}/resourceGroups/CommonRG/providers/Microsoft.Compute/images/win2016-ad"
             azure.instance_ready_timeout = 3600
             azure.vm_name = 'ad01'
@@ -30,7 +30,7 @@ Vagrant.configure(2) do |config|
             azure.admin_username = "vagrant"
             azure.admin_password = "Fractalsol365"
             azure.dns_name = (0...15).map { (97 + rand(26)).chr }.join
-            azure.nsg_name = 'dev-ad-sql2016dbrs-test'
+            azure.nsg_name = 'kitchenci-ad-sql2016dbrs'
             azure.wait_for_destroy = true
             override.vm.guest = :windows
             override.vm.box = "azure"
@@ -47,19 +47,19 @@ Vagrant.configure(2) do |config|
         vm_config.vm.provision :shell, path: "../crmdomaincustomizations.ps1"
         vm_config.vm.boot_timeout = 600
     end
-    config.vm.define "DBDYN01" do |vm_config|
-        vm_config.vm.hostname = "DBDYN01"
+    config.vm.define "DB01" do |vm_config|
+        vm_config.vm.hostname = "DB01"
         vm_config.vm.box = "win2016-sql2016dbrs"
         vm_config.vm.network "forwarded_port", guest: 3389, host: 13391, auto_correct: true
         vm_config.vm.provider "virtualbox" do |vb, override|
             override.vm.network :private_network, ip: "192.168.51.129", gateway: "192.168.51.1"
-            #vb.gui = true
-            vb.memory = "11264"
+            #vb.vm.gui = true
+            vb.memory = "2048"
             vb.cpus = 4
         end
         vm_config.vm.provider "hyperv" do |hv, override|
-            hv.memory = "4096"
-            hv.maxmemory = "16376"
+            hv.memory = "1536"
+            hv.maxmemory = "2048"
             hv.cpus = 4
         end
         vm_config.vm.provider :azure do |azure, override|
@@ -67,17 +67,17 @@ Vagrant.configure(2) do |config|
             azure.client_id = ENV['ARM_CLIENT_ID']
             azure.client_secret = ENV['ARM_CLIENT_SECRET']
             azure.subscription_id = ENV['ARM_SUBSCRIPTION_ID']
-            azure.resource_group_name = 'dev-ad-sql2016dbrs-test'
+            azure.resource_group_name = 'kitchenci-ad-sql2016dbrs'
             azure.vm_managed_image_id = "/subscriptions/#{ENV['ARM_SUBSCRIPTION_ID']}/resourceGroups/CommonRG/providers/Microsoft.Compute/images/win2016-sql2016dbrs"
             azure.instance_ready_timeout = 3600
-            azure.vm_name = 'dbdyn01'
+            azure.vm_name = 'db01'
             azure.location = 'WestUS2'
             azure.vm_size = 'Standard_DS2_v2'
             azure.admin_username = "vagrant"
             azure.admin_password = "Fractalsol365"
             azure.dns_name = (0...15).map { (97 + rand(26)).chr }.join
-            # azure.virtual_network_name = 'dev-ad-sql2016dbrs-test'
-            azure.nsg_name = 'dev-ad-sql2016dbrs-test'
+            # azure.virtual_network_name = 'kitchenci-ad-sql2016dbrs'
+            azure.nsg_name = 'kitchenci-ad-sql2016dbrs'
             azure.wait_for_destroy = true
             override.vm.guest = :windows
             override.vm.box = "azure"
@@ -91,25 +91,13 @@ Vagrant.configure(2) do |config|
         vm_config.vm.provision :shell, path: "../../images/domainclientpsmodules.ps1"
         vm_config.vm.provision :shell, path: "../domainclientnetwork.ps1"
         vm_config.vm.provision :shell, path: "../domainclient.ps1"
-        vm_config.vm.provision :shell, path: "../xcredclient.ps1"
         vm_config.vm.provision "reload"
         vm_config.vm.provision :shell, path: "../crmdomainclientgroups.ps1", env: { "SPDEVOPSSTARTER_TRIALS" => 100 }
         vm_config.vm.provision :shell, path: "../dbservernamefix.ps1"
         vm_config.vm.provision :shell, path: "../sqlconfig.ps1"
+        #vm_config.vm.provision :shell, path: "../sslcerts-rs.ps1"
         vm_config.vm.provision :shell, path: "../rsconfig.ps1"
         vm_config.vm.provision :shell, path: "../rsserviceaccountupdate.ps1"
-        vm_config.vm.provision :file, source: "../../../src", destination: "c:/tmp/Dynamics365Configuration/src"
-        vm_config.vm.provision :file, source: "../../../tests", destination: "c:/tmp/Dynamics365Configuration/tests"
-        vm_config.vm.provision :shell, inline: "powershell -command 'cd c:/tmp/Dynamics365Configuration/tests; .\\PrepareMachine.ps1'"
-        vm_config.vm.provision "reload"
-        vm_config.vm.provision :shell, inline: "powershell -command 'cd c:/tmp/Dynamics365Configuration/tests; .\\Provision.ps1'"
-        if ENV['SPDEVOPSSTARTER_VAGRANT_RUNJENKINS'] === 'TRUE'
-            vm_config.vm.provision :shell, path: "../slavepreprovisioning.ps1"
-            vm_config.vm.provision :shell, path: "../joinslave.ps1", env: {
-                "SPDEVOPSSTARTER_JENKINSLABEL" => ENV['SPDEVOPSSTARTER_VAGRANT_JENKINSLABEL'],
-                "SPDEVOPSSTARTER_JENKINSHOST" => ENV['SPDEVOPSSTARTER_JENKINSHOST']
-            }
-        end
         vm_config.vm.boot_timeout = 1800
     end
 end
