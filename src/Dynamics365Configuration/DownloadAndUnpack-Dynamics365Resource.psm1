@@ -27,7 +27,7 @@ function DownloadAndUnpack-Dynamics365Resource
             $tempDirPath = "$env:Temp\$tempDirName";
             $filePath = "$tempDirPath\$resourceFileName";
             New-Item $tempDirPath -ItemType Directory -Force | Out-Null;
-            Write-Host "Downloading $resourceUrl to $filePath";
+            Write-Host "$(Get-Date) Downloading $resourceUrl to $filePath";
             $currentProgressPreference = $ProgressPreference;
             $ProgressPreference = 'SilentlyContinue'
             Invoke-WebRequest -Uri $resourceUrl -OutFile $filePath;
@@ -38,17 +38,19 @@ function DownloadAndUnpack-Dynamics365Resource
                 Write-Host "Hash of the downloaded file: $fileHash";
                 if ( ( $fileHash -eq $expectedFileChecksum ) -or !$expectedFileChecksum )
                 {
-                    Write-Host "Unpacking $filePath to $directoryPath";
+                    Write-Host "$(Get-Date) Unpacking $filePath to $directoryPath";
                     Start-Process -FilePath $filePath -ArgumentList "/extract:$directoryPath /passive /quiet" -Wait -NoNewWindow;
+                    Write-Host "$(Get-Date) Finished unpacking";
                     Remove-Item $filePath;
                 } else {
                     Write-Host "Hash does not match $expectedFileChecksum";
+                    Throw "Hash does not match $expectedFileChecksum";
                     Remove-Item $filePath;
                 }
             }
         } else {
             $filePath = "$directoryPath\$resourceFileName";
-            Write-Host "Downloading $resourceUrl to $filePath";
+            Write-Host "$(Get-Date) Downloading $resourceUrl to $filePath";
             $currentProgressPreference = $ProgressPreference;
             $ProgressPreference = 'SilentlyContinue'
             Invoke-WebRequest -Uri $resourceUrl -OutFile $filePath;
@@ -58,8 +60,11 @@ function DownloadAndUnpack-Dynamics365Resource
                 $fileHash = ( Get-FileHash $filePath -Algorithm SHA1 ).Hash;
                 Write-Host "Hash of the downloaded file: $fileHash";
                 if ( ( $fileHash -eq $expectedFileChecksum ) -or !$expectedFileChecksum )
-                { } else {
-                    Write-Host "Hash does not match $expectedFileChecksum";
+                {
+                    Write-Host "$(Get-Date) Finished Downloading";
+                } else {
+                    Write-Host "$(Get-Date) Hash does not match $expectedFileChecksum";
+                    Throw "Hash does not match $expectedFileChecksum";
                     Remove-Item $filePath;
                 }
             }
