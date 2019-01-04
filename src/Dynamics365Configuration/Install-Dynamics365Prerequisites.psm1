@@ -19,10 +19,15 @@ function Install-Dynamics365Prerequisites {
     )
     if ( $prerequisite )
     {
-        $installedProduct = gwmi Win32_Product | ? { $_.IdentifyingNumber -eq "{$($Dynamics365Resources.$prerequisite.IdentifyingNumber)}" }
-        if ( !$installedProduct )
+        $expectedProductIdentifyingNumber = $Dynamics365Resources.$prerequisite.IdentifyingNumber;
+        if ( $expectedProductIdentifyingNumber )
         {
-            Write-Host "Matcing products not found";
+            $installedProduct = Get-WmiObject Win32_Product | ? { $_.IdentifyingNumber -eq "{$expectedProductIdentifyingNumber}" }
+        } else {
+            Write-Host "IdentifyingNumber is not specified for this product, installation verification will be skipped";
+        }
+        if ( !$expectedProductIdentifyingNumber -or !$installedProduct )
+        {
             $tempDirPath = $false;
             Write-Debug "Installing $prerequisite prerequisite"
             switch ( $prerequisite ) {
@@ -136,12 +141,24 @@ function Install-Dynamics365Prerequisites {
                     Start-Process "msiexec.exe" -ArgumentList $MSIArguments -Wait -NoNewWindow;
                 }
             }
+            Write-Host "$(Get-Date) Finished $fullFilePath";
             if ( $tempDirPath ) {
                 Remove-Item $tempDirPath -Recurse -Force
             }
-            $installedProduct = gwmi Win32_Product | ? { $_.IdentifyingNumber -eq "{$($Dynamics365Resources.$prerequisite.IdentifyingNumber)}" }
-            if ( !$installedProduct ) {
-                throw "Installation job finished but the product is still not installed"
+            if ( $expectedProductIdentifyingNumber )
+            {
+                $installedProduct = Get-WmiObject Win32_Product | ? { $_.IdentifyingNumber -eq "{$expectedProductIdentifyingNumber}" }
+                if ( $installedProduct ) {
+                    Write-Host "Installation is finished successfully";
+                } else {
+                    Write-Host "Installation job finished but the product is still not installed";
+                    throw "Installation job finished but the product is still not installed";
+                }
+            } else {
+                Write-Host "Installation is finished but verification cannot be done without IdentifyingNumber specified. Here is full list of the installed software:";
+                Get-WmiObject Win32_Product | Select Name, IdentifyingNumber | % {
+                    Write-Host $_.IdentifyingNumber, $_.Name;
+                }
             }
         } else {
             Write-Host "Product is already installed, skipping"

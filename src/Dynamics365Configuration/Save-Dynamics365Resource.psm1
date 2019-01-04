@@ -136,14 +136,14 @@ function Save-Dynamics365Resource
         if ( $TargetDirectory )
         {
             $Dynamics365Resources | Get-Member -MemberType NoteProperty | % {
-                $resourceUrl = $Dynamics365Resources.($_.Name).URL;
+                $resourceUrl = $Dynamics365Resources.( $_.Name ).URL;
                 $directoryName = $_.Name;
                 $directoryPath = "$TargetDirectory\$directoryName";
                 DownloadAndUnpack-Dynamics365Resource -ResourceUrl $resourceUrl -DirectoryPath $directoryPath;
             }
         } else {
             $Dynamics365Resources | Get-Member -MemberType NoteProperty | % {
-                $resourceUrl = $Dynamics365Resources.($_.Name).URL;
+                $resourceUrl = $Dynamics365Resources.( $_.Name ).URL;
                 $directoryName = $_.Name;
                 $directoryPath = ".\$directoryName";
                 Write-Host "directoryPath: $directoryPath"
