@@ -61,6 +61,6 @@ jobs:
     displayName: kitchen test Provision2016Full-win2016-sql2016dbrs-dynamicsprereqs
     errorActionPreference: continue
   - powershell: cd ci;./releasenode.ps1
-    condition: always()
+    #condition: always()
     displayName: Releasing the hypervisor node booking
     errorActionPreference: continue
