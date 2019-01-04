@@ -288,5 +288,19 @@ function Install-Dynamics365Server {
         } else {
             Invoke-Command -ScriptBlock $localInstallationScriptBlock -ArgumentList $setupFilePath, $stringWriter.ToString();
         }
+        if ( $expectedProductIdentifyingNumber )
+        {
+            $installedProduct = Get-WmiObject Win32_Product | ? { $_.IdentifyingNumber -eq "{$expectedProductIdentifyingNumber}" }
+            if ( $installedProduct ) {
+                Write-Host "Installation is finished successfully";
+            } else {
+                throw "Installation job finished but the product is still not installed";
+            }
+        } else {
+            Write-Host "Installation is finished but verification cannot be done without IdentifyingNumber specified. Here is the list of all the installed products:";
+            Get-WmiObject Win32_Product | Select Name, IdentifyingNumber | % {
+                Write-Host $_.IdentifyingNumber, $_.Name;
+            }
+        }
     }
 }
