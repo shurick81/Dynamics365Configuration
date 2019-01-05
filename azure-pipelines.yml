@@ -33,8 +33,8 @@ jobs:
   - powershell: if ( !( vagrant box list | ? { $_ -like "win2016-soe *" } ) ) { exit 1 }
     displayName: Checking the win2016-soe image
     errorActionPreference: continue
-  - powershell: cd tests; kitchen test SaveAllResources-win2012r2-soe;
-    displayName: kitchen test SaveAllResources-win2012r2-soe
+  - powershell: cd tests; kitchen test SaveAllResources-win2016-soe;
+    displayName: kitchen test SaveAllResources-win2016-soe
     errorActionPreference: continue
   - powershell: cd infrastructure/stacks/kitchenci-ad-sql2016dbrs; vagrant destroy DB01 --force;
     displayName: Cleaning up the stack
