@@ -7,7 +7,7 @@ function Install-Dynamics365Update {
         [pscredential]
         $InstallAccount
     )
-    $setupFilePath = "$mediaDir\crmupdatewrapper.exe";
+    $setupFilePath = "$mediaDir\CrmUpdateWrapper.exe";
     $fileVersion = ( Get-Command $setupFilePath ).FileVersionInfo.FileVersion;
     $foundFileResource = $null;
     $Dynamics365Resources | Get-Member -MemberType NoteProperty | % {
