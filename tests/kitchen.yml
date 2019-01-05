@@ -13,7 +13,7 @@ platforms:
   - name: win2016-basic
     driver:
       name: vagrant
-      box:  mwrock/Windows2016
+      box: mwrock/Windows2016
       gui: false
       platform: windows
       linked_clone: true
@@ -184,7 +184,7 @@ platforms:
   - name: win2016-dynamicsprereqs
     driver:
       name: vagrant
-      box:  win2016-basic
+      box: win2016-soe
       gui: false
       box_check_update: true
       vm_hostname: win16
