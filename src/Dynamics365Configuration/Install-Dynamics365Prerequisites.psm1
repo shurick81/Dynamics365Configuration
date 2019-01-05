@@ -141,7 +141,6 @@ function Install-Dynamics365Prerequisites {
                     Start-Process "msiexec.exe" -ArgumentList $MSIArguments -Wait -NoNewWindow;
                 }
             }
-            Sleep 10;
             Write-Host "$(Get-Date) Finished $fullFilePath";
             if ( $tempDirPath ) {
                 Remove-Item $tempDirPath -Recurse -Force
@@ -153,7 +152,6 @@ function Install-Dynamics365Prerequisites {
                     Write-Host "Installation is finished successfully";
                 } else {
                     Write-Host "Installation job finished but the product is still not installed";
-                    throw "Installation job finished but the product is still not installed";
                 }
             } else {
                 Write-Host "Installation is finished but verification cannot be done without IdentifyingNumber specified. Here is full list of the installed software:";
