@@ -141,6 +141,7 @@ function Install-Dynamics365Prerequisites {
                     Start-Process "msiexec.exe" -ArgumentList $MSIArguments -Wait -NoNewWindow;
                 }
             }
+            Sleep 10;
             Write-Host "$(Get-Date) Finished $fullFilePath";
             if ( $tempDirPath ) {
                 Remove-Item $tempDirPath -Recurse -Force
