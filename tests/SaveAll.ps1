@@ -1,4 +1,9 @@
-Save-Dynamics365Resource;
+try {
+    Save-Dynamics365Resource;
+} catch {
+    Write-Host $_.Exception.Message -ForegroundColor Red;
+    Exit 1;
+}
 $expectedDirectories = @(
     'Dynamics365Server90',
     'VisualCPlusPlusRuntime',
