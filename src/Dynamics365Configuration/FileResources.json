@@ -37,183 +37,228 @@
     },
     "Dynamics365Server90LanguagePackSau": {
         "URL": "https://download.microsoft.com/download/2/B/3/2B3B7BDF-8CA1-4A7D-800C-C02F49C13B3A/CRM9.0-Mui-SAU-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "45FD904B697497A355EF426CA2FA11F9244CE18E"
     },
     "Dynamics365Server90LanguagePackEus": {
         "URL": "https://download.microsoft.com/download/9/D/7/9D7E55DD-2137-49D9-94BA-0B35CAEBFE7B/CRM9.0-Mui-EUS-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "A0BC2E32CDD4333F193AF66B69555992A4BBE0A4"
     },
     "Dynamics365Server90LanguagePackBgr": {
         "URL": "https://download.microsoft.com/download/7/2/0/720D232A-C21F-4DE3-955D-5A3AA6B1DFC5/CRM9.0-Mui-BGR-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "7B6694E3830D4095918157088E8F1F3DE3A0CD09"
     },
     "Dynamics365Server90LanguagePackCat": {
         "URL": "https://download.microsoft.com/download/E/9/7/E9796C7D-1C98-4ECA-B694-A07FF119E470/CRM9.0-Mui-CAT-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "9C53E9468709900DE317BB7018C19A1B296B7B18"
     },
     "Dynamics365Server90LanguagePackChk": {
         "URL": "https://download.microsoft.com/download/4/D/6/4D653CEF-938F-41A1-AA59-42CD78F50C43/CRM9.0-Mui-CHK-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "9A771FB5558CF31A8868A2170BB58BCAD920AD58"
     },
     "Dynamics365Server90LanguagePackChs": {
         "URL": "https://download.microsoft.com/download/6/C/A/6CAF0E90-2EEE-4A14-8981-165C9341A616/CRM9.0-Mui-CHS-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "04B29E15B466D688EB6F802B94494838005C8CC1"
     },
     "Dynamics365Server90LanguagePackCht": {
         "URL": "https://download.microsoft.com/download/4/0/3/403FEE73-08F2-4F6E-B95F-48F0F31B1066/CRM9.0-Mui-CHT-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "85C5A62DDE064CCE0F10A6B448C61D639D0F243D"
     },
     "Dynamics365Server90LanguagePackHrv": {
         "URL": "https://download.microsoft.com/download/A/D/3/AD3224AA-7065-4CB8-BA8D-1FACFBBBDC35/CRM9.0-Mui-HRV-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "9E6D42916B909BDBDE541367220C2FA3928EBDA1"
     },
     "Dynamics365Server90LanguagePackCsy": {
         "URL": "https://download.microsoft.com/download/8/B/E/8BE6BC55-2526-4082-BD36-8B9224E20A3C/CRM9.0-Mui-CSY-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "B266413231AE6352D2344C7DB039656EC3DFC4D2"
     },
     "Dynamics365Server90LanguagePackDan": {
         "URL": "https://download.microsoft.com/download/1/4/4/14466494-91C0-44A0-BE05-961382BD168E/CRM9.0-Mui-DAN-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "AE04B2E8041DC6AB84E6C3AF1A2FB15EF223A2F6"
     },
     "Dynamics365Server90LanguagePackNld": {
         "URL": "https://download.microsoft.com/download/8/D/4/8D4DFDF1-EF83-49DE-9269-9E10DFA62B7B/CRM9.0-Mui-NLD-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "A1753A733B59E06AA32F609C2D9291881C8B4D83"
     },
     "Dynamics365Server90LanguagePackEnu": {
         "URL": "https://download.microsoft.com/download/A/6/9/A6981E93-6432-45BE-A39E-FD929C1F076F/CRM9.0-Mui-ENU-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "672682F29C08F702CBEF5CB105D54B08DC3D2B00"
     },
     "Dynamics365Server90LanguagePackEti": {
         "URL": "https://download.microsoft.com/download/1/9/E/19E21D76-0C64-43F5-8D1C-8C1353A1FAA5/CRM9.0-Mui-ETI-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "B32042D80AAC0DED7518E245A5B7DDC9C15FA4C0"
     },
     "Dynamics365Server90LanguagePackFin": {
         "URL": "https://download.microsoft.com/download/F/C/B/FCB36C94-A69E-43FA-90AB-DEDCB93117AC/CRM9.0-Mui-FIN-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "0430E3271F80C2758FD8B07CEB218F9BF8038416"
     },
     "Dynamics365Server90LanguagePackFra": {
         "URL": "https://download.microsoft.com/download/7/9/5/795E5EA8-38B0-45AE-8B1F-65336CE45A49/CRM9.0-Mui-FRA-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "BF982D8CF4895E80A0835EF65FF90EB81046228D"
     },
     "Dynamics365Server90LanguagePackGlc": {
         "URL": "https://download.microsoft.com/download/3/A/A/3AACC81A-8395-452B-AF71-102A355ADB54/CRM9.0-Mui-GLC-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "B8433DA5F317F67FE0887368D2FCF1C4E9925F39"
     },
     "Dynamics365Server90LanguagePackDeu": {
         "URL": "https://download.microsoft.com/download/1/9/1/19130F28-D9E6-4357-9C6C-21E8A33B9BB0/CRM9.0-Mui-DEU-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "051CB98366900F9675B69D84657BD20251D56533"
     },
     "Dynamics365Server90LanguagePackEll": {
         "URL": "https://download.microsoft.com/download/5/0/A/50A8EA95-5042-4581-A0FD-322CEF8916EF/CRM9.0-Mui-ELL-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "F743680713C70055228530B764B7C4D29A3129EE"
     },
     "Dynamics365Server90LanguagePackHeb": {
         "URL": "https://download.microsoft.com/download/B/F/A/BFA6A918-9D2B-438B-8531-92D7B77EFD2F/CRM9.0-Mui-HEB-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "F74C174FB64A52262876BEE5B9FD81A2FFBE1771"
     },
     "Dynamics365Server90LanguagePackHin": {
         "URL": "https://download.microsoft.com/download/4/7/9/479D3F0B-1C31-4DB4-8F37-EFC65B6D94A6/CRM9.0-Mui-HIN-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "1A2E3EB1609FAFC161000273B7B7847B45A21EA9"
     },
     "Dynamics365Server90LanguagePackHun": {
         "URL": "https://download.microsoft.com/download/4/3/1/431E2153-94FA-4053-9B39-43F9DE9C3DE1/CRM9.0-Mui-HUN-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "DBA484FB4E37A498FA526F9577096CCC6E976576"
     },
     "Dynamics365Server90LanguagePackInd": {
         "URL": "https://download.microsoft.com/download/0/2/1/0212F59C-D59A-453A-8530-AB26E2E1C195/CRM9.0-Mui-IND-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "1DBBB36FCF6A12CA282D402FB5CA4DFA5AB0B878"
     },
     "Dynamics365Server90LanguagePackIta": {
         "URL": "https://download.microsoft.com/download/6/F/5/6F54E4EB-8B0D-4CF6-9417-ED7FE5E35D03/CRM9.0-Mui-ITA-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "973B923E548D752F8CE9FD32CA28F30772B793C4"
     },
     "Dynamics365Server90LanguagePackJpn": {
         "URL": "https://download.microsoft.com/download/7/0/D/70DD8248-5E6B-4F44-BB98-D78D609503FF/CRM9.0-Mui-JPN-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "F42CC65C2027798DF76736B274002ECB8132F7AE"
     },
     "Dynamics365Server90LanguagePackKkz": {
         "URL": "https://download.microsoft.com/download/5/3/C/53CE67C0-7767-4AFC-9EFA-1B94E9B0E9C7/CRM9.0-Mui-KKZ-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "AC3C4096105E5F51DF648074AC0B8AD1647C6DFF"
     },
     "Dynamics365Server90LanguagePackKor": {
         "URL": "https://download.microsoft.com/download/2/B/5/2B53BAB0-4590-46AE-B17F-FDCDABAB5D23/CRM9.0-Mui-KOR-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "842E19FA1B665D5235810053E3CA18C1FFF67C87"
     },
     "Dynamics365Server90LanguagePackLvi": {
         "URL": "https://download.microsoft.com/download/2/C/4/2C429789-22F3-424C-8ABC-6016572632B1/CRM9.0-Mui-LVI-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "6D0D047FD0D8E129855097097D436A7D5C574BFF"
     },
     "Dynamics365Server90LanguagePackLth": {
         "URL": "https://download.microsoft.com/download/1/6/4/1646C493-744F-48E8-8169-407E09F5B494/CRM9.0-Mui-LTH-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "FF5B8F6451F2570645888CA71F8BE1D285A150E9"
     },
     "Dynamics365Server90LanguagePackMsl": {
         "URL": "https://download.microsoft.com/download/6/7/9/67980102-1A81-4498-B6B7-5DAD3E294FEF/CRM9.0-Mui-MSL-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "3288D10C516FB47FFD3E53EC0DB767FB742328A2"
     },
     "Dynamics365Server90LanguagePackNor": {
         "URL": "https://download.microsoft.com/download/8/D/A/8DA1FD15-D782-4328-970B-C631122B9AF1/CRM9.0-Mui-NOR-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "9200F0A96DC654A2281B708D075EC7ADB765D585"
     },
     "Dynamics365Server90LanguagePackPlk": {
         "URL": "https://download.microsoft.com/download/5/0/A/50A1D341-5CA8-490D-91DF-F104DF5F40E8/CRM9.0-Mui-PLK-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "02E425F6F5EAFDEBF27A80ABD9994D9C77121D0C"
     },
     "Dynamics365Server90LanguagePackPtb": {
         "URL": "https://download.microsoft.com/download/B/C/7/BC7B2A9C-DB80-40E4-A10E-5EF71C1E7CFD/CRM9.0-Mui-PTB-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "4988A297436FF74DDD5AE3F86ECCF7ADB5CFFBE4"
     },
     "Dynamics365Server90LanguagePackPtg": {
         "URL": "https://download.microsoft.com/download/1/1/7/117A4D53-4BFD-4D9C-B7D0-186279A52B61/CRM9.0-Mui-PTG-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "2EFC738170345B7CD24ED915C9E026A7610C12D7"
     },
     "Dynamics365Server90LanguagePackRom": {
         "URL": "https://download.microsoft.com/download/A/F/A/AFA9DAD6-8AB9-4ED2-ABFF-E378991F6162/CRM9.0-Mui-ROM-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "F81A3F1DC40153DA460E8802BAF9B9A8DAA7472B"
     },
     "Dynamics365Server90LanguagePackRus": {
         "URL": "https://download.microsoft.com/download/B/1/4/B1465E5C-099D-4F1E-A0F4-672069110B91/CRM9.0-Mui-RUS-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "AA769E30E97E5C757995868CC2A2AA14C76970B8"
     },
     "Dynamics365Server90LanguagePackSrb": {
         "URL": "https://download.microsoft.com/download/4/4/A/44A00734-8674-4466-92E0-9550EF7FFE1C/CRM9.0-Mui-SRB-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "D55A30B49279D0BDF9BA1BCCEE0DAF524A4E380F"
     },
     "Dynamics365Server90LanguagePackSrl": {
         "URL": "https://download.microsoft.com/download/B/1/8/B180B0E9-743A-4EFC-8588-43FAD5D9031B/CRM9.0-Mui-SRL-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "F953560F1BB9257631EC321440ED882F1554E6DF"
     },
     "Dynamics365Server90LanguagePackSky": {
         "URL": "https://download.microsoft.com/download/3/2/0/320E7283-19F1-4373-BA3D-BD30D044309C/CRM9.0-Mui-SKY-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "C47393E7F5458CD80BEEEF305ACA257F002F280B"
     },
     "Dynamics365Server90LanguagePackSlv": {
         "URL": "https://download.microsoft.com/download/D/7/C/D7C75207-33A8-4AD6-B99F-DE6B81FD59EA/CRM9.0-Mui-SLV-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "80C9581D54B0BB92473CD5D90C85AFC70C3E52DE"
     },
     "Dynamics365Server90LanguagePackEsn": {
         "URL": "https://download.microsoft.com/download/B/0/E/B0E4C499-915D-4A5C-819B-6E281F35AF7C/CRM9.0-Mui-ESN-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "0F574C44E07452DA27517122AA2EF7A430C12F4E"
     },
     "Dynamics365Server90LanguagePackSve": {
         "URL": "https://download.microsoft.com/download/F/6/C/F6CF6065-49EC-47C4-92C8-0F74CDD8184D/CRM9.0-Mui-SVE-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "9DE80DABB44991D89050DB0E5201E93F6309F1FC"
     },
     "Dynamics365Server90LanguagePackTha": {
         "URL": "https://download.microsoft.com/download/E/9/D/E9D2F10B-865D-4A69-8F99-8A33774409F0/CRM9.0-Mui-THA-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "A5EDB20BC069BAB85D9D33DFB6309C1F4A7EDDE7"
     },
     "Dynamics365Server90LanguagePackTrk": {
         "URL": "https://download.microsoft.com/download/4/6/5/465BB69E-17B8-4649-B78F-96F3EFE148C7/CRM9.0-Mui-TRK-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "272B90D256CA578C0D9FB0B199D0C27E6F000962"
     },
     "Dynamics365Server90LanguagePackUkr": {
         "URL": "https://download.microsoft.com/download/9/5/3/953E7768-DA7E-4968-A603-90B13F7DAB5E/CRM9.0-Mui-UKR-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "58CA6C45E06719BEEE51A7B725E6DE130C8F5DBF"
     },
     "Dynamics365Server90LanguagePackVit": {
         "URL": "https://download.microsoft.com/download/3/2/A/32A61744-02C7-4B99-B641-B4A29EE583E7/CRM9.0-Mui-VIT-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "AC4D5B72C29CF61F1EFB7A9202B43338F1F66AA5"
     },
     "CRM2016": {
         "URL": "https://download.microsoft.com/download/3/4/F/34FB8C80-F245-41E7-AFE2-6388005A702B/CRM2016-Server-ENU-amd64.exe",
@@ -243,200 +288,254 @@
     },
     "CRM2016LanguagePackSau": {
         "URL": "https://download.microsoft.com/download/6/9/1/6917A5FC-7C6A-47CD-A480-885476216DB5/CRM2016-Mui-SAU-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "4FB5E3989DAE1076927113C98C41F888F630EB1E"
     },
     "CRM2016LanguagePackEus": {
         "URL": "https://download.microsoft.com/download/7/8/2/78251E34-E0D1-4792-BBFA-74C1025751F9/CRM2016-Mui-EUS-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "E37D88B9716474498E069467B8B8F9B949B66C40"
     },
     "CRM2016LanguagePackBgr": {
         "URL": "https://download.microsoft.com/download/4/6/0/46096B49-C534-47B3-9D25-1B2E8AEBF134/CRM2016-Mui-BGR-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "372F34FE8375D0B996087D302DA79DE79A4B1320"
     },
     "CRM2016LanguagePackCat": {
         "URL": "https://download.microsoft.com/download/4/1/1/4119A77A-627E-4C84-813E-5B0282838B12/CRM2016-Mui-CAT-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "F950C22CCB593AB4B4BC752CA458F250BFD489E6"
     },
     "CRM2016LanguagePackChk": {
         "URL": "https://download.microsoft.com/download/F/0/9/F09790E0-13B7-4726-82FD-B5C2A08D9EB4/CRM2016-Mui-CHK-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "FBC65F6683120C5AD191EA0D3B7930B4A8078EC6"
     },
     "CRM2016LanguagePackChs": {
         "URL": "https://download.microsoft.com/download/D/0/E/D0E90C02-6605-4490-8A77-9026C682B7D2/CRM2016-Mui-CHS-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "F6EC34F843B45A84C4AEE6BCEBD9923DE7FB87AE"
     },
     "CRM2016LanguagePackCht": {
         "URL": "https://download.microsoft.com/download/6/6/C/66C20F03-37DB-4BDB-A869-6378F87333D4/CRM2016-Mui-CHT-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "26A8F9C69EC41F8D4619F0504FE0F666DE2EB987"
     },
     "CRM2016LanguagePackCsy": {
         "URL": "https://download.microsoft.com/download/C/7/5/C759DF38-611E-4967-B52A-CE6876A3D06C/CRM2016-Mui-CSY-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "8736F79639941400504D23A1D37B934274E20862"
     },
     "CRM2016LanguagePackDan": {
         "URL": "https://download.microsoft.com/download/7/3/E/73E15C09-2FF1-4051-A799-8A0C435DF6D2/CRM2016-Mui-DAN-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "01D3A2DE743F122DAD9349AB4F89EE788CEDCF34"
     },
     "CRM2016LanguagePackNld": {
         "URL": "https://download.microsoft.com/download/D/F/5/DF549109-77AC-45E0-921C-948B83C66F34/CRM2016-Mui-NLD-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "9A5FA2613B2D278284F9286E27AE594276E7805C"
     },
     "CRM2016LanguagePackEti": {
         "URL": "https://download.microsoft.com/download/D/4/8/D48A8DDE-BEAE-489D-B02D-0D0CB597BCD9/CRM2016-Mui-ETI-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "E40CF1FC4145743D5C9407D55646CA90B70D40D3"
     },
     "CRM2016LanguagePackFin": {
         "URL": "https://download.microsoft.com/download/F/B/4/FB4CE921-ADB7-4F47-98E6-402A8BAA6710/CRM2016-Mui-FIN-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "A92E41FDAA550179DBC012B2C228A481F4EBE5D1"
     },
     "CRM2016LanguagePackFra": {
         "URL": "https://download.microsoft.com/download/B/5/7/B57A13CA-EC51-483D-80B1-F7B0C0858BCC/CRM2016-Mui-FRA-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "D02474D7BCA2D40E8808DBE3151AE3B9DC63CDFC"
     },
     "CRM2016LanguagePackGlc": {
         "URL": "https://download.microsoft.com/download/A/5/A/A5AF2310-6CB0-4B56-8B06-770DA93D17E3/CRM2016-Mui-GLC-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "847BF01E4E7D35333F50BD2BB03882487E175C65"
     },
     "CRM2016LanguagePackDeu": {
         "URL": "https://download.microsoft.com/download/A/9/E/A9ED24FE-4280-485B-A7E6-73321F2BBE23/CRM2016-Mui-DEU-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "589F6FB4B3BBFFB9080A6579EFF202F30D4DD398"
     },
     "CRM2016LanguagePackEll": {
         "URL": "https://download.microsoft.com/download/3/2/A/32ADB0C1-86C8-492A-BE8F-C050C0610B87/CRM2016-Mui-ELL-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "FBA5FD8A8A75C9ACCA62FE39D1C72FE5AE1103DC"
     },
     "CRM2016LanguagePackHeb": {
         "URL": "https://download.microsoft.com/download/4/3/E/43EF1107-78F8-4870-8617-58F7453BBFAD/CRM2016-Mui-HEB-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "9644F7CE7B6E1813009305A268F2AA337AE3739C"
     },
     "CRM2016LanguagePackHin": {
         "URL": "https://download.microsoft.com/download/5/4/A/54AA9409-6D0E-4254-BD54-1787D3DFEF7A/CRM2016-Mui-HIN-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "EF6D983A9D22E7B62774B59087CB89674817E321"
     },
     "CRM2016LanguagePackHun": {
         "URL": "https://download.microsoft.com/download/A/A/4/AA4D465F-3E7A-4087-B774-99F67BA0C436/CRM2016-Mui-HUN-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "709922C5573CDB5EDC28927A69BFB390CC2B0CA0"
     },
     "CRM2016LanguagePackInd": {
         "URL": "https://download.microsoft.com/download/3/5/A/35A05201-F59D-4CEB-87A1-B8FF8C317DC8/CRM2016-Mui-IND-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "D93B0C439B99043D09B985D45C316158F91002C7"
     },
     "CRM2016LanguagePackIta": {
         "URL": "https://download.microsoft.com/download/B/5/C/B5CA3A6A-6CF0-4573-98AA-DEA2B37ED5E2/CRM2016-Mui-ITA-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "4386AD4DE77347983A6C0DCC6A3E9B067DBF2243"
     },
     "CRM2016LanguagePackJpn": {
         "URL": "https://download.microsoft.com/download/E/5/9/E59A843C-945E-4125-AE7C-35A410B1D234/CRM2016-Mui-JPN-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "2D45FC13A105A8D2C6B18E5CCB2BB4FC00F311DE"
     },
     "CRM2016LanguagePackKkz": {
         "URL": "https://download.microsoft.com/download/6/7/9/679F2A7B-2F57-4AD0-95D9-FF9ECCA8C94F/CRM2016-Mui-KKZ-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "E57D444BC9E3197A3E9DD2C5F652895A1E6EF54C"
     },
     "CRM2016LanguagePackKor": {
         "URL": "https://download.microsoft.com/download/1/B/4/1B4A198F-25A3-44FC-9C8C-AD9E20D55C67/CRM2016-Mui-KOR-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "ABB9D00D2F9FEA282E72718BAECF3AE484AC5A5D"
     },
     "CRM2016LanguagePackLvi": {
         "URL": "https://download.microsoft.com/download/2/E/1/2E1E2641-C07A-4D32-BDF0-78806AC7C1E1/CRM2016-Mui-LVI-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "6E598C40F55A009EA61A53C7488309418A807CC2"
     },
     "CRM2016LanguagePackLth": {
         "URL": "https://download.microsoft.com/download/5/1/2/512D027D-D324-43FF-A7AC-A5B2A3BCCB44/CRM2016-Mui-LTH-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "8A2939B8AA643F1A29E2288F2029A8D4D37A9A25"
     },
     "CRM2016LanguagePackMsl": {
         "URL": "https://download.microsoft.com/download/B/0/6/B06C0579-A02D-4502-A818-F514B24F7F9A/CRM2016-Mui-MSL-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "B5D8CC36FCED7B98CFB72289B4CF0B3BECB12895"
     },
     "CRM2016LanguagePackNor": {
         "URL": "https://download.microsoft.com/download/A/3/6/A366D513-FC6E-4715-A3F1-4BCC9E63A353/CRM2016-Mui-NOR-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "1F03EE7AF62890D65560E0BBDC472D2C21185300"
     },
     "CRM2016LanguagePackPlk": {
         "URL": "https://download.microsoft.com/download/2/D/C/2DC88636-1EEC-46BF-89E2-D4DBECC811EB/CRM2016-Mui-PLK-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "7EB67C277ECC9019ACB211457CFF53041F0D8A71"
     },
     "CRM2016LanguagePackPtb": {
         "URL": "https://download.microsoft.com/download/F/D/5/FD5896D7-220C-488B-894C-FA83A8A1998B/CRM2016-Mui-PTB-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "6C8681D56E71303CC4AA4D8FC0F9F8A58154DDC0"
     },
     "CRM2016LanguagePackPtg": {
         "URL": "https://download.microsoft.com/download/2/7/B/27B063F4-3E75-4F69-962C-BF38F64A18A7/CRM2016-Mui-PTG-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "5D0E132529EF740B852FE1C5C8FE9B3B7E28E663"
     },
     "CRM2016LanguagePackRom": {
         "URL": "https://download.microsoft.com/download/9/B/4/9B45AF4C-134B-40B3-B4F4-72FF951C35F1/CRM2016-Mui-ROM-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "F6CF405942F70BFBD40CF6B3D19CDC481149F814"
     },
     "CRM2016LanguagePackRus": {
         "URL": "https://download.microsoft.com/download/6/E/0/6E073DDF-613C-49CA-BB93-7BD6579B368C/CRM2016-Mui-RUS-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "71AA732E1FE7D9AD1190C31C64E47C2DFD8A54DE"
     },
     "CRM2016LanguagePackSrb": {
         "URL": "https://download.microsoft.com/download/D/7/4/D74551FE-5740-4E5C-BF06-F0A35D006FB3/CRM2016-Mui-SRB-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "4BB72FC31540803C941AA195CB2C20AE8CC2F644"
     },
     "CRM2016LanguagePackSrl": {
         "URL": "https://download.microsoft.com/download/6/2/F/62F77AEF-DF33-4EBB-975E-1CEB4C699D38/CRM2016-Mui-SRL-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "400378854754F384EA165B81D3E1FA6840EE9008"
     },
     "CRM2016LanguagePackSky": {
         "URL": "https://download.microsoft.com/download/3/E/E/3EE74447-EB8D-4073-8408-6DD7E9A44F88/CRM2016-Mui-SKY-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "8F3491CE7AD420EA3DA87E1DC62D83098DE1B7AB"
     },
     "CRM2016LanguagePackSlv": {
         "URL": "https://download.microsoft.com/download/6/4/4/6444DD9E-E7F8-405A-BF42-AF660A33C48F/CRM2016-Mui-SLV-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "A136C96A35B87E40EA3BAF1D191A18543ABEF66E"
     },
     "CRM2016LanguagePackEsn": {
         "URL": "https://download.microsoft.com/download/C/F/7/CF7C721D-71CC-4EB1-BC5C-6BFCDF58EDDA/CRM2016-Mui-ESN-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "376A0DCDBBB0953B7CF3B56D90BA4A82EA332118"
     },
     "CRM2016LanguagePackSve": {
         "URL": "https://download.microsoft.com/download/1/F/7/1F7CBA49-5C7B-492A-982A-8D26B9608399/CRM2016-Mui-SVE-amd64.exe",
         "identifyingNumber": "0C524DC1-141D-0080-8121-88490F4D5549",
+        "checksum": "77749C3A808FE56E4960C5037C22790563B7A1DE",
         "LanguageCode": "1053"
     },
     "CRM2016LanguagePackTha": {
         "URL": "https://download.microsoft.com/download/4/5/D/45DE35E2-C4ED-442F-9CFA-B2ABE82234D5/CRM2016-Mui-THA-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "C6E9CDA843855CF0BD7736D40D948090523B3520"
     },
     "CRM2016LanguagePackTrk": {
         "URL": "https://download.microsoft.com/download/5/E/D/5ED82CF0-E772-4FF3-A4BA-0548ECE5D6CF/CRM2016-Mui-TRK-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "C9BB3B8A35A4C2E6B11D44C86ABEF6373EB3BA25"
     },
     "CRM2016LanguagePackUkr": {
         "URL": "https://download.microsoft.com/download/6/0/2/602C8004-B575-4D42-A04A-74B01E1A53A6/CRM2016-Mui-UKR-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "1E8363F6493285A927C7CC111679400069407CCC"
     },
     "CRM2016LanguagePackVit": {
         "URL": "https://download.microsoft.com/download/7/8/4/7845F05E-F081-428B-84CC-39EA490D2157/CRM2016-Mui-VIT-amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "7EB8A1F9BDDAB1E8C15204418E2F6E43973828F0"
     },
     "CRM2016Update01": {
         "URL": "https://download.microsoft.com/download/A/6/F/A6F42C35-F258-4C9E-AAD7-F18AD04FA813/CRM2016-Server-KB3133963-ENU-Amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "33E94FD460E45362CC07B4DB8C434622962BB267",
+        "mediaFileVersion": "8.0.0001.0079"
     },
     "CRM2016ServicePack1": {
         "URL": "https://download.microsoft.com/download/7/2/E/72E6550D-909E-4D5A-8E5F-F9EAAD59D240/CRM2016-Server-KB3154952-ENU-Amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "C10634DF76C9057D7662469FF62706301F9E2071",
+        "mediaFileVersion": "8.1.0.359"
     },
     "CRM2016ServicePack1Update01": {
         "URL": "https://download.microsoft.com/download/C/C/9/CC9ADCB0-7D96-489F-8B1E-8468DF3CF0D1/CRM2016-Server-KB3203310-ENU-Amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "127023F504469FF295A5847D2743804D79F0B389",
+        "mediaFileVersion": "8.1.1.1005"
     },
     "CRM2016ServicePack2": {
         "URL": "https://download.microsoft.com/download/A/1/B/A1B99266-03FD-4E0E-AB2A-F2955A08E1E5/CRM2016-Server-KB3205084-ENU-Amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "D268FC9E9079EE1CF89FA602D11CD8217603A124",
+        "mediaFileVersion": "8.2.0.749"
     },
     "CRM2016ServicePack2Update01": {
         "URL": "https://download.microsoft.com/download/F/7/3/F73E5F7D-3E17-44B9-AAE9-6C5228975F6E/CRM2016-Server-KB4013759-ENU-Amd64.exe",
-        "identifyingNumber": ""
+        "identifyingNumber": "",
+        "checksum": "8569DD3B5822767D3116D8C44E73E87B4679BEB6",
+        "mediaFileVersion": "8.2.1.176"
     },
     "CRM2016ServicePack2Update02": {
         "URL": "https://download.microsoft.com/download/1/0/8/108ABED3-3EF6-4569-A096-DEAEC5C3450C/CRM2016-Server-KB4046795-ENU-Amd64.exe",
         "identifyingNumber": "",
+        "checksum": "B7DB8ABB331BD14EC16190FDC0B4586ADC9A6F43",
         "mediaFileVersion": "8.2.2.112"
     }
 }
