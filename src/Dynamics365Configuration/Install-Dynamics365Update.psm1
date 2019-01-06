@@ -8,26 +8,19 @@ function Install-Dynamics365Update {
         $InstallAccount
     )
     $setupFilePath = "$mediaDir\CrmUpdateWrapper.exe";
-    $fileVersion = ( Get-Command $setupFilePath ).FileVersionInfo.FileVersion;
-    $foundFileResource = $null;
-    $Dynamics365Resources | Get-Member -MemberType NoteProperty | % {
-        if ( $Dynamics365Resources.( $_.Name ).MediaFileVersion -eq $fileVersion ) { $foundFileResource = $_.Name }
+    $fileVersion = ( Get-Command $setupFilePath ).FileVersionInfo.FileVersionRaw.ToString();
+    $testScriptBlock = {
+        Add-PSSnapin Microsoft.Crm.PowerShell
+        $CrmOrganization = Get-CrmOrganization
+        $CrmOrganization.Version
     }
-    if ( $foundFileResource )
+    if ( $installAccount )
     {
-        Write-Host "Found corresponding resource in the catalog: $foundFileResource";
-        $expectedProductIdentifyingNumber = $Dynamics365Resources.$foundFileResource.IdentifyingNumber;
+        $testResponse = Invoke-Command -ScriptBlock $testScriptBlock $env:COMPUTERNAME -Credential $installAccount -Authentication CredSSP;
     } else {
-        Write-Host "Corresponding resource is not found in the catalog. Installation verification will be skipped";
+        $testResponse = Invoke-Command -ScriptBlock $testScriptBlock;
     }
-    if ( $expectedProductIdentifyingNumber )
-    {
-        $installedProduct = Get-WmiObject Win32_Product | ? { $_.IdentifyingNumber -eq "{$expectedProductIdentifyingNumber}" }
-    } else {
-        Write-Host "IdentifyingNumber is not specified for this product, installation verification will be skipped";
-    }
-    if ( !$expectedProductIdentifyingNumber -or !$installedProduct )
-    {
+    if ( $testResponse -ne $fileVersion ) {
         $localInstallationScriptBlock = {
             param( $setupFilePath )
             Write-Host "$(Get-Date) Starting $setupFilePath";
@@ -55,20 +48,25 @@ function Install-Dynamics365Update {
         } else {
             Invoke-Command -ScriptBlock $localInstallationScriptBlock -ArgumentList $setupFilePath;
         }
-        if ( $expectedProductIdentifyingNumber )
-        {
-            $installedProduct = Get-WmiObject Win32_Product | ? { $_.IdentifyingNumber -eq "{$expectedProductIdentifyingNumber}" }
-            if ( $installedProduct ) {
-                Write-Host "Installation is finished successfully";
-            } else {
-                throw "Installation job finished but the product is still not installed";
-            }
-        } else {
-            Write-Host "Installation is finished but verification cannot be done without IdentifyingNumber specified. Here is the list of all the installed products:";
-            Get-WmiObject Win32_Product | Select Name, IdentifyingNumber | % {
-                Write-Host $_.IdentifyingNumber, $_.Name;
-            }
+        $testScriptBlock = {
+            Add-PSSnapin Microsoft.Crm.PowerShell
+            $CrmOrganization = Get-CrmOrganization
+            $CrmOrganization.Version
         }
+        if ( $installAccount )
+        {
+            $testResponse = Invoke-Command -ScriptBlock $testScriptBlock $env:COMPUTERNAME -Credential $installAccount -Authentication CredSSP;
+        } else {
+            $testResponse = Invoke-Command -ScriptBlock $testScriptBlock;
+        }
+        if ( $testResponse -eq $fileVersion ) {
+            Write-Host "Installation is finished and verified successfully. Dynamics version installed: $testResponse";
+        } else {
+            Write-Host "Installation job finished but the product is still not installed. Current Dynamics version installed: $testResponse";
+            Throw "Installation job finished but the product is still not installed. Current Dynamics version installed: $testResponse";
+        }
+    } else {
+        Write-Host "Product is already installed, skipping. Current Dynamics version installed: $testResponse"
     }
 }
 

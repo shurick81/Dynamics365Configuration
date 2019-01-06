@@ -187,7 +187,6 @@ platforms:
       box: win2016-soe
       gui: false
       box_check_update: true
-      vm_hostname: win16
       platform: windows
       linked_clone: true
       communicator: winrm

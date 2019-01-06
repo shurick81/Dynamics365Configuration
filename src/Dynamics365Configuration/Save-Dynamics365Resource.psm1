@@ -24,7 +24,6 @@ function Save-Dynamics365Resource
             'Dynamics365Server90LanguagePackCsy',
             'Dynamics365Server90LanguagePackDan',
             'Dynamics365Server90LanguagePackNld',
-            'Dynamics365Server90LanguagePackEnu',
             'Dynamics365Server90LanguagePackEti',
             'Dynamics365Server90LanguagePackFin',
             'Dynamics365Server90LanguagePackFra',
