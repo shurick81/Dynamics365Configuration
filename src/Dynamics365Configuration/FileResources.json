@@ -3,7 +3,7 @@
         "URL": "https://download.microsoft.com/download/B/D/0/BD0FA814-9885-422A-BA0E-54CBB98C8A33/CRM9.0-Server-ENU-amd64.exe",
         "identifyingNumber": "0C524D55-1409-0090-BD7E-530E52560E52",
         "checksum": "52791E8F11F16247FCB859BCE5B92D90F9014D2E",
-        "mediaFileVersion": "9.0.0002.3034"
+        "mediaFileVersion": "9.0.2.3034"
     },
     "VisualCPlusPlusRuntime": {
         "URL": "https://download.microsoft.com/download/2/E/6/2E61CFA4-993B-4DD4-91DA-3737CD5CD6E3/vcredist_x64.exe",
@@ -303,7 +303,7 @@
         "URL": "https://download.microsoft.com/download/3/4/F/34FB8C80-F245-41E7-AFE2-6388005A702B/CRM2016-Server-ENU-amd64.exe",
         "identifyingNumber": "0C524D55-1409-0080-BD7E-530E52560E52",
         "checksum": "192882bccbc976b58f4259b4f9498edb1b23c526",
-        "mediaFileVersion": "8.0.0000.1088"
+        "mediaFileVersion": "8.0.0.1088"
     },
     "SQLNCli2018R2": {
         "URL": "http://download.microsoft.com/download/B/6/3/B63CAC7F-44BB-41FA-92A3-CBF71360F022/1033/x64/sqlncli.msi",
