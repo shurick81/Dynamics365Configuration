@@ -93,26 +93,34 @@ function Install-Dynamics365Server {
         $InstallAccount
     )
     $setupFilePath = "$mediaDir\SetupServer.exe";
-    $fileVersion = ( Get-Command $setupFilePath ).FileVersionInfo.FileVersion;
-    $foundFileResource = $null;
-    $Dynamics365Resources | Get-Member -MemberType NoteProperty | % {
-        if ( $Dynamics365Resources.( $_.Name ).MediaFileVersion -eq $fileVersion ) { $foundFileResource = $_.Name }
+    $fileVersion = ( Get-Command $setupFilePath ).FileVersionInfo.FileVersionRaw.ToString();
+    Write-Host "Version of software to be installed: $fileVersion";
+    $testScriptBlock = {
+        try {
+            Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
+            if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
+                $CrmOrganization = Get-CrmOrganization;
+                $CrmOrganization.Version;
+            } else {
+                "Could not load Microsoft.Crm.PowerShell PSSnapin";
+            }
+        } catch {
+            Write-Host "$(Get-Date) Caught an exception: $($_.Exception.Message)";
+            $_.Exception.Message;
+        }
     }
-    if ( $foundFileResource )
+    if ( $installAccount )
     {
-        Write-Host "Found corresponding resource in the catalog: $foundFileResource";
-        $expectedProductIdentifyingNumber = $Dynamics365Resources.$foundFileResource.IdentifyingNumber;
+        $testResponse = Invoke-Command -ScriptBlock $testScriptBlock $env:COMPUTERNAME -Credential $installAccount -Authentication CredSSP;
     } else {
-        Write-Host "Corresponding resource is not found in the catalog. Installation verification will be skipped";
+        $testResponse = Invoke-Command -ScriptBlock $testScriptBlock;
     }
-    $installedProducts = Get-WmiObject Win32_Product | % { $_.IdentifyingNumber }
-    if ( $expectedProductIdentifyingNumber )
-    {
-        $isInstalled = $installedProducts -contains "{$expectedProductIdentifyingNumber}";
-    } else {
-        Write-Host "IdentifyingNumber is not specified for this product, installation verification will be skipped";
+    $productDetected = $null;
+    if ( $testResponse.StartsWith( "9." ) -or $testResponse.StartsWith( "8." ) ) {
+        $productDetected = $testResponse;
     }
-    if ( !$expectedProductIdentifyingNumber -or !$isInstalled ) {
+    # Starting installation only when no Dynamics products is installed.
+    if ( !$productDetected ) {
         $xml = [xml]"";
         $crmSetupElement = $xml.CreateElement( "CRMSetup" );
             $serverElement = $xml.CreateElement( "Server" );
@@ -288,27 +296,32 @@ function Install-Dynamics365Server {
         } else {
             Invoke-Command -ScriptBlock $localInstallationScriptBlock -ArgumentList $setupFilePath, $stringWriter.ToString();
         }
-        Write-Host "The following products were installed:"
-        Get-WmiObject Win32_Product | % {
-            if ( $_.IdentifyingNumber -eq "{$expectedProductIdentifyingNumber}" ) {
-                $isInstalled = $true
-            }
-            if ( !( $installedProducts -contains $_.IdentifyingNumber ) ) {
-                Write-Host $_.IdentifyingNumber, $_.Name;
+        $testScriptBlock = {
+            try {
+                Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
+                if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
+                    $CrmOrganization = Get-CrmOrganization;
+                    $CrmOrganization.Version;
+                } else {
+                    "Could not load Microsoft.Crm.PowerShell PSSnapin";
+                }
+            } catch {
+                $_.Exception.Message;
             }
         }
-        if ( $expectedProductIdentifyingNumber )
+        if ( $installAccount )
         {
-            if ( $isInstalled ) {
-                Write-Host "Installation is finished and verified successfully";
-            } else {
-                Write-Host "Installation job finished but the product is still not installed";
-                Throw "Installation job finished but the product is still not installed";
-            }
+            $testResponse = Invoke-Command -ScriptBlock $testScriptBlock $env:COMPUTERNAME -Credential $installAccount -Authentication CredSSP;
         } else {
-            Write-Host "Installation is finished but verification cannot be done without IdentifyingNumber specified.";
+            $testResponse = Invoke-Command -ScriptBlock $testScriptBlock;
+        }
+        if ( $testResponse -eq $fileVersion ) {
+            Write-Host "Installation is finished and verified successfully";
+        } else {
+            Write-Host "Installation job finished but the product is still not installed. Current product version installed is '$testResponse'";
+            Throw "Installation job finished but the product is still not installed. Current product version installed is '$testResponse'";
         }
     } else {
-        Write-Host "Product is already installed, skipping"
+        Write-Host "Product version '$testResponse' is already installed, skipping"
     }
 }

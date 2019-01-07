@@ -9,10 +9,19 @@ function Install-Dynamics365Update {
     )
     $setupFilePath = "$mediaDir\CrmUpdateWrapper.exe";
     $fileVersion = ( Get-Command $setupFilePath ).FileVersionInfo.FileVersionRaw.ToString();
+    Write-Host "Version of software to be installed: $fileVersion";
     $testScriptBlock = {
-        Add-PSSnapin Microsoft.Crm.PowerShell
-        $CrmOrganization = Get-CrmOrganization
-        $CrmOrganization.Version
+        try {
+            Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
+            if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
+                $CrmOrganization = Get-CrmOrganization;
+                $CrmOrganization.Version;
+            } else {
+                "Could not load Microsoft.Crm.PowerShell PSSnapin";
+            }
+        } catch {
+            $_.Exception.Message;
+        }
     }
     if ( $installAccount )
     {
@@ -20,7 +29,11 @@ function Install-Dynamics365Update {
     } else {
         $testResponse = Invoke-Command -ScriptBlock $testScriptBlock;
     }
-    if ( $testResponse -ne $fileVersion ) {
+    $productDetected = $null;
+    if ( $testResponse.StartsWith( "9." ) -or $testResponse.StartsWith( "8." ) ) {
+        $productDetected = $testResponse;
+    }
+    if ( $productDetected -and ( $productDetected -lt $fileVersion ) -and ( $productDetected.Substring( 0, 2 ) -eq $fileVersion.Substring( 0, 2 ) ) ) {
         $localInstallationScriptBlock = {
             param( $setupFilePath )
             Write-Host "$(Get-Date) Starting $setupFilePath";
@@ -49,9 +62,17 @@ function Install-Dynamics365Update {
             Invoke-Command -ScriptBlock $localInstallationScriptBlock -ArgumentList $setupFilePath;
         }
         $testScriptBlock = {
-            Add-PSSnapin Microsoft.Crm.PowerShell
-            $CrmOrganization = Get-CrmOrganization
-            $CrmOrganization.Version
+            try {
+                Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
+                if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
+                    $CrmOrganization = Get-CrmOrganization;
+                    $CrmOrganization.Version;
+                } else {
+                    "Could not load Microsoft.Crm.PowerShell PSSnapin";
+                }
+            } catch {
+                $_.Exception.Message;
+            }
         }
         if ( $installAccount )
         {
@@ -60,13 +81,13 @@ function Install-Dynamics365Update {
             $testResponse = Invoke-Command -ScriptBlock $testScriptBlock;
         }
         if ( $testResponse -eq $fileVersion ) {
-            Write-Host "Installation is finished and verified successfully. Dynamics version installed: $testResponse";
+            Write-Host "Installation is finished and verified successfully. Dynamics version installed: '$testResponse'";
         } else {
-            Write-Host "Installation job finished but the product is still not installed. Current Dynamics version installed: $testResponse";
-            Throw "Installation job finished but the product is still not installed. Current Dynamics version installed: $testResponse";
+            Write-Host "Installation job finished but the product is still not installed. Current Dynamics version installed: '$testResponse'";
+            Throw "Installation job finished but the product is still not installed. Current Dynamics version installed: '$testResponse'";
         }
     } else {
-        Write-Host "Product is already installed, skipping. Current Dynamics version installed: $testResponse"
+        Write-Host "Required product is not installed, skipping the upgrade. Current Dynamics version installed: '$testResponse'"
     }
 }
 
