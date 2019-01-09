@@ -228,6 +228,7 @@ try {
     Exit 1;
 }
 
+$installedProducts = Get-WmiObject Win32_Product | % { $_.IdentifyingNumber }
 @(
     "0C524DC1-1402-0080-8121-88490F4D5549",
     "0C524DC1-1403-0080-8121-88490F4D5549",
