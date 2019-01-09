@@ -206,6 +206,7 @@ try {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
+
 $installedProducts = Get-WmiObject Win32_Product | % { $_.IdentifyingNumber }
 @(
     "0C524DC1-1402-0090-8121-88490F4D5549",
