@@ -175,6 +175,7 @@ if ( $testResponse -eq "8.0.0.1088" )
     Write-Host "Test OK";
 } else {
     Write-Host "Software installed version is '$testResponse'. Test is not OK"
+    Exit 1;
 }
 
 try {
@@ -303,11 +304,12 @@ $testScriptBlock = {
     }
 }
 $testResponse = Invoke-Command -ScriptBlock $testScriptBlock $env:COMPUTERNAME -Credential $CRMInstallAccountCredential -Authentication CredSSP;
-if ( $testResponse -eq "8.0.1.0079" )
+if ( $testResponse -eq "8.0.1.79" )
 {
     Write-Host "Test OK";
 } else {
     Write-Host "Software installed version is '$testResponse'. Test is not OK"
+    Exit 1;
 }
 
 try {
@@ -336,6 +338,7 @@ if ( $testResponse -eq "8.1.0.359" )
     Write-Host "Test OK";
 } else {
     Write-Host "Software installed version is '$testResponse'. Test is not OK"
+    Exit 1;
 }
 
 try {
@@ -364,6 +367,7 @@ if ( $testResponse -eq "8.1.1.1005" )
     Write-Host "Test OK";
 } else {
     Write-Host "Software installed version is '$testResponse'. Test is not OK"
+    Exit 1;
 }
 
 try {
@@ -392,6 +396,7 @@ if ( $testResponse -eq "8.2.0.749" )
     Write-Host "Test OK";
 } else {
     Write-Host "Software installed version is '$testResponse'. Test is not OK"
+    Exit 1;
 }
 
 try {
@@ -420,6 +425,7 @@ if ( $testResponse -eq "8.2.1.176" )
     Write-Host "Test OK";
 } else {
     Write-Host "Software installed version is '$testResponse'. Test is not OK"
+    Exit 1;
 }
 
 try {
@@ -448,6 +454,7 @@ if ( $testResponse -eq "8.2.2.112" )
     Write-Host "Test OK";
 } else {
     Write-Host "Software installed version is '$testResponse'. Test is not OK"
+    Exit 1;
 }
 
 Exit 0;
