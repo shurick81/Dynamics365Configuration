@@ -51,6 +51,7 @@ function Install-Dynamics365Language {
             )
             Start-Process "msiexec.exe" -ArgumentList $MSIArguments -Wait -NoNewWindow;
             Write-Host "$(Get-Date) Finished $msiFullName";
+            Sleep 10;
             Write-Host "The following products were installed:"
             Get-WmiObject Win32_Product | % {
                 if ( $_.IdentifyingNumber -eq "{$expectedProductIdentifyingNumber}" ) {
