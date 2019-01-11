@@ -51,26 +51,33 @@ function Install-Dynamics365Language {
             )
             Start-Process "msiexec.exe" -ArgumentList $MSIArguments -Wait -NoNewWindow;
             Write-Host "$(Get-Date) Finished $msiFullName";
-            Sleep 10;
-            Write-Host "The following products were installed:"
-            Get-WmiObject Win32_Product | % {
-                if ( $_.IdentifyingNumber -eq "{$expectedProductIdentifyingNumber}" ) {
-                    $isInstalled = $true;
-                }
-                if ( !( $installedProducts -contains $_.IdentifyingNumber ) ) {
-                    Write-Host $_.IdentifyingNumber, $_.Name;
-                }
-            }
-            if ( $expectedProductIdentifyingNumber )
+            $isInstalled = $false;
+            $retries = 20;
+            While ( !$isInstalled -and $retries -gt 0 )
             {
-                if ( $isInstalled ) {
-                    Write-Host "Installation is finished and verified successfully";
-                } else {
-                    Write-Host "Installation job finished but the product is still not installed";
-                    Throw "Installation job finished but the product is still not installed";
+                Write-Host "$(Get-Date) Verifying product installation, retries left: $retries"
+                Write-Host "The following products were installed:"
+                Get-WmiObject Win32_Product | % {
+                    if ( $_.IdentifyingNumber -eq "{$expectedProductIdentifyingNumber}" ) {
+                        $isInstalled = $true;
+                    }
+                    if ( !( $installedProducts -contains $_.IdentifyingNumber ) ) {
+                        Write-Host $_.IdentifyingNumber, $_.Name;
+                    }
                 }
-            } else {
-                Write-Host "Installation is finished but verification cannot be done without IdentifyingNumber specified.";
+                if ( $expectedProductIdentifyingNumber )
+                {
+                    if ( $isInstalled ) {
+                        Write-Host "Installation is finished and verified successfully";
+                    } else {
+                        Write-Host "Installation job finished but the product is still not installed";
+                        Throw "Installation job finished but the product is still not installed";
+                    }
+                } else {
+                    Write-Host "Installation is finished but verification cannot be done without IdentifyingNumber specified.";
+                }
+                $retries--;
+                Sleep 10;
             }
         } else {
             Write-Host "Product is already installed, skipping"
