@@ -57,6 +57,8 @@ platforms:
         password: Fractalsol365
         transport: plaintext
         basic_auth_only: true
+        config.winrm.timeout: 240
+        retry_limit: 20
       gui: false
       platform: windows
       linked_clone: true
@@ -82,6 +84,8 @@ platforms:
         password: Fractalsol365
         transport: plaintext
         basic_auth_only: true
+        config.winrm.timeout: 240
+        retry_limit: 20
       gui: false
       platformw: windows
       customize:
@@ -109,6 +113,8 @@ platforms:
         password: Fractalsol365
         transport: plaintext
         basic_auth_only: true
+        config.winrm.timeout: 240
+        retry_limit: 20
       gui: false
       platformw: windows
       customize:
@@ -136,6 +142,8 @@ platforms:
         password: Fractalsol365
         transport: plaintext
         basic_auth_only: true
+        config.winrm.timeout: 240
+        retry_limit: 20
       gui: false
       platformw: windows
       customize:
@@ -165,6 +173,8 @@ platforms:
         password: Fractalsol365
         transport: plaintext
         basic_auth_only: true
+        config.winrm.timeout: 240
+        retry_limit: 20
       gui: false
       platformw: windows
       customize:
@@ -195,6 +205,8 @@ platforms:
         password: Fractalsol365
         transport: plaintext
         basic_auth_only: true
+        config.winrm.timeout: 240
+        retry_limit: 20
       gui: false
       platformw: windows
       customize:
