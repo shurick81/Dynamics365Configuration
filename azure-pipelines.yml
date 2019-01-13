@@ -44,6 +44,27 @@ jobs:
   - powershell: cd tests; kitchen test QuickProvisioning-win2016-dynamicsprereqs;
     displayName: kitchen test QuickProvisioning-win2016-dynamicsprereqs
     errorActionPreference: continue
+  - powershell: cd infrastructure/stacks/kitchenci-ad-sql2016dbrs; vagrant destroy DB01 --force;
+    displayName: Cleaning up the stack
+    errorActionPreference: continue
+  - powershell: cd infrastructure/stacks/kitchenci-ad-sql2016dbrs; ..\localdeploy.ps1;
+    displayName: Spinning up service VMs
+    errorActionPreference: continue
+  - powershell: cd tests; kitchen test Provision90Full-win2016-dynamicsprereqs;
+    displayName: kitchen test Provision90Full-win2016-dynamicsprereqs
+    errorActionPreference: continue
+  - powershell: cd infrastructure/stacks/kitchenci-ad-sql2016dbrs; vagrant destroy DB01 --force;
+    displayName: Cleaning up the stack
+    errorActionPreference: continue
+  - powershell: cd infrastructure/stacks/kitchenci-ad-sql2016dbrs; ..\localdeploy.ps1;
+    displayName: Spinning up service VMs
+    errorActionPreference: continue
+  - powershell: cd tests; kitchen test Provision2016Full-win2016-dynamicsprereqs;
+    displayName: kitchen test Provision2016Full-win2016-dynamicsprereqs
+    errorActionPreference: continue
+  - powershell: cd infrastructure/stacks/kitchenci-ad-sql2016dbrs; vagrant destroy DB01 --force;
+    displayName: Cleaning up the stack
+    errorActionPreference: continue
   #- powershell: cd tests; kitchen test QuickProvisioning-win2016-sql2016dbrs-dynamicsprereqs;
   #  displayName: kitchen test QuickProvisioning-win2016-sql2016dbrs-dynamicsprereqs
   #  errorActionPreference: continue
@@ -53,15 +74,15 @@ jobs:
   #- powershell: cd tests; kitchen test Provision90Full-win2016-ad-sql2016dbrs-dynamicsprereqs;
   #  displayName: kitchen test Provision90Full-win2016-ad-sql2016dbrs-dynamicsprereqs
   #  errorActionPreference: continue
-  - powershell: cd tests; kitchen test Provision90Full-win2016-sql2016dbrs-dynamicsprereqs;
-    displayName: kitchen test Provision90Full-win2016-sql2016dbrs-dynamicsprereqs
-    errorActionPreference: continue
+  #- powershell: cd tests; kitchen test Provision90Full-win2016-sql2016dbrs-dynamicsprereqs;
+  #  displayName: kitchen test Provision90Full-win2016-sql2016dbrs-dynamicsprereqs
+  #  errorActionPreference: continue
   #- powershell: cd tests; kitchen test Provision2016Full-win2016-ad-sql2016dbrs-dynamicsprereqs;
   #  displayName: kitchen test Provision2016Full-win2016-ad-sql2016dbrs-dynamicsprereqs
   #  errorActionPreference: continue
-  - powershell: cd tests; kitchen test Provision2016Full-win2016-sql2016dbrs-dynamicsprereqs;
-    displayName: kitchen test Provision2016Full-win2016-sql2016dbrs-dynamicsprereqs
-    errorActionPreference: continue
+  #- powershell: cd tests; kitchen test Provision2016Full-win2016-sql2016dbrs-dynamicsprereqs;
+  #  displayName: kitchen test Provision2016Full-win2016-sql2016dbrs-dynamicsprereqs
+  #  errorActionPreference: continue
   - powershell: cd ci;./releasenode.ps1
     #condition: always()
     displayName: Releasing the hypervisor node booking
