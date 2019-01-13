@@ -11,6 +11,9 @@ jobs:
   - powershell: cd ci; ./booknode.ps1
     displayName: Booking the hypervisor node
     errorActionPreference: continue
+  - powershell: cd infrastructure/stacks/kitchenci-ad-sql2016dbrs; vagrant destroy DB01 --force;
+    displayName: Cleaning up the stack
+    errorActionPreference: continue
   - powershell: cd tests; kitchen test InstallAllPrerequisites-win2016-basic;
     displayName: kitchen test InstallAllPrerequisites-win2016-basic
     errorActionPreference: continue
@@ -34,9 +37,6 @@ jobs:
     errorActionPreference: continue
   - powershell: cd tests; kitchen test SaveAllResources-win2016-soe;
     displayName: kitchen test SaveAllResources-win2016-soe
-    errorActionPreference: continue
-  - powershell: cd infrastructure/stacks/kitchenci-ad-sql2016dbrs; vagrant destroy DB01 --force;
-    displayName: Cleaning up the stack
     errorActionPreference: continue
   - powershell: cd infrastructure/stacks/kitchenci-ad-sql2016dbrs; ..\localdeploy.ps1;
     displayName: Spinning up service VMs
