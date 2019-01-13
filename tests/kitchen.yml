@@ -259,6 +259,7 @@ suites:
   includes:
     - win2016-ad-sql2016dbrs-dynamicsprereqs
     - win2016-sql2016dbrs-dynamicsprereqs
+    - win2016-dynamicsprereqs
 - name: Provision2016Full
   provisioner:
     name: shell
@@ -269,5 +270,6 @@ suites:
     - win2012-ad-sql2012sp1dbrs-dynamicsprereqs
     - win2016-sql2016dbrs-dynamicsprereqs
     - win2012-sql2012sp1dbrs-dynamicsprereqs
+    - win2016-dynamicsprereqs
   #run_list:
   #- recipe[tests::saveall]
