@@ -58,26 +58,26 @@ function Install-Dynamics365Language {
                 Write-Host "$(Get-Date) Verifying product installation, retries left: $retries"
                 Write-Host "The following products were installed:"
                 Get-WmiObject Win32_Product | % {
-                    if ( $_.IdentifyingNumber -eq "{$expectedProductIdentifyingNumber}" ) {
+                    if ( $expectedProductIdentifyingNumber -or ( $_.IdentifyingNumber -eq "{$expectedProductIdentifyingNumber}" ) ) {
                         $isInstalled = $true;
                     }
                     if ( !( $installedProducts -contains $_.IdentifyingNumber ) ) {
                         Write-Host $_.IdentifyingNumber, $_.Name;
                     }
                 }
-                if ( $expectedProductIdentifyingNumber )
-                {
-                    if ( $isInstalled ) {
-                        Write-Host "Installation is finished and verified successfully";
-                    } else {
-                        Write-Host "Installation job finished but the product is still not installed";
-                        Throw "Installation job finished but the product is still not installed";
-                    }
-                } else {
-                    Write-Host "Installation is finished but verification cannot be done without IdentifyingNumber specified.";
-                }
                 $retries--;
                 Sleep 10;
+            }
+            if ( $expectedProductIdentifyingNumber )
+            {
+                if ( $isInstalled ) {
+                    Write-Host "Installation is finished and verified successfully";
+                } else {
+                    Write-Host "Installation job finished but the product is still not installed";
+                    Throw "Installation job finished but the product is still not installed";
+                }
+            } else {
+                Write-Host "Installation is finished but verification cannot be done without IdentifyingNumber specified.";
             }
         } else {
             Write-Host "Product is already installed, skipping"
