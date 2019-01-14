@@ -20,6 +20,7 @@
                 [ "modifyvm", "{{.Name}}", "--memory", "4096" ],
                 [ "modifyvm", "{{.Name}}", "--cpus", "4" ]
             ],
+            "disk_size": 102400,
             "communicator": "winrm",
             "winrm_username": "packer",
             "winrm_password": "Fractalsol365",
@@ -41,6 +42,7 @@
             "shutdown_command": "a:/sysprep.bat",
             "ram_size": 4096,
             "cpu": 4,
+            "disk_size": 102400,
             "switch_name": "Default Switch",
             "communicator": "winrm",
             "winrm_username": "packer",
@@ -91,6 +93,8 @@
             "script": "rdpenable.ps1",
             "only": ["virtualbox-iso","hyperv-iso"]
         },
+        { "type": "powershell", "script": "nodefender.ps1" },
+        { "type": "windows-restart" },
         {
             "type": "powershell",
             "script": "winrm.ps1",
@@ -121,7 +125,8 @@
     "post-processors": [
         {
           "type": "vagrant",
-          "output": "{{user `box_name`}}.box"
+          "output": "{{user `box_name`}}.box",
+          "vagrantfile_template": "vagrantfile-windows.template"
         }
     ],
     "variables": {

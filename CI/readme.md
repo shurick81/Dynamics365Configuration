@@ -1,6 +1,8 @@
 ## Prepare the agent machine
 
 1. Install requred software
+
+Run in PowerShell:
 ```PowerShell
 $resourceUrl = "https://vstsagentpackage.azureedge.net/agent/2.144.0/vsts-agent-win-x64-2.144.0.zip";
 $tempFileName = [guid]::NewGuid().Guid + ".zip";
@@ -24,6 +26,11 @@ choco install -y virtualbox --version 5.2.22
 choco install -y vagrant --version 2.2.0
 ```
 Reboot the machine if vagrant had not been installed before.
+
+Run in PowerShell:
+```PowerShell
+vagrant plugin install vagrant-reload
+```
 
 ## Run the agent
 

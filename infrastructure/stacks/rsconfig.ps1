@@ -1,4 +1,4 @@
-$configName = "SPDomain"
+$configName = "RSConfig"
 Write-Host "$(Get-Date) Defining DSC"
 try
 {

@@ -1,5 +1,5 @@
 $complete = $false;
-$retries = 5
+$retries = 20
 While ( !$complete -and $retries -gt 0 )
 {
     Write-Host "$(Get-Date) Trying vagrant up, retries left: $retries"

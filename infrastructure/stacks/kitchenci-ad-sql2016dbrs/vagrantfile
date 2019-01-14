@@ -20,7 +20,7 @@ Vagrant.configure(2) do |config|
             azure.client_id = ENV['ARM_CLIENT_ID']
             azure.client_secret = ENV['ARM_CLIENT_SECRET']
             azure.subscription_id = ENV['ARM_SUBSCRIPTION_ID']
-            azure.resource_group_name = 'dev-ad-sql2016dbrs-crmempty'
+            azure.resource_group_name = 'kitchenci-ad-sql2016dbrs'
             azure.vm_managed_image_id = "/subscriptions/#{ENV['ARM_SUBSCRIPTION_ID']}/resourceGroups/CommonRG/providers/Microsoft.Compute/images/win2016-ad"
             azure.instance_ready_timeout = 3600
             azure.vm_name = 'ad01'
@@ -30,7 +30,7 @@ Vagrant.configure(2) do |config|
             azure.admin_username = "vagrant"
             azure.admin_password = "Fractalsol365"
             azure.dns_name = (0...15).map { (97 + rand(26)).chr }.join
-            azure.nsg_name = 'dev-ad-sql2016dbrs-crmempty'
+            azure.nsg_name = 'kitchenci-ad-sql2016dbrs'
             azure.wait_for_destroy = true
             override.vm.guest = :windows
             override.vm.box = "azure"
@@ -67,7 +67,7 @@ Vagrant.configure(2) do |config|
             azure.client_id = ENV['ARM_CLIENT_ID']
             azure.client_secret = ENV['ARM_CLIENT_SECRET']
             azure.subscription_id = ENV['ARM_SUBSCRIPTION_ID']
-            azure.resource_group_name = 'dev-ad-sql2016dbrs-crmempty'
+            azure.resource_group_name = 'kitchenci-ad-sql2016dbrs'
             azure.vm_managed_image_id = "/subscriptions/#{ENV['ARM_SUBSCRIPTION_ID']}/resourceGroups/CommonRG/providers/Microsoft.Compute/images/win2016-sql2016dbrs"
             azure.instance_ready_timeout = 3600
             azure.vm_name = 'db01'
@@ -76,8 +76,8 @@ Vagrant.configure(2) do |config|
             azure.admin_username = "vagrant"
             azure.admin_password = "Fractalsol365"
             azure.dns_name = (0...15).map { (97 + rand(26)).chr }.join
-            # azure.virtual_network_name = 'dev-ad-sql2016dbrs-crmempty'
-            azure.nsg_name = 'dev-ad-sql2016dbrs-crmempty'
+            # azure.virtual_network_name = 'kitchenci-ad-sql2016dbrs'
+            azure.nsg_name = 'kitchenci-ad-sql2016dbrs'
             azure.wait_for_destroy = true
             override.vm.guest = :windows
             override.vm.box = "azure"
@@ -98,66 +98,6 @@ Vagrant.configure(2) do |config|
         #vm_config.vm.provision :shell, path: "../sslcerts-rs.ps1"
         vm_config.vm.provision :shell, path: "../rsconfig.ps1"
         vm_config.vm.provision :shell, path: "../rsserviceaccountupdate.ps1"
-        vm_config.vm.boot_timeout = 1800
-    end
-    config.vm.define "CRM01" do |vm_config|
-        vm_config.vm.hostname = "CRM01"
-        vm_config.vm.box = "win2016-soe"
-        vm_config.vm.network "forwarded_port", guest: 3389, host: 13392, auto_correct: true
-        vm_config.vm.provider "virtualbox" do |vb, override|
-            override.vm.network :private_network, ip: "192.168.51.130", gateway: "192.168.51.1"
-            #vb.vm.gui = true
-            vb.memory = "4096"
-            vb.cpus = 4
-        end
-        vm_config.vm.provider "hyperv" do |hv, override|
-            hv.memory = "4096"
-            hv.maxmemory = "8192"
-            hv.cpus = 4
-        end
-        vm_config.vm.provider :azure do |azure, override|
-            azure.tenant_id = ENV['ARM_TENANT_ID']
-            azure.client_id = ENV['ARM_CLIENT_ID']
-            azure.client_secret = ENV['ARM_CLIENT_SECRET']
-            azure.subscription_id = ENV['ARM_SUBSCRIPTION_ID']
-            azure.resource_group_name = 'dev-ad-sql2016dbrs-crmempty'
-            azure.vm_managed_image_id = "/subscriptions/#{ENV['ARM_SUBSCRIPTION_ID']}/resourceGroups/CommonRG/providers/Microsoft.Compute/images/win2016-soe"
-            azure.instance_ready_timeout = 3600
-            azure.vm_name = 'CRM01'
-            azure.location = 'WestUS2'
-            azure.vm_size = 'Standard_DS2_v2'
-            azure.admin_username = "vagrant"
-            azure.admin_password = "Fractalsol365"
-            azure.dns_name = (0...15).map { (97 + rand(26)).chr }.join
-            # azure.virtual_network_name = 'dev-ad-sql2016dbrs-crmempty'
-            azure.nsg_name = 'dev-ad-sql2016dbrs-crmempty'
-            azure.wait_for_destroy = true
-            override.vm.guest = :windows
-            override.vm.box = "azure"
-            override.winrm.transport = :ssl
-            override.winrm.port = 5986
-            override.winrm.ssl_peer_verification = false # must be false if using a self signed cert
-            override.vm.synced_folder ".", "/vagrant", disabled: true
-        end
-        vm_config.vm.provision :shell, path: "../../images/basepsmodules.ps1"
-        vm_config.vm.provision :shell, path: "../../images/domainclientpsmodules.ps1"
-        vm_config.vm.provision :shell, path: "../domainclientnetwork.ps1"
-        vm_config.vm.provision :shell, path: "../domainclient.ps1"
-        vm_config.vm.provision :shell, path: "../xcredclient.ps1"
-        vm_config.vm.provision "reload"
-        vm_config.vm.provision :shell, path: "../crmdomainclientgroups.ps1", env: { "SPDEVOPSSTARTER_TRIALS" => 100 }
-        vm_config.vm.provision :file, source: "../../../src", destination: "c:/tmp/Dynamics365Configuration/src"
-        vm_config.vm.provision :file, source: "../../../tests", destination: "c:/tmp/Dynamics365Configuration/tests"
-        vm_config.vm.provision :shell, inline: "powershell -command 'cd c:/tmp/Dynamics365Configuration/tests; .\\PrepareMachine.ps1'"
-        vm_config.vm.provision "reload"
-        vm_config.vm.provision :shell, inline: "powershell -command 'cd c:/tmp/Dynamics365Configuration/tests; .\\Provision.ps1'", env: { "VMDEVOPSSTARTER_DBHOST" => "DB01" }
-        if ENV['SPDEVOPSSTARTER_VAGRANT_RUNJENKINS'] === 'TRUE'
-            vm_config.vm.provision :shell, path: "../slavepreprovisioning.ps1"
-            vm_config.vm.provision :shell, path: "../joinslave.ps1", env: {
-                "SPDEVOPSSTARTER_JENKINSLABEL" => ENV['SPDEVOPSSTARTER_VAGRANT_JENKINSLABEL'],
-                "SPDEVOPSSTARTER_JENKINSHOST" => ENV['SPDEVOPSSTARTER_JENKINSHOST']
-            }
-        end
         vm_config.vm.boot_timeout = 1800
     end
 end
