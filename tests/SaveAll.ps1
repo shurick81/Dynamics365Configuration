@@ -105,17 +105,17 @@ $expectedDirectories = @(
     'CRM2016LanguagePackUkr',
     'CRM2016LanguagePackVit',
     'CRM2016Update01',
-    'CRM2016ReportingServicesUpdate01',
+    'CRM2016ReportingExtensionsUpdate01',
     'CRM2016ServicePack1',
-    'CRM2016ReportingServicesServicePack1',
+    'CRM2016ReportingExtensionsServicePack1',
     'CRM2016ServicePack1Update01',
-    'CRM2016ReportingServicesServicePack1Update01',
+    'CRM2016ReportingExtensionsServicePack1Update01',
     'CRM2016ServicePack2',
-    'CRM2016ReportingServicesServicePack2',
+    'CRM2016ReportingExtensionsServicePack2',
     'CRM2016ServicePack2Update01',
-    'CRM2016ReportingServicesServicePack2Update01',
+    'CRM2016ReportingExtensionsServicePack2Update01',
     'CRM2016ServicePack2Update02',
-    'CRM2016ReportingServicesServicePack2Update02'
+    'CRM2016ReportingExtensionsServicePack2Update02'
 )
 $expectedDirectories | % {
     $expectedDirectory = ".\$_";
