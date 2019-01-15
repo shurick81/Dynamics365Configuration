@@ -1,7 +1,8 @@
 name: $(Date:yyyyMMdd).$(Rev:.r)
 pr:
   branches:
-  - develop
+    include:
+    - develop
   paths:
     exclude:
     - README.md
