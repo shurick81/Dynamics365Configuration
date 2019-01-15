@@ -1,0 +1,12 @@
+name: $(Date:yyyyMMdd).$(Rev:.r)
+pr:
+  branches:
+    include:
+    - release-*
+jobs:
+- job:
+  displayName: Relesing the module
+  steps:
+  - powershell: ./publishing/psmodulepublishing.ps1
+    displayName: Releasing the module
+    errorActionPreference: continue
