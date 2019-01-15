@@ -12,5 +12,6 @@
 * Install-Dynamics365Update verifies installation via Microsoft.Crm.PowerShell snappin and signals if installation failed (for automatic testing)
 * Install-Dynamics365Language is not installing the product if it is already installed (idempotency)
 * Install-Dynamics365Update verifies installation via product ID and signals if installation failed (for automatic testing)
-
+* New commandlet: Install-Dynamics365ReportingExtensions
+* New file resources: CRM2016ReportingExtensionsUpdate01, CRM20166ReportingExtensionsServicePack1, CRM20166ReportingExtensionsServicePack1Update01, CRM20166ReportingExtensionsServicePack2, CRM20166ReportingExtensionsServicePack2Update01, CRM20166ReportingExtensionsServicePack2Update02
 ## v0.6 Initial public release

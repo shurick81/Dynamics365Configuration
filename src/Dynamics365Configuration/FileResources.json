@@ -3,7 +3,8 @@
         "URL": "https://download.microsoft.com/download/B/D/0/BD0FA814-9885-422A-BA0E-54CBB98C8A33/CRM9.0-Server-ENU-amd64.exe",
         "identifyingNumber": "0C524D55-1409-0090-BD7E-530E52560E52",
         "checksum": "52791E8F11F16247FCB859BCE5B92D90F9014D2E",
-        "mediaFileVersion": "9.0.2.3034"
+        "mediaFileVersion": "9.0.2.3034",
+        "reportingExtensionsIdentifyingNumber": "0C524D71-1409-0090-BFEE-D90853535253"
     },
     "VisualCPlusPlusRuntime": {
         "URL": "https://download.microsoft.com/download/2/E/6/2E61CFA4-993B-4DD4-91DA-3737CD5CD6E3/vcredist_x64.exe",
@@ -303,7 +304,8 @@
         "URL": "https://download.microsoft.com/download/3/4/F/34FB8C80-F245-41E7-AFE2-6388005A702B/CRM2016-Server-ENU-amd64.exe",
         "identifyingNumber": "0C524D55-1409-0080-BD7E-530E52560E52",
         "checksum": "192882bccbc976b58f4259b4f9498edb1b23c526",
-        "mediaFileVersion": "8.0.0.1088"
+        "mediaFileVersion": "8.0.0.1088",
+        "reportingExtensionsIdentifyingNumber": "0C524D71-1409-0080-BFEE-D90853535253"
     },
     "SQLNCli2018R2": {
         "URL": "http://download.microsoft.com/download/B/6/3/B63CAC7F-44BB-41FA-92A3-CBF71360F022/1033/x64/sqlncli.msi",
@@ -588,9 +590,19 @@
         "checksum": "33E94FD460E45362CC07B4DB8C434622962BB267",
         "mediaFileVersion": "8.0.1.0079"
     },
+    "CRM2016ReportingExtensionsUpdate01": {
+        "URL": "https://download.microsoft.com/download/A/6/F/A6F42C35-F258-4C9E-AAD7-F18AD04FA813/CRM2016-Srs-KB3133963-ENU-Amd64.exe",
+        "checksum": "",
+        "mediaFileVersion": "8.0.1.0079"
+    },
     "CRM2016ServicePack1": {
         "URL": "https://download.microsoft.com/download/7/2/E/72E6550D-909E-4D5A-8E5F-F9EAAD59D240/CRM2016-Server-KB3154952-ENU-Amd64.exe",
         "checksum": "C10634DF76C9057D7662469FF62706301F9E2071",
+        "mediaFileVersion": "8.1.0.359"
+    },
+    "CRM2016ReportingExtensionsServicePack1": {
+        "URL": "https://download.microsoft.com/download/7/2/E/72E6550D-909E-4D5A-8E5F-F9EAAD59D240/CRM2016-Srs-KB3154952-ENU-Amd64.exe",
+        "checksum": "",
         "mediaFileVersion": "8.1.0.359"
     },
     "CRM2016ServicePack1Update01": {
@@ -598,9 +610,19 @@
         "checksum": "127023F504469FF295A5847D2743804D79F0B389",
         "mediaFileVersion": "8.1.1.1005"
     },
+    "CRM2016ReportingExtensionsServicePack1Update01": {
+        "URL": "https://download.microsoft.com/download/C/C/9/CC9ADCB0-7D96-489F-8B1E-8468DF3CF0D1/CRM2016-Srs-KB3203310-ENU-Amd64.exe",
+        "checksum": "",
+        "mediaFileVersion": "8.1.1.1005"
+    },
     "CRM2016ServicePack2": {
         "URL": "https://download.microsoft.com/download/A/1/B/A1B99266-03FD-4E0E-AB2A-F2955A08E1E5/CRM2016-Server-KB3205084-ENU-Amd64.exe",
         "checksum": "D268FC9E9079EE1CF89FA602D11CD8217603A124",
+        "mediaFileVersion": "8.2.0.749"
+    },
+    "CRM2016ReportingExtensionsServicePack2": {
+        "URL": "https://download.microsoft.com/download/A/1/B/A1B99266-03FD-4E0E-AB2A-F2955A08E1E5/CRM2016-Srs-KB3205084-ENU-Amd64.exe",
+        "checksum": "",
         "mediaFileVersion": "8.2.0.749"
     },
     "CRM2016ServicePack2Update01": {
@@ -608,9 +630,19 @@
         "checksum": "8569DD3B5822767D3116D8C44E73E87B4679BEB6",
         "mediaFileVersion": "8.2.1.176"
     },
+    "CRM2016ReportingExtensionsServicePack2Update01": {
+        "URL": "https://download.microsoft.com/download/F/7/3/F73E5F7D-3E17-44B9-AAE9-6C5228975F6E/CRM2016-Srs-KB4013759-ENU-Amd64.exe",
+        "checksum": "",
+        "mediaFileVersion": "8.2.1.176"
+    },
     "CRM2016ServicePack2Update02": {
         "URL": "https://download.microsoft.com/download/1/0/8/108ABED3-3EF6-4569-A096-DEAEC5C3450C/CRM2016-Server-KB4046795-ENU-Amd64.exe",
         "checksum": "B7DB8ABB331BD14EC16190FDC0B4586ADC9A6F43",
+        "mediaFileVersion": "8.2.2.112"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update02": {
+        "URL": "https://download.microsoft.com/download/1/0/8/108ABED3-3EF6-4569-A096-DEAEC5C3450C/CRM2016-Srs-KB4046795-ENU-Amd64.exe",
+        "checksum": "",
         "mediaFileVersion": "8.2.2.112"
     }
 }

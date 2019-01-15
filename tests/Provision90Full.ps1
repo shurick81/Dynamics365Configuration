@@ -8,6 +8,7 @@ $SandboxServiceAccountCredential = New-Object System.Management.Automation.PSCre
 $VSSWriterServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmvsswrit", $securedPassword );
 $AsyncServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmasync", $securedPassword );
 $MonitoringServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmmon", $securedPassword );
+
 try {
     @(
         "Dynamics365Server90",
@@ -114,6 +115,7 @@ try {
         Exit 1;
     }
 }
+
 try {
     Install-Dynamics365Server `
         -MediaDir C:\Install\Dynamics\Dynamics365Server90 `
@@ -148,13 +150,46 @@ try {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$installedProduct = Get-WmiObject Win32_Product | ? { $_.IdentifyingNumber -eq "{0C524D55-1409-0090-BD7E-530E52560E52}" }
+$testScriptBlock = {
+    try {
+        Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
+        if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
+            $CrmOrganization = Get-CrmOrganization;
+            $CrmOrganization.Version;
+        } else {
+            "Could not load Microsoft.Crm.PowerShell PSSnapin";
+        }
+    } catch {
+        $_.Exception.Message;
+    }
+}
+$testResponse = Invoke-Command -ScriptBlock $testScriptBlock $env:COMPUTERNAME -Credential $CRMInstallAccountCredential -Authentication CredSSP;
+if ( $testResponse -eq "9.0.2.3034" )
+{
+    Write-Host "Test OK";
+} else {
+    Write-Host "Software installed version is '$testResponse'. Test is not OK"
+    Exit 1;
+}
+
+try {
+    Install-Dynamics365ReportingExtensions `
+        -MediaDir \\$env:COMPUTERNAME\c$\Install\Dynamics\Dynamics365Server90\SrsDataConnector `
+        -ConfigDBServer $dbHostName `
+        -InstanceName SPIntra01 `
+        -InstallAccount $CRMInstallAccountCredential
+} catch {
+    Write-Host $_.Exception.Message -ForegroundColor Red;
+    Exit 1;
+}
+$installedProduct = Get-WmiObject Win32_Product -ComputerName $dbHostName -Credential $CRMInstallAccountCredential | ? { $_.IdentifyingNumber -eq "{0C524D71-1409-0090-BFEE-D90853535253}" }
 if ( $installedProduct ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected software is not installed, test is not OK";
     Exit 1;
 }
+
 try {
     @(
         "Dynamics365Server90LanguagePackSau",
@@ -206,7 +241,6 @@ try {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-
 $installedProducts = Get-WmiObject Win32_Product | % { $_.IdentifyingNumber }
 @(
     "0C524DC1-1402-0090-8121-88490F4D5549",

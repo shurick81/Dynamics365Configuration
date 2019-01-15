@@ -46,7 +46,6 @@ Vagrant.configure(2) do |config|
         vm_config.vm.provision :shell, path: "../../images/basepsmodules.ps1"
         vm_config.vm.provision :shell, path: "../../images/adpsmodules.ps1"
         vm_config.vm.provision :shell, path: "../../images/sqlpsmodules.ps1"
-        vm_config.vm.provision :shell, path: "../../images/dynamicspsmodules.ps1"
         vm_config.vm.provision :shell, path: "../domain.ps1", env: {"SPDEVOPSSTARTER_NODSCTEST" => "TRUE"}
         vm_config.vm.provision "reload"
         vm_config.vm.provision :shell, path: "../domain.ps1"

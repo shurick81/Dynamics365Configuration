@@ -35,7 +35,7 @@ Save-Dynamics365Resource
 
 #### -Resource
 
-The resource for downloading, possible values are [Dynamics365Server90,VisualCPlusPlusRuntime,VisualCPlusPlus2010Runtime,SQLNCli2012SP4,SQLSysClrTypes2016,SharedManagementObjects2016,MSODBCSQL,Dynamics365Server90LanguagePack<Language>,CRM2016,SQLNCli2018R2,SQLSysClrTypes2012,SharedManagementObjects2012,ReportViewer2012,CRM2016LanguagePack<Language>,CRM2016Update01,CRM2016ServicePack1,CRM2016ServicePack1Update01,CRM2016ServicePack2,CRM2016ServicePack2Update01,CRM2016ServicePack2Update02]
+The resource for downloading, possible values are [Dynamics365Server90,VisualCPlusPlusRuntime,VisualCPlusPlus2010Runtime,SQLNCli2012SP4,SQLSysClrTypes2016,SharedManagementObjects2016,MSODBCSQL,Dynamics365Server90LanguagePack\<Language\>,CRM2016,SQLNCli2018R2,SQLSysClrTypes2012,SharedManagementObjects2012,ReportViewer2012,CRM2016LanguagePack\<Language\>,CRM2016Update01,CRM2016ServicePack1,CRM2016ServicePack1Update01,CRM2016ServicePack2,CRM2016ServicePack2Update01,CRM2016ServicePack2Update02,CRM2016ReportingExtensionsUpdate01,CRM20166ReportingExtensionsServicePack1,CRM20166ReportingExtensionsServicePack1Update01,CRM20166ReportingExtensionsServicePack2,CRM20166ReportingExtensionsServicePack2Update01,CRM20166ReportingExtensionsServicePack2Update02]
 
 #### -TargetDirectory
 
@@ -395,3 +395,62 @@ $securedPassword = ConvertTo-SecureString "c0mp1Expa~~" -AsPlainText -Force
 $CRMInstallAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmadmin", $securedPassword );
 Install-Dynamics365Update -MediaDir C:\Install\Dynamics\Dynamics365Server90LanguagePackSve -InstallAccount $CRMInstallAccountCredential
 ```
+
+## Install-Dynamics365ReportingExtensions
+
+Installs Dynamics 365 Reporting Extensions.
+
+### Syntax
+
+```PowerShell
+Install-Dynamics365Server
+    -MediaDir <string>
+    -InstanceName <string>
+    [-ConfigDBServer <string>]
+    [-InstallAccount <pscredential>]
+    [-MUOptin <switch>]
+```
+
+### Parameters
+
+#### MediaDir
+
+Specifies the location of the Dynamics 365 RTM installation files. Remote installation requires "WMI-WINMGMT-In-TCP" and "WMI-RPCSS-In-TCP" firewall rules enabled on the target machine to be able to control software installed.
+
+#### InstanceName
+
+See `<instancename>` XML node description in http://157.56.148.23/en-us/library/hh699826.aspx and http://157.56.148.23/en-us/library/hh699684.aspx.
+
+#### ConfigDBServer
+
+See `<configdbserver>` XML node description in http://157.56.148.23/en-us/library/hh699826.aspx and http://157.56.148.23/en-us/library/hh699684.aspx.
+
+#### InstallAccount
+
+An account that has permissions to install the software and create a database. If not specified, the current account is used. If specified, CredSSP must be configured for invoking scripts locally on the machine with altered credential.
+
+#### MUOptin
+
+See `<muoptin>` XML node description in http://157.56.148.23/en-us/library/hh699826.aspx and http://157.56.148.23/en-us/library/hh699684.aspx.
+
+### Examples
+
+```PowerShell
+Install-Dynamics365ReportingExtensions `
+    -MediaDir C:\Install\Dynamics\Dynamics365Server90\SrsDataConnector `
+    -InstanceName SPIntra01
+```
+
+Installs the software locally.
+
+```PowerShell
+$securedPassword = ConvertTo-SecureString "c0mp1Expa~~" -AsPlainText -Force
+$CRMInstallAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmadmin", $securedPassword );
+Install-Dynamics365ReportingExtensions `
+    -MediaDir \\$env:COMPUTERNAME\c$\Install\Dynamics\Dynamics365Server90\SrsDataConnector `
+    -ConfigDBServer $dbHostName `
+    -InstanceName SPIntra01 `
+    -InstallAccount $CRMInstallAccountCredential
+```
+
+Installs Reporting Extensions on the remote SQL machine.
