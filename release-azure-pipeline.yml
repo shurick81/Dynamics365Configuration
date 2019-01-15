@@ -3,6 +3,10 @@ pr:
   branches:
     include:
     - release-*
+trigger:
+  branches:
+    exclude:
+    - develop
 jobs:
 - job:
   displayName: Relesing the module
