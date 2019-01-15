@@ -58,7 +58,7 @@ function Install-Dynamics365Language {
                 Write-Host "$(Get-Date) Verifying product installation, retries left: $retries"
                 Write-Host "The following products were installed:"
                 Get-WmiObject Win32_Product | % {
-                    if ( $expectedProductIdentifyingNumber -or ( $_.IdentifyingNumber -eq "{$expectedProductIdentifyingNumber}" ) ) {
+                    if ( !$expectedProductIdentifyingNumber -or ( $_.IdentifyingNumber -eq "{$expectedProductIdentifyingNumber}" ) ) {
                         $isInstalled = $true;
                     }
                     if ( !( $installedProducts -contains $_.IdentifyingNumber ) ) {
