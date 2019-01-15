@@ -10,7 +10,7 @@ pr:
     - publishing
 jobs:
 - job:
-  displayName: Spinning up test infrastructure
+  displayName: Running all tests
   timeoutInMinutes: 1440
   steps:
   - powershell: cd ci; ./booknode.ps1
