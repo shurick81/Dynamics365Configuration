@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## v0.8
+
 * Fixed manifest issue that was released with module restructuring in v0.7
 
 ## v0.7
