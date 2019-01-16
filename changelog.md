@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+* Fixed manifest issue that was released with module restructuring in v0.7
+
 ## v0.7
 
 * Save-Dynamics365Resource command verifies checksum of the file download
