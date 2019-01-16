@@ -8,6 +8,7 @@ $SandboxServiceAccountCredential = New-Object System.Management.Automation.PSCre
 $VSSWriterServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmvsswrit", $securedPassword );
 $AsyncServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmasync", $securedPassword );
 $MonitoringServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmmon", $securedPassword );
+
 try {
     Save-Dynamics365Resource -Resource Dynamics365Server90 -TargetDirectory C:\Install\Dynamics\Dynamics365Server90
 } catch {
@@ -20,6 +21,7 @@ if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server90 ) {
     Write-Host "Expected files are not found in C:\Install\Dynamics\Dynamics365Server90, test is not OK";
     Exit 1;
 }
+
 try {
     Save-Dynamics365Resource -Resource Dynamics365Server90LanguagePackSve -TargetDirectory C:\Install\Dynamics\Dynamics365Server90LanguagePackSve
 } catch {
@@ -88,8 +90,27 @@ if ( $testResponse -eq "9.0.2.3034" )
     Write-Host "Software installed version is '$testResponse'. Test is not OK"
     Exit 1;
 }
+
 try {
-    Install-Dynamics365Language -MediaDir C:\Install\Dynamics\Dynamics365Server90LanguagePackSve    
+    Install-Dynamics365ReportingExtensions `
+        -MediaDir \\$env:COMPUTERNAME\c$\Install\Dynamics\Dynamics365Server90\SrsDataConnector `
+        -ConfigDBServer $dbHostName `
+        -InstanceName SPIntra01 `
+        -InstallAccount $CRMInstallAccountCredential
+} catch {
+    Write-Host $_.Exception.Message -ForegroundColor Red;
+    Exit 1;
+}
+$installedProduct = Get-WmiObject Win32_Product -ComputerName $dbHostName -Credential $CRMInstallAccountCredential | ? { $_.IdentifyingNumber -eq "{0C524D71-1409-0090-BFEE-D90853535253}" }
+if ( $installedProduct ) {
+    Write-Host "Test OK";
+} else {
+    Write-Host "Expected software is not installed, test is not OK";
+    Exit 1;
+}
+
+try {
+    Install-Dynamics365Language -MediaDir C:\Install\Dynamics\Dynamics365Server90LanguagePackSve;
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
@@ -172,6 +193,25 @@ if ( $installedProduct ) {
 #    Write-Host $_.Exception.Message -ForegroundColor Red;
 #    Exit 1;
 #}
+#
+#try {
+#    Install-Dynamics365ReportingExtensions `
+#        -MediaDir \\$env:COMPUTERNAME\c$\Install\Dynamics\CRM2016\SrsDataConnector `
+#        -ConfigDBServer $dbHostName `
+#        -InstanceName SPIntra01 `
+#        -InstallAccount $CRMInstallAccountCredential
+#} catch {
+#    Write-Host $_.Exception.Message -ForegroundColor Red;
+#    Exit 1;
+#}
+#$installedProduct = Get-WmiObject Win32_Product -ComputerName $dbHostName -Credential $CRMInstallAccountCredential | ? { $_.IdentifyingNumber -eq "{0C524D71-1409-0080-BFEE-D90853535253}" }
+#if ( $installedProduct ) {
+#    Write-Host "Test OK";
+#} else {
+#    Write-Host "Expected software is not installed, test is not OK";
+#    Exit 1;
+#}
+#
 #try {
 #    Install-Dynamics365Language -MediaDir C:\Install\Dynamics\CRM2016LanguagePackSve
 #} catch {

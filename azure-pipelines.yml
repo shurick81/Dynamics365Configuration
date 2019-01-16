@@ -1,11 +1,20 @@
 name: $(Date:yyyyMMdd).$(Rev:.r)
 pr:
-  - develop
+  branches:
+    include:
+    - develop
+  paths:
+    exclude:
+    - README.md
+    - changelog.md
+    - publishing
 trigger:
-  - releases/*
+  branches:
+    exclude:
+    - develop
 jobs:
 - job:
-  displayName: Spinning up test infrastructure
+  displayName: Running all tests
   timeoutInMinutes: 1440
   steps:
   - powershell: cd ci; ./booknode.ps1

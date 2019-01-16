@@ -89,6 +89,18 @@ try
                 Description = "Firewall rule to allow web sites publishing"
             }
             
+            xFireWall WMI-WINMGMT-In-TCP
+            {
+                Name        = "WMI-WINMGMT-In-TCP"
+                Enabled     = "True"
+            }
+            
+            xFireWall WMI-RPCSS-In-TCP
+            {
+                Name        = "WMI-RPCSS-In-TCP"
+                Enabled     = "True"
+            }
+            
         }
     }
 }

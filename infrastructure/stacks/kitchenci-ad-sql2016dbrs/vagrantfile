@@ -91,6 +91,7 @@ Vagrant.configure(2) do |config|
         vm_config.vm.provision :shell, path: "../../images/domainclientpsmodules.ps1"
         vm_config.vm.provision :shell, path: "../domainclientnetwork.ps1"
         vm_config.vm.provision :shell, path: "../domainclient.ps1"
+        vm_config.vm.provision :shell, path: "../xcredclient.ps1"
         vm_config.vm.provision "reload"
         vm_config.vm.provision :shell, path: "../crmdomainclientgroups.ps1", env: { "SPDEVOPSSTARTER_TRIALS" => 100 }
         vm_config.vm.provision :shell, path: "../dbservernamefix.ps1"
