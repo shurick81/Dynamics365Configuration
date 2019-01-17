@@ -122,24 +122,29 @@ if ( $installedProduct ) {
     Write-Host "Expected software is not installed, test is not OK";
     Exit 1;
 }
-# Use that for testing language pack installation
-#if ( -not ( Get-PSSnapin -Name Microsoft.Crm.PowerShell -ErrorAction SilentlyContinue ) )
-#{
-#    Add-PSSnapin Microsoft.Crm.PowerShell
-#    $RemoveSnapInWhenDone = $True
-#}
-#Write-Host "$(Get-Date) Starting New-CrmOrganization";
-#$importJobId = New-CrmOrganization -Name ORGLANG1053 -Credential $CRMInstallAccountCredential -DwsServerUrl "http://$env:COMPUTERNAME`:5555/XrmDeployment/2011/deployment.svc" -DisplayName "Organization for testing 1053 language" -SqlServerName $dbHostName\SPIntra01 -SrsUrl http://$dbHostName/ReportServer_SPIntra01;
-#While ( $operationStatus.State -ne "Completed" )
-#{
-#    $operationStatus = Get-CrmOperationStatus -OperationId $importJobId
-#    Write-Host "$(Get-Date) operationStatus.State is $($operationStatus.State), Waiting until CRM installation job is done";
-#    Sleep 60;
-#}
-#if( $RemoveSnapInWhenDone )
-#{
-#    Remove-PSSnapin Microsoft.Crm.PowerShell
-#}
+if ( -not ( Get-PSSnapin -Name Microsoft.Crm.PowerShell -ErrorAction SilentlyContinue ) )
+{
+    Add-PSSnapin Microsoft.Crm.PowerShell
+    $RemoveSnapInWhenDone = $True
+}
+Write-Host "$(Get-Date) Starting New-CrmOrganization";
+$importJobId = New-CrmOrganization -Name ORGLANG1053 -Credential $CRMInstallAccountCredential -DwsServerUrl "http://$env:COMPUTERNAME`:5555/XrmDeployment/2011/deployment.svc" -DisplayName "Organization for testing 1053 language" -SqlServerName $dbHostName\SPIntra01 -SrsUrl http://$dbHostName/ReportServer_SPIntra01;
+do {
+    $operationStatus = Get-CrmOperationStatus -OperationId $importJobId -Credential $CRMInstallAccountCredential -DwsServerUrl "http://$env:COMPUTERNAME`:5555/XrmDeployment/2011/deployment.svc";
+    Write-Host "$(Get-Date) operationStatus.State is $($operationStatus.State). Waiting until CRM installation job is done";
+    Sleep 60;
+} while ( ( $operationStatus.State -ne "Completed" ) -and ( $operationStatus.State -ne "Failed" ) )
+if ( $operationStatus.State -eq "Completed" ) {
+    Write-Host "Test OK";
+} else {
+    Write-Host "Organization was not created properly";
+    Exit 1;
+}
+
+if( $RemoveSnapInWhenDone )
+{
+    Remove-PSSnapin Microsoft.Crm.PowerShell
+}
 
 #try {
 #    Save-Dynamics365Resource -Resource CRM2016 -TargetDirectory C:\Install\Dynamics\CRM2016
