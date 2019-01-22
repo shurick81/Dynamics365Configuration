@@ -1,4 +1,18 @@
-# Before running this test, make sure that current directory contains prerequisite files
+try {
+    Install-Dynamics365Prerequisites VisualCPlusPlusRuntime;
+} catch {
+    Write-Host $_.Exception.Message -ForegroundColor Red;
+    Exit 1;
+}
+$installedProduct = Get-WmiObject Win32_Product | ? { $_.IdentifyingNumber -eq "{A749D8E6-B613-3BE3-8F5F-045C84EBA29B}" }
+if ( !$installedProduct )
+{
+    Write-Host "Matching products not found";
+    Exit 1;
+} else {
+    Write-Host "Product A749D8E6-B613-3BE3-8F5F-045C84EBA29B found"
+}
+
 try {
     Install-Dynamics365Prerequisites;
 } catch {

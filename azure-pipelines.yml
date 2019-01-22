@@ -29,6 +29,12 @@ jobs:
   - powershell: cd tests; kitchen test InstallAllPrerequisites-win2012r2-basic;
     displayName: kitchen test InstallAllPrerequisites-win2012r2-basic
     errorActionPreference: continue
+  - powershell: cd tests; kitchen test InstallAllPrerequisitesLocal-win2016-basic;
+    displayName: kitchen test InstallAllPrerequisites-win2016-basic
+    errorActionPreference: continue
+  - powershell: cd tests; kitchen test InstallAllPrerequisitesLocal-win2012r2-basic;
+    displayName: kitchen test InstallAllPrerequisites-win2012r2-basic
+    errorActionPreference: continue
   - powershell: cd infrastructure/images; ./preparevmimages.ps1 win2016-ad-sql2016dbrs,win2016-sql2016dbrs,win2016-ad,win2016-soe
     displayName: Building images
     errorActionPreference: continue
