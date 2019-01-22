@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+None
+
+## v0.9
+
 * Changed file resources names and extended resources so that it is possible to download and install native language versions of Dynamics 365 Server, not only English:
   - Dynamics365Server90 > Dynamics365Server90RTM\<Language\>
   - CRM2016 > CRM2016RTM\<Language\>
