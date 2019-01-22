@@ -29,11 +29,12 @@ function DownloadAndUnpack-Dynamics365Resource
             New-Item $tempDirPath -ItemType Directory -Force | Out-Null;
             Write-Host "$(Get-Date) Downloading $resourceUrl to $filePath";
             $currentProgressPreference = $ProgressPreference;
-            $ProgressPreference = 'SilentlyContinue'
+            $ProgressPreference = 'SilentlyContinue';
             Invoke-WebRequest -Uri $resourceUrl -OutFile $filePath;
             $ProgressPreference = $currentProgressPreference;
             if ( Get-Item $filePath )
             {
+                Write-Host "$(Get-Date) Calculating cache for $filePath";
                 $fileHash = ( Get-FileHash $filePath -Algorithm SHA1 ).Hash;
                 Write-Host "Hash of the downloaded file: $fileHash";
                 if ( ( $fileHash -eq $expectedFileChecksum ) -or !$expectedFileChecksum )
@@ -41,22 +42,24 @@ function DownloadAndUnpack-Dynamics365Resource
                     Write-Host "$(Get-Date) Unpacking $filePath to $directoryPath";
                     Start-Process -FilePath $filePath -ArgumentList "/extract:$directoryPath /passive /quiet" -Wait -NoNewWindow;
                     Write-Host "$(Get-Date) Finished unpacking";
-                    Remove-Item $filePath;
+                    Sleep 20;
+                    Remove-Item $tempDirPath -Recurse -Force;
                 } else {
                     Write-Host "Hash does not match $expectedFileChecksum";
                     Throw "Hash does not match $expectedFileChecksum";
-                    Remove-Item $filePath;
+                    Remove-Item $tempDirPath -Recurse -Force;
                 }
             }
         } else {
             $filePath = "$directoryPath\$resourceFileName";
             Write-Host "$(Get-Date) Downloading $resourceUrl to $filePath";
             $currentProgressPreference = $ProgressPreference;
-            $ProgressPreference = 'SilentlyContinue'
+            $ProgressPreference = 'SilentlyContinue';
             Invoke-WebRequest -Uri $resourceUrl -OutFile $filePath;
             $ProgressPreference = $currentProgressPreference;
             if ( Get-Item $filePath )
             {
+                Write-Host "$(Get-Date) Calculating cache for $filePath";
                 $fileHash = ( Get-FileHash $filePath -Algorithm SHA1 ).Hash;
                 Write-Host "Hash of the downloaded file: $fileHash";
                 if ( ( $fileHash -eq $expectedFileChecksum ) -or !$expectedFileChecksum )

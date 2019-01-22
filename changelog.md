@@ -2,6 +2,23 @@
 
 ## Unreleased
 
+* Changed file resources names and extended resources so that it is possible to download and install native language versions of Dynamics 365 Server, not only English:
+  - Dynamics365Server90 > Dynamics365Server90RTM\<Language\>
+  - CRM2016 > CRM2016RTM\<Language\>
+  - CRM2016Update01 > CRM2016Update01\<Language\>
+  - CRM2016ServicePack1 > CRM2016ServicePack1\<Language\>
+  - CRM2016ServicePack1Update01 > CRM2016ServicePack1Update01\<Language\>
+  - CRM2016ServicePack2 > CRM2016ServicePack2\<Language\>
+  - CRM2016ServicePack2Update01 > CRM2016ServicePack2Update01\<Language\>
+  - CRM2016ServicePack2Update02 > CRM2016ServicePack2Update02\<Language\>
+  - CRM2016ReportingExtensionsUpdate01 > CRM2016ReportingExtensionsUpdate01\<Language\>
+  - CRM2016ReportingExtensionsServicePack1 > CRM2016ReportingExtensionsServicePack1\<Language\>
+  - CRM2016ReportingExtensionsServicePack1Update01 > CRM2016ReportingExtensionsServicePack1Update01\<Language\>
+  - CRM2016ReportingExtensionsServicePack2 > CRM2016ReportingExtensionsServicePack2\<Language\>
+  - CRM2016ReportingExtensionsServicePack2Update01 > CRM2016ReportingExtensionsServicePack2Update01\<Language\>
+  - CRM2016ReportingExtensionsServicePack2Update02 > CRM2016ReportingExtensionsServicePack2Update02\<Language\>
+* Fixed language pack installation validation in case if a wrong product id is used
+
 ## v0.8
 
 * Fixed manifest issue that was released with module restructuring in v0.7

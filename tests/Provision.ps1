@@ -10,15 +10,15 @@ $AsyncServiceAccountCredential = New-Object System.Management.Automation.PSCrede
 $MonitoringServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmmon", $securedPassword );
 
 try {
-    Save-Dynamics365Resource -Resource Dynamics365Server90 -TargetDirectory C:\Install\Dynamics\Dynamics365Server90
+    Save-Dynamics365Resource -Resource Dynamics365Server90RTMEnu -TargetDirectory C:\Install\Dynamics\Dynamics365Server90RTMEnu
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server90 ) {
+if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server90RTMEnu ) {
     Write-Host "Test OK";
 } else {
-    Write-Host "Expected files are not found in C:\Install\Dynamics\Dynamics365Server90, test is not OK";
+    Write-Host "Expected files are not found in C:\Install\Dynamics\Dynamics365Server90RTMEnu, test is not OK";
     Exit 1;
 }
 
@@ -37,7 +37,7 @@ if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server90LanguagePackSve ) {
 
 try {
     Install-Dynamics365Server `
-    -MediaDir C:\Install\Dynamics\Dynamics365Server90 `
+    -MediaDir C:\Install\Dynamics\Dynamics365Server90RTMEnu `
     -LicenseKey KKNV2-4YYK8-D8HWD-GDRMW-29YTW `
     -InstallDir "c:\Program Files\Microsoft Dynamics CRM" `
     -CreateDatabase `
@@ -93,7 +93,7 @@ if ( $testResponse -eq "9.0.2.3034" )
 
 try {
     Install-Dynamics365ReportingExtensions `
-        -MediaDir \\$env:COMPUTERNAME\c$\Install\Dynamics\Dynamics365Server90\SrsDataConnector `
+        -MediaDir \\$env:COMPUTERNAME\c$\Install\Dynamics\Dynamics365Server90RTMEnu\SrsDataConnector `
         -ConfigDBServer $dbHostName `
         -InstanceName SPIntra01 `
         -InstallAccount $CRMInstallAccountCredential
@@ -124,7 +124,7 @@ if ( $installedProduct ) {
 }
 
 #try {
-#    Save-Dynamics365Resource -Resource CRM2016 -TargetDirectory C:\Install\Dynamics\CRM2016
+#    Save-Dynamics365Resource -Resource CRM2016RTMEnu -TargetDirectory C:\Install\Dynamics\CRM2016
 #} catch {
 #    Write-Host $_.Exception.Message -ForegroundColor Red;
 #    Exit 1;
@@ -136,7 +136,7 @@ if ( $installedProduct ) {
 #    Exit 1;
 #}
 #try {
-#    Save-Dynamics365Resource -Resource CRM2016ServicePack2Update02 -TargetDirectory C:\Install\Dynamics\CRM2016ServicePack2Update02
+#    Save-Dynamics365Resource -Resource CRM2016ServicePack2Update02Enu -TargetDirectory C:\Install\Dynamics\CRM2016ServicePack2Update02
 #} catch {
 #    Write-Host $_.Exception.Message -ForegroundColor Red;
 #    Exit 1;
@@ -178,7 +178,7 @@ if ( $installedProduct ) {
 #
 #try {
 #    Install-Dynamics365ReportingExtensions `
-#        -MediaDir \\$env:COMPUTERNAME\c$\Install\Dynamics\CRM2016\SrsDataConnector `
+#        -MediaDir \\$env:COMPUTERNAME\c$\Install\Dynamics\CRM2016RTMEnu\SrsDataConnector `
 #        -ConfigDBServer $dbHostName `
 #        -InstanceName SPIntra01 `
 #        -InstallAccount $CRMInstallAccountCredential
@@ -201,7 +201,7 @@ if ( $installedProduct ) {
 #    Exit 1;
 #}
 #try {
-#    #Install-Dynamics365Update -MediaDir C:\Install\Dynamics\CRM2016ServicePack2Update02 -InstallAccount $CRMInstallAccountCredential
+#    #Install-Dynamics365Update -MediaDir C:\Install\Dynamics\CRM2016ServicePack2Update02Enu -InstallAccount $CRMInstallAccountCredential
 #} catch {
 #    Write-Host $_.Exception.Message -ForegroundColor Red;
 #    Exit 1;

@@ -11,7 +11,7 @@ $MonitoringServiceAccountCredential = New-Object System.Management.Automation.PS
 
 try {
     @(
-        "Dynamics365Server90",
+        "Dynamics365Server90RTMEnu",
         "Dynamics365Server90LanguagePackSau",
         "Dynamics365Server90LanguagePackEus",
         "Dynamics365Server90LanguagePackBgr",
@@ -62,7 +62,7 @@ try {
     Exit 1;
 }
 @(
-    "Dynamics365Server90",
+    "Dynamics365Server90RTMEnu",
     "Dynamics365Server90LanguagePackSau",
     "Dynamics365Server90LanguagePackEus",
     "Dynamics365Server90LanguagePackBgr",
@@ -118,7 +118,7 @@ try {
 
 try {
     Install-Dynamics365Server `
-        -MediaDir C:\Install\Dynamics\Dynamics365Server90 `
+        -MediaDir C:\Install\Dynamics\Dynamics365Server90RTMEnu `
         -LicenseKey KKNV2-4YYK8-D8HWD-GDRMW-29YTW `
         -InstallDir "c:\Program Files\Microsoft Dynamics CRM" `
         -CreateDatabase `
@@ -174,7 +174,7 @@ if ( $testResponse -eq "9.0.2.3034" )
 
 try {
     Install-Dynamics365ReportingExtensions `
-        -MediaDir \\$env:COMPUTERNAME\c$\Install\Dynamics\Dynamics365Server90\SrsDataConnector `
+        -MediaDir \\$env:COMPUTERNAME\c$\Install\Dynamics\Dynamics365Server90RTMEnu\SrsDataConnector `
         -ConfigDBServer $dbHostName `
         -InstanceName SPIntra01 `
         -InstallAccount $CRMInstallAccountCredential

@@ -11,15 +11,19 @@ function Install-Dynamics365Language {
         $msiFullName = $msiFile.FullName;
         $languageCode = $msiFile.Name.Substring( 9, 4 );
         $installedProducts = Get-WmiObject Win32_Product | % { $_.IdentifyingNumber }
-        if ( $installedProducts -contains "{$( $Dynamics365Resources.Dynamics365Server90.IdentifyingNumber )}" )
-        {
-            Write-Host "$(Get-Date) Detected Dynamics 9.X installed";
-            $fileResourceNamePrefix = "Dynamics365Server90LanguagePack";
+        $Dynamics365Resources | Get-Member -MemberType NoteProperty | ? { $_.Name.StartsWith( "Dynamics365Server90RTM" ) } | % {
+            if ( $installedProducts -contains "{$( $Dynamics365Resources.( $_.Name ).IdentifyingNumber )}" ) {
+                Write-Host "$(Get-Date) Detected Dynamics 9.X installed";
+                $fileResourceNamePrefix = "Dynamics365Server90LanguagePack";
+            }
         }
-        if ( $installedProducts -contains "{$( $Dynamics365Resources.CRM2016.IdentifyingNumber )}" )
-        {
-            Write-Host "$(Get-Date) Detected Dynamics 8.X installed";
-            $fileResourceNamePrefix = "CRM2016LanguagePack";
+        if ( !$fileResourceNamePrefix ) {
+            $Dynamics365Resources | Get-Member -MemberType NoteProperty | ? { $_.Name.StartsWith( "CRM2016RTM" ) } | % {
+                if ( $installedProducts -contains "{$( $Dynamics365Resources.( $_.Name ).IdentifyingNumber )}" ) {
+                    Write-Host "$(Get-Date) Detected Dynamics 8.X installed";
+                    $fileResourceNamePrefix = "CRM2016LanguagePack";
+                }
+            }
         }
         $foundFileResource = $null;
         $Dynamics365Resources | Get-Member -MemberType NoteProperty | ? { $_.Name.StartsWith( $fileResourceNamePrefix ) } | % {
@@ -58,7 +62,7 @@ function Install-Dynamics365Language {
                 Write-Host "$(Get-Date) Verifying product installation, retries left: $retries"
                 Write-Host "The following products were installed:"
                 Get-WmiObject Win32_Product | % {
-                    if ( $expectedProductIdentifyingNumber -or ( $_.IdentifyingNumber -eq "{$expectedProductIdentifyingNumber}" ) ) {
+                    if ( !$expectedProductIdentifyingNumber -or ( $_.IdentifyingNumber -eq "{$expectedProductIdentifyingNumber}" ) ) {
                         $isInstalled = $true;
                     }
                     if ( !( $installedProducts -contains $_.IdentifyingNumber ) ) {

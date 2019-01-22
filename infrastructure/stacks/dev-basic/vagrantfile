@@ -1,13 +1,8 @@
 Vagrant.configure(2) do |config|
-    config.vm.communicator = "winrm"
-    config.winrm.username = "vagrant"
-    config.winrm.password = "Fractalsol365"
-    config.winrm.transport = :plaintext
-    config.winrm.basic_auth_only = true
     config.vm.synced_folder "./../../../src", "c:/projects/Dynamics365Configuration/src"
     config.vm.define "CRM01" do |vm_config|
         vm_config.vm.hostname = "CRM01"
-        vm_config.vm.box = "win2016-soe"
+        vm_config.vm.box = "mwrock/Windows2016"
         vm_config.vm.network "forwarded_port", guest: 3389, host: 13393, auto_correct: true
         vm_config.vm.provider "virtualbox" do |vb, override|
             override.vm.network :private_network, ip: "192.168.51.131", gateway: "192.168.51.1"
@@ -26,7 +21,7 @@ Vagrant.configure(2) do |config|
             azure.client_id = ENV['ARM_CLIENT_ID']
             azure.client_secret = ENV['ARM_CLIENT_SECRET']
             azure.subscription_id = ENV['ARM_SUBSCRIPTION_ID']
-            azure.resource_group_name = 'dev-crmempty'
+            azure.resource_group_name = 'dev-basic'
             azure.vm_managed_image_id = "/subscriptions/#{ENV['ARM_SUBSCRIPTION_ID']}/resourceGroups/CommonRG/providers/Microsoft.Compute/images/win2016-soe"
             azure.instance_ready_timeout = 3600
             azure.vm_name = 'CRM01'
@@ -35,8 +30,8 @@ Vagrant.configure(2) do |config|
             azure.admin_username = "vagrant"
             azure.admin_password = "Fractalsol365"
             azure.dns_name = (0...15).map { (97 + rand(26)).chr }.join
-            # azure.virtual_network_name = 'dev-crmempty'
-            azure.nsg_name = 'dev-crmempty'
+            # azure.virtual_network_name = 'dev-basic'
+            azure.nsg_name = 'dev-basic'
             azure.wait_for_destroy = true
             override.vm.guest = :windows
             override.vm.box = "azure"
@@ -45,7 +40,6 @@ Vagrant.configure(2) do |config|
             override.winrm.ssl_peer_verification = false # must be false if using a self signed cert
             override.vm.synced_folder ".", "/vagrant", disabled: true
         end
-        #vm_config.vm.provision :shell, inline: "powershell -command 'Import-Module c:/projects/Dynamics365Configuration/src/Dynamics365Configuration/RootModule.psm1; c:/projects/Dynamics365Configuration/src/misc/checksumextractor.ps1'"
         vm_config.vm.boot_timeout = 1800
     end
 end
