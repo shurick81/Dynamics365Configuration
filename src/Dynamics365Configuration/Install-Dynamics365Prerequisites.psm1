@@ -55,7 +55,7 @@ function Install-Dynamics365Prerequisites {
             }
             $resourcePathItem = Get-Item $dynamicsPrerequisiteFilePath;
             if ( !$resourcePathItem ) { throw "Specified file or directory '$dynamicsPrerequisiteFilePath' could not be found" }
-            $dynamicsPrerequisiteFilePath = ( Resolve-Path $dynamicsPrerequisiteFilePath ).Path
+            $dynamicsPrerequisiteFilePath = ( Resolve-Path $dynamicsPrerequisiteFilePath ).Path;
             if ( $resourcePathItem.PSIsContainer )
             {
                 Write-Debug "The path represents a directory";
@@ -169,26 +169,26 @@ function Install-Dynamics365Prerequisites {
         }
     } else {
         Write-Host "prerequisite is not specified";
-        Write-Host "Install-Dynamics365Prerequisites -Prerequisite VisualCPlusPlusRuntime";
-        Install-Dynamics365Prerequisites -Prerequisite VisualCPlusPlusRuntime;
-        Write-Host "Install-Dynamics365Prerequisites -Prerequisite VisualCPlusPlus2010Runtime";
-        Install-Dynamics365Prerequisites -Prerequisite VisualCPlusPlus2010Runtime;
-        Write-Host "Install-Dynamics365Prerequisites -Prerequisite SQLNCli2012SP4";
-        Install-Dynamics365Prerequisites -Prerequisite SQLNCli2012SP4;
-        Write-Host "Install-Dynamics365Prerequisites -Prerequisite SQLSysClrTypes2016";
-        Install-Dynamics365Prerequisites -Prerequisite SQLSysClrTypes2016;
-        Write-Host "Install-Dynamics365Prerequisites -Prerequisite SharedManagementObjects2016";
-        Install-Dynamics365Prerequisites -Prerequisite SharedManagementObjects2016;
-        Write-Host "Install-Dynamics365Prerequisites -Prerequisite MSODBCSQL";
-        Install-Dynamics365Prerequisites -Prerequisite MSODBCSQL;
-        Write-Host "Install-Dynamics365Prerequisites -Prerequisite SQLNCli2018R2";
-        Install-Dynamics365Prerequisites -Prerequisite SQLNCli2018R2;
-        Write-Host "Install-Dynamics365Prerequisites -Prerequisite SQLSysClrTypes2012";
-        Install-Dynamics365Prerequisites -Prerequisite SQLSysClrTypes2012;
-        Write-Host "Install-Dynamics365Prerequisites -Prerequisite SharedManagementObjects2012";
-        Install-Dynamics365Prerequisites -Prerequisite SharedManagementObjects2012;
-        Write-Host "Install-Dynamics365Prerequisites -Prerequisite ReportViewer2012";
-        Install-Dynamics365Prerequisites -Prerequisite ReportViewer2012;
+        Write-Host "Install-Dynamics365Prerequisites -Prerequisite VisualCPlusPlusRuntime -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath";
+        Install-Dynamics365Prerequisites -Prerequisite VisualCPlusPlusRuntime -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath;
+        Write-Host "Install-Dynamics365Prerequisites -Prerequisite VisualCPlusPlus2010Runtime -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath";
+        Install-Dynamics365Prerequisites -Prerequisite VisualCPlusPlus2010Runtime -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath;
+        Write-Host "Install-Dynamics365Prerequisites -Prerequisite SQLNCli2012SP4 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath";
+        Install-Dynamics365Prerequisites -Prerequisite SQLNCli2012SP4 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath;
+        Write-Host "Install-Dynamics365Prerequisites -Prerequisite SQLSysClrTypes2016 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath";
+        Install-Dynamics365Prerequisites -Prerequisite SQLSysClrTypes2016 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath;
+        Write-Host "Install-Dynamics365Prerequisites -Prerequisite SharedManagementObjects2016 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath";
+        Install-Dynamics365Prerequisites -Prerequisite SharedManagementObjects2016 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath;
+        Write-Host "Install-Dynamics365Prerequisites -Prerequisite MSODBCSQL -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath";
+        Install-Dynamics365Prerequisites -Prerequisite MSODBCSQL -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath;
+        Write-Host "Install-Dynamics365Prerequisites -Prerequisite SQLNCli2018R2 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath";
+        Install-Dynamics365Prerequisites -Prerequisite SQLNCli2018R2 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath;
+        Write-Host "Install-Dynamics365Prerequisites -Prerequisite SQLSysClrTypes2012 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath";
+        Install-Dynamics365Prerequisites -Prerequisite SQLSysClrTypes2012 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath;
+        Write-Host "Install-Dynamics365Prerequisites -Prerequisite SharedManagementObjects2012 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath";
+        Install-Dynamics365Prerequisites -Prerequisite SharedManagementObjects2012 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath;
+        Write-Host "Install-Dynamics365Prerequisites -Prerequisite ReportViewer2012 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath";
+        Install-Dynamics365Prerequisites -Prerequisite ReportViewer2012 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath;
         #Install-Dynamics365Prerequisites -Prerequisite AppErrorReporting
     }
 }

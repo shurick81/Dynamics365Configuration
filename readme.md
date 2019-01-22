@@ -91,25 +91,25 @@ Specifies where the file or files are located.
 
 ### Examples
 
-Installing all Dynamics 365 9.0 prerequisites from the Internet:
+Installing all Dynamics 365 prerequisites. If any prerequisite is not found in the current directory, installing from the Internet:
 
 ```PowerShell
-Install-Dynamics365Prerequisites -DynamicsInstallationMediaDirectoryPath C:\Install\Dynamics\CRM9.0-Server-ENU-amd64
+Install-Dynamics365Prerequisites
 ```
 
-Installing specific prerequisite from the Internet:
+Installing specific prerequisite. If prerequisite is not found in the current directory, installing from the Internet:
 
 ```PowerShell
 Install-Dynamics365Prerequisites -Prerequisite SQLNCli2012SP4
 ```
 
-Installing all prerequisites from the predownloaded files:
+Installing all prerequisites from the predownloaded files. If prerequisite is not found in the current directory, installing from the Internet:
 
 ```PowerShell
-Install-Dynamics365Prerequisites -DynamicsInstallationMediaDirectoryPath C:\Install\Dynamics\CRM9.0-Server-ENU-amd64 -DynamicsPrerequisiteFilePath C:\Install\Dynamics
+Install-Dynamics365Prerequisites -DynamicsPrerequisiteFilePath C:\Install\Dynamics
 ```
 
-Installing specific prerequisite from the predownloaded file:
+Installing specific prerequisite from the predownloaded file. If prerequisite is not found in the current directory, installing from the Internet:
 
 ```PowerShell
 Install-Dynamics365Prerequisites -Prerequisite SQLNCli2012SP4 -DynamicsPrerequisiteFilePath C:\Install\Dynamics

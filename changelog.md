@@ -17,7 +17,9 @@
   - CRM2016ReportingExtensionsServicePack2 > CRM2016ReportingExtensionsServicePack2\<Language\>
   - CRM2016ReportingExtensionsServicePack2Update01 > CRM2016ReportingExtensionsServicePack2Update01\<Language\>
   - CRM2016ReportingExtensionsServicePack2Update02 > CRM2016ReportingExtensionsServicePack2Update02\<Language\>
-* Fixed language pack installation validation in case if a wrong product id is used
+* Fixed language pack installation validation in case if a wrong product id is used.
+* Fixed issue with using Install-Dynamics365Prerequisites for installing all prerequisites from predownloaded files.
+* Corrected a mistakes in Examples chapter of Install-Dynamics365Prerequisites description in README.
 
 ## v0.8
 
