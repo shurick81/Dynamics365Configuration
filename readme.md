@@ -35,7 +35,7 @@ Save-Dynamics365Resource
 
 #### -Resource
 
-The resource for downloading, possible values are [Dynamics365Server90,VisualCPlusPlusRuntime,VisualCPlusPlus2010Runtime,SQLNCli2012SP4,SQLSysClrTypes2016,SharedManagementObjects2016,MSODBCSQL,Dynamics365Server90LanguagePack\<Language\>,CRM2016,SQLNCli2018R2,SQLSysClrTypes2012,SharedManagementObjects2012,ReportViewer2012,CRM2016LanguagePack\<Language\>,CRM2016Update01,CRM2016ServicePack1,CRM2016ServicePack1Update01,CRM2016ServicePack2,CRM2016ServicePack2Update01,CRM2016ServicePack2Update02,CRM2016ReportingExtensionsUpdate01,CRM20166ReportingExtensionsServicePack1,CRM20166ReportingExtensionsServicePack1Update01,CRM20166ReportingExtensionsServicePack2,CRM20166ReportingExtensionsServicePack2Update01,CRM20166ReportingExtensionsServicePack2Update02]
+The resource for downloading, possible values are [Dynamics365Server90RTM\<Language\>,VisualCPlusPlusRuntime,VisualCPlusPlus2010Runtime,SQLNCli2012SP4,SQLSysClrTypes2016,SharedManagementObjects2016,MSODBCSQL,Dynamics365Server90LanguagePack\<Language\>,CRM2016RTM\<Language\>,SQLNCli2018R2,SQLSysClrTypes2012,SharedManagementObjects2012,ReportViewer2012,CRM2016LanguagePack\<Language\>,CRM2016Update01\<Language\>,CRM2016ServicePack1\<Language\>,CRM2016ServicePack1Update01\<Language\>,CRM2016ServicePack2\<Language\>,CRM2016ServicePack2Update01\<Language\>,CRM2016ServicePack2Update02\<Language\>,CRM2016ReportingExtensionsUpdate01\<Language\>,CRM2016ReportingExtensionsServicePack1\<Language\>,CRM2016ReportingExtensionsServicePack1Update01\<Language\>,CRM2016ReportingExtensionsServicePack2\<Language\>,CRM2016ReportingExtensionsServicePack2Update01\<Language\>,CRM2016ReportingExtensionsServicePack2Update02\<Language\>]
 
 #### -TargetDirectory
 
@@ -49,22 +49,22 @@ Loading all known resources to the current directory:
 Save-Dynamics365Resource
 ```
 
-Loading CRM2016ServicePack2Update02 to current directory:
+Loading CRM2016ServicePack2Update02Enu to current directory:
 
 ```PowerShell
-Save-Dynamics365Resource -Resource CRM2016ServicePack2Update02
+Save-Dynamics365Resource -Resource CRM2016ServicePack2Update02Enu
 ```
 
 Loading all known resources to the specified directory:
 
 ```PowerShell
-Save-Dynamics365Resource -TargetDirectory c:\CRMResources
+Save-Dynamics365Resource -TargetDirectory c:\DynamicsResources
 ```
 
 Loading CRM2016LanguagePackRus to the specified directory:
 
 ```PowerShell
-Save-Dynamics365Resource -Resource CRM2016LanguagePackRus c:\CRMResources\CRM2016ServicePack2Update02
+Save-Dynamics365Resource -Resource CRM2016LanguagePackRus c:\DynamicsResources\CRM2016LanguagePackRus
 ```
 
 ## Install-Dynamics365Prerequisites
@@ -312,8 +312,9 @@ $SandboxServiceAccountCredential = New-Object System.Management.Automation.PSCre
 $VSSWriterServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmvsswrit", $securedPassword );
 $AsyncServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmasync", $securedPassword );
 $MonitoringServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmmon", $securedPassword );
+Save-Dynamics365Resource -Resource Dynamics365Server90RTMEnu -TargetDirectory C:\Install\Dynamics\Dynamics365Server90RTMEnu
 Install-Dynamics365Server `
-    -MediaDir C:\Install\Dynamics\Dynamics365Server90 `
+    -MediaDir C:\Install\Dynamics\Dynamics365Server90RTMEnu `
     -LicenseKey KKNV2-4YYK8-D8HWD-GDRMW-29YTW `
     -InstallDir "c:\Program Files\Microsoft Dynamics CRM" `
     -CreateDatabase `
@@ -341,59 +342,6 @@ Install-Dynamics365Server `
     -OrganizationCollation Latin1_General_CI_AI `
     -ReportingUrl http://$env:COMPUTERNAME/ReportServer_SPIntra01 `
     -InstallAccount $CRMInstallAccountCredential
-```
-
-## Install-Dynamics365Language
-
-Installs Dynamics 365 language pack. This command does not activate language pack in CRM organization, only installs it.
-
-### Syntax
-
-```PowerShell
-Install-Dynamics365Language
-    [-MediaDir] <string>
-```
-
-### Parameters
-
-#### MediaDir
-
-Specifies the location of the Dynamics 365 language pack installation files.
-
-### Examples
-
-```PowerShell
-Install-Dynamics365Language -MediaDir C:\Install\Dynamics\Dynamics365Server90LanguagePackSve
-```
-
-## Install-Dynamics365Update
-
-Installs Dynamics 365 Server update.
-
-### Syntax
-
-```PowerShell
-Install-Dynamics365Update
-    [-MediaDir] <string>
-    [-InstallAccount <pscredential>]
-```
-
-### Parameters
-
-#### MediaDir
-
-Specifies the location of the Dynamics 365 Server update installation files.
-
-#### InstallAccount
-
-An account that has permissions to install the software and update the database. If not specified, the current account is used. If specified, CredSSP must be configured for invoking scripts locally on the machine with altered credential.
-
-### Examples
-
-```PowerShell
-$securedPassword = ConvertTo-SecureString "c0mp1Expa~~" -AsPlainText -Force
-$CRMInstallAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmadmin", $securedPassword );
-Install-Dynamics365Update -MediaDir C:\Install\Dynamics\Dynamics365Server90LanguagePackSve -InstallAccount $CRMInstallAccountCredential
 ```
 
 ## Install-Dynamics365ReportingExtensions
@@ -437,7 +385,7 @@ See `<muoptin>` XML node description in http://157.56.148.23/en-us/library/hh699
 
 ```PowerShell
 Install-Dynamics365ReportingExtensions `
-    -MediaDir C:\Install\Dynamics\Dynamics365Server90\SrsDataConnector `
+    -MediaDir C:\Install\Dynamics\Dynamics365Server90RTMEnu\SrsDataConnector `
     -InstanceName SPIntra01
 ```
 
@@ -447,10 +395,65 @@ Installs the software locally.
 $securedPassword = ConvertTo-SecureString "c0mp1Expa~~" -AsPlainText -Force
 $CRMInstallAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmadmin", $securedPassword );
 Install-Dynamics365ReportingExtensions `
-    -MediaDir \\$env:COMPUTERNAME\c$\Install\Dynamics\Dynamics365Server90\SrsDataConnector `
+    -MediaDir \\$env:COMPUTERNAME\c$\Install\Dynamics\Dynamics365Server90RTMEnu\SrsDataConnector `
     -ConfigDBServer $dbHostName `
     -InstanceName SPIntra01 `
     -InstallAccount $CRMInstallAccountCredential
 ```
 
 Installs Reporting Extensions on the remote SQL machine.
+
+## Install-Dynamics365Update
+
+Installs Dynamics 365 Server update.
+
+### Syntax
+
+```PowerShell
+Install-Dynamics365Update
+    [-MediaDir] <string>
+    [-InstallAccount <pscredential>]
+```
+
+### Parameters
+
+#### MediaDir
+
+Specifies the location of the Dynamics 365 Server update installation files.
+
+#### InstallAccount
+
+An account that has permissions to install the software and update the database. If not specified, the current account is used. If specified, CredSSP must be configured for invoking scripts locally on the machine with altered credential.
+
+### Examples
+
+```PowerShell
+$securedPassword = ConvertTo-SecureString "c0mp1Expa~~" -AsPlainText -Force
+$CRMInstallAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmadmin", $securedPassword );
+Save-Dynamics365Resource -Resource CRM2016ServicePack2Update02 -TargetDirectory C:\Install\Dynamics\CRM2016ServicePack2Update02
+Install-Dynamics365Update -MediaDir C:\Install\Dynamics\CRM2016ServicePack2Update02 -InstallAccount $CRMInstallAccountCredential
+```
+
+## Install-Dynamics365Language
+
+Installs Dynamics 365 language pack. This command does not activate language pack in CRM organization, only installs it.
+
+### Syntax
+
+```PowerShell
+Install-Dynamics365Language
+    [-MediaDir] <string>
+```
+
+### Parameters
+
+#### MediaDir
+
+Specifies the location of the Dynamics 365 language pack installation files.
+
+### Examples
+
+```PowerShell
+Save-Dynamics365Resource -Resource Dynamics365Server90LanguagePackSve -TargetDirectory C:\Install\Dynamics\Dynamics365Server90LanguagePackSve
+Install-Dynamics365Language -MediaDir C:\Install\Dynamics\Dynamics365Server90LanguagePackSve
+```

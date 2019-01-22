@@ -1,5 +1,5 @@
 # Obtains URLs for all languages of any microsoft download
-$baseUrl = "https://www.microsoft.com/en-us/download/details.aspx?id=56970"
+$baseUrl = "https://www.microsoft.com/en-us/download/details.aspx?id=57478"
 $ie = new-object -ComObject "InternetExplorer.Application"
 $ie.visible = $true;
 $ie.navigate( $baseUrl );
@@ -13,8 +13,9 @@ if ( $newLocaleSelector ) {
         $locale = $_;
         Write-Host "Extracting URL for $locale"
         $ie.navigate( $baseUrl.Replace( "en-us", $locale ).Replace( "/download/details.aspx?id=", "/download/confirmation.aspx?id=" ) );
+        Start-Sleep 2
         while( $ie.Busy ) { Start-Sleep 1 }
-        Start-Sleep 1
+        Start-Sleep 3
         $doc = $ie.Document;
         $db = $doc.getElementsByTagName("a") | ? { $_.className -eq "mscom-link mscom-popup-link failoverLink multi" }
         if ( $db ) {
