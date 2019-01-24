@@ -128,7 +128,7 @@ if ( -not ( Get-PSSnapin -Name Microsoft.Crm.PowerShell -ErrorAction SilentlyCon
     $RemoveSnapInWhenDone = $True
 }
 Write-Host "$(Get-Date) Starting New-CrmOrganization";
-$importJobId = New-CrmOrganization -Name ORGLANG1053 -Credential $CRMInstallAccountCredential -DwsServerUrl "http://$env:COMPUTERNAME`:5555/XrmDeployment/2011/deployment.svc" -DisplayName "Organization for testing 1053 language" -SqlServerName $dbHostName\SPIntra01 -SrsUrl http://$dbHostName/ReportServer_SPIntra01;
+$importJobId = New-CrmOrganization -Name ORGLANG1053 -BaseLanguageCode 1053 -Credential $CRMInstallAccountCredential -DwsServerUrl "http://$env:COMPUTERNAME`:5555/XrmDeployment/2011/deployment.svc" -DisplayName "Organization for testing 1053 language" -SqlServerName $dbHostName\SPIntra01 -SrsUrl http://$dbHostName/ReportServer_SPIntra01;
 do {
     $operationStatus = Get-CrmOperationStatus -OperationId $importJobId -Credential $CRMInstallAccountCredential -DwsServerUrl "http://$env:COMPUTERNAME`:5555/XrmDeployment/2011/deployment.svc";
     Write-Host "$(Get-Date) operationStatus.State is $($operationStatus.State). Waiting until CRM installation job is done";
