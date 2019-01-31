@@ -165,7 +165,7 @@
         "identifyingNumber": "",
         "checksum": "41167C1E44CB62829E3E2072EF0BEA1CBF9DB54E",
         "mediaFileVersion": "9.0.2.3034",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-141D-0090-BFEE-D90853535253"
     },
     "Dynamics365Server90RTMTrk": {
         "URL": "https://download.microsoft.com/download/8/5/5/85552480-5406-4138-84DC-430175E380B9/CRM9.0-Server-TRK-amd64.exe",

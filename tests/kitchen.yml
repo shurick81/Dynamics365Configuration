@@ -10,6 +10,23 @@ verifier:
   name: inspec
 
 platforms:
+  - name: win2019-basic
+    driver:
+      name: vagrant
+      box: StefanScherer/windows_2019
+      gui: false
+      platform: windows
+      linked_clone: true
+      customize:
+        clipboard: bidirectional
+        memory: 2048
+        cpus: 2
+        vram: 32
+      synced_folders:
+        - [ './../src' , 'c:/test-projects/Dynamics365Configuration/src' ]
+        - [ '.' , 'c:/test-projects/Dynamics365Configuration/tests' ]
+    transport:
+      name: winrm
   - name: win2016-basic
     driver:
       name: vagrant
@@ -21,7 +38,6 @@ platforms:
         clipboard: bidirectional
         memory: 2048
         cpus: 2
-        audio: none
         vram: 32
       synced_folders:
         - [ './../src' , 'c:/test-projects/Dynamics365Configuration/src' ]
@@ -39,8 +55,6 @@ platforms:
         clipboard: bidirectional
         memory: 2048
         cpus: 2
-        audio: none
-        vram: 32
       synced_folders:
         - [ './../src' , 'c:/test-projects/Dynamics365Configuration/src' ]
         - [ '.' , 'c:/test-projects/Dynamics365Configuration/tests' ]
@@ -49,10 +63,10 @@ platforms:
   - name: win2016-soe
     driver:
       name: vagrant
-      box:  win2016-soe
+      box: win2016-soe
       box_check_update: false
       communicator: winrm
-      winrm:  
+      winrm:
         username: vagrant
         password: Fractalsol365
         transport: plaintext
@@ -64,9 +78,34 @@ platforms:
       linked_clone: true
       customize:
         clipboard: bidirectional
-        memory: 2048
+        memory: 4096
         cpus: 2
-        audio: none
+        vram: 32
+      synced_folders:
+        - [ './../src' , 'c:/test-projects/Dynamics365Configuration/src' ]
+        - [ '.' , 'c:/test-projects/Dynamics365Configuration/tests' ]
+    transport:
+      name: winrm
+  - name: win2012r2-soe
+    driver:
+      name: vagrant
+      box: win2012r2-soe
+      box_check_update: false
+      communicator: winrm
+      winrm:
+        username: vagrant
+        password: Fractalsol365
+        transport: plaintext
+        basic_auth_only: true
+        config.winrm.timeout: 240
+        retry_limit: 20
+      gui: false
+      platform: windows
+      linked_clone: true
+      customize:
+        clipboard: bidirectional
+        memory: 4096
+        cpus: 2
         vram: 32
       synced_folders:
         - [ './../src' , 'c:/test-projects/Dynamics365Configuration/src' ]
@@ -79,7 +118,7 @@ platforms:
       box: win2016-ad-sql2016dbrs
       linked_clone: true
       communicator: winrm
-      winrm:  
+      winrm:
         username: vagrant
         password: Fractalsol365
         transport: plaintext
@@ -90,7 +129,7 @@ platforms:
       platformw: windows
       customize:
         clipboard: bidirectional
-        memory: 2048
+        memory: 7168
         cpus: 2
         audio: none
         vram: 32
@@ -102,13 +141,13 @@ platforms:
         - vagrant-provisioning/adsqldbrs.rb
     transport:
       name: winrm
-  - name: win2012-ad-sql2012sp1dbrs-dynamicsprereqs
+  - name: win2012r2-ad-sql2016dbrs-dynamicsprereqs
     driver:
       name: vagrant
-      box: win2012-ad-sql2012sp1dbrs
+      box: win2012r2-ad-sql2016dbrs
       linked_clone: true
       communicator: winrm
-      winrm:  
+      winrm:
         username: vagrant
         password: Fractalsol365
         transport: plaintext
@@ -119,7 +158,7 @@ platforms:
       platformw: windows
       customize:
         clipboard: bidirectional
-        memory: 2048
+        memory: 7168
         cpus: 2
         audio: none
         vram: 32
@@ -137,7 +176,7 @@ platforms:
       box: win2016-sql2016dbrs
       linked_clone: true
       communicator: winrm
-      winrm:  
+      winrm:
         username: vagrant
         password: Fractalsol365
         transport: plaintext
@@ -148,7 +187,7 @@ platforms:
       platformw: windows
       customize:
         clipboard: bidirectional
-        memory: 2048
+        memory: 6144
         cpus: 2
         audio: none
         vram: 32
@@ -162,13 +201,13 @@ platforms:
         - vagrant-provisioning/sqldbrs.rb
     transport:
       name: winrm
-  - name: win2012-sql2012sp1dbrs-dynamicsprereqs
+  - name: win2012r2-sql2016dbrs-dynamicsprereqs
     driver:
       name: vagrant
-      box: win2012-sql2012sp1dbrs
+      box: win2012r2-sql2016dbrs
       linked_clone: true
       communicator: winrm
-      winrm:  
+      winrm:
         username: vagrant
         password: Fractalsol365
         transport: plaintext
@@ -179,7 +218,7 @@ platforms:
       platformw: windows
       customize:
         clipboard: bidirectional
-        memory: 2048
+        memory: 6144
         cpus: 2
         audio: none
         vram: 32
@@ -191,6 +230,33 @@ platforms:
         - vagrant-provisioning/sqldbrs.rb
     transport:
       name: winrm
+  - name: win2019-dynamicsprereqs
+    driver:
+      name: vagrant
+      box: win2019-basic
+      gui: false
+      box_check_update: true
+      platform: windows
+      linked_clone: true
+      communicator: winrm
+      gui: false
+      platformw: windows
+      customize:
+        clipboard: bidirectional
+        memory: 4096
+        cpus: 2
+        audio: none
+        vram: 32
+      synced_folders:
+        - [ './../src' , 'c:/test-projects/Dynamics365Configuration/src' ]
+        - [ '.' , 'c:/test-projects/Dynamics365Configuration/tests' ]
+      network:
+        - ["private_network", { ip: "192.168.51.130", gateway: "192.168.51.1" } ]
+      provision: true
+      vagrantfiles:
+        - vagrant-provisioning/domainclientonly.rb
+    transport:
+      name: winrm
   - name: win2016-dynamicsprereqs
     driver:
       name: vagrant
@@ -200,7 +266,7 @@ platforms:
       platform: windows
       linked_clone: true
       communicator: winrm
-      winrm:  
+      winrm:
         username: vagrant
         password: Fractalsol365
         transport: plaintext
@@ -211,7 +277,41 @@ platforms:
       platformw: windows
       customize:
         clipboard: bidirectional
-        memory: 2048
+        memory: 4096
+        cpus: 2
+        audio: none
+        vram: 32
+      synced_folders:
+        - [ './../src' , 'c:/test-projects/Dynamics365Configuration/src' ]
+        - [ '.' , 'c:/test-projects/Dynamics365Configuration/tests' ]
+      network:
+        - ["private_network", { ip: "192.168.51.130", gateway: "192.168.51.1" } ]
+      provision: true
+      vagrantfiles:
+        - vagrant-provisioning/domainclientonly.rb
+    transport:
+      name: winrm
+  - name: win2012r2-dynamicsprereqs
+    driver:
+      name: vagrant
+      box: win2012r2-soe
+      gui: false
+      box_check_update: true
+      platform: windows
+      linked_clone: true
+      communicator: winrm
+      winrm:
+        username: vagrant
+        password: Fractalsol365
+        transport: plaintext
+        basic_auth_only: true
+        config.winrm.timeout: 240
+        retry_limit: 20
+      gui: false
+      platformw: windows
+      customize:
+        clipboard: bidirectional
+        memory: 4096
         cpus: 2
         audio: none
         vram: 32
@@ -232,6 +332,7 @@ suites:
     command: 'Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/RootModule.psm1; c:/test-projects/Dynamics365Configuration/tests\\InstallAllPrerequisites.ps1'
     powershell_shell: true
   includes:
+    - win2019-basic
     - win2016-basic
     - win2012r2-basic
 - name: InstallAllPrerequisitesLocal
@@ -240,6 +341,7 @@ suites:
     command: 'Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/RootModule.psm1; c:/test-projects/Dynamics365Configuration/tests\\InstallAllPrerequisitesLocal.ps1'
     powershell_shell: true
   includes:
+    - win2019-basic
     - win2016-basic
     - win2012r2-basic
 - name: SaveAllResources
@@ -256,17 +358,35 @@ suites:
     command: 'Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/RootModule.psm1; c:/test-projects/Dynamics365Configuration/tests\\Provision.ps1'
     powershell_shell: true
   includes:
+    - win2019-ad-sql2016dbrs-dynamicsprereqs
     - win2016-ad-sql2016dbrs-dynamicsprereqs
+    - win2019-sql2016dbrs-dynamicsprereqs
     - win2016-sql2016dbrs-dynamicsprereqs
+    - win2019-dynamicsprereqs
     - win2016-dynamicsprereqs
+- name: QuickProvisioning2016
+  provisioner:
+    name: shell
+    command: 'Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/RootModule.psm1; c:/test-projects/Dynamics365Configuration/tests\\Provision2016.ps1'
+    powershell_shell: true
+  includes:
+    - win2016-ad-sql2016dbrs-dynamicsprereqs
+    - win2012r2-ad-sql2016dbrs-dynamicsprereqs
+    - win2016-sql2016dbrs-dynamicsprereqs
+    - win2012r2-sql2016dbrs-dynamicsprereqs
+    - win2016-dynamicsprereqs
+    - win2012r2-dynamicsprereqs
 - name: Provision90Full
   provisioner:
     name: shell
     command: 'Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/RootModule.psm1; c:/test-projects/Dynamics365Configuration/tests\\Provision90Full.ps1'
     powershell_shell: true
   includes:
+    - win2019-ad-sql2016dbrs-dynamicsprereqs
     - win2016-ad-sql2016dbrs-dynamicsprereqs
+    - win2019-sql2016dbrs-dynamicsprereqs
     - win2016-sql2016dbrs-dynamicsprereqs
+    - win2019-dynamicsprereqs
     - win2016-dynamicsprereqs
 - name: Provision2016Full
   provisioner:
@@ -275,9 +395,10 @@ suites:
     powershell_shell: true
   includes:
     - win2016-ad-sql2016dbrs-dynamicsprereqs
-    - win2012-ad-sql2012sp1dbrs-dynamicsprereqs
+    - win2012r2-ad-sql2016dbrs-dynamicsprereqs
     - win2016-sql2016dbrs-dynamicsprereqs
-    - win2012-sql2012sp1dbrs-dynamicsprereqs
+    - win2012r2-sql2016dbrs-dynamicsprereqs
     - win2016-dynamicsprereqs
+    - win2012r2-dynamicsprereqs
   #run_list:
   #- recipe[tests::saveall]

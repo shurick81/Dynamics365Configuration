@@ -15,4 +15,5 @@ Vagrant.configure(2) do |config|
     config.vm.provision :file, source: "../../../../src", destination: "c:/tmp/Dynamics365Configuration/src"
     config.vm.provision :shell, inline: "powershell -command 'Import-Module c:/tmp/Dynamics365Configuration/src/Dynamics365Configuration/RootModule.psm1; Install-Dynamics365Prerequisites;'"
     config.vm.provision "reload"
+    config.vm.provision :shell, inline: "powershell -command 'Remove-ItemProperty -Path HKLM:\\\\Software\\Microsoft\\Windows\\CurrentVersion\\RunOnce -Name ASYNCMAC -ErrorAction Ignore'"
 end

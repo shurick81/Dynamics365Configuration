@@ -143,9 +143,9 @@ try {
         -WebSiteUrl https://$env:COMPUTERNAME.contoso.local `
         -Organization "Contoso Ltd." `
         -OrganizationUniqueName Contoso `
-        -BaseISOCurrencyCode SEK `
-        -BaseCurrencyName "Svensk krona" `
-        -BaseCurrencySymbol kr `
+        -BaseISOCurrencyCode USD `
+        -BaseCurrencyName "US Dollar" `
+        -BaseCurrencySymbol `$ `
         -BaseCurrencyPrecision 2 `
         -OrganizationCollation Latin1_General_CI_AI `
         -ReportingUrl http://$dbHostName/ReportServer_SPIntra01 `

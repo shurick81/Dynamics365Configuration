@@ -119,7 +119,7 @@ try
             xADGroup CRMPrivUserGroup
             {
                 GroupName           = "CRM01PrivUserGroup"
-                MembersToInclude    = $CRMInstallAccountCredential.GetNetworkCredential().UserName
+                MembersToInclude    = $CRMInstallAccountCredential.GetNetworkCredential().UserName, "vagrant"
                 GroupScope          = "Universal"
                 Path                = 'OU=CRM groups,DC=contoso,DC=local'
                 DependsOn           = "[xADUser]CRMInstallAccountUser"
@@ -169,7 +169,7 @@ try
 #            xADGroup EnterpriseAdminGroup
 #            {
 #                GroupName   = "Enterprise Admins"
-#                MembersToInclude    = $CRMInstallAccountCredential.GetNetworkCredential().UserName
+#                MembersToInclude    = $CRMInstallAccountCredential.GetNetworkCredential().UserName, "contoso\vagrant"
 #            }
 
         }
