@@ -326,6 +326,24 @@ platforms:
     transport:
       name: winrm
 suites:
+- name: URLDuplicatesDetect
+  provisioner:
+    name: shell
+    command: 'Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/RootModule.psm1; c:/test-projects/Dynamics365Configuration/tests\\URLDuplicates.ps1'
+    powershell_shell: true
+  includes:
+    - win2019-basic
+    - win2016-basic
+    - win2012r2-basic
+- name: ValidUrls
+  provisioner:
+    name: shell
+    command: 'Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/RootModule.psm1; c:/test-projects/Dynamics365Configuration/tests\\ValidUrls.ps1'
+    powershell_shell: true
+  includes:
+    - win2019-basic
+    - win2016-basic
+    - win2012r2-basic
 - name: InstallAllPrerequisites
   provisioner:
     name: shell
