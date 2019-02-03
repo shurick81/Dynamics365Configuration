@@ -288,6 +288,7 @@ function Install-Dynamics365Server {
             Write-Host "$(Get-Date) Job is complete, output:";
             Write-Output ( Receive-Job $job );
             Remove-Job $job;
+            Sleep 10;
             Remove-Item $tempFilePath;
         }
         if ( $installAccount )
