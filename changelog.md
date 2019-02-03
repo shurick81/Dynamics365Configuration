@@ -9,6 +9,7 @@
 * Refactoring
   * Variative test cases
   * SQL instance renamed to SQLInstance01
+  * SQL Reporting Services instance renamed to RSInstance01
 
 ## v0.9
 
