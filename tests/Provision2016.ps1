@@ -10,40 +10,47 @@ $AsyncServiceAccountCredential = New-Object System.Management.Automation.PSCrede
 $MonitoringServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmmon", $securedPassword );
 
 try {
-    Save-Dynamics365Resource -Resource CRM2016RTMEnu -TargetDirectory C:\Install\Dynamics\CRM2016RTMEnu
+    Save-Dynamics365Resource -Resource CRM2016RTMSve -TargetDirectory C:\Install\Dynamics\CRM2016RTMSve
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-if ( Get-ChildItem C:\Install\Dynamics\CRM2016RTMEnu ) {
+if ( Get-ChildItem C:\Install\Dynamics\CRM2016RTMSve ) {
     Write-Host "Test OK";
 } else {
-    Write-Host "Expected files are not found in C:\Install\Dynamics\CRM2016RTMEnu, test is not OK";
+    Write-Host "Expected files are not found in C:\Install\Dynamics\CRM2016RTMSve, test is not OK";
     Exit 1;
 }
 
 try {
-    Save-Dynamics365Resource -Resource CRM2016LanguagePackSve -TargetDirectory C:\Install\Dynamics\CRM2016LanguagePackSve
+    Save-Dynamics365Resource -Resource CRM2016LanguagePackNor -TargetDirectory C:\Install\Dynamics\CRM2016LanguagePackNor
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-if ( Get-ChildItem C:\Install\Dynamics\CRM2016LanguagePackSve ) {
+if ( Get-ChildItem C:\Install\Dynamics\CRM2016LanguagePackNor ) {
     Write-Host "Test OK";
 } else {
-    Write-Host "Expected files are not found in C:\Install\Dynamics\CRM2016LanguagePackSve, test is not OK";
+    Write-Host "Expected files are not found in C:\Install\Dynamics\CRM2016LanguagePackNor, test is not OK";
     Exit 1;
 }
 
 try {
-    Save-Dynamics365Resource -Resource CRM2016ServicePack2Update02Enu -TargetDirectory C:\Install\Dynamics\CRM2016ServicePack2Update02Enu
+    Save-Dynamics365Resource -Resource CRM2016ServicePack2Update02Sve -TargetDirectory C:\Install\Dynamics\CRM2016ServicePack2Update02Sve
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
+if ( Get-ChildItem C:\Install\Dynamics\CRM2016ServicePack2Update02Sve ) {
+    Write-Host "Test OK";
+} else {
+    Write-Host "Expected files are not found in C:\Install\Dynamics\CRM2016LanguagePackNor, test is not OK";
+    Exit 1;
+}
+
 try {
     Install-Dynamics365Server `
-        -MediaDir C:\Install\Dynamics\CRM2016RTMEnu `
+        -MediaDir C:\Install\Dynamics\CRM2016RTMSve `
         -LicenseKey WCPQN-33442-VH2RQ-M4RKF-GXYH4 `
         -InstallDir "c:\Program Files\Microsoft Dynamics CRM" `
         -CreateDatabase `
@@ -68,7 +75,7 @@ try {
         -BaseCurrencyName "US Dollar" `
         -BaseCurrencySymbol `$ `
         -BaseCurrencyPrecision 2 `
-        -OrganizationCollation Latin1_General_CI_AI `
+        -OrganizationCollation Finnish_Swedish_CI_AS `
         -ReportingUrl http://$dbHostName/ReportServer_SPIntra01 `
         -InstallAccount $CRMInstallAccountCredential
 } catch {
@@ -101,11 +108,12 @@ if ( $testResponse -eq "8.0.0.1088" )
 try {
     if ( $dbHostName -eq $env:COMPUTERNAME ) {
         Install-Dynamics365ReportingExtensions `
-            -MediaDir C:\Install\Dynamics\CRM2016RTMEnu\SrsDataConnector `
-            -InstanceName SPIntra01
+            -MediaDir C:\Install\Dynamics\CRM2016RTMSve\SrsDataConnector `
+            -InstanceName SPIntra01 `
+            -InstallAccount $CRMInstallAccountCredential
     } else {
         Install-Dynamics365ReportingExtensions `
-            -MediaDir \\$dbHostName\c$\Install\Dynamics\CRM2016RTMEnu\SrsDataConnector `
+            -MediaDir \\$env:COMPUTERNAME\c$\Install\Dynamics\CRM2016RTMSve\SrsDataConnector `
             -ConfigDBServer $dbHostName `
             -InstanceName SPIntra01 `
             -InstallAccount $CRMInstallAccountCredential
@@ -115,9 +123,9 @@ try {
     Exit 1;
 }
 if ( $dbHostName -eq $env:COMPUTERNAME ) {
-    $installedProduct = Get-WmiObject Win32_Product | ? { $_.IdentifyingNumber -eq "{0C524D71-1409-0080-BFEE-D90853535253}" }
+    $installedProduct = Get-WmiObject Win32_Product | ? { $_.IdentifyingNumber -eq "{0C524D71-141D-0080-BFEE-D90853535253}" }
 } else {
-    $installedProduct = Get-WmiObject Win32_Product -ComputerName $dbHostName -Credential $CRMInstallAccountCredential | ? { $_.IdentifyingNumber -eq "{0C524D71-1409-0080-BFEE-D90853535253}" }
+    $installedProduct = Get-WmiObject Win32_Product -ComputerName $dbHostName -Credential $CRMInstallAccountCredential | ? { $_.IdentifyingNumber -eq "{0C524D71-141D-0080-BFEE-D90853535253}" }
 }
 if ( $installedProduct ) {
     Write-Host "Test OK";
@@ -127,21 +135,39 @@ if ( $installedProduct ) {
 }
 
 try {
-    Install-Dynamics365Language -MediaDir C:\Install\Dynamics\CRM2016LanguagePackSve
+    Install-Dynamics365Language -MediaDir C:\Install\Dynamics\CRM2016LanguagePackNor
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$installedProduct = Get-WmiObject Win32_Product | ? { $_.IdentifyingNumber -eq "{0C524DC1-141D-0080-8121-88490F4D5549}" }
+$installedProduct = Get-WmiObject Win32_Product | ? { $_.IdentifyingNumber -eq "{0C524DC1-1414-0080-8121-88490F4D5549}" }
 if ( $installedProduct ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected software is not installed, test is not OK";
     Exit 1;
 }
+if ( -not ( Get-PSSnapin -Name Microsoft.Crm.PowerShell -ErrorAction SilentlyContinue ) )
+{
+    Add-PSSnapin Microsoft.Crm.PowerShell
+    $RemoveSnapInWhenDone = $True
+}
+Write-Host "$(Get-Date) Starting New-CrmOrganization";
+$importJobId = New-CrmOrganization -Name ORGLANG1044 -BaseLanguageCode 1044 -Credential $CRMInstallAccountCredential -DwsServerUrl "http://$env:COMPUTERNAME`:5555/XrmDeployment/2011/deployment.svc" -DisplayName "Organization for testing 1044 language" -SqlServerName $dbHostName\SPIntra01 -SrsUrl http://$dbHostName/ReportServer_SPIntra01;
+do {
+    $operationStatus = Get-CrmOperationStatus -OperationId $importJobId -Credential $CRMInstallAccountCredential -DwsServerUrl "http://$env:COMPUTERNAME`:5555/XrmDeployment/2011/deployment.svc";
+    Write-Host "$(Get-Date) operationStatus.State is $($operationStatus.State). Waiting until CRM installation job is done";
+    Sleep 60;
+} while ( ( $operationStatus.State -ne "Completed" ) -and ( $operationStatus.State -ne "Failed" ) )
+if ( $operationStatus.State -eq "Completed" ) {
+    Write-Host "Test OK";
+} else {
+    Write-Host "Organization was not created properly";
+    Exit 1;
+}
 
 try {
-    Install-Dynamics365Update -MediaDir C:\Install\Dynamics\CRM2016ServicePack2Update02Enu -InstallAccount $CRMInstallAccountCredential
+    Install-Dynamics365Update -MediaDir C:\Install\Dynamics\CRM2016ServicePack2Update02Sve -InstallAccount $CRMInstallAccountCredential
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;

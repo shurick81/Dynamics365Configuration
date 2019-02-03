@@ -23,8 +23,14 @@ jobs:
   - powershell: cd infrastructure/stacks/kitchenci-ad-sql2016dbrs; vagrant destroy DB01 --force;
     displayName: Cleaning up the stack
     errorActionPreference: continue
+  - powershell: cd tests; kitchen test URLDuplicatesDetect-win2019-basic;
+    displayName: kitchen test URLDuplicatesDetect-win2016-basic
+    errorActionPreference: continue
+  - powershell: cd tests; kitchen test ValidUrls-win2019-basic;
+    displayName: kitchen test ValidUrls-win2016-basic
+    errorActionPreference: continue
   - powershell: cd tests; kitchen test InstallAllPrerequisitesLocal-win2019-basic;
-    displayName: kitchen test InstallAllPrerequisites-win2016-basic
+    displayName: kitchen test InstallAllPrerequisitesLocal-win2016-basic
     errorActionPreference: continue
   - powershell: cd infrastructure/images; ./preparevmimages.ps1 win2016-sql2016dbrs,win2012r2-sql2016dbrs,win2016-ad,win2016-soe
     displayName: Building images
@@ -56,7 +62,7 @@ jobs:
   - powershell: cd infrastructure/stacks/kitchenci-ad-sql2016dbrs; ..\localdeploy.ps1;
     displayName: Spinning up service VMs
     errorActionPreference: continue
-  - powershell: cd tests; kitchen test QuickProvisioning2016-win2012r2-dynamicsprereqs;
+  - powershell: cd tests; kitchen test QuickProvisioning2016-win2016-dynamicsprereqs;
     displayName: kitchen test QuickProvisioning2016-win2016-dynamicsprereqs
     errorActionPreference: continue
   - powershell: cd infrastructure/stacks/kitchenci-ad-sql2016dbrs; vagrant destroy DB01 --force;
@@ -65,8 +71,11 @@ jobs:
   - powershell: cd tests; kitchen test Provision90Full-win2016-sql2016dbrs-dynamicsprereqs;
     displayName: kitchen test Provision90Full-win2016-sql2016dbrs-dynamicsprereqs
     errorActionPreference: continue
-  - powershell: cd tests; kitchen test Provision2016Full-win2012r2-sql2016dbrs-dynamicsprereqs;
-    displayName: kitchen test Provision2016Full-win2012r2-sql2016dbrs-dynamicsprereqs
+  - powershell: cd infrastructure/stacks/kitchenci-ad-sql2016dbrs; vagrant suspend;
+    displayName: Suspending the stack
+    errorActionPreference: continue
+  - powershell: cd tests; kitchen test Provision2016Full-win2012r2-ad-sql2016dbrs-dynamicsprereqs;
+    displayName: kitchen test Provision2016Full-win2012r2-ad-sql2016dbrs-dynamicsprereqs
     errorActionPreference: continue
   - powershell: cd ci;./releasenode.ps1
     #condition: always()

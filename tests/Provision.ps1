@@ -93,16 +93,27 @@ if ( $testResponse -eq "9.0.2.3034" )
 }
 
 try {
-    Install-Dynamics365ReportingExtensions `
-        -MediaDir \\$env:COMPUTERNAME\c$\Install\Dynamics\Dynamics365Server90RTMEnu\SrsDataConnector `
-        -ConfigDBServer $dbHostName `
-        -InstanceName SPIntra01 `
-        -InstallAccount $CRMInstallAccountCredential
+    if ( $dbHostName -eq $env:COMPUTERNAME ) {
+        Install-Dynamics365ReportingExtensions `
+            -MediaDir C:\Install\Dynamics\Dynamics365Server90RTMEnu\SrsDataConnector `
+            -InstanceName SPIntra01 `
+            -InstallAccount $CRMInstallAccountCredential
+    } else {
+        Install-Dynamics365ReportingExtensions `
+            -MediaDir \\$env:COMPUTERNAME\c$\Install\Dynamics\Dynamics365Server90RTMEnu\SrsDataConnector `
+            -ConfigDBServer $dbHostName `
+            -InstanceName SPIntra01 `
+            -InstallAccount $CRMInstallAccountCredential
+    }
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$installedProduct = Get-WmiObject Win32_Product -ComputerName $dbHostName -Credential $CRMInstallAccountCredential | ? { $_.IdentifyingNumber -eq "{0C524D71-1409-0090-BFEE-D90853535253}" }
+if ( $dbHostName -eq $env:COMPUTERNAME ) {
+    $installedProduct = Get-WmiObject Win32_Product | ? { $_.IdentifyingNumber -eq "{0C524D71-141D-0080-BFEE-D90853535253}" }
+} else {
+    $installedProduct = Get-WmiObject Win32_Product -ComputerName $dbHostName -Credential $CRMInstallAccountCredential | ? { $_.IdentifyingNumber -eq "{0C524D71-141D-0080-BFEE-D90853535253}" }
+}
 if ( $installedProduct ) {
     Write-Host "Test OK";
 } else {

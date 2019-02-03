@@ -11,7 +11,8 @@ $MonitoringServiceAccountCredential = New-Object System.Management.Automation.PS
 
 try {
     @(
-        "CRM2016RTMEnu",
+        "CRM2016RTMDan",
+        "CRM2016LanguagePackEnu",
         "CRM2016LanguagePackSau",
         "CRM2016LanguagePackEus",
         "CRM2016LanguagePackBgr",
@@ -20,7 +21,6 @@ try {
         "CRM2016LanguagePackChs",
         "CRM2016LanguagePackCht",
         "CRM2016LanguagePackCsy",
-        "CRM2016LanguagePackDan",
         "CRM2016LanguagePackNld",
         "CRM2016LanguagePackEti",
         "CRM2016LanguagePackFin",
@@ -67,7 +67,8 @@ try {
     Exit 1;
 }
 @(
-    "CRM2016RTMEnu",
+    "CRM2016RTMDan",
+    "CRM2016LanguagePackEnu",
     "CRM2016LanguagePackSau",
     "CRM2016LanguagePackEus",
     "CRM2016LanguagePackBgr",
@@ -76,7 +77,6 @@ try {
     "CRM2016LanguagePackChs",
     "CRM2016LanguagePackCht",
     "CRM2016LanguagePackCsy",
-    "CRM2016LanguagePackDan",
     "CRM2016LanguagePackNld",
     "CRM2016LanguagePackEti",
     "CRM2016LanguagePackFin",
@@ -122,7 +122,7 @@ try {
 
 try {
     Install-Dynamics365Server `
-        -MediaDir C:\Install\Dynamics\CRM2016RTMEnu `
+        -MediaDir C:\Install\Dynamics\CRM2016RTMDan `
         -LicenseKey WCPQN-33442-VH2RQ-M4RKF-GXYH4 `
         -InstallDir "c:\Program Files\Microsoft Dynamics CRM" `
         -CreateDatabase `
@@ -147,7 +147,7 @@ try {
         -BaseCurrencyName "US Dollar" `
         -BaseCurrencySymbol `$ `
         -BaseCurrencyPrecision 2 `
-        -OrganizationCollation Latin1_General_CI_AI `
+        -OrganizationCollation Danish_Norwegian_CI_AI `
         -ReportingUrl http://$dbHostName/ReportServer_SPIntra01 `
         -InstallAccount $CRMInstallAccountCredential
 } catch {
@@ -177,16 +177,27 @@ if ( $testResponse -eq "8.0.0.1088" )
 }
 
 try {
-    Install-Dynamics365ReportingExtensions `
-        -MediaDir \\$env:COMPUTERNAME\c$\Install\Dynamics\CRM2016RTMEnu\SrsDataConnector `
-        -ConfigDBServer $dbHostName `
-        -InstanceName SPIntra01 `
-        -InstallAccount $CRMInstallAccountCredential
+    if ( $dbHostName -eq $env:COMPUTERNAME ) {
+        Install-Dynamics365ReportingExtensions `
+            -MediaDir C:\Install\Dynamics\CRM2016RTMDan\SrsDataConnector `
+            -InstanceName SPIntra01 `
+            -InstallAccount $CRMInstallAccountCredential
+    } else {
+        Install-Dynamics365ReportingExtensions `
+            -MediaDir \\$env:COMPUTERNAME\c$\Install\Dynamics\CRM2016RTMDan\SrsDataConnector `
+            -ConfigDBServer $dbHostName `
+            -InstanceName SPIntra01 `
+            -InstallAccount $CRMInstallAccountCredential
+    }
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$installedProduct = Get-WmiObject Win32_Product -ComputerName $dbHostName -Credential $CRMInstallAccountCredential | ? { $_.IdentifyingNumber -eq "{0C524D71-1409-0080-BFEE-D90853535253}" }
+if ( $dbHostName -eq $env:COMPUTERNAME ) {
+    $installedProduct = Get-WmiObject Win32_Product | ? { $_.IdentifyingNumber -eq "{0C524D71-1406-0080-BFEE-D90853535253}" }
+} else {
+    $installedProduct = Get-WmiObject Win32_Product -ComputerName $dbHostName -Credential $CRMInstallAccountCredential | ? { $_.IdentifyingNumber -eq "{0C524D71-1406-0080-BFEE-D90853535253}" }
+}
 if ( $installedProduct ) {
     Write-Host "Test OK";
 } else {
@@ -196,6 +207,7 @@ if ( $installedProduct ) {
 
 try {
     @(
+        "CRM2016LanguagePackEnu",
         "CRM2016LanguagePackSau",
         "CRM2016LanguagePackEus",
         "CRM2016LanguagePackBgr",
@@ -204,7 +216,6 @@ try {
         "CRM2016LanguagePackChs",
         "CRM2016LanguagePackCht",
         "CRM2016LanguagePackCsy",
-        "CRM2016LanguagePackDan",
         "CRM2016LanguagePackNld",
         "CRM2016LanguagePackEti",
         "CRM2016LanguagePackFin",
@@ -246,13 +257,13 @@ try {
 }
 $installedProducts = Get-WmiObject Win32_Product | % { $_.IdentifyingNumber }
 @(
+    "0C524DC1-1409-0080-8121-88490F4D5549",
     "0C524DC1-1402-0080-8121-88490F4D5549",
     "0C524DC1-1403-0080-8121-88490F4D5549",
     "0C524DC1-1C04-0080-8121-88490F4D5549",
     "0C524DC1-1804-0080-8121-88490F4D5549",
     "0C524DC1-1404-0080-8121-88490F4D5549",
     "0C524DC1-1405-0080-8121-88490F4D5549",
-    "0C524DC1-1406-0080-8121-88490F4D5549",
     "0C524DC1-1407-0080-8121-88490F4D5549",
     "0C524DC1-1408-0080-8121-88490F4D5549",
     "0C524DC1-1C0A-0080-8121-88490F4D5549",
