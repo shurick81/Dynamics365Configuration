@@ -1,10 +1,10 @@
 name: $(Date:yyyyMMdd).$(Rev:.r)
 trigger:
   branches:
-    exclude:
-    - develop
     include:
     - release-*
+    exclude:
+    - develop
 jobs:
 - job:
   displayName: Relesing the module
