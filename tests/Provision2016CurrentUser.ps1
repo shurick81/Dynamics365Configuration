@@ -34,7 +34,7 @@ try {
         -LicenseKey WCPQN-33442-VH2RQ-M4RKF-GXYH4 `
         -InstallDir "c:\Program Files\Microsoft Dynamics CRM" `
         -CreateDatabase `
-        -SqlServer $dbHostName\SPIntra01 `
+        -SqlServer $dbHostName\SQLInstance01 `
         -PrivUserGroup "CN=CRM01PrivUserGroup,OU=CRM groups,DC=contoso,DC=local" `
         -SQLAccessGroup "CN=CRM01SQLAccessGroup,OU=CRM groups,DC=contoso,DC=local" `
         -UserGroup "CN=CRM01UserGroup,OU=CRM groups,DC=contoso,DC=local" `
@@ -56,7 +56,7 @@ try {
         -BaseCurrencySymbol `$ `
         -BaseCurrencyPrecision 2 `
         -OrganizationCollation Latin1_General_CI_AI `
-        -ReportingUrl http://$dbHostName/ReportServer_SPIntra01
+        -ReportingUrl http://$dbHostName/ReportServer_RSInstance01
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
@@ -87,7 +87,7 @@ if ( $testResponse -eq "8.0.0.1088" )
 try {
     Install-Dynamics365ReportingExtensions `
         -MediaDir C:\Install\Dynamics\CRM2016RTMEnu\SrsDataConnector `
-        -InstanceName SPIntra01
+        -InstanceName SQLInstance01
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;

@@ -40,10 +40,10 @@ try
 
             SQLSetup SQLSetup
             {
-                InstanceName            = "SPIntra01"
+                InstanceName            = "SQLInstance01"
                 SourcePath              = "S:\"
                 Features                = "SQLENGINE,FULLTEXT"
-                InstallSharedDir        = "C:\Program Files\Microsoft SQL Server\SPIntra01"
+                InstallSharedDir        = "C:\Program Files\Microsoft SQL Server\SQLInstance01"
                 SQLSysAdminAccounts     = "BUILTIN\Administrators"
                 UpdateEnabled           = "True"
                 UpdateSource            = "C:\Install\SQL2016Updates"
@@ -58,7 +58,7 @@ try
                 DynamicAlloc    = $false
                 MinMemory       = 1024
                 MaxMemory       = 2048
-                InstanceName    = "SPIntra01"
+                InstanceName    = "SQLInstance01"
                 DependsOn       = "[SQLSetup]SQLSetup"
             }
             

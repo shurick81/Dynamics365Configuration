@@ -24,10 +24,10 @@ try
 
             SQLSetup SQLSetup
             {
-                InstanceName            = "SPIntra01"
+                InstanceName            = "RSInstance01"
                 SourcePath              = $sourcePath
                 Features                = "RS"
-                InstallSharedDir        = "C:\Program Files\Microsoft SQL Server\SPIntra01"
+                InstallSharedDir        = "C:\Program Files\Microsoft SQL Server\RSInstance01"
                 SQLSysAdminAccounts     = "BUILTIN\Administrators"
                 UpdateEnabled           = "True"
                 UpdateSource            = "C:\Install\SQL2016Updates"
