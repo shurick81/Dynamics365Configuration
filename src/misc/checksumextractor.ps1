@@ -13,7 +13,7 @@ $Dynamics365Resources | Get-Member -MemberType NoteProperty | % {
         $ProgressPreference = 'SilentlyContinue';
         Invoke-WebRequest -Uri $resourceUrl -OutFile $filePath;
         $ProgressPreference = $currentProgressPreference;
-        Write-Host "$(Get-Date) Calculating cache for $filePath";
+        Write-Host "$(Get-Date) Calculating hash for $filePath";
         $fileHash = ( Get-FileHash $filePath -Algorithm SHA1 ).Hash;
         Remove-Item $tempDirPath -Recurse -Force;
         $resultDictionary.( $_.Name ).Checksum = $fileHash;
