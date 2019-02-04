@@ -6,6 +6,7 @@
 * Corrected URL and checksum for Dynamics365Server90LanguagePackFra and Dynamics365Server90LanguagePackJpn.
 * Added CRM2016LanguagePackEnu
 * Removing annoying notification about incorrect verb
+* Added CRM2016ServicePack2Update02\<Language\> and CRM2016ReportingExtensionsServicePack2Update02\<Language\> resources
 * Refactoring
   * Variative test cases
   * SQL instance renamed to SQLInstance01
