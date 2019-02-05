@@ -16,15 +16,17 @@ function Install-Dynamics365ReportingExtensions {
     $setupFilePath = "$mediaDir\SetupSrsDataConnector.exe";
     $fileVersion = ( Get-Command $setupFilePath ).FileVersionInfo.FileVersionRaw.ToString();
     Write-Host "Version of software to be installed: $fileVersion";
+    $languageCode = ( Get-Item $mediaDir\LangPacks\* ).Name;
+    Write-Host "Language code of software to be installed: $languageCode";
     $Dynamics365Resources | Get-Member -MemberType NoteProperty | ? { $Dynamics365Resources.( $_.Name ).ReportingExtensionsIdentifyingNumber } | % {
-        if ( $Dynamics365Resources.( $_.Name ).MediaFileVersion -eq $fileVersion ) { $foundFileResource = $_.Name }
+        if ( ( $Dynamics365Resources.( $_.Name ).MediaFileVersion -eq $fileVersion ) -and ( $Dynamics365Resources.( $_.Name ).LanguageCode -eq $languageCode ) ) { $foundFileResource = $_.Name }
     }
     if ( $configDBServer ) {
         $configDBServerXmlParameter = $configDBServer;
     } else {
         $configDBServerXmlParameter = $env:COMPUTERNAME;
     }
-    if ( $InstallAccount )
+    if ( $InstallAccount -and $configDBServer )
     {
         $installedProducts = Get-WmiObject Win32_Product -ComputerName $configDBServerXmlParameter -Credential $InstallAccount | % { $_.IdentifyingNumber }
     } else {
@@ -97,6 +99,7 @@ function Install-Dynamics365ReportingExtensions {
             Write-Host "$(Get-Date) Job is complete, output:";
             Write-Output ( Receive-Job $job );
             Remove-Job $job;
+            Sleep 10;
             Remove-Item $tempFilePath;
         }
         if ( $installAccount )
@@ -107,7 +110,7 @@ function Install-Dynamics365ReportingExtensions {
             Invoke-Command -ScriptBlock $localInstallationScriptBlock -ArgumentList $setupFilePath, $stringWriter.ToString();
         }
         Write-Host "The following products were installed:"
-        if ( $InstallAccount )
+        if ( $InstallAccount -and $configDBServer )
         {
             Get-WmiObject Win32_Product -ComputerName $configDBServerXmlParameter -Credential $InstallAccount | % {
                 if ( !$expectedProductIdentifyingNumber -or ( $_.IdentifyingNumber -eq "{$expectedProductIdentifyingNumber}" ) ) {

@@ -2,7 +2,11 @@
 
 ## Unreleased
 
-None
+* Reporting extensions verification using product id and language code.
+* Corrected URL and checksum for Dynamics365Server90LanguagePackFra and Dynamics365Server90LanguagePackJpn.
+* Added CRM2016LanguagePackEnu
+* Removing annoying notification about incorrect verb
+* Variative test cases
 
 ## v0.9
 

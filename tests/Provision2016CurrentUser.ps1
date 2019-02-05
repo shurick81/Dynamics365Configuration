@@ -1,7 +1,7 @@
+Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/RootModule.psm1
 $dbHostName = $env:VMDEVOPSSTARTER_DBHOST;
 if ( !$dbHostName ) { $dbHostName = $env:COMPUTERNAME }
 $securedPassword = ConvertTo-SecureString "c0mp1Expa~~" -AsPlainText -Force
-$CRMInstallAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmadmin", $securedPassword );
 $CRMServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmsrv", $securedPassword );
 $DeploymentServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmdplsrv", $securedPassword );
 $SandboxServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmsandbox", $securedPassword );
@@ -10,35 +10,28 @@ $AsyncServiceAccountCredential = New-Object System.Management.Automation.PSCrede
 $MonitoringServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmmon", $securedPassword );
 
 try {
-    Save-Dynamics365Resource -Resource Dynamics365Server90RTMEnu -TargetDirectory C:\Install\Dynamics\Dynamics365Server90RTMEnu
+    Save-Dynamics365Resource -Resource CRM2016RTMEnu -TargetDirectory C:\Install\Dynamics\CRM2016RTMEnu
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server90RTMEnu ) {
+if ( Get-ChildItem C:\Install\Dynamics\CRM2016RTMEnu ) {
     Write-Host "Test OK";
 } else {
-    Write-Host "Expected files are not found in C:\Install\Dynamics\Dynamics365Server90RTMEnu, test is not OK";
+    Write-Host "Expected files are not found in C:\Install\Dynamics\CRM2016RTMEnu, test is not OK";
     Exit 1;
 }
 
 try {
-    Save-Dynamics365Resource -Resource Dynamics365Server90LanguagePackSve -TargetDirectory C:\Install\Dynamics\Dynamics365Server90LanguagePackSve
+    Save-Dynamics365Resource -Resource CRM2016ServicePack2Update02Enu -TargetDirectory C:\Install\Dynamics\CRM2016ServicePack2Update02Enu
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server90LanguagePackSve ) {
-    Write-Host "Test OK";
-} else {
-    Write-Host "Expected files are not found in C:\Install\Dynamics\Dynamics365Server90LanguagePackSve, test is not OK";
-    Exit 1;
-}
-
 try {
     Install-Dynamics365Server `
-        -MediaDir C:\Install\Dynamics\Dynamics365Server90RTMEnu `
-        -LicenseKey KKNV2-4YYK8-D8HWD-GDRMW-29YTW `
+        -MediaDir C:\Install\Dynamics\CRM2016RTMEnu `
+        -LicenseKey WCPQN-33442-VH2RQ-M4RKF-GXYH4 `
         -InstallDir "c:\Program Files\Microsoft Dynamics CRM" `
         -CreateDatabase `
         -SqlServer $dbHostName\SPIntra01 `
@@ -63,8 +56,7 @@ try {
         -BaseCurrencySymbol `$ `
         -BaseCurrencyPrecision 2 `
         -OrganizationCollation Latin1_General_CI_AI `
-        -ReportingUrl http://$dbHostName/ReportServer_SPIntra01 `
-        -InstallAccount $CRMInstallAccountCredential
+        -ReportingUrl http://$dbHostName/ReportServer_SPIntra01
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
@@ -83,8 +75,8 @@ $testScriptBlock = {
         Exit 1;
     }
 }
-$testResponse = Invoke-Command -ScriptBlock $testScriptBlock $env:COMPUTERNAME -Credential $CRMInstallAccountCredential -Authentication CredSSP;
-if ( $testResponse -eq "9.0.2.3034" )
+$testResponse = Invoke-Command -ScriptBlock $testScriptBlock;
+if ( $testResponse -eq "8.0.0.1088" )
 {
     Write-Host "Test OK";
 } else {
@@ -93,27 +85,14 @@ if ( $testResponse -eq "9.0.2.3034" )
 }
 
 try {
-    if ( $dbHostName -eq $env:COMPUTERNAME ) {
-        Install-Dynamics365ReportingExtensions `
-            -MediaDir C:\Install\Dynamics\Dynamics365Server90RTMEnu\SrsDataConnector `
-            -InstanceName SPIntra01 `
-            -InstallAccount $CRMInstallAccountCredential
-    } else {
-        Install-Dynamics365ReportingExtensions `
-            -MediaDir \\$env:COMPUTERNAME\c$\Install\Dynamics\Dynamics365Server90RTMEnu\SrsDataConnector `
-            -ConfigDBServer $dbHostName `
-            -InstanceName SPIntra01 `
-            -InstallAccount $CRMInstallAccountCredential
-    }
+    Install-Dynamics365ReportingExtensions `
+        -MediaDir C:\Install\Dynamics\CRM2016RTMEnu\SrsDataConnector `
+        -InstanceName SPIntra01
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-if ( $dbHostName -eq $env:COMPUTERNAME ) {
-    $installedProduct = Get-WmiObject Win32_Product | ? { $_.IdentifyingNumber -eq "{0C524D71-1409-0090-BFEE-D90853535253}" }
-} else {
-    $installedProduct = Get-WmiObject Win32_Product -ComputerName $dbHostName -Credential $CRMInstallAccountCredential | ? { $_.IdentifyingNumber -eq "{0C524D71-1409-0090-BFEE-D90853535253}" }
-}
+$installedProduct = Get-WmiObject Win32_Product | ? { $_.IdentifyingNumber -eq "{0C524D71-1409-0080-BFEE-D90853535253}" }
 if ( $installedProduct ) {
     Write-Host "Test OK";
 } else {
@@ -122,16 +101,31 @@ if ( $installedProduct ) {
 }
 
 try {
-    Install-Dynamics365Language -MediaDir C:\Install\Dynamics\Dynamics365Server90LanguagePackSve;
+    Install-Dynamics365Update -MediaDir C:\Install\Dynamics\CRM2016ServicePack2Update02Enu
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$installedProduct = Get-WmiObject Win32_Product | ? { $_.IdentifyingNumber -eq "{0C524DC1-141D-0090-8121-88490F4D5549}" }
-if ( $installedProduct ) {
+$testScriptBlock = {
+    try {
+        Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
+        if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
+            $CrmOrganization = Get-CrmOrganization;
+            $CrmOrganization.Version;
+        } else {
+            "Could not load Microsoft.Crm.PowerShell PSSnapin";
+        }
+    } catch {
+        $_.Exception.Message;
+        Exit 1;
+    }
+}
+$testResponse = Invoke-Command -ScriptBlock $testScriptBlock
+if ( $testResponse -eq "8.2.2.112" )
+{
     Write-Host "Test OK";
 } else {
-    Write-Host "Expected software is not installed, test is not OK";
+    Write-Host "Software installed version is '$testResponse'. Test is not OK"
     Exit 1;
 }
 

@@ -1,0 +1,159 @@
+{
+    "builders": [
+        {
+            "type": "virtualbox-iso",
+            "iso_checksum": "5b5e08c490ad16b59b1d9fab0def883a",
+            "iso_checksum_type": "md5",
+            "iso_url": "https://download.microsoft.com/download/6/2/A/62A76ABB-9990-4EFC-A4FE-C7D698DAEB96/9600.17050.WINBLUE_REFRESH.140317-1640_X64FRE_SERVER_EVAL_EN-US-IR3_SSS_X64FREE_EN-US_DV9.ISO",
+            "floppy_files": [
+                "win2012r2/Autounattend.xml",
+                "winrm.ps1",
+                "sysprep.bat",
+                "autounattend_sysprep.xml"
+            ],
+            "guest_additions_mode": "attach",
+            "guest_os_type": "Windows2012_64",
+            "headless": true,
+            "http_directory": "http",
+            "shutdown_command": "a:/sysprep.bat",
+            "vboxmanage": [
+                [ "modifyvm", "{{.Name}}", "--memory", "4096" ],
+                [ "modifyvm", "{{.Name}}", "--cpus", "4" ]
+            ],
+            "disk_size": 102400,
+            "communicator": "winrm",
+            "winrm_username": "administrator",
+            "winrm_password": "Fractalsol365",
+            "winrm_timeout": "2h"
+        },
+        {
+            "type": "hyperv-iso",
+            "iso_checksum": "5b5e08c490ad16b59b1d9fab0def883a",
+            "iso_checksum_type": "md5",
+            "iso_url": "https://download.microsoft.com/download/6/2/A/62A76ABB-9990-4EFC-A4FE-C7D698DAEB96/9600.17050.WINBLUE_REFRESH.140317-1640_X64FRE_SERVER_EVAL_EN-US-IR3_SSS_X64FREE_EN-US_DV9.ISO",
+            "floppy_files": [
+                "win2012r2/Autounattend.xml",
+                "winrm.ps1",
+                "sysprep.bat",
+                "autounattend_sysprep.xml"
+            ],
+            "http_directory": "http",
+            "shutdown_command": "a:/sysprep.bat",
+            "ram_size": 4096,
+            "cpu": 4,
+            "disk_size": 102400,
+            "switch_name": "Default Switch",
+            "communicator": "winrm",
+            "winrm_username": "administrator",
+            "winrm_password": "Fractalsol365",
+            "winrm_timeout": "2h"
+        },
+        {
+            "type": "azure-arm",
+        
+            "client_id": "{{user `client_id`}}",
+            "client_secret": "{{user `client_secret`}}",
+            "subscription_id": "{{user `subscription_id`}}",
+            "tenant_id": "{{user `tenant_id`}}",
+        
+            "managed_image_resource_group_name": "CommonRG",
+            "managed_image_name": "{{user `box_name`}}",
+        
+            "os_type": "Windows",
+            "image_publisher": "MicrosoftWindowsServer",
+            "image_offer": "WindowsServer",
+            "image_sku": "2012-R2-Datacenter",
+        
+            "communicator": "winrm",
+            "winrm_use_ssl": "true",
+            "winrm_insecure": "true",
+            "winrm_timeout": "30m",
+            "winrm_username": "packer",
+        
+            "location": "WestUS2",
+            "vm_size": "Standard_DS2_v2",
+            "managed_image_storage_account_type": "Premium_LRS"
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "powershell",
+            "script": "VirtualBox/installadditions.ps1",
+            "only": ["virtualbox-iso"]
+        },
+        {
+            "type": "powershell",
+            "script": "rdpenable.ps1",
+            "only": ["virtualbox-iso", "hyperv-iso"]
+        },
+        {
+            "type": "powershell",
+            "script": "wmf5.ps1",
+            "elevated_user": "administrator", "elevated_password": "Fractalsol365",
+            "only": ["virtualbox-iso", "hyperv-iso"]
+        },
+        {
+            "type": "powershell",
+            "script": "wmf5_azure.ps1",
+            "elevated_user": "packer", "elevated_password": "{{.WinRMPassword}}",
+            "only": ["azure-arm"]
+        },
+        {
+            "type": "powershell",
+            "inline": "Write-Host 'Fake script just for pause after wmf5 installation'",
+            "pause_before": "10m"
+        },
+        {
+            "type": "windows-restart",
+            "only": ["azure-arm"]
+        },
+        {
+            "type": "powershell",
+            "inline": "Write-Host 'Fake script just for pause after restart'",
+            "pause_before": "1m",
+            "only": ["azure-arm"]
+        },
+        {
+            "type": "powershell",
+            "script": "winrm.ps1",
+            "only": ["azure-arm"]
+        },
+        { "type": "powershell", "script": "PackageManagementProviderResource.ps1" },
+        { "type": "powershell", "script": "basepsmodules.ps1" },
+        { "type": "powershell", "script": "adpsmodules.ps1" },
+        { "type": "powershell", "script": "sqlpsmodules.ps1" },
+        { "type": "powershell", "script": "domainclientpsmodules.ps1" },
+        { "type": "powershell", "script": "adbin.ps1" },
+        { "type": "powershell", "script": "sql2016media.ps1" },
+        { "type": "powershell", "script": "sql2016bin.ps1" },
+        { "type": "powershell", "script": "sqlbin-rs.ps1" },
+        {
+            "type": "powershell",
+            "script": "sql2016mediaclean.ps1",
+            "environment_vars": [
+                "SPDEVOPSSTARTER_NODSCTEST=TRUE"
+            ]
+        },
+        { "type": "powershell", "script": "xcredserver.ps1" },
+        { "type": "windows-restart" },
+        { "type": "powershell", "script": "waitforcpucalm.ps1" },
+        {
+            "type": "powershell",
+            "script": "azure/sysprep.ps1",
+            "only": ["azure-arm"]
+        }
+    ],
+    "post-processors": [
+        {
+          "type": "vagrant",
+          "output": "{{user `box_name`}}.box"
+        }
+    ],
+    "variables": {
+        "box_name": "win2012r2-ad-sql2016dbrs",
+        "client_id": "{{env `ARM_CLIENT_ID`}}",
+        "client_secret": "{{env `ARM_CLIENT_SECRET`}}",
+        "subscription_id": "{{env `ARM_SUBSCRIPTION_ID`}}",
+        "tenant_id": "{{env `ARM_TENANT_ID`}}"
+    }
+}

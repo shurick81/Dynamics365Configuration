@@ -1,4 +1,4 @@
-Import-Module $PSScriptRoot\DownloadAndUnpack-Dynamics365Resource.psm1
+Import-Module $PSScriptRoot\DownloadAndUnpack-Dynamics365Resource.psm1 -DisableNameChecking
 function Save-Dynamics365Resource
 {
     [CmdletBinding()]
@@ -111,6 +111,7 @@ function Save-Dynamics365Resource
             'SQLSysClrTypes2012',
             'SharedManagementObjects2012',
             'ReportViewer2012',
+            'CRM2016LanguagePackEnu',
             'CRM2016LanguagePackSau',
             'CRM2016LanguagePackEus',
             'CRM2016LanguagePackBgr',

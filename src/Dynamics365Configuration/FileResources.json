@@ -4,175 +4,200 @@
         "identifyingNumber": "0C524D55-1409-0090-BD7E-530E52560E52",
         "checksum": "52791E8F11F16247FCB859BCE5B92D90F9014D2E",
         "mediaFileVersion": "9.0.2.3034",
-        "reportingExtensionsIdentifyingNumber": "0C524D71-1409-0090-BFEE-D90853535253"
+        "reportingExtensionsIdentifyingNumber": "0C524D71-1409-0090-BFEE-D90853535253",        
+        "LanguageCode": "1033"
     },
     "Dynamics365Server90RTMSau": {
         "URL": "https://download.microsoft.com/download/F/D/F/FDF9CBE5-F313-4D7D-AA1B-F659F665A3A0/CRM9.0-Server-SAU-amd64.exe",
-        "identifyingNumber": "",
+        "identifyingNumber": "0C524D55-1401-0090-BD7E-530E52560E52",
         "checksum": "617D70D956EA328F54909F767958684A9A19FBD4",
         "mediaFileVersion": "9.0.2.3034",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-1401-0090-BFEE-D90853535253",        
+        "LanguageCode": "1025"
     },
     "Dynamics365Server90RTMChk": {
         "URL": "https://download.microsoft.com/download/1/4/2/142367E3-3D71-4490-AE4E-6984374690A9/CRM9.0-Server-CHK-amd64.exe",
-        "identifyingNumber": "",
+        "identifyingNumber": "0C524D55-1C04-0090-BD7E-530E52560E52",
         "checksum": "5D9B477FDC0AE0AE74EDA2AD75B8AFBCA397B2A7",
         "mediaFileVersion": "9.0.2.3034",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-1C04-0090-BFEE-D90853535253",        
+        "LanguageCode": "3076"
     },
     "Dynamics365Server90RTMChs": {
         "URL": "https://download.microsoft.com/download/A/D/D/ADDD6898-4EFA-46FA-80B6-6FE9A3CDED63/CRM9.0-Server-CHS-amd64.exe",
-        "identifyingNumber": "",
+        "identifyingNumber": "0C524D55-1804-0090-BD7E-530E52560E52",
         "checksum": "79DAA77F07FE1A40E3D3C0334CCA16CEE8D93F1E",
         "mediaFileVersion": "9.0.2.3034",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-1804-0090-BFEE-D90853535253",        
+        "LanguageCode": "2052"
     },
     "Dynamics365Server90RTMCht": {
         "URL": "https://download.microsoft.com/download/F/A/2/FA25B6B7-5134-4A47-B2F7-829413839B74/CRM9.0-Server-CHT-amd64.exe",
-        "identifyingNumber": "",
+        "identifyingNumber": "0C524D55-1404-0090-BD7E-530E52560E52",
         "checksum": "02C50468505A89937B7AC9F4CE9A4A31A1FA94E7",
         "mediaFileVersion": "9.0.2.3034",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-1404-0090-BFEE-D90853535253",        
+        "LanguageCode": "1028"
     },
     "Dynamics365Server90RTMCsy": {
         "URL": "https://download.microsoft.com/download/2/9/7/297CCA6B-FA93-441C-9721-EE05855EC9BE/CRM9.0-Server-CSY-amd64.exe",
-        "identifyingNumber": "",
+        "identifyingNumber": "0C524D55-1405-0090-BD7E-530E52560E52",
         "checksum": "02B292BDE6E3F4E6A9BACEA4B3F0F54375E398AC",
         "mediaFileVersion": "9.0.2.3034",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-1405-0090-BFEE-D90853535253",        
+        "LanguageCode": "1029"
     },
     "Dynamics365Server90RTMDan": {
         "URL": "https://download.microsoft.com/download/B/3/0/B30A8DF5-FED5-4EEC-99FA-85D5E6017BBA/CRM9.0-Server-DAN-amd64.exe",
-        "identifyingNumber": "",
+        "identifyingNumber": "0C524D55-1406-0090-BD7E-530E52560E52",
         "checksum": "6650DE6CF17ABEA85A0581299C8C6546145173ED",
         "mediaFileVersion": "9.0.2.3034",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-1406-0090-BFEE-D90853535253",        
+        "LanguageCode": "1030"
     },
     "Dynamics365Server90RTMNld": {
         "URL": "https://download.microsoft.com/download/0/0/6/00684FD9-4DB9-46BB-9CAC-4D5B6D58A9CA/CRM9.0-Server-NLD-amd64.exe",
-        "identifyingNumber": "",
+        "identifyingNumber": "0C524D55-1413-0090-BD7E-530E52560E52",
         "checksum": "C2424DDF163981B395C78B9649376CB1FE77F476",
         "mediaFileVersion": "9.0.2.3034",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-1413-0090-BFEE-D90853535253",        
+        "LanguageCode": "1043"
     },
     "Dynamics365Server90RTMFin": {
         "URL": "https://download.microsoft.com/download/1/2/D/12D927F6-9499-4921-BF58-19887FB362A4/CRM9.0-Server-FIN-amd64.exe",
-        "identifyingNumber": "",
+        "identifyingNumber": "0C524D55-140B-0090-BD7E-530E52560E52",
         "checksum": "8BA34462AA41700A58B7C36E4BC9F5721831BE2B",
         "mediaFileVersion": "9.0.2.3034",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-140B-0090-BFEE-D90853535253",        
+        "LanguageCode": "1035"
     },
     "Dynamics365Server90RTMFra": {
-        "URL": "https://download.microsoft.com/download/1/2/D/12D927F6-9499-4921-BF58-19887FB362A4/CRM9.0-Server-FIN-amd64.exe",
-        "identifyingNumber": "",
-        "checksum": "8BA34462AA41700A58B7C36E4BC9F5721831BE2B",
+        "URL": "https://download.microsoft.com/download/7/2/0/7201946B-B975-4FF1-8520-88BECEC88C02/CRM9.0-Server-FRA-amd64.exe",
+        "identifyingNumber": "0C524D55-140C-0090-BD7E-530E52560E52",
+        "checksum": "1F4E7E05F6588D67B316B09B5D14721FB3AA4595",
         "mediaFileVersion": "9.0.2.3034",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-140C-0090-BFEE-D90853535253",        
+        "LanguageCode": "1036"
     },
     "Dynamics365Server90RTMDeu": {
         "URL": "https://download.microsoft.com/download/0/D/F/0DF2FC2F-BD26-4CF6-8098-B70BE99D579E/CRM9.0-Server-DEU-amd64.exe",
-        "identifyingNumber": "",
+        "identifyingNumber": "0C524D55-1407-0090-BD7E-530E52560E52",
         "checksum": "D14D395DC8E8B17CE1002B9B77CCBF232ED2C5A6",
         "mediaFileVersion": "9.0.2.3034",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-1407-0090-BFEE-D90853535253",        
+        "LanguageCode": "1031"
     },
     "Dynamics365Server90RTMEll": {
         "URL": "https://download.microsoft.com/download/E/0/7/E071D07B-50E7-4A53-B426-D9AFC37566E0/CRM9.0-Server-ELL-amd64.exe",
-        "identifyingNumber": "",
+        "identifyingNumber": "0C524D55-1408-0090-BD7E-530E52560E52",
         "checksum": "31D66E4057EB9390B4E04D80FF1DD142E4E3F403",
         "mediaFileVersion": "9.0.2.3034",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-1408-0090-BFEE-D90853535253",        
+        "LanguageCode": "1032"
     },
     "Dynamics365Server90RTMHeb": {
         "URL": "https://download.microsoft.com/download/7/2/D/72D04138-D6A6-4513-A57B-F62037CFB354/CRM9.0-Server-HEB-amd64.exe",
-        "identifyingNumber": "",
+        "identifyingNumber": "0C524D55-140D-0090-BD7E-530E52560E52",
         "checksum": "9E9BE3D95BE7FA6A968CA7F82CEFB6614CA6A019",
         "mediaFileVersion": "9.0.2.3034",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-140D-0090-BFEE-D90853535253",        
+        "LanguageCode": "1037"
     },
     "Dynamics365Server90RTMHun": {
         "URL": "https://download.microsoft.com/download/9/A/2/9A2C31DE-A714-4762-BF3C-1B728CE30471/CRM9.0-Server-HUN-amd64.exe",
-        "identifyingNumber": "",
+        "identifyingNumber": "0C524D55-140E-0090-BD7E-530E52560E52",
         "checksum": "F20A9C8921E1A22427F8E408238A59BE5C8A38D1",
         "mediaFileVersion": "9.0.2.3034",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-140E-0090-BFEE-D90853535253",        
+        "LanguageCode": "1038"
     },
     "Dynamics365Server90RTMIta": {
         "URL": "https://download.microsoft.com/download/7/D/3/7D3D4B70-CBBE-41B9-B9AC-5251D7368BD6/CRM9.0-Server-ITA-amd64.exe",
-        "identifyingNumber": "",
+        "identifyingNumber": "0C524D55-1410-0090-BD7E-530E52560E52",
         "checksum": "45D8388ADD5AEB0F68F71523081A56930F25FC5B",
         "mediaFileVersion": "9.0.2.3034",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-1410-0090-BFEE-D90853535253",        
+        "LanguageCode": "1040"
     },
     "Dynamics365Server90RTMJpn": {
-        "URL": "https://download.microsoft.com/download/7/D/3/7D3D4B70-CBBE-41B9-B9AC-5251D7368BD6/CRM9.0-Server-ITA-amd64.exe",
-        "identifyingNumber": "",
-        "checksum": "45D8388ADD5AEB0F68F71523081A56930F25FC5B",
+        "URL": "https://download.microsoft.com/download/2/5/D/25DA9B4A-327C-4E26-AEB6-A229ADE12EBD/CRM9.0-Server-JPN-amd64.exe",
+        "identifyingNumber": "0C524D55-1411-0090-BD7E-530E52560E52",
+        "checksum": "63292226494619622C19DC0100EF451AE13FD362",
         "mediaFileVersion": "9.0.2.3034",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-1411-0090-BFEE-D90853535253",        
+        "LanguageCode": "1041"
     },
     "Dynamics365Server90RTMKor": {
         "URL": "https://download.microsoft.com/download/C/F/A/CFADAB51-C93C-43DB-9843-AA825FD25BFC/CRM9.0-Server-KOR-amd64.exe",
-        "identifyingNumber": "",
+        "identifyingNumber": "0C524D55-1412-0090-BD7E-530E52560E52",
         "checksum": "30FA2C2AEC8C1E5505B4AA3FD882F3705DA317FE",
         "mediaFileVersion": "9.0.2.3034",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-1412-0090-BFEE-D90853535253",        
+        "LanguageCode": "1042"
     },
     "Dynamics365Server90RTMNor": {
         "URL": "https://download.microsoft.com/download/D/5/8/D58B355D-23B9-438B-9D72-0D2DA1F8D706/CRM9.0-Server-NOR-amd64.exe",
-        "identifyingNumber": "",
+        "identifyingNumber": "0C524D55-1414-0090-BD7E-530E52560E52",
         "checksum": "55BD3B81002DC57510681202F9103AB3E1FA53DC",
         "mediaFileVersion": "9.0.2.3034",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-1414-0090-BFEE-D90853535253",        
+        "LanguageCode": "1044"
     },
     "Dynamics365Server90RTMPlk": {
         "URL": "https://download.microsoft.com/download/3/6/6/366AA0D6-86DA-4B8C-A832-69D6D5D027FC/CRM9.0-Server-PLK-amd64.exe",
-        "identifyingNumber": "",
+        "identifyingNumber": "0C524D55-1415-0090-BD7E-530E52560E52",
         "checksum": "6B0EB00D2D8F4A329DA296AE061EAD7C88CD2084",
         "mediaFileVersion": "9.0.2.3034",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-1415-0090-BFEE-D90853535253",        
+        "LanguageCode": "1045"
     },
     "Dynamics365Server90RTMPtb": {
         "URL": "https://download.microsoft.com/download/B/1/A/B1A7046F-DF47-45B4-822E-31B88D0247D6/CRM9.0-Server-PTB-amd64.exe",
-        "identifyingNumber": "",
+        "identifyingNumber": "0C524D55-1416-0090-BD7E-530E52560E52",
         "checksum": "7AFF4496C1833AFE0B8DE350B8BA082E6714D255",
         "mediaFileVersion": "9.0.2.3034",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-1416-0090-BFEE-D90853535253",        
+        "LanguageCode": "1046"
     },
     "Dynamics365Server90RTMPtg": {
         "URL": "https://download.microsoft.com/download/C/B/C/CBC0CA99-BCBE-4BD2-BF1D-80CD5FD36399/CRM9.0-Server-PTG-amd64.exe",
-        "identifyingNumber": "",
+        "identifyingNumber": "0C524D55-1816-0090-BD7E-530E52560E52",
         "checksum": "1291A49A5040381F608307F21FF5CD9EC5EF9AA1",
         "mediaFileVersion": "9.0.2.3034",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-1816-0090-BFEE-D90853535253",        
+        "LanguageCode": "2070"
     },
     "Dynamics365Server90RTMRus": {
         "URL": "https://download.microsoft.com/download/A/7/9/A7989C1C-5B63-4777-9CAB-E7770133A0E6/CRM9.0-Server-RUS-amd64.exe",
-        "identifyingNumber": "",
+        "identifyingNumber": "0C524D55-1419-0090-BD7E-530E52560E52",
         "checksum": "8638E538E069317CE5AC97D4E93141FBBBFB3E4C",
         "mediaFileVersion": "9.0.2.3034",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-1419-0090-BFEE-D90853535253",        
+        "LanguageCode": "1049"
     },
     "Dynamics365Server90RTMEsn": {
         "URL": "https://download.microsoft.com/download/D/2/B/D2BB62D6-8BC1-4BB5-BD4F-6FD6B80EFA28/CRM9.0-Server-ESN-amd64.exe",
-        "identifyingNumber": "",
+        "identifyingNumber": "0C524D55-1C0A-0090-BD7E-530E52560E52",
         "checksum": "42FB2D27A3EC2EF1B3476287D1F613F60266477D",
         "mediaFileVersion": "9.0.2.3034",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-1C0A-0090-BFEE-D90853535253",        
+        "LanguageCode": "3082"
     },
     "Dynamics365Server90RTMSve": {
         "URL": "https://download.microsoft.com/download/F/C/0/FC074D65-DD9D-4AAA-BE57-045E8978A80E/CRM9.0-Server-SVE-amd64.exe",
-        "identifyingNumber": "",
+        "identifyingNumber": "0C524D55-141D-0090-BD7E-530E52560E52",
         "checksum": "41167C1E44CB62829E3E2072EF0BEA1CBF9DB54E",
         "mediaFileVersion": "9.0.2.3034",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-141D-0090-BFEE-D90853535253",        
+        "LanguageCode": "1053"
     },
     "Dynamics365Server90RTMTrk": {
         "URL": "https://download.microsoft.com/download/8/5/5/85552480-5406-4138-84DC-430175E380B9/CRM9.0-Server-TRK-amd64.exe",
-        "identifyingNumber": "",
+        "identifyingNumber": "0C524D55-141F-0090-BD7E-530E52560E52",
         "checksum": "F4A27015F0658956367F8DFC8D812D66C713CB5A",
         "mediaFileVersion": "9.0.2.3034",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-141F-0090-BFEE-D90853535253",        
+        "LanguageCode": "1055"
     },
     "VisualCPlusPlusRuntime": {
         "URL": "https://download.microsoft.com/download/2/E/6/2E61CFA4-993B-4DD4-91DA-3737CD5CD6E3/vcredist_x64.exe",
@@ -206,9 +231,9 @@
     },
     "Dynamics365Server90LanguagePackEnu": {
         "URL": "https://download.microsoft.com/download/A/6/9/A6981E93-6432-45BE-A39E-FD929C1F076F/CRM9.0-Mui-ENU-amd64.exe",
-        "identifyingNumber": "",
+        "identifyingNumber": "0C524DC1-1409-0090-8121-88490F4D5549",
         "checksum": "672682F29C08F702CBEF5CB105D54B08DC3D2B00",
-        "LanguageCode": ""
+        "LanguageCode": "1033"
     },
     "Dynamics365Server90LanguagePackSau": {
         "URL": "https://download.microsoft.com/download/2/B/3/2B3B7BDF-8CA1-4A7D-800C-C02F49C13B3A/CRM9.0-Mui-SAU-amd64.exe",
@@ -479,175 +504,200 @@
         "identifyingNumber": "0C524D55-1409-0080-BD7E-530E52560E52",
         "checksum": "192882bccbc976b58f4259b4f9498edb1b23c526",
         "mediaFileVersion": "8.0.0.1088",
-        "reportingExtensionsIdentifyingNumber": "0C524D71-1409-0080-BFEE-D90853535253"
+        "reportingExtensionsIdentifyingNumber": "0C524D71-1409-0080-BFEE-D90853535253",
+        "LanguageCode": "1033"
     },
     "CRM2016RTMSau": {
         "URL": "https://download.microsoft.com/download/F/1/C/F1C1F116-E4E6-49DD-9C81-A60BD8C678A8/CRM2016-Server-SAU-amd64.exe",
-        "identifyingNumber": "",
+        "identifyingNumber": "0C524D55-1401-0080-BD7E-530E52560E52",
         "checksum": "49EBC7BCB94DF4BEF01503D60A8D5DC88090C490",
         "mediaFileVersion": "8.0.0.1088",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-1401-0080-BFEE-D90853535253",        
+        "LanguageCode": "1025"
     },
     "CRM2016RTMChk": {
         "URL": "https://download.microsoft.com/download/0/3/E/03ED390C-85A9-413A-9593-F1323553B373/CRM2016-Server-CHK-amd64.exe",
-        "identifyingNumber": "",
+        "identifyingNumber": "0C524D55-1C04-0080-BD7E-530E52560E52",
         "checksum": "7B2477CB874BF423B41D4E2ECFF232B1DE632253",
         "mediaFileVersion": "8.0.0.1088",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-1C04-0080-BFEE-D90853535253",        
+        "LanguageCode": "3076"
     },
     "CRM2016RTMChs": {
         "URL": "https://download.microsoft.com/download/0/1/7/017AC10C-0340-42E2-8CAC-F5840290A677/CRM2016-Server-CHS-amd64.exe",
-        "identifyingNumber": "",
+        "identifyingNumber": "0C524D55-1804-0080-BD7E-530E52560E52",
         "checksum": "045A28AC42E9C67AB4F4780252C13EA1A62EB391",
         "mediaFileVersion": "8.0.0.1088",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-1804-0080-BFEE-D90853535253",        
+        "LanguageCode": "2052"
     },
     "CRM2016RTMCht": {
         "URL": "https://download.microsoft.com/download/4/4/2/44220E53-FA7A-4A11-B5FA-63F7BCC22C3A/CRM2016-Server-CHT-amd64.exe",
-        "identifyingNumber": "",
+        "identifyingNumber": "0C524D55-1404-0080-BD7E-530E52560E52",
         "checksum": "38FCFEA3FA0CAEB9618A7ED9A1690E1D189BB372",
         "mediaFileVersion": "8.0.0.1088",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-1404-0080-BFEE-D90853535253",        
+        "LanguageCode": "1028"
     },
     "CRM2016RTMCsy": {
         "URL": "https://download.microsoft.com/download/4/F/A/4FA6B1BD-2818-4120-B382-D185B1BD3969/CRM2016-Server-CSY-amd64.exe",
-        "identifyingNumber": "",
+        "identifyingNumber": "0C524D55-1405-0080-BD7E-530E52560E52",
         "checksum": "E4310F15F89E2AD167B690F51F6954CB514FE547",
         "mediaFileVersion": "8.0.0.1088",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-1405-0080-BFEE-D90853535253",        
+        "LanguageCode": "1029"
     },
     "CRM2016RTMDan": {
         "URL": "https://download.microsoft.com/download/6/6/F/66FD7D16-86C4-45DC-841E-B48B4A7D8F1A/CRM2016-Server-DAN-amd64.exe",
-        "identifyingNumber": "",
+        "identifyingNumber": "0C524D55-1406-0080-BD7E-530E52560E52",
         "checksum": "3EB763C8B1D3E9BEEC0D6B1B7225F4BC5FEA82A9",
         "mediaFileVersion": "8.0.0.1088",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-1406-0080-BFEE-D90853535253",        
+        "LanguageCode": "1030"
     },
     "CRM2016RTMNld": {
         "URL": "https://download.microsoft.com/download/F/3/F/F3F22792-CC6A-4A50-8B7D-7C55B0920CD5/CRM2016-Server-NLD-amd64.exe",
-        "identifyingNumber": "",
+        "identifyingNumber": "0C524D55-1413-0080-BD7E-530E52560E52",
         "checksum": "2066CF520926FCE19C65E8D9728DBB23A191D62B",
         "mediaFileVersion": "8.0.0.1088",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-1413-0080-BFEE-D90853535253",        
+        "LanguageCode": "1043"
     },
     "CRM2016RTMFin": {
         "URL": "https://download.microsoft.com/download/1/7/4/1747F17A-10D0-4301-9CDC-59CF5E9E5128/CRM2016-Server-FIN-amd64.exe",
-        "identifyingNumber": "",
+        "identifyingNumber": "0C524D55-140B-0080-BD7E-530E52560E52",
         "checksum": "8047D2613EF324376D030005378121C7FAA597B4",
         "mediaFileVersion": "8.0.0.1088",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-140B-0080-BFEE-D90853535253",        
+        "LanguageCode": "1035"
     },
     "CRM2016RTMFra": {
         "URL": "https://download.microsoft.com/download/B/8/B/B8BB4938-18B1-4A3A-A2E4-9FAE8F8D9B38/CRM2016-Server-FRA-amd64.exe",
-        "identifyingNumber": "",
+        "identifyingNumber": "0C524D55-140C-0080-BD7E-530E52560E52",
         "checksum": "7868FB46826305F67F5B57A83F353E95D0291A5A",
         "mediaFileVersion": "8.0.0.1088",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-140C-0080-BFEE-D90853535253",        
+        "LanguageCode": "1036"
     },
     "CRM2016RTMDeu": {
         "URL": "https://download.microsoft.com/download/5/5/8/558A55A0-5A13-44A0-BB06-FA3ABBB95711/CRM2016-Server-DEU-amd64.exe",
-        "identifyingNumber": "",
+        "identifyingNumber": "0C524D55-1407-0080-BD7E-530E52560E52",
         "checksum": "DFF2DE5A02D90C9651E0EA8B7E5E6A43EE305D79",
         "mediaFileVersion": "8.0.0.1088",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-1407-0080-BFEE-D90853535253",        
+        "LanguageCode": "1031"
     },
     "CRM2016RTMEll": {
         "URL": "https://download.microsoft.com/download/A/2/3/A23068BA-8530-4AC5-83BD-56923891425A/CRM2016-Server-ELL-amd64.exe",
-        "identifyingNumber": "",
+        "identifyingNumber": "0C524D55-1408-0080-BD7E-530E52560E52",
         "checksum": "9C55444600CAA8CE8FB763BB01B13E82609C88C7",
         "mediaFileVersion": "8.0.0.1088",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-1408-0080-BFEE-D90853535253",        
+        "LanguageCode": "1032"
     },
     "CRM2016RTMHeb": {
         "URL": "https://download.microsoft.com/download/A/1/B/A1BA7866-9656-4172-A96A-E488A07A27C0/CRM2016-Server-HEB-amd64.exe",
-        "identifyingNumber": "",
+        "identifyingNumber": "0C524D55-140D-0080-BD7E-530E52560E52",
         "checksum": "64AECA48E7B899D3B3A1FE53DA917BEF6A3E1764",
         "mediaFileVersion": "8.0.0.1088",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-140D-0080-BFEE-D90853535253",        
+        "LanguageCode": "1037"
     },
     "CRM2016RTMHun": {
         "URL": "https://download.microsoft.com/download/B/9/9/B994476B-7877-47B5-B2BF-735D17D61058/CRM2016-Server-HUN-amd64.exe",
-        "identifyingNumber": "",
+        "identifyingNumber": "0C524D55-140E-0080-BD7E-530E52560E52",
         "checksum": "6E0D2325EB317D3F0D4F0B108C4FED336A46EDEA",
         "mediaFileVersion": "8.0.0.1088",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-140E-0080-BFEE-D90853535253",        
+        "LanguageCode": "1038"
     },
     "CRM2016RTMIta": {
         "URL": "https://download.microsoft.com/download/B/3/F/B3FBF9C3-29F1-4A39-B625-F8D4B94F7F82/CRM2016-Server-ITA-amd64.exe",
-        "identifyingNumber": "",
+        "identifyingNumber": "0C524D55-1410-0080-BD7E-530E52560E52",
         "checksum": "A192E20F145AD350E87C969C321468DF15CFB0B0",
         "mediaFileVersion": "8.0.0.1088",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-1410-0080-BFEE-D90853535253",        
+        "LanguageCode": "1040"
     },
     "CRM2016RTMJpn": {
         "URL": "https://download.microsoft.com/download/7/2/F/72F06811-03F0-481D-BC99-493EDAEFEBF5/CRM2016-Server-JPN-amd64.exe",
-        "identifyingNumber": "",
+        "identifyingNumber": "0C524D55-1411-0080-BD7E-530E52560E52",
         "checksum": "E767D456A028A065A91CC5E0C21DC4A028CCBB48",
         "mediaFileVersion": "8.0.0.1088",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-1411-0080-BFEE-D90853535253",        
+        "LanguageCode": "1041"
     },
     "CRM2016RTMKor": {
         "URL": "https://download.microsoft.com/download/D/7/1/D713FB63-786E-44C4-85AF-652EBA0601C0/CRM2016-Server-KOR-amd64.exe",
-        "identifyingNumber": "",
+        "identifyingNumber": "0C524D55-1412-0080-BD7E-530E52560E52",
         "checksum": "2B7EA009D58DF68129EF6EB56DC6DE685E7D1F94",
         "mediaFileVersion": "8.0.0.1088",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-1412-0080-BFEE-D90853535253",        
+        "LanguageCode": "1042"
     },
     "CRM2016RTMNor": {
         "URL": "https://download.microsoft.com/download/5/E/C/5EC838E0-8C32-4F19-98E1-E97D773292A0/CRM2016-Server-NOR-amd64.exe",
-        "identifyingNumber": "",
+        "identifyingNumber": "0C524D55-1414-0080-BD7E-530E52560E52",
         "checksum": "232AB84AB0716B49B59EEC11F00615D84E2C8902",
         "mediaFileVersion": "8.0.0.1088",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-1414-0080-BFEE-D90853535253",        
+        "LanguageCode": "1044"
     },
     "CRM2016RTMPlk": {
         "URL": "https://download.microsoft.com/download/2/D/9/2D9075EF-1F7F-4DBD-B9D2-D4821DE2D98A/CRM2016-Server-PLK-amd64.exe",
-        "identifyingNumber": "",
+        "identifyingNumber": "0C524D55-1415-0080-BD7E-530E52560E52",
         "checksum": "966B54F6DA31D181C1CD8F2CA5B805029B714107",
         "mediaFileVersion": "8.0.0.1088",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-1415-0080-BFEE-D90853535253",        
+        "LanguageCode": "1045"
     },
     "CRM2016RTMPtb": {
         "URL": "https://download.microsoft.com/download/1/9/C/19C3EB72-0C15-46B9-9710-BF33BE9040DF/CRM2016-Server-PTB-amd64.exe",
-        "identifyingNumber": "",
+        "identifyingNumber": "0C524D55-1416-0080-BD7E-530E52560E52",
         "checksum": "51363BE97923BB081714480780412142613C3229",
         "mediaFileVersion": "8.0.0.1088",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-1416-0080-BFEE-D90853535253",        
+        "LanguageCode": "1046"
     },
     "CRM2016RTMPtg": {
         "URL": "https://download.microsoft.com/download/D/3/7/D37FDAD2-3C1F-4F92-81F8-580F269500B9/CRM2016-Server-PTG-amd64.exe",
-        "identifyingNumber": "",
+        "identifyingNumber": "0C524D55-1816-0080-BD7E-530E52560E52",
         "checksum": "DBB3ECA5D2AE22AC16BD3892BA87F085EE365924",
         "mediaFileVersion": "8.0.0.1088",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-1816-0080-BFEE-D90853535253",        
+        "LanguageCode": "2070"
     },
     "CRM2016RTMRus": {
         "URL": "https://download.microsoft.com/download/1/D/3/1D3CBEE4-36BF-4C9E-8E4C-88C198FF0324/CRM2016-Server-RUS-amd64.exe",
-        "identifyingNumber": "",
+        "identifyingNumber": "0C524D55-1419-0080-BD7E-530E52560E52",
         "checksum": "B472C7E476437B38D4EFD8EEC18F8B69C1053244",
         "mediaFileVersion": "8.0.0.1088",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-1419-0080-BFEE-D90853535253",        
+        "LanguageCode": "1049"
     },
     "CRM2016RTMEsn": {
         "URL": "https://download.microsoft.com/download/E/7/3/E73D6AC4-E3C7-42E8-B452-0DDF3A06FAE6/CRM2016-Server-ESN-amd64.exe",
-        "identifyingNumber": "",
+        "identifyingNumber": "0C524D55-1C0A-0080-BD7E-530E52560E52",
         "checksum": "8F00AC77519063C56E39B6B0F052F68D972C8AE8",
         "mediaFileVersion": "8.0.0.1088",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-1C0A-0080-BFEE-D90853535253",        
+        "LanguageCode": "3082"
     },
     "CRM2016RTMSve": {
         "URL": "https://download.microsoft.com/download/6/E/C/6EC22C0D-1B16-434F-9381-C588B58E2EA3/CRM2016-Server-SVE-amd64.exe",
-        "identifyingNumber": "",
+        "identifyingNumber": "0C524D55-141D-0080-BD7E-530E52560E52",
         "checksum": "D675A7C28746164489D387F667E22E1C3CEB1E9E",
         "mediaFileVersion": "8.0.0.1088",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-141D-0080-BFEE-D90853535253",        
+        "LanguageCode": "1053"
     },
     "CRM2016RTMTrk": {
         "URL": "https://download.microsoft.com/download/C/8/A/C8A073D2-3C98-4BD1-9F88-AB895715101C/CRM2016-Server-TRK-amd64.exe",
-        "identifyingNumber": "",
+        "identifyingNumber": "0C524D55-141F-0080-BD7E-530E52560E52",
         "checksum": "BACF249D433D79286C8D03E9CE6812337A042EF8",
         "mediaFileVersion": "8.0.0.1088",
-        "reportingExtensionsIdentifyingNumber": ""
+        "reportingExtensionsIdentifyingNumber": "0C524D71-141F-0080-BFEE-D90853535253",        
+        "LanguageCode": "1055"
     },
     "SQLNCli2018R2": {
         "URL": "http://download.microsoft.com/download/B/6/3/B63CAC7F-44BB-41FA-92A3-CBF71360F022/1033/x64/sqlncli.msi",
@@ -671,9 +721,9 @@
     },
     "CRM2016LanguagePackEnu": {
         "URL": "https://download.microsoft.com/download/4/3/4/434A4C02-8834-4A1B-AC55-D05F4CDEEE45/CRM2016-Mui-ENU-amd64.exe",
-        "identifyingNumber": "",
+        "identifyingNumber": "0C524DC1-1409-0080-8121-88490F4D5549",
         "checksum": "CF1CB9A46DB1484E96527D5D546DD1D5AA8F0BB7",
-        "LanguageCode": ""
+        "LanguageCode": "1033"
     },
     "CRM2016LanguagePackSau": {
         "URL": "https://download.microsoft.com/download/6/9/1/6917A5FC-7C6A-47CD-A480-885476216DB5/CRM2016-Mui-SAU-amd64.exe",
