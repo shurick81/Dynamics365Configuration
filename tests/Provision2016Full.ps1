@@ -55,13 +55,13 @@ try {
         "CRM2016LanguagePackTrk",
         "CRM2016LanguagePackUkr",
         "CRM2016LanguagePackVit",
-        "CRM2016Update01Enu",
-        "CRM2016ServicePack1Enu",
-        "CRM2016ServicePack1Update01Enu",
-        "CRM2016ServicePack2Enu",
-        "CRM2016ServicePack2Update01Enu",
-        "CRM2016ServicePack2Update02Enu",
-        "CRM2016ServicePack2Update03Enu"
+        "CRM2016Update01Dan",
+        "CRM2016ServicePack1Dan",
+        "CRM2016ServicePack1Update01Dan",
+        "CRM2016ServicePack2Dan",
+        "CRM2016ServicePack2Update01Dan",
+        "CRM2016ServicePack2Update02Dan",
+        "CRM2016ServicePack2Update03Dan"
     ) | % { Save-Dynamics365Resource -Resource $_ -TargetDirectory C:\Install\Dynamics\$_ }
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
@@ -311,7 +311,7 @@ $installedProducts = Get-WmiObject Win32_Product | % { $_.IdentifyingNumber }
 }
 
 try {
-    Install-Dynamics365Update -MediaDir C:\Install\Dynamics\CRM2016Update01Enu -InstallAccount $CRMInstallAccountCredential
+    Install-Dynamics365Update -MediaDir C:\Install\Dynamics\CRM2016Update01Dan -InstallAccount $CRMInstallAccountCredential
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
@@ -339,7 +339,7 @@ if ( $testResponse -eq "8.0.1.79" )
 }
 
 try {
-    Install-Dynamics365Update -MediaDir C:\Install\Dynamics\CRM2016ServicePack1Enu -InstallAccount $CRMInstallAccountCredential
+    Install-Dynamics365Update -MediaDir C:\Install\Dynamics\CRM2016ServicePack1Dan -InstallAccount $CRMInstallAccountCredential
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
@@ -367,7 +367,7 @@ if ( $testResponse -eq "8.1.0.359" )
 }
 
 try {
-    Install-Dynamics365Update -MediaDir C:\Install\Dynamics\CRM2016ServicePack1Update01Enu -InstallAccount $CRMInstallAccountCredential
+    Install-Dynamics365Update -MediaDir C:\Install\Dynamics\CRM2016ServicePack1Update01Dan -InstallAccount $CRMInstallAccountCredential
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
@@ -395,7 +395,7 @@ if ( $testResponse -eq "8.1.1.1005" )
 }
 
 try {
-    Install-Dynamics365Update -MediaDir C:\Install\Dynamics\CRM2016ServicePack2Enu -InstallAccount $CRMInstallAccountCredential
+    Install-Dynamics365Update -MediaDir C:\Install\Dynamics\CRM2016ServicePack2Dan -InstallAccount $CRMInstallAccountCredential
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
@@ -423,7 +423,7 @@ if ( $testResponse -eq "8.2.0.749" )
 }
 
 try {
-    Install-Dynamics365Update -MediaDir C:\Install\Dynamics\CRM2016ServicePack2Update01Enu -InstallAccount $CRMInstallAccountCredential
+    Install-Dynamics365Update -MediaDir C:\Install\Dynamics\CRM2016ServicePack2Update01Dan -InstallAccount $CRMInstallAccountCredential
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
@@ -451,7 +451,7 @@ if ( $testResponse -eq "8.2.1.176" )
 }
 
 try {
-    Install-Dynamics365Update -MediaDir C:\Install\Dynamics\CRM2016ServicePack2Update02Enu -InstallAccount $CRMInstallAccountCredential
+    Install-Dynamics365Update -MediaDir C:\Install\Dynamics\CRM2016ServicePack2Update02Dan -InstallAccount $CRMInstallAccountCredential
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
@@ -479,7 +479,7 @@ if ( $testResponse -eq "8.2.2.112" )
 }
 
 try {
-    Install-Dynamics365Update -MediaDir C:\Install\Dynamics\CRM2016ServicePack2Update03Enu -InstallAccount $CRMInstallAccountCredential
+    Install-Dynamics365Update -MediaDir C:\Install\Dynamics\CRM2016ServicePack2Update03Dan -InstallAccount $CRMInstallAccountCredential
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
