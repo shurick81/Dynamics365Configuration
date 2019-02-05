@@ -455,6 +455,7 @@ function Save-Dynamics365Resource
             'CRM2016ReportingExtensionsServicePack2Update02Esn',
             'CRM2016ReportingExtensionsServicePack2Update02Sve',
             'CRM2016ReportingExtensionsServicePack2Update02Trk',
+            'CRM2016ServicePack2Update03Enu',
             'CRM2016ServicePack2Update03Sau',
             'CRM2016ServicePack2Update03Chk',
             'CRM2016ServicePack2Update03Chs',
