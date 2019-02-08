@@ -4,7 +4,7 @@
 
 * Reporting extensions verification using product id and language code.
 * Corrected URL and checksum for Dynamics365Server90LanguagePackFra and Dynamics365Server90LanguagePackJpn.
-* Added CRM2016LanguagePackEnu
+* Added Dynamics365Server90RTMKor, Dynamics365Server90RTMRus, CRM2016RTMKor, CRM2016RTMRus and CRM2016LanguagePackEnu to Save-Dynamics365Resource -Resource
 * Removing annoying notification about incorrect verb
 * Refactoring
   * Variative test cases
