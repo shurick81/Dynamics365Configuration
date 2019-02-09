@@ -11,8 +11,8 @@ $MonitoringServiceAccountCredential = New-Object System.Management.Automation.PS
 
 try {
     @(
-        "Dynamics365Server90RTMFra",
-        "Dynamics365Server90LanguagePackEnu",
+        "Dynamics365Server90RTMEnu",
+        #"Dynamics365Server90LanguagePackEnu",
         "Dynamics365Server90LanguagePackSau",
         "Dynamics365Server90LanguagePackEus",
         "Dynamics365Server90LanguagePackBgr",
@@ -26,6 +26,7 @@ try {
         "Dynamics365Server90LanguagePackNld",
         "Dynamics365Server90LanguagePackEti",
         "Dynamics365Server90LanguagePackFin",
+        "Dynamics365Server90LanguagePackFra",
         "Dynamics365Server90LanguagePackGlc",
         "Dynamics365Server90LanguagePackDeu",
         "Dynamics365Server90LanguagePackEll",
@@ -62,8 +63,8 @@ try {
     Exit 1;
 }
 @(
-    "Dynamics365Server90RTMFra",
-    "Dynamics365Server90LanguagePackEnu",
+    "Dynamics365Server90RTMEnu",
+   #"Dynamics365Server90LanguagePackEnu",
     "Dynamics365Server90LanguagePackSau",
     "Dynamics365Server90LanguagePackEus",
     "Dynamics365Server90LanguagePackBgr",
@@ -77,6 +78,7 @@ try {
     "Dynamics365Server90LanguagePackNld",
     "Dynamics365Server90LanguagePackEti",
     "Dynamics365Server90LanguagePackFin",
+    "Dynamics365Server90LanguagePackFra",
     "Dynamics365Server90LanguagePackGlc",
     "Dynamics365Server90LanguagePackDeu",
     "Dynamics365Server90LanguagePackEll",
@@ -118,7 +120,7 @@ try {
 
 try {
     Install-Dynamics365Server `
-        -MediaDir C:\Install\Dynamics\Dynamics365Server90RTMFra `
+        -MediaDir C:\Install\Dynamics\Dynamics365Server90RTMEnu `
         -LicenseKey KKNV2-4YYK8-D8HWD-GDRMW-29YTW `
         -InstallDir "c:\Program Files\Microsoft Dynamics CRM" `
         -CreateDatabase `
@@ -143,7 +145,7 @@ try {
         -BaseCurrencyName "US Dollar" `
         -BaseCurrencySymbol `$ `
         -BaseCurrencyPrecision 2 `
-        -OrganizationCollation French_CI_AI `
+        -OrganizationCollation Latin1_General_CI_AI `
         -ReportingUrl http://$dbHostName/ReportServer_RSInstance01 `
         -InstallAccount $CRMInstallAccountCredential
 } catch {
@@ -176,12 +178,12 @@ if ( $testResponse -eq "9.0.2.3034" )
 try {
     if ( $dbHostName -eq $env:COMPUTERNAME ) {
         Install-Dynamics365ReportingExtensions `
-            -MediaDir C:\Install\Dynamics\Dynamics365Server90RTMFra\SrsDataConnector `
+            -MediaDir C:\Install\Dynamics\Dynamics365Server90RTMEnu\SrsDataConnector `
             -InstanceName SQLInstance01 `
             -InstallAccount $CRMInstallAccountCredential
     } else {
         Install-Dynamics365ReportingExtensions `
-            -MediaDir \\$env:COMPUTERNAME\c$\Install\Dynamics\Dynamics365Server90RTMFra\SrsDataConnector `
+            -MediaDir \\$env:COMPUTERNAME\c$\Install\Dynamics\Dynamics365Server90RTMEnu\SrsDataConnector `
             -ConfigDBServer $dbHostName `
             -InstanceName SQLInstance01 `
             -InstallAccount $CRMInstallAccountCredential
@@ -191,9 +193,9 @@ try {
     Exit 1;
 }
 if ( $dbHostName -eq $env:COMPUTERNAME ) {
-    $installedProduct = Get-WmiObject Win32_Product | ? { $_.IdentifyingNumber -eq "{0C524D71-140C-0090-BFEE-D90853535253}" }
+    $installedProduct = Get-WmiObject Win32_Product | ? { $_.IdentifyingNumber -eq "{0C524D71-1409-0090-BFEE-D90853535253}" }
 } else {
-    $installedProduct = Get-WmiObject Win32_Product -ComputerName $dbHostName -Credential $CRMInstallAccountCredential | ? { $_.IdentifyingNumber -eq "{0C524D71-140C-0090-BFEE-D90853535253}" }
+    $installedProduct = Get-WmiObject Win32_Product -ComputerName $dbHostName -Credential $CRMInstallAccountCredential | ? { $_.IdentifyingNumber -eq "{0C524D71-1409-0090-BFEE-D90853535253}" }
 }
 if ( $installedProduct ) {
     Write-Host "Test OK";
@@ -204,7 +206,7 @@ if ( $installedProduct ) {
 
 try {
     @(
-        "Dynamics365Server90LanguagePackEnu",
+       #"Dynamics365Server90LanguagePackEnu",
         "Dynamics365Server90LanguagePackSau",
         "Dynamics365Server90LanguagePackEus",
         "Dynamics365Server90LanguagePackBgr",
@@ -218,6 +220,7 @@ try {
         "Dynamics365Server90LanguagePackNld",
         "Dynamics365Server90LanguagePackEti",
         "Dynamics365Server90LanguagePackFin",
+        "Dynamics365Server90LanguagePackFra",
         "Dynamics365Server90LanguagePackGlc",
         "Dynamics365Server90LanguagePackDeu",
         "Dynamics365Server90LanguagePackEll",
@@ -255,7 +258,7 @@ try {
 }
 $installedProducts = Get-WmiObject Win32_Product | % { $_.IdentifyingNumber }
 @(
-    "0C524DC1-1409-0090-8121-88490F4D5549",
+    #"0C524DC1-1409-0090-8121-88490F4D5549",
     "0C524DC1-1402-0090-8121-88490F4D5549",
     "0C524DC1-1403-0090-8121-88490F4D5549",
     "0C524DC1-1C04-0090-8121-88490F4D5549",
@@ -269,6 +272,7 @@ $installedProducts = Get-WmiObject Win32_Product | % { $_.IdentifyingNumber }
     "0C524DC1-1425-0090-8121-88490F4D5549",
     "0C524DC1-142D-0090-8121-88490F4D5549",
     "0C524DC1-140B-0090-8121-88490F4D5549",
+    "0C524DC1-140C-0090-8121-88490F4D5549",
     "0C524DC1-1456-0090-8121-88490F4D5549",
     "0C524DC1-140D-0090-8121-88490F4D5549",
     "0C524DC1-1439-0090-8121-88490F4D5549",
