@@ -54,7 +54,7 @@ try {
         -LicenseKey WCPQN-33442-VH2RQ-M4RKF-GXYH4 `
         -InstallDir "c:\Program Files\Microsoft Dynamics CRM" `
         -CreateDatabase `
-        -SqlServer $dbHostName\SPIntra01 `
+        -SqlServer $dbHostName\SQLInstance01 `
         -PrivUserGroup "CN=CRM01PrivUserGroup,OU=CRM groups,DC=contoso,DC=local" `
         -SQLAccessGroup "CN=CRM01SQLAccessGroup,OU=CRM groups,DC=contoso,DC=local" `
         -UserGroup "CN=CRM01UserGroup,OU=CRM groups,DC=contoso,DC=local" `
@@ -76,7 +76,7 @@ try {
         -BaseCurrencySymbol `$ `
         -BaseCurrencyPrecision 2 `
         -OrganizationCollation Finnish_Swedish_CI_AS `
-        -ReportingUrl http://$dbHostName/ReportServer_SPIntra01 `
+        -ReportingUrl http://$dbHostName/ReportServer_RSInstance01 `
         -InstallAccount $CRMInstallAccountCredential
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
@@ -109,13 +109,13 @@ try {
     if ( $dbHostName -eq $env:COMPUTERNAME ) {
         Install-Dynamics365ReportingExtensions `
             -MediaDir C:\Install\Dynamics\CRM2016RTMSve\SrsDataConnector `
-            -InstanceName SPIntra01 `
+            -InstanceName SQLInstance01 `
             -InstallAccount $CRMInstallAccountCredential
     } else {
         Install-Dynamics365ReportingExtensions `
             -MediaDir \\$env:COMPUTERNAME\c$\Install\Dynamics\CRM2016RTMSve\SrsDataConnector `
             -ConfigDBServer $dbHostName `
-            -InstanceName SPIntra01 `
+            -InstanceName SQLInstance01 `
             -InstallAccount $CRMInstallAccountCredential
     }
 } catch {
@@ -153,7 +153,7 @@ if ( -not ( Get-PSSnapin -Name Microsoft.Crm.PowerShell -ErrorAction SilentlyCon
     $RemoveSnapInWhenDone = $True
 }
 Write-Host "$(Get-Date) Starting New-CrmOrganization";
-$importJobId = New-CrmOrganization -Name ORGLANG1044 -BaseLanguageCode 1044 -Credential $CRMInstallAccountCredential -DwsServerUrl "http://$env:COMPUTERNAME`:5555/XrmDeployment/2011/deployment.svc" -DisplayName "Organization for testing 1044 language" -SqlServerName $dbHostName\SPIntra01 -SrsUrl http://$dbHostName/ReportServer_SPIntra01;
+$importJobId = New-CrmOrganization -Name ORGLANG1044 -BaseLanguageCode 1044 -Credential $CRMInstallAccountCredential -DwsServerUrl "http://$env:COMPUTERNAME`:5555/XrmDeployment/2011/deployment.svc" -DisplayName "Organization for testing 1044 language" -SqlServerName $dbHostName\SQLInstance01 -SrsUrl http://$dbHostName/ReportServer_RSInstance01;
 do {
     $operationStatus = Get-CrmOperationStatus -OperationId $importJobId -Credential $CRMInstallAccountCredential -DwsServerUrl "http://$env:COMPUTERNAME`:5555/XrmDeployment/2011/deployment.svc";
     Write-Host "$(Get-Date) operationStatus.State is $($operationStatus.State). Waiting until CRM installation job is done";

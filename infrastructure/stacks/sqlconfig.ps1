@@ -20,7 +20,7 @@ try
                 Enabled     = "True"
                 Profile     = 'Domain', 'Private', 'Public'
                 Direction   = "InBound"
-                Program     = 'C:\Program Files\Microsoft SQL Server\MSSQL12.SPINTRA01\MSSQL\Binn\sqlservr.exe'
+                Program     = 'C:\Program Files\Microsoft SQL Server\MSSQL12.SQLInstance01\MSSQL\Binn\sqlservr.exe'
                 Protocol    = "TCP"
                 Description = "Firewall rule to allow SQL communication"
             }
@@ -33,7 +33,7 @@ try
                 Enabled     = "True"
                 Profile     = 'Domain', 'Private', 'Public'
                 Direction   = "InBound"
-                Program     = 'C:\Program Files\Microsoft SQL Server\MSSQL13.SPINTRA01\MSSQL\Binn\sqlservr.exe'
+                Program     = 'C:\Program Files\Microsoft SQL Server\MSSQL13.SQLInstance01\MSSQL\Binn\sqlservr.exe'
                 Protocol    = "TCP"
                 Description = "Firewall rule to allow SQL communication"
             }

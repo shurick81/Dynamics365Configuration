@@ -124,7 +124,7 @@
         { "type": "powershell", "script": "domainclientpsmodules.ps1" },
         { "type": "powershell", "script": "sql2016media.ps1" },
         { "type": "powershell", "script": "sql2016bin.ps1" },
-        { "type": "powershell", "script": "sqlbin-rs.ps1" },
+        { "type": "powershell", "script": "sql2016bin-rs.ps1" },
         {
             "type": "powershell",
             "script": "sql2016mediaclean.ps1",

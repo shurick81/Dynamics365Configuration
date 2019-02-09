@@ -318,7 +318,7 @@ Install-Dynamics365Server `
     -LicenseKey KKNV2-4YYK8-D8HWD-GDRMW-29YTW `
     -InstallDir "c:\Program Files\Microsoft Dynamics CRM" `
     -CreateDatabase `
-    -SqlServer $env:COMPUTERNAME\SPIntra01 `
+    -SqlServer $env:COMPUTERNAME\SQLInstance01 `
     -PrivUserGroup "CN=CRM01PrivUserGroup,OU=CRM groups,DC=contoso,DC=local" `
     -SQLAccessGroup "CN=CRM01SQLAccessGroup,OU=CRM groups,DC=contoso,DC=local" `
     -UserGroup "CN=CRM01UserGroup,OU=CRM groups,DC=contoso,DC=local" `
@@ -340,7 +340,7 @@ Install-Dynamics365Server `
     -BaseCurrencySymbol `$ `
     -BaseCurrencyPrecision 2 `
     -OrganizationCollation Latin1_General_CI_AI `
-    -ReportingUrl http://$env:COMPUTERNAME/ReportServer_SPIntra01 `
+    -ReportingUrl http://$env:COMPUTERNAME/ReportServer_RSInstance01 `
     -InstallAccount $CRMInstallAccountCredential
 ```
 
@@ -386,7 +386,7 @@ See `<muoptin>` XML node description in http://157.56.148.23/en-us/library/hh699
 ```PowerShell
 Install-Dynamics365ReportingExtensions `
     -MediaDir C:\Install\Dynamics\Dynamics365Server90RTMEnu\SrsDataConnector `
-    -InstanceName SPIntra01
+    -InstanceName SQLInstance01
 ```
 
 Installs the software locally.
@@ -397,7 +397,7 @@ $CRMInstallAccountCredential = New-Object System.Management.Automation.PSCredent
 Install-Dynamics365ReportingExtensions `
     -MediaDir \\$env:COMPUTERNAME\c$\Install\Dynamics\Dynamics365Server90RTMEnu\SrsDataConnector `
     -ConfigDBServer $dbHostName `
-    -InstanceName SPIntra01 `
+    -InstanceName SQLInstance01 `
     -InstallAccount $CRMInstallAccountCredential
 ```
 

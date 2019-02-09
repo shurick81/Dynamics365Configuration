@@ -57,7 +57,7 @@ try
 
             #SQLServiceAccount SqlRSServiceAccount
             #{
-            #    InstanceName        = 'SPIntra01'
+            #    InstanceName        = 'SQLInstance01'
             #    ServerName          = $NodeName
             #    ServiceType         = "ReportingServices"
             #    ServiceAccount      = $SqlRSAccountCredential
@@ -66,9 +66,9 @@ try
 
             SqlRS ReportingServicesConfig
             {
-                InstanceName                 = 'SPIntra01'
+                InstanceName                 = 'RSInstance01'
                 DatabaseServerName           = $NodeName
-                DatabaseInstanceName         = 'SPIntra01'
+                DatabaseInstanceName         = 'SQLInstance01'
                 #ReportServerVirtualDirectory = 'MyReportServer'
                 ReportServerReservedUrl      = @( 'http://+:80' )
                 #ReportsVirtualDirectory      = 'MyReports'
