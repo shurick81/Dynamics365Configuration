@@ -43,24 +43,23 @@ function Install-Dynamics365Language {
             Write-Host "IdentifyingNumber is not specified for this product, installation verification will be skipped";
         }
         if ( !$expectedProductIdentifyingNumber -or !$isInstalled ) {
-            Write-Host "$(Get-Date) Starting $msiFullName";
-            $logFile = '{0}-{1}.log' -f $msiFile.Name, $DataStamp;
-            $MSIArguments = @(
-                "/i"
-                ( '"{0}"' -f $msiFullName )
-                "/qn"
-                "/norestart"
-                "/L*v"
-                $logFile
-            )
-            Start-Process "msiexec.exe" -ArgumentList $MSIArguments -Wait -NoNewWindow;
-            Write-Host "$(Get-Date) Finished $msiFullName";
             $isInstalled = $false;
             $retries = 20;
             While ( !$isInstalled -and $retries -gt 0 )
             {
-                Write-Host "$(Get-Date) Verifying product installation, retries left: $retries"
-                Write-Host "The following products were installed:"
+                Write-Host "$(Get-Date) Starting $msiFullName, retries left: $retries";
+                $logFile = '{0}-{1}.log' -f $msiFile.Name, $DataStamp;
+                $MSIArguments = @(
+                    "/i"
+                    ( '"{0}"' -f $msiFullName )
+                    "/qn"
+                    "/norestart"
+                    "/L*v"
+                    $logFile
+                )
+                Start-Process "msiexec.exe" -ArgumentList $MSIArguments -Wait -NoNewWindow;
+                Write-Host "$(Get-Date) Finished $msiFullName";
+                Write-Host "The following products were installed:";
                 Get-WmiObject Win32_Product | % {
                     if ( !$expectedProductIdentifyingNumber -or ( $_.IdentifyingNumber -eq "{$expectedProductIdentifyingNumber}" ) ) {
                         $isInstalled = $true;
