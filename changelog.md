@@ -1,6 +1,6 @@
 # Dynamics365Configuration module change log
 
-## Unreleased
+## v1.0
 
 * Reporting extensions verification using product id and language code.
 * Corrected URL and checksum for Dynamics365Server90LanguagePackFra and Dynamics365Server90LanguagePackJpn.
@@ -9,9 +9,9 @@
 * Added CRM2016ServicePack2Update03\<Language\> and CRM2016ReportingExtensionsServicePack2Update03\<Language\> resources
 * Added iterations in Install-Dynamics365Language
 * Refactoring
-  * Variative test cases
-  * SQL instance renamed to SQLInstance01
-  * SQL Reporting Services instance renamed to RSInstance01
+  * Variative test cases with many languages and windows platforms
+  * In dev/test infrastructure, SQL instance renamed to SQLInstance01
+  * In dev/test infrastructure, SQL Reporting Services instance renamed to RSInstance01
 
 ## v0.9
 
