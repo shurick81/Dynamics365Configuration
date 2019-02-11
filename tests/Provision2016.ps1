@@ -36,12 +36,12 @@ if ( Get-ChildItem C:\Install\Dynamics\CRM2016LanguagePackNor ) {
 }
 
 try {
-    Save-Dynamics365Resource -Resource CRM2016ServicePack2Update02Sve -TargetDirectory C:\Install\Dynamics\CRM2016ServicePack2Update02Sve
+    Save-Dynamics365Resource -Resource CRM2016ServicePack2Update03Sve -TargetDirectory C:\Install\Dynamics\CRM2016ServicePack2Update03Sve
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-if ( Get-ChildItem C:\Install\Dynamics\CRM2016ServicePack2Update02Sve ) {
+if ( Get-ChildItem C:\Install\Dynamics\CRM2016ServicePack2Update03Sve ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected files are not found in C:\Install\Dynamics\CRM2016LanguagePackNor, test is not OK";
@@ -167,7 +167,7 @@ if ( $operationStatus.State -eq "Completed" ) {
 }
 
 try {
-    Install-Dynamics365Update -MediaDir C:\Install\Dynamics\CRM2016ServicePack2Update02Sve -InstallAccount $CRMInstallAccountCredential
+    Install-Dynamics365Update -MediaDir C:\Install\Dynamics\CRM2016ServicePack2Update03Sve -InstallAccount $CRMInstallAccountCredential
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
@@ -187,7 +187,7 @@ $testScriptBlock = {
     }
 }
 $testResponse = Invoke-Command -ScriptBlock $testScriptBlock $env:COMPUTERNAME -Credential $CRMInstallAccountCredential -Authentication CredSSP
-if ( $testResponse -eq "8.2.2.112" )
+if ( $testResponse -eq "8.2.3.8" )
 {
     Write-Host "Test OK";
 } else {

@@ -34,7 +34,7 @@ function DownloadAndUnpack-Dynamics365Resource
             $ProgressPreference = $currentProgressPreference;
             if ( Get-Item $filePath )
             {
-                Write-Host "$(Get-Date) Calculating cache for $filePath";
+                Write-Host "$(Get-Date) Calculating hash for $filePath";
                 $fileHash = ( Get-FileHash $filePath -Algorithm SHA1 ).Hash;
                 Write-Host "Hash of the downloaded file: $fileHash";
                 if ( ( $fileHash -eq $expectedFileChecksum ) -or !$expectedFileChecksum )
@@ -59,7 +59,7 @@ function DownloadAndUnpack-Dynamics365Resource
             $ProgressPreference = $currentProgressPreference;
             if ( Get-Item $filePath )
             {
-                Write-Host "$(Get-Date) Calculating cache for $filePath";
+                Write-Host "$(Get-Date) Calculating hash for $filePath";
                 $fileHash = ( Get-FileHash $filePath -Algorithm SHA1 ).Hash;
                 Write-Host "Hash of the downloaded file: $fileHash";
                 if ( ( $fileHash -eq $expectedFileChecksum ) -or !$expectedFileChecksum )

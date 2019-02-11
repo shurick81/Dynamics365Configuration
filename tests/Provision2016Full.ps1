@@ -60,7 +60,8 @@ try {
         "CRM2016ServicePack1Update01Dan",
         "CRM2016ServicePack2Dan",
         "CRM2016ServicePack2Update01Dan",
-        "CRM2016ServicePack2Update02Dan"
+        "CRM2016ServicePack2Update02Dan",
+        "CRM2016ServicePack2Update03Dan"
     ) | % { Save-Dynamics365Resource -Resource $_ -TargetDirectory C:\Install\Dynamics\$_ }
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
@@ -470,6 +471,34 @@ $testScriptBlock = {
 }
 $testResponse = Invoke-Command -ScriptBlock $testScriptBlock $env:COMPUTERNAME -Credential $CRMInstallAccountCredential -Authentication CredSSP
 if ( $testResponse -eq "8.2.2.112" )
+{
+    Write-Host "Test OK";
+} else {
+    Write-Host "Software installed version is '$testResponse'. Test is not OK"
+    Exit 1;
+}
+
+try {
+    Install-Dynamics365Update -MediaDir C:\Install\Dynamics\CRM2016ServicePack2Update03Dan -InstallAccount $CRMInstallAccountCredential
+} catch {
+    Write-Host $_.Exception.Message -ForegroundColor Red;
+    Exit 1;
+}
+$testScriptBlock = {
+    try {
+        Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
+        if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
+            $CrmOrganization = Get-CrmOrganization;
+            $CrmOrganization.Version;
+        } else {
+            "Could not load Microsoft.Crm.PowerShell PSSnapin";
+        }
+    } catch {
+        $_.Exception.Message;
+    }
+}
+$testResponse = Invoke-Command -ScriptBlock $testScriptBlock $env:COMPUTERNAME -Credential $CRMInstallAccountCredential -Authentication CredSSP
+if ( $testResponse -eq "8.2.3.8" )
 {
     Write-Host "Test OK";
 } else {
