@@ -1,4 +1,4 @@
-function Install-Dynamics365Prerequisites {
+﻿function Install-Dynamics365Prerequisite {
     param (
         [ValidateSet(
             'VisualCPlusPlusRuntime',
@@ -20,12 +20,12 @@ function Install-Dynamics365Prerequisites {
     if ( $prerequisite )
     {
         $expectedProductIdentifyingNumber = $Dynamics365Resources.$prerequisite.IdentifyingNumber;
-        $installedProducts = Get-WmiObject Win32_Product | % { $_.IdentifyingNumber }
+        $installedProducts = Get-WmiObject Win32_Product | ForEach-Object { $_.IdentifyingNumber }
         if ( $expectedProductIdentifyingNumber )
         {
             $isInstalled = $installedProducts -contains "{$expectedProductIdentifyingNumber}";
         } else {
-            Write-Host "IdentifyingNumber is not specified for this product, installation verification will be skipped";
+            Write-Output "IdentifyingNumber is not specified for this product, installation verification will be skipped";
         }
         if ( !$expectedProductIdentifyingNumber -or !$isInstalled ) {
             $tempDirPath = $false;
@@ -81,10 +81,10 @@ function Install-Dynamics365Prerequisites {
                 $fullFilePath = $dynamicsPrerequisiteFilePath;
                 $resourceFileName = Split-Path $fullFilePath -Leaf;
             }
-    
+
             $dataStamp = get-date -Format yyyyMMddTHHmmss;
             $logFile = '{0}-{1}.log' -f $resourceFileName,$dataStamp;
-            Write-Host "$(Get-Date) Starting $fullFilePath. Log will be saved in $( Resolve-Path . )\$logFile";
+            Write-Output "$(Get-Date) Starting $fullFilePath. Log will be saved in $( Resolve-Path . )\$logFile";
             switch ( $prerequisite ) {
                 { ( $_ -eq 'VisualCPlusPlusRuntime' ) -or ( $_ -eq 'VisualCPlusPlus2010Runtime' ) } {
                     Start-Process $fullFilePath -ArgumentList "/q /norestart" -Wait -NoNewWindow;
@@ -141,54 +141,54 @@ function Install-Dynamics365Prerequisites {
                     Start-Process "msiexec.exe" -ArgumentList $MSIArguments -Wait -NoNewWindow;
                 }
             }
-            Write-Host "$(Get-Date) Finished $fullFilePath";
+            Write-Output "$(Get-Date) Finished $fullFilePath";
             if ( $tempDirPath ) {
                 Remove-Item $tempDirPath -Recurse -Force
             }
-            Write-Host "The following products were installed:"
-            Get-WmiObject Win32_Product | % {
+            Write-Output "The following products were installed:"
+            Get-WmiObject Win32_Product | ForEach-Object {
                 if ( $_.IdentifyingNumber -eq "{$expectedProductIdentifyingNumber}" ) {
                     $isInstalled = $true
                 }
                 if ( !( $installedProducts -contains $_.IdentifyingNumber ) ) {
-                    Write-Host $_.IdentifyingNumber, $_.Name;
+                    Write-Output $_.IdentifyingNumber, $_.Name;
                 }
             }
             if ( $expectedProductIdentifyingNumber )
             {
                 if ( $isInstalled ) {
-                    Write-Host "Installation is finished and verified successfully";
+                    Write-Output "Installation is finished and verified successfully";
                 } else {
-                    Write-Host "Installation job finished but the product is still not installed";
+                    Write-Output "Installation job finished but the product is still not installed";
                 }
             } else {
-                Write-Host "Installation is finished but verification cannot be done without IdentifyingNumber specified.";
+                Write-Output "Installation is finished but verification cannot be done without IdentifyingNumber specified.";
             }
         } else {
-            Write-Host "Product is already installed, skipping"
+            Write-Output "Product is already installed, skipping"
         }
     } else {
-        Write-Host "prerequisite is not specified";
-        Write-Host "Install-Dynamics365Prerequisites -Prerequisite VisualCPlusPlusRuntime -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath";
-        Install-Dynamics365Prerequisites -Prerequisite VisualCPlusPlusRuntime -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath;
-        Write-Host "Install-Dynamics365Prerequisites -Prerequisite VisualCPlusPlus2010Runtime -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath";
-        Install-Dynamics365Prerequisites -Prerequisite VisualCPlusPlus2010Runtime -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath;
-        Write-Host "Install-Dynamics365Prerequisites -Prerequisite SQLNCli2012SP4 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath";
-        Install-Dynamics365Prerequisites -Prerequisite SQLNCli2012SP4 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath;
-        Write-Host "Install-Dynamics365Prerequisites -Prerequisite SQLSysClrTypes2016 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath";
-        Install-Dynamics365Prerequisites -Prerequisite SQLSysClrTypes2016 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath;
-        Write-Host "Install-Dynamics365Prerequisites -Prerequisite SharedManagementObjects2016 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath";
-        Install-Dynamics365Prerequisites -Prerequisite SharedManagementObjects2016 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath;
-        Write-Host "Install-Dynamics365Prerequisites -Prerequisite MSODBCSQL -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath";
-        Install-Dynamics365Prerequisites -Prerequisite MSODBCSQL -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath;
-        Write-Host "Install-Dynamics365Prerequisites -Prerequisite SQLNCli2018R2 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath";
-        Install-Dynamics365Prerequisites -Prerequisite SQLNCli2018R2 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath;
-        Write-Host "Install-Dynamics365Prerequisites -Prerequisite SQLSysClrTypes2012 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath";
-        Install-Dynamics365Prerequisites -Prerequisite SQLSysClrTypes2012 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath;
-        Write-Host "Install-Dynamics365Prerequisites -Prerequisite SharedManagementObjects2012 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath";
-        Install-Dynamics365Prerequisites -Prerequisite SharedManagementObjects2012 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath;
-        Write-Host "Install-Dynamics365Prerequisites -Prerequisite ReportViewer2012 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath";
-        Install-Dynamics365Prerequisites -Prerequisite ReportViewer2012 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath;
-        #Install-Dynamics365Prerequisites -Prerequisite AppErrorReporting
+        Write-Output "prerequisite is not specified";
+        Write-Output "Install-Dynamics365Prerequisite -Prerequisite VisualCPlusPlusRuntime -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath";
+        Install-Dynamics365Prerequisite -Prerequisite VisualCPlusPlusRuntime -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath;
+        Write-Output "Install-Dynamics365Prerequisite -Prerequisite VisualCPlusPlus2010Runtime -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath";
+        Install-Dynamics365Prerequisite -Prerequisite VisualCPlusPlus2010Runtime -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath;
+        Write-Output "Install-Dynamics365Prerequisite -Prerequisite SQLNCli2012SP4 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath";
+        Install-Dynamics365Prerequisite -Prerequisite SQLNCli2012SP4 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath;
+        Write-Output "Install-Dynamics365Prerequisite -Prerequisite SQLSysClrTypes2016 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath";
+        Install-Dynamics365Prerequisite -Prerequisite SQLSysClrTypes2016 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath;
+        Write-Output "Install-Dynamics365Prerequisite -Prerequisite SharedManagementObjects2016 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath";
+        Install-Dynamics365Prerequisite -Prerequisite SharedManagementObjects2016 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath;
+        Write-Output "Install-Dynamics365Prerequisite -Prerequisite MSODBCSQL -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath";
+        Install-Dynamics365Prerequisite -Prerequisite MSODBCSQL -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath;
+        Write-Output "Install-Dynamics365Prerequisite -Prerequisite SQLNCli2018R2 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath";
+        Install-Dynamics365Prerequisite -Prerequisite SQLNCli2018R2 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath;
+        Write-Output "Install-Dynamics365Prerequisite -Prerequisite SQLSysClrTypes2012 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath";
+        Install-Dynamics365Prerequisite -Prerequisite SQLSysClrTypes2012 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath;
+        Write-Output "Install-Dynamics365Prerequisite -Prerequisite SharedManagementObjects2012 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath";
+        Install-Dynamics365Prerequisite -Prerequisite SharedManagementObjects2012 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath;
+        Write-Output "Install-Dynamics365Prerequisite -Prerequisite ReportViewer2012 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath";
+        Install-Dynamics365Prerequisite -Prerequisite ReportViewer2012 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath;
+        #Install-Dynamics365Prerequisite -Prerequisite AppErrorReporting
     }
 }

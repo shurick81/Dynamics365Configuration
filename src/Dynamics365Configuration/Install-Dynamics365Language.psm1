@@ -1,4 +1,4 @@
-function Install-Dynamics365Language {
+﻿function Install-Dynamics365Language {
     param (
         [parameter(Position=0,
         Mandatory=$true)]
@@ -10,44 +10,49 @@ function Install-Dynamics365Language {
     {
         $msiFullName = $msiFile.FullName;
         $languageCode = $msiFile.Name.Substring( 9, 4 );
-        $installedProducts = Get-WmiObject Win32_Product | % { $_.IdentifyingNumber }
-        $Dynamics365Resources | Get-Member -MemberType NoteProperty | ? { $_.Name.StartsWith( "Dynamics365Server90RTM" ) } | % {
+        $installedProducts = Get-WmiObject Win32_Product | ForEach-Object { $_.IdentifyingNumber }
+        $Dynamics365Resources | Get-Member -MemberType NoteProperty | Where-Object { $_.Name.StartsWith( "Dynamics365Server90RTM" ) } | ForEach-Object {
             if ( $installedProducts -contains "{$( $Dynamics365Resources.( $_.Name ).IdentifyingNumber )}" ) {
-                Write-Host "$(Get-Date) Detected Dynamics 9.X installed";
+                Write-Output "$(Get-Date) Detected Dynamics 9.X installed";
                 $fileResourceNamePrefix = "Dynamics365Server90LanguagePack";
             }
         }
         if ( !$fileResourceNamePrefix ) {
-            $Dynamics365Resources | Get-Member -MemberType NoteProperty | ? { $_.Name.StartsWith( "CRM2016RTM" ) } | % {
+            $Dynamics365Resources | Get-Member -MemberType NoteProperty | Where-Object { $_.Name.StartsWith( "CRM2016RTM" ) } | ForEach-Object {
                 if ( $installedProducts -contains "{$( $Dynamics365Resources.( $_.Name ).IdentifyingNumber )}" ) {
-                    Write-Host "$(Get-Date) Detected Dynamics 8.X installed";
+                    Write-Output "$(Get-Date) Detected Dynamics 8.X installed";
                     $fileResourceNamePrefix = "CRM2016LanguagePack";
                 }
             }
         }
+        if ( !$fileResourceNamePrefix ) {
+            Write-Output "Dynamics is not detected";
+        }
         $foundFileResource = $null;
-        $Dynamics365Resources | Get-Member -MemberType NoteProperty | ? { $_.Name.StartsWith( $fileResourceNamePrefix ) } | % {
-            if ( $Dynamics365Resources.( $_.Name ).LanguageCode -eq $languageCode ) { $foundFileResource = $_.Name }
+        if ( $fileResourceNamePrefix ) {
+            $Dynamics365Resources | Get-Member -MemberType NoteProperty | Where-Object { $_.Name.StartsWith( $fileResourceNamePrefix ) } | ForEach-Object {
+                if ( $Dynamics365Resources.( $_.Name ).LanguageCode -eq $languageCode ) { $foundFileResource = $_.Name }
+            }
         }
         if ( $foundFileResource )
         {
-            Write-Host "Found corresponding resource in the catalog: $foundFileResource";
+            Write-Output "Found corresponding resource in the catalog: $foundFileResource";
             $expectedProductIdentifyingNumber = $Dynamics365Resources.$foundFileResource.IdentifyingNumber;
         } else {
-            Write-Host "Corresponding resource is not found in the catalog. Installation verification will be skipped";
+            Write-Output "Corresponding resource is not found in the catalog. Installation verification will be skipped";
         }
         if ( $expectedProductIdentifyingNumber )
         {
             $isInstalled = $installedProducts -contains "{$expectedProductIdentifyingNumber}";
         } else {
-            Write-Host "IdentifyingNumber is not specified for this product, installation verification will be skipped";
+            Write-Output "IdentifyingNumber is not specified for this product, installation verification will be skipped";
         }
         if ( !$expectedProductIdentifyingNumber -or !$isInstalled ) {
             $isInstalled = $false;
             $retries = 20;
             While ( !$isInstalled -and $retries -gt 0 )
             {
-                Write-Host "$(Get-Date) Starting $msiFullName, retries left: $retries";
+                Write-Output "$(Get-Date) Starting $msiFullName, retries left: $retries";
                 $logFile = '{0}-{1}.log' -f $msiFile.Name, $DataStamp;
                 $MSIArguments = @(
                     "/i"
@@ -58,35 +63,35 @@ function Install-Dynamics365Language {
                     $logFile
                 )
                 Start-Process "msiexec.exe" -ArgumentList $MSIArguments -Wait -NoNewWindow;
-                Write-Host "$(Get-Date) Finished $msiFullName";
-                Write-Host "The following products were installed:";
-                Get-WmiObject Win32_Product | % {
+                Write-Output "$(Get-Date) Finished $msiFullName";
+                Write-Output "The following products were installed:";
+                Get-WmiObject Win32_Product | ForEach-Object {
                     if ( !$expectedProductIdentifyingNumber -or ( $_.IdentifyingNumber -eq "{$expectedProductIdentifyingNumber}" ) ) {
                         $isInstalled = $true;
                     }
                     if ( !( $installedProducts -contains $_.IdentifyingNumber ) ) {
-                        Write-Host $_.IdentifyingNumber, $_.Name;
+                        Write-Output $_.IdentifyingNumber, $_.Name;
                     }
                 }
                 $retries--;
-                Sleep 10;
+                Start-Sleep 10;
             }
             if ( $expectedProductIdentifyingNumber )
             {
                 if ( $isInstalled ) {
-                    Write-Host "Installation is finished and verified successfully";
+                    Write-Output "Installation is finished and verified successfully";
                 } else {
-                    Write-Host "Installation job finished but the product is still not installed";
+                    Write-Output "Installation job finished but the product is still not installed";
                     Throw "Installation job finished but the product is still not installed";
                 }
             } else {
-                Write-Host "Installation is finished but verification cannot be done without IdentifyingNumber specified.";
+                Write-Output "Installation is finished but verification cannot be done without IdentifyingNumber specified.";
             }
         } else {
-            Write-Host "Product is already installed, skipping"
+            Write-Output "Product is already installed, skipping"
         }
     } else {
-        Write-Host "$(Get-Date) No or too many $mediaDir\MuiSetup_????_amd64.msi files were found";
+        Write-Output "$(Get-Date) No or too many $mediaDir\MuiSetup_????_amd64.msi files were found";
     }
 }
 

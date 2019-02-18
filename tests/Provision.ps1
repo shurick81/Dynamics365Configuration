@@ -39,7 +39,6 @@ try {
     Install-Dynamics365Server `
         -MediaDir C:\Install\Dynamics\Dynamics365Server90RTMEnu `
         -LicenseKey KKNV2-4YYK8-D8HWD-GDRMW-29YTW `
-        -InstallDir "c:\Program Files\Microsoft Dynamics CRM" `
         -CreateDatabase `
         -SqlServer $dbHostName\SQLInstance01 `
         -PrivUserGroup "CN=CRM01PrivUserGroup,OU=CRM groups,DC=contoso,DC=local" `
@@ -58,11 +57,6 @@ try {
         -WebSiteUrl https://$env:COMPUTERNAME.contoso.local `
         -Organization "Contoso Ltd." `
         -OrganizationUniqueName Contoso `
-        -BaseISOCurrencyCode USD `
-        -BaseCurrencyName "US Dollar" `
-        -BaseCurrencySymbol `$ `
-        -BaseCurrencyPrecision 2 `
-        -OrganizationCollation Latin1_General_CI_AI `
         -ReportingUrl http://$dbHostName/ReportServer_RSInstance01 `
         -InstallAccount $CRMInstallAccountCredential
 } catch {

@@ -1,4 +1,4 @@
-function DownloadAndUnpack-Dynamics365Resource
+﻿function DownloadAndUnpack-Dynamics365Resource
 {
     [CmdletBinding()]
     param
@@ -27,52 +27,52 @@ function DownloadAndUnpack-Dynamics365Resource
             $tempDirPath = "$env:Temp\$tempDirName";
             $filePath = "$tempDirPath\$resourceFileName";
             New-Item $tempDirPath -ItemType Directory -Force | Out-Null;
-            Write-Host "$(Get-Date) Downloading $resourceUrl to $filePath";
+            Write-Output "$(Get-Date) Downloading $resourceUrl to $filePath";
             $currentProgressPreference = $ProgressPreference;
             $ProgressPreference = 'SilentlyContinue';
             Invoke-WebRequest -Uri $resourceUrl -OutFile $filePath;
             $ProgressPreference = $currentProgressPreference;
             if ( Get-Item $filePath )
             {
-                Write-Host "$(Get-Date) Calculating hash for $filePath";
+                Write-Output "$(Get-Date) Calculating hash for $filePath";
                 $fileHash = ( Get-FileHash $filePath -Algorithm SHA1 ).Hash;
-                Write-Host "Hash of the downloaded file: $fileHash";
+                Write-Output "Hash of the downloaded file: $fileHash";
                 if ( ( $fileHash -eq $expectedFileChecksum ) -or !$expectedFileChecksum )
                 {
-                    Write-Host "$(Get-Date) Unpacking $filePath to $directoryPath";
+                    Write-Output "$(Get-Date) Unpacking $filePath to $directoryPath";
                     Start-Process -FilePath $filePath -ArgumentList "/extract:$directoryPath /passive /quiet" -Wait -NoNewWindow;
-                    Write-Host "$(Get-Date) Finished unpacking";
-                    Sleep 20;
+                    Write-Output "$(Get-Date) Finished unpacking";
+                    Start-Sleep 20;
                     Remove-Item $tempDirPath -Recurse -Force;
                 } else {
-                    Write-Host "Hash does not match $expectedFileChecksum";
+                    Write-Output "Hash does not match $expectedFileChecksum";
                     Throw "Hash does not match $expectedFileChecksum";
                     Remove-Item $tempDirPath -Recurse -Force;
                 }
             }
         } else {
             $filePath = "$directoryPath\$resourceFileName";
-            Write-Host "$(Get-Date) Downloading $resourceUrl to $filePath";
+            Write-Output "$(Get-Date) Downloading $resourceUrl to $filePath";
             $currentProgressPreference = $ProgressPreference;
             $ProgressPreference = 'SilentlyContinue';
             Invoke-WebRequest -Uri $resourceUrl -OutFile $filePath;
             $ProgressPreference = $currentProgressPreference;
             if ( Get-Item $filePath )
             {
-                Write-Host "$(Get-Date) Calculating hash for $filePath";
+                Write-Output "$(Get-Date) Calculating hash for $filePath";
                 $fileHash = ( Get-FileHash $filePath -Algorithm SHA1 ).Hash;
-                Write-Host "Hash of the downloaded file: $fileHash";
+                Write-Output "Hash of the downloaded file: $fileHash";
                 if ( ( $fileHash -eq $expectedFileChecksum ) -or !$expectedFileChecksum )
                 {
-                    Write-Host "$(Get-Date) Finished Downloading";
+                    Write-Output "$(Get-Date) Finished Downloading";
                 } else {
-                    Write-Host "$(Get-Date) Hash does not match $expectedFileChecksum";
+                    Write-Output "$(Get-Date) Hash does not match $expectedFileChecksum";
                     Throw "Hash does not match $expectedFileChecksum";
                     Remove-Item $filePath;
                 }
             }
         }
     } else {
-        Write-Host "The target directory is not empty. Skipped downloading."
+        Write-Output "The target directory is not empty. Skipped downloading."
     }
 }

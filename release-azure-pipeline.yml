@@ -5,6 +5,11 @@ trigger:
     - release-*
     exclude:
     - develop
+  pr:
+    include:
+    - release-*
+    exclude:
+    - develop
 jobs:
 - job:
   displayName: Relesing the module

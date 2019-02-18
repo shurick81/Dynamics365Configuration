@@ -1,7 +1,7 @@
 Save-Dynamics365Resource VisualCPlusPlusRuntime;
 Write-Host "$( Get-Date ) Testing";
 try {
-    Install-Dynamics365Prerequisites VisualCPlusPlusRuntime;
+    Install-Dynamics365Prerequisite VisualCPlusPlusRuntime;
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
@@ -18,7 +18,7 @@ if ( !$installedProduct )
 Save-Dynamics365Resource VisualCPlusPlus2010Runtime C:\Install\Dynamics\VisualCPlusPlus2010Runtime;
 Write-Host "$( Get-Date ) Testing";
 try {
-    Install-Dynamics365Prerequisites VisualCPlusPlus2010Runtime C:\Install\Dynamics;
+    Install-Dynamics365Prerequisite VisualCPlusPlus2010Runtime C:\Install\Dynamics;
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
@@ -35,7 +35,7 @@ if ( !$installedProduct )
 Save-Dynamics365Resource SQLNCli2012SP4 C:\Install\Dynamics\SQLNCli2012SP4;
 Write-Host "$( Get-Date ) Testing";
 try {
-    Install-Dynamics365Prerequisites SQLNCli2012SP4 C:\Install\Dynamics\SQLNCli2012SP4;
+    Install-Dynamics365Prerequisite SQLNCli2012SP4 C:\Install\Dynamics\SQLNCli2012SP4;
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
@@ -52,7 +52,7 @@ if ( !$installedProduct )
 Save-Dynamics365Resource SQLSysClrTypes2016 C:\Install\Dynamics\SQLSysClrTypes2016;
 Write-Host "$( Get-Date ) Testing";
 try {
-    Install-Dynamics365Prerequisites SQLSysClrTypes2016 C:\Install\Dynamics\SQLSysClrTypes2016\SQLSysClrTypes.msi;
+    Install-Dynamics365Prerequisite SQLSysClrTypes2016 C:\Install\Dynamics\SQLSysClrTypes2016\SQLSysClrTypes.msi;
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
@@ -78,7 +78,7 @@ if ( !$installedProduct )
 }
 Write-Host "$( Get-Date ) Testing";
 try {
-    Install-Dynamics365Prerequisites -DynamicsPrerequisiteFilePath C:\Install\Dynamics;
+    Install-Dynamics365Prerequisite -DynamicsPrerequisiteFilePath C:\Install\Dynamics;
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;

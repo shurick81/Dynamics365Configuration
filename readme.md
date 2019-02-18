@@ -67,14 +67,14 @@ Loading CRM2016LanguagePackRus to the specified directory:
 Save-Dynamics365Resource -Resource CRM2016LanguagePackRus c:\DynamicsResources\CRM2016LanguagePackRus
 ```
 
-## Install-Dynamics365Prerequisites
+## Install-Dynamics365Prerequisite
 
 Installs one specified or all the software prerequisites.
 
 ### Syntax
 
 ```PowerShell
-Install-Dynamics365Prerequisites
+Install-Dynamics365Prerequisite
     [-Prerequisite <Dymanics365PrerequisiteName>]
     [-DynamicsPrerequisiteFilePath <string>]
 ```
@@ -94,37 +94,37 @@ Specifies where the file or files are located.
 Installing all Dynamics 365 prerequisites. If any prerequisite is not found in the current directory, installing from the Internet:
 
 ```PowerShell
-Install-Dynamics365Prerequisites
+Install-Dynamics365Prerequisite
 ```
 
 Installing specific prerequisite. If prerequisite is not found in the current directory, installing from the Internet:
 
 ```PowerShell
-Install-Dynamics365Prerequisites -Prerequisite SQLNCli2012SP4
+Install-Dynamics365Prerequisite -Prerequisite SQLNCli2012SP4
 ```
 
 Installing all prerequisites from the predownloaded files. If prerequisite is not found in the current directory, installing from the Internet:
 
 ```PowerShell
-Install-Dynamics365Prerequisites -DynamicsPrerequisiteFilePath C:\Install\Dynamics
+Install-Dynamics365Prerequisite -DynamicsPrerequisiteFilePath C:\Install\Dynamics
 ```
 
 Installing specific prerequisite from the predownloaded file. If prerequisite is not found in the current directory, installing from the Internet:
 
 ```PowerShell
-Install-Dynamics365Prerequisites -Prerequisite SQLNCli2012SP4 -DynamicsPrerequisiteFilePath C:\Install\Dynamics
+Install-Dynamics365Prerequisite -Prerequisite SQLNCli2012SP4 -DynamicsPrerequisiteFilePath C:\Install\Dynamics
 ```
 
 or
 
 ```PowerShell
-Install-Dynamics365Prerequisites -Prerequisite SQLNCli2012SP4 -DynamicsPrerequisiteFilePath C:\Install\Dynamics\SQLNCli2012SP4
+Install-Dynamics365Prerequisite -Prerequisite SQLNCli2012SP4 -DynamicsPrerequisiteFilePath C:\Install\Dynamics\SQLNCli2012SP4
 ```
 
 or
 
 ```PowerShell
-Install-Dynamics365Prerequisites -Prerequisite SQLNCli2012SP4 -DynamicsPrerequisiteFilePath C:\Install\Dynamics\SQLNCli2012SP4\sqlncli.msi
+Install-Dynamics365Prerequisite -Prerequisite SQLNCli2012SP4 -DynamicsPrerequisiteFilePath C:\Install\Dynamics\SQLNCli2012SP4\sqlncli.msi
 ```
 
 ## Install-Dynamics365Server
@@ -137,7 +137,6 @@ Installs Dynamics 365 Server with new or existing organization.
 Install-Dynamics365Server
     -MediaDir <string>
     -LicenseKey <string>
-    -InstallDir <string>
     [-CreateDatabase <switch>]
     -SqlServer <string>
     -PrivUserGroup <string>
@@ -157,12 +156,13 @@ Install-Dynamics365Server
     [-IncomingExchangeServer <string>]
     -Organization <string>
     -OrganizationUniqueName <string>
-    -BaseISOCurrencyCode <string>
-    -BaseCurrencyName <string>
-    -BaseCurrencySymbol <string>
-    -BaseCurrencyPrecision <int>
-    -OrganizationCollation <string>
     -ReportingUrl <string>
+    [-InstallDir <string>]
+    [-BaseISOCurrencyCode <string>]
+    [-BaseCurrencyName <string>]
+    [-BaseCurrencySymbol <string>]
+    [-BaseCurrencyPrecision <int>]
+    [-OrganizationCollation <string>]
     [-SQM <switch>]
     [-MUOptin <switch>]
     [-Reboot <switch>]

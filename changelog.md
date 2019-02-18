@@ -1,5 +1,16 @@
 # Dynamics365Configuration module change log
 
+## Not released
+
+* `Dynamics365Prerequisites` renamed to `Dynamics365Prerequisite`
+* Change in `Install-Dynamics365Server` parameters
+  - `InstallDir` is not required
+  - `BaseISOCurrencyCode` is not required
+  - `BaseCurrencyName` is not required
+  - `BaseCurrencySymbol` is not required
+  - `BaseCurrencyPrecision` is not required
+  - `OrganizationCollation` is not required
+
 ## v1.0
 
 * Reporting extensions verification using product id and language code.

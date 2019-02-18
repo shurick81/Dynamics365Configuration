@@ -1,4 +1,4 @@
-function Install-Dynamics365Server {
+﻿function Install-Dynamics365Server {
     param (
         [Parameter(Mandatory=$true)]
         [string]
@@ -6,9 +6,6 @@ function Install-Dynamics365Server {
         [Parameter(Mandatory=$true)]
         [string]
         $LicenseKey,
-        [Parameter(Mandatory=$true)]
-        [string]
-        $InstallDir,
         [Parameter(Mandatory=$true)]
         [switch]
         $CreateDatabase,
@@ -57,8 +54,6 @@ function Install-Dynamics365Server {
         [Parameter(Mandatory=$true)]
         [string]
         $WebSiteUrl,
-        [string]
-        $IncomingExchangeServer,
         [Parameter(Mandatory=$true)]
         [string]
         $Organization,
@@ -67,22 +62,21 @@ function Install-Dynamics365Server {
         $OrganizationUniqueName,
         [Parameter(Mandatory=$true)]
         [string]
+        $ReportingUrl,
+        [string]
+        $InstallDir,
+        [string]
+        $IncomingExchangeServer,
+        [string]
         $BaseISOCurrencyCode,
-        [Parameter(Mandatory=$true)]
         [string]
         $BaseCurrencyName,
-        [Parameter(Mandatory=$true)]
         [string]
         $BaseCurrencySymbol,
-        [Parameter(Mandatory=$true)]
         [int]
         $BaseCurrencyPrecision,
-        [Parameter(Mandatory=$true)]
         [string]
         $OrganizationCollation,
-        [Parameter(Mandatory=$true)]
-        [string]
-        $ReportingUrl,
         [switch]
         $SQM = $false,
         [switch]
@@ -94,7 +88,7 @@ function Install-Dynamics365Server {
     )
     $setupFilePath = "$mediaDir\SetupServer.exe";
     $fileVersion = ( Get-Command $setupFilePath ).FileVersionInfo.FileVersionRaw.ToString();
-    Write-Host "Version of software to be installed: $fileVersion";
+    Write-Output "Version of software to be installed: $fileVersion";
     $testScriptBlock = {
         try {
             Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
@@ -105,7 +99,7 @@ function Install-Dynamics365Server {
                 "Could not load Microsoft.Crm.PowerShell PSSnapin";
             }
         } catch {
-            Write-Host "$(Get-Date) Caught an exception: $($_.Exception.Message)";
+            Write-Output "$(Get-Date) Caught an exception: $($_.Exception.Message)";
             $_.Exception.Message;
         }
     }
@@ -124,15 +118,18 @@ function Install-Dynamics365Server {
         $xml = [xml]"";
         $crmSetupElement = $xml.CreateElement( "CRMSetup" );
             $serverElement = $xml.CreateElement( "Server" );
+                #Patch is a required element for setup
                 $patchElement = $xml.CreateElement( "Patch" );
                     $patchElement.SetAttribute( "Update", $false ) | Out-Null;
                 $serverElement.AppendChild( $patchElement ) | Out-Null;
                 $licenseKeyElement = $xml.CreateElement( "LicenseKey" );
                     $licenseKeyElement.InnerText = $licenseKey;
                 $serverElement.AppendChild( $licenseKeyElement ) | Out-Null;
-                $installDirElement = $xml.CreateElement( "InstallDir" );
-                    $installDirElement.InnerText = $installDir;
-                $serverElement.AppendChild( $installDirElement ) | Out-Null;
+                if ( $installDir ) {
+                    $installDirElement = $xml.CreateElement( "InstallDir" );
+                        $installDirElement.InnerText = $installDir;
+                    $serverElement.AppendChild( $installDirElement ) | Out-Null;
+                }
                 $databaseElement = $xml.CreateElement( "Database" );
                     $databaseElement.SetAttribute( "create", $createDatabase ) | Out-Null;
                 $serverElement.AppendChild( $databaseElement ) | Out-Null;
@@ -211,31 +208,53 @@ function Install-Dynamics365Server {
                         $serviceAccountPasswordElement.InnerText = $monitoringServiceAccount.GetNetworkCredential().Password;
                     $monitoringServiceAccountElement.AppendChild( $serviceAccountPasswordElement ) | Out-Null;
                 $serverElement.AppendChild( $monitoringServiceAccountElement ) | Out-Null;
+                #WebsiteUrl is required
                 $webSiteUrlElement = $xml.CreateElement( "WebsiteUrl" );
                     $webSiteUrlElement.SetAttribute( "create", $createWebSite ) | Out-Null;
                     $webSiteUrlElement.SetAttribute( "port", $webSitePort ) | Out-Null;
                     $webSiteUrlElement.InnerText = $webSiteUrl;
                 $serverElement.AppendChild( $webSiteUrlElement ) | Out-Null;
-                $emailElement = $xml.CreateElement( "Email" );
-                    $incomingExchangeServerElement = $xml.CreateElement( "IncomingExchangeServer" );
-                        $incomingExchangeServerElement.SetAttribute( "name", $incomingExchangeServer ) | Out-Null;
-                    $emailElement.AppendChild( $incomingExchangeServerElement ) | Out-Null;
-                $serverElement.AppendChild( $emailElement ) | Out-Null;
+                if ( $incomingExchangeServer )
+                {
+                    $emailElement = $xml.CreateElement( "Email" );
+                        $incomingExchangeServerElement = $xml.CreateElement( "IncomingExchangeServer" );
+                            $incomingExchangeServerElement.SetAttribute( "name", $incomingExchangeServer ) | Out-Null;
+                        $emailElement.AppendChild( $incomingExchangeServerElement ) | Out-Null;
+                    $serverElement.AppendChild( $emailElement ) | Out-Null;
+                }
                 $organizationUniqueNameElement = $xml.CreateElement( "OrganizationUniqueName" );
                     $organizationUniqueNameElement.InnerText = $organizationUniqueName;
                 $serverElement.AppendChild( $organizationUniqueNameElement ) | Out-Null;
                 $organizationElement = $xml.CreateElement( "Organization" );
                     $organizationElement.InnerText = $organization;
                 $serverElement.AppendChild( $organizationElement ) | Out-Null;
-                $baseCurrencyElement = $xml.CreateElement( "basecurrency" );
-                    $baseCurrencyElement.SetAttribute( "isocurrencycode", $baseISOCurrencyCode ) | Out-Null;
-                    $baseCurrencyElement.SetAttribute( "currencyname", $baseCurrencyName ) | Out-Null;
-                    $baseCurrencyElement.SetAttribute( "currencysymbol", $baseCurrencySymbol ) | Out-Null;
-                    $baseCurrencyElement.SetAttribute( "currencyprecision", $baseCurrencyPrecision ) | Out-Null;
-                $serverElement.AppendChild( $baseCurrencyElement ) | Out-Null;
-                $organizationCollationElement = $xml.CreateElement( "OrganizationCollation" );
-                    $organizationCollationElement.InnerText = $organizationCollation;
-                $serverElement.AppendChild( $organizationCollationElement ) | Out-Null;
+                if ( $baseISOCurrencyCode -or $baseCurrencyName -or $baseCurrencySymbol -or $baseCurrencyPrecision )
+                {
+                    $baseCurrencyElement = $xml.CreateElement( "basecurrency" );
+                    if ( $baseISOCurrencyCode )
+                    {
+                        $baseCurrencyElement.SetAttribute( "isocurrencycode", $baseISOCurrencyCode ) | Out-Null;
+                    }
+                    if ( $baseCurrencyName )
+                    {
+                        $baseCurrencyElement.SetAttribute( "currencyname", $baseCurrencyName ) | Out-Null;
+                    }
+                    if ( $baseCurrencySymbol )
+                    {
+                        $baseCurrencyElement.SetAttribute( "currencysymbol", $baseCurrencySymbol ) | Out-Null;
+                    }
+                    if ( $baseCurrencyPrecision )
+                    {
+                        $baseCurrencyElement.SetAttribute( "currencyprecision", $baseCurrencyPrecision ) | Out-Null;
+                    }
+                    $serverElement.AppendChild( $baseCurrencyElement ) | Out-Null;
+                }
+                if ( $organizationCollation )
+                {
+                    $organizationCollationElement = $xml.CreateElement( "OrganizationCollation" );
+                        $organizationCollationElement.InnerText = $organizationCollation;
+                    $serverElement.AppendChild( $organizationCollationElement ) | Out-Null;
+                }
                 $reportingElement = $xml.CreateElement( "Reporting" );
                     $reportingElement.SetAttribute( "URL", $ReportingUrl ) | Out-Null;
                 $serverElement.AppendChild( $reportingElement ) | Out-Null;
@@ -251,9 +270,6 @@ function Install-Dynamics365Server {
                 $rebootElement = $xml.CreateElement( "Reboot" );
                     $rebootElement.InnerText = $reboot;
                 $serverElement.AppendChild( $rebootElement ) | Out-Null;
-                $launchReportingExtensionsSetupElement = $xml.CreateElement( "LaunchReportingExtensionsSetup" );
-                    $launchReportingExtensionsSetupElement.InnerText = $true;
-                $serverElement.AppendChild( $launchReportingExtensionsSetupElement ) | Out-Null;
             $crmSetupElement.AppendChild( $serverElement ) | Out-Null;
         $xml.AppendChild( $crmSetupElement ) | Out-Null;
 
@@ -268,27 +284,27 @@ function Install-Dynamics365Server {
             param( $setupFilePath, $xmlConfig )
             $tempFileName = [guid]::NewGuid().Guid;
             $tempFilePath = "$env:Temp\$tempFileName.xml";
-            Write-Host "$(Get-Date) Saving configuration temporary to $tempFilePath";
+            Write-Output "$(Get-Date) Saving configuration temporary to $tempFilePath";
             Set-Content -Path $tempFilePath -Value $xmlConfig;
-            Write-Host "$(Get-Date) Starting $setupFilePath";
+            Write-Output "$(Get-Date) Starting $setupFilePath";
             $timeStamp = ( Get-Date -Format u ).Replace(" ","-").Replace(":","-");
             $logFileName = "$env:Temp\CRMInstallationLog_$timeStamp.txt";
             $installCrmScript = {
                 param( $setupFilePath, $tempFilePath, $logFileName );
-                Write-Host "Start-Process '$setupFilePath' -ArgumentList '/Q /config $tempFilePath /L $logFileName' -Wait;";
+                Write-Output "Start-Process '$setupFilePath' -ArgumentList '/Q /config $tempFilePath /L $logFileName' -Wait;";
                 Start-Process "$setupFilePath" -ArgumentList "/Q /config $tempFilePath /L $logFileName" -Wait;
             }
             $job = Start-Job -ScriptBlock $installCrmScript -ArgumentList $setupFilePath, $tempFilePath, $logFileName;
-            Write-Host "$(Get-Date) Started installation job, log will be saved in $logFileName";
+            Write-Output "$(Get-Date) Started installation job, log will be saved in $logFileName";
             While ( $job.State -ne "Completed" )
             {
-                Write-Host "$(Get-Date) Waiting until CRM installation job is done";
-                Sleep 60;
+                Write-Output "$(Get-Date) Waiting until CRM installation job is done";
+                Start-Sleep 60;
             }
-            Write-Host "$(Get-Date) Job is complete, output:";
+            Write-Output "$(Get-Date) Job is complete, output:";
             Write-Output ( Receive-Job $job );
             Remove-Job $job;
-            Sleep 10;
+            Start-Sleep 10;
             Remove-Item $tempFilePath;
         }
         if ( $installAccount )
@@ -317,12 +333,12 @@ function Install-Dynamics365Server {
             $testResponse = Invoke-Command -ScriptBlock $testScriptBlock;
         }
         if ( $testResponse -eq $fileVersion ) {
-            Write-Host "Installation is finished and verified successfully";
+            Write-Output "Installation is finished and verified successfully";
         } else {
-            Write-Host "Installation job finished but the product is still not installed. Current product version installed is '$testResponse'";
+            Write-Output "Installation job finished but the product is still not installed. Current product version installed is '$testResponse'";
             Throw "Installation job finished but the product is still not installed. Current product version installed is '$testResponse'";
         }
     } else {
-        Write-Host "Product version '$testResponse' is already installed, skipping"
+        Write-Output "Product version '$testResponse' is already installed, skipping"
     }
 }
