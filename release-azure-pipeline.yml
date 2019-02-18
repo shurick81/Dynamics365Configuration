@@ -1,9 +1,9 @@
 name: $(Date:yyyyMMdd).$(Rev:.r)
-  pr:
-    include:
-    - release-*
-    exclude:
-    - develop
+pr:
+  include:
+  - release-*
+  exclude:
+  - develop
 trigger:
   branches:
     include:
