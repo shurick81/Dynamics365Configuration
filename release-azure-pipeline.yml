@@ -1,11 +1,11 @@
 name: $(Date:yyyyMMdd).$(Rev:.r)
-trigger:
-  branches:
+  pr:
     include:
     - release-*
     exclude:
     - develop
-  pr:
+trigger:
+  branches:
     include:
     - release-*
     exclude:
