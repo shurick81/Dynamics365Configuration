@@ -2,11 +2,11 @@
     "builders": [
         {
             "type": "virtualbox-iso",
-            "iso_checksum": "18a4f00a675b0338f3c7c93c4f131beb",
+            "iso_checksum": "48cd91270581d1be10c3ff3ad6c41cce",
             "iso_checksum_type": "md5",
-            "iso_url": "https://download.microsoft.com/download/1/6/F/16FA20E6-4662-482A-920B-1A45CF5AAE3C/14393.0.160715-1616.RS1_RELEASE_SERVER_EVAL_X64FRE_EN-US.ISO",
+            "iso_url": "https://software-download.microsoft.com/download/sg/17763.253.190108-0006.rs5_release_svc_refresh_SERVER_EVAL_x64FRE_en-us.iso",
             "floppy_files": [
-                "win2016/Autounattend.xml",
+                "win2019/Autounattend.xml",
                 "winrm.ps1",
                 "sysprep.bat",
                 "autounattend_sysprep.xml"
@@ -28,11 +28,11 @@
         },
         {
             "type": "hyperv-iso",
-            "iso_checksum": "18a4f00a675b0338f3c7c93c4f131beb",
+            "iso_checksum": "48cd91270581d1be10c3ff3ad6c41cce",
             "iso_checksum_type": "md5",
-            "iso_url": "https://download.microsoft.com/download/1/6/F/16FA20E6-4662-482A-920B-1A45CF5AAE3C/14393.0.160715-1616.RS1_RELEASE_SERVER_EVAL_X64FRE_EN-US.ISO",
+            "iso_url": "https://software-download.microsoft.com/download/sg/17763.253.190108-0006.rs5_release_svc_refresh_SERVER_EVAL_x64FRE_en-us.iso",
             "floppy_files": [
-                "win2016/Autounattend.xml",
+                "win2019/Autounattend.xml",
                 "winrm.ps1",
                 "sysprep.bat",
                 "autounattend_sysprep.xml"
@@ -41,7 +41,6 @@
             "http_directory": "http",
             "shutdown_command": "a:/sysprep.bat",
             "ram_size": 4096,
-            "cpu": 4,
             "disk_size": 204800,
             "switch_name": "Default Switch",
             "communicator": "winrm",
@@ -93,7 +92,7 @@
             "script": "rdpenable.ps1",
             "only": ["virtualbox-iso","hyperv-iso"]
         },
-        { "type": "powershell", "script": "nodefender.ps1" },
+        { "type": "powershell", "script": "nodefender-2019.ps1" },
         { "type": "windows-restart" },
         {
             "type": "powershell",
