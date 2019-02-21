@@ -233,12 +233,19 @@ platforms:
   - name: win2019-dynamicsprereqs
     driver:
       name: vagrant
-      box: win2019-basic
+      box: win2019-soe
       gui: false
       box_check_update: true
       platform: windows
       linked_clone: true
       communicator: winrm
+      winrm:
+        username: vagrant
+        password: Fractalsol365
+        transport: plaintext
+        basic_auth_only: true
+        config.winrm.timeout: 240
+        retry_limit: 20
       gui: false
       platformw: windows
       customize:

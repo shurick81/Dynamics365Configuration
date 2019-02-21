@@ -1,4 +1,4 @@
-function Install-Dynamics365ReportingExtensions {
+﻿function Install-Dynamics365ReportingExtensions {
     param (
         [Parameter(Mandatory=$true)]
         [string]
@@ -15,10 +15,10 @@ function Install-Dynamics365ReportingExtensions {
     )
     $setupFilePath = "$mediaDir\SetupSrsDataConnector.exe";
     $fileVersion = ( Get-Command $setupFilePath ).FileVersionInfo.FileVersionRaw.ToString();
-    Write-Host "Version of software to be installed: $fileVersion";
+    Write-Output "Version of software to be installed: $fileVersion";
     $languageCode = ( Get-Item $mediaDir\LangPacks\* ).Name;
-    Write-Host "Language code of software to be installed: $languageCode";
-    $Dynamics365Resources | Get-Member -MemberType NoteProperty | ? { $Dynamics365Resources.( $_.Name ).ReportingExtensionsIdentifyingNumber } | % {
+    Write-Output "Language code of software to be installed: $languageCode";
+    $Dynamics365Resources | Get-Member -MemberType NoteProperty | Where-Object { $Dynamics365Resources.( $_.Name ).ReportingExtensionsIdentifyingNumber } | ForEach-Object {
         if ( ( $Dynamics365Resources.( $_.Name ).MediaFileVersion -eq $fileVersion ) -and ( $Dynamics365Resources.( $_.Name ).LanguageCode -eq $languageCode ) ) { $foundFileResource = $_.Name }
     }
     if ( $configDBServer ) {
@@ -28,22 +28,22 @@ function Install-Dynamics365ReportingExtensions {
     }
     if ( $InstallAccount -and $configDBServer )
     {
-        $installedProducts = Get-WmiObject Win32_Product -ComputerName $configDBServerXmlParameter -Credential $InstallAccount | % { $_.IdentifyingNumber }
+        $installedProducts = Get-WmiObject Win32_Product -ComputerName $configDBServerXmlParameter -Credential $InstallAccount | ForEach-Object { $_.IdentifyingNumber }
     } else {
-        $installedProducts = Get-WmiObject Win32_Product -ComputerName $configDBServerXmlParameter | % { $_.IdentifyingNumber }
+        $installedProducts = Get-WmiObject Win32_Product -ComputerName $configDBServerXmlParameter | ForEach-Object { $_.IdentifyingNumber }
     }
     if ( $foundFileResource )
     {
-        Write-Host "Found corresponding resource in the catalog: $foundFileResource";
+        Write-Output "Found corresponding resource in the catalog: $foundFileResource";
         $expectedProductIdentifyingNumber = $Dynamics365Resources.$foundFileResource.ReportingExtensionsIdentifyingNumber;
     } else {
-        Write-Host "Corresponding resource is not found in the catalog. Installation verification will be skipped";
+        Write-Output "Corresponding resource is not found in the catalog. Installation verification will be skipped";
     }
     if ( $expectedProductIdentifyingNumber )
     {
         $isInstalled = $installedProducts -contains "{$expectedProductIdentifyingNumber}";
     } else {
-        Write-Host "IdentifyingNumber is not specified for this product, installation verification will be skipped";
+        Write-Output "IdentifyingNumber is not specified for this product, installation verification will be skipped";
     }
     # Starting installation only when not installed or if id is not found in catalog.
     if ( !$expectedProductIdentifyingNumber -or !$isInstalled ) {
@@ -79,27 +79,27 @@ function Install-Dynamics365ReportingExtensions {
             param( $setupFilePath, $xmlConfig )
             $tempFileName = [guid]::NewGuid().Guid;
             $tempFilePath = "$env:Temp\$tempFileName.xml";
-            Write-Host "$(Get-Date) Saving configuration temporary to $tempFilePath";
+            Write-Output "$(Get-Date) Saving configuration temporary to $tempFilePath";
             Set-Content -Path $tempFilePath -Value $xmlConfig;
-            Write-Host "$(Get-Date) Starting $setupFilePath";
+            Write-Output "$(Get-Date) Starting $setupFilePath";
             $timeStamp = ( Get-Date -Format u ).Replace(" ","-").Replace(":","-");
             $logFileName = "$env:Temp\DynamicsReportingExtensionsInstallationLog_$timeStamp.txt";
             $installCrmScript = {
                 param( $setupFilePath, $tempFilePath, $logFileName );
-                Write-Host "Start-Process '$setupFilePath' -ArgumentList '/Q /config $tempFilePath /L $logFileName' -Wait;";
+                Write-Output "Start-Process '$setupFilePath' -ArgumentList '/Q /config $tempFilePath /L $logFileName' -Wait;";
                 Start-Process "$setupFilePath" -ArgumentList "/Q /config $tempFilePath /L $logFileName" -Wait;
             }
             $job = Start-Job -ScriptBlock $installCrmScript -ArgumentList $setupFilePath, $tempFilePath, $logFileName;
-            Write-Host "$(Get-Date) Started installation job, log will be saved in $logFileName";
+            Write-Output "$(Get-Date) Started installation job, log will be saved in $logFileName";
             While ( $job.State -ne "Completed" )
             {
-                Write-Host "$(Get-Date) Waiting until CRM installation job is done";
-                Sleep 60;
+                Write-Output "$(Get-Date) Waiting until CRM installation job is done";
+                Start-Sleep 60;
             }
-            Write-Host "$(Get-Date) Job is complete, output:";
+            Write-Output "$(Get-Date) Job is complete, output:";
             Write-Output ( Receive-Job $job );
             Remove-Job $job;
-            Sleep 10;
+            Start-Sleep 10;
             Remove-Item $tempFilePath;
         }
         if ( $installAccount )
@@ -109,39 +109,39 @@ function Install-Dynamics365ReportingExtensions {
         } else {
             Invoke-Command -ScriptBlock $localInstallationScriptBlock -ArgumentList $setupFilePath, $stringWriter.ToString();
         }
-        Write-Host "The following products were installed:"
+        Write-Output "The following products were installed:"
         if ( $InstallAccount -and $configDBServer )
         {
-            Get-WmiObject Win32_Product -ComputerName $configDBServerXmlParameter -Credential $InstallAccount | % {
+            Get-WmiObject Win32_Product -ComputerName $configDBServerXmlParameter -Credential $InstallAccount | ForEach-Object {
                 if ( !$expectedProductIdentifyingNumber -or ( $_.IdentifyingNumber -eq "{$expectedProductIdentifyingNumber}" ) ) {
                     $isInstalled = $true;
                 }
                 if ( !( $installedProducts -contains $_.IdentifyingNumber ) ) {
-                    Write-Host $_.IdentifyingNumber, $_.Name;
+                    Write-Output $_.IdentifyingNumber, $_.Name;
                 }
             }
         } else {
-            Get-WmiObject Win32_Product -ComputerName $configDBServerXmlParameter | % {
+            Get-WmiObject Win32_Product -ComputerName $configDBServerXmlParameter | ForEach-Object {
                 if ( !$expectedProductIdentifyingNumber -or ( $_.IdentifyingNumber -eq "{$expectedProductIdentifyingNumber}" ) ) {
                     $isInstalled = $true;
                 }
                 if ( !( $installedProducts -contains $_.IdentifyingNumber ) ) {
-                    Write-Host $_.IdentifyingNumber, $_.Name;
+                    Write-Output $_.IdentifyingNumber, $_.Name;
                 }
             }
         }
         if ( $expectedProductIdentifyingNumber )
         {
             if ( $isInstalled ) {
-                Write-Host "Installation is finished and verified successfully";
+                Write-Output "Installation is finished and verified successfully";
             } else {
-                Write-Host "Installation job finished but the product is still not installed";
+                Write-Output "Installation job finished but the product is still not installed";
                 Throw "Installation job finished but the product is still not installed";
             }
         } else {
-            Write-Host "Installation is finished but verification cannot be done without IdentifyingNumber specified.";
+            Write-Output "Installation is finished but verification cannot be done without IdentifyingNumber specified.";
         }
     } else {
-        Write-Host "Product is already installed, skipping"
+        Write-Output "Product is already installed, skipping"
     }
 }

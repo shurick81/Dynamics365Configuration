@@ -1,4 +1,6 @@
 name: $(Date:yyyyMMdd).$(Rev:.r)
+pr:
+- release-*
 trigger:
   branches:
     include:

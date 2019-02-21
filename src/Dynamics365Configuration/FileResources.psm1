@@ -1,4 +1,4 @@
 
 
 Export-ModuleMember -Function Save-Dynamics365Resource
-Export-ModuleMember -Function Install-Dynamics365Prerequisites
+Export-ModuleMember -Function Install-Dynamics365Prerequisite

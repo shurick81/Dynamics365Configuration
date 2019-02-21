@@ -1,5 +1,5 @@
 try {
-    Install-Dynamics365Prerequisites VisualCPlusPlusRuntime;
+    Install-Dynamics365Prerequisite VisualCPlusPlusRuntime;
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
@@ -14,7 +14,7 @@ if ( !$installedProduct )
 }
 
 try {
-    Install-Dynamics365Prerequisites;
+    Install-Dynamics365Prerequisite;
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;

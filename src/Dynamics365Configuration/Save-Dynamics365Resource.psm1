@@ -1,4 +1,4 @@
-Import-Module $PSScriptRoot\DownloadAndUnpack-Dynamics365Resource.psm1 -DisableNameChecking
+﻿Import-Module $PSScriptRoot\DownloadAndUnpack-Dynamics365Resource.psm1 -DisableNameChecking
 function Save-Dynamics365Resource
 {
     [CmdletBinding()]
@@ -528,18 +528,18 @@ function Save-Dynamics365Resource
         Write-Debug "Downloading all URLs"
         if ( $TargetDirectory )
         {
-            $Dynamics365Resources | Get-Member -MemberType NoteProperty | % {
+            $Dynamics365Resources | Get-Member -MemberType NoteProperty | ForEach-Object {
                 $resourceUrl = $Dynamics365Resources.( $_.Name ).URL;
                 $directoryName = $_.Name;
                 $directoryPath = "$TargetDirectory\$directoryName";
                 DownloadAndUnpack-Dynamics365Resource -ResourceUrl $resourceUrl -DirectoryPath $directoryPath;
             }
         } else {
-            $Dynamics365Resources | Get-Member -MemberType NoteProperty | % {
+            $Dynamics365Resources | Get-Member -MemberType NoteProperty | ForEach-Object {
                 $resourceUrl = $Dynamics365Resources.( $_.Name ).URL;
                 $directoryName = $_.Name;
                 $directoryPath = ".\$directoryName";
-                Write-Host "directoryPath: $directoryPath"
+                Write-Output "directoryPath: $directoryPath"
                 DownloadAndUnpack-Dynamics365Resource -ResourceUrl $resourceUrl -DirectoryPath $directoryPath;
             }
         }
