@@ -301,6 +301,20 @@ See `<Reboot>` XML node description in https://technet.microsoft.com/en-us/libra
 
 An account that has permissions to install the software and create a database. If not specified, the current account is used. If specified, CredSSP must be configured for invoking scripts locally on the machine with altered credential.
 
+#### LogFilePath
+
+Installation log file path. By default, installation process generates time-stamped log file path unless `LogFilePath` parameter is set.
+
+#### LogFilePullIntervalInSeconds
+
+Interval in seconds to be used during installation process updates. By default, installation process updates output every 30 seconds.
+
+#### LogFilePullToOutput
+
+Switch to pull installation logs into the output every `LogFilePullIntervalInSeconds` seconds. By default, installation process updates output without detailed installation logs. This option makes installation pull newest logs from `LogFilePath` file and push them into output every `LogFilePullIntervalInSeconds` seconds. 
+
+Use this option to get a details feedback on the installation process.
+
 ### Examples
 
 ```PowerShell
