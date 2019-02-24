@@ -45,7 +45,7 @@ Vagrant.configure(2) do |config|
             override.winrm.ssl_peer_verification = false # must be false if using a self signed cert
             override.vm.synced_folder ".", "/vagrant", disabled: true
         end
-        #vm_config.vm.provision :shell, inline: "powershell -command 'Import-Module c:/projects/Dynamics365Configuration/src/Dynamics365Configuration/RootModule.psm1; c:/projects/Dynamics365Configuration/src/misc/checksumextractor.ps1'"
+        #vm_config.vm.provision :shell, inline: "powershell -command 'Import-Module c:/projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1; c:/projects/Dynamics365Configuration/src/misc/checksumextractor.ps1'"
         vm_config.vm.boot_timeout = 1800
     end
 end

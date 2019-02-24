@@ -60,6 +60,32 @@ platforms:
         - [ '.' , 'c:/test-projects/Dynamics365Configuration/tests' ]
     transport:
       name: winrm
+  - name: win2019-soe
+    driver:
+      name: vagrant
+      box: win2019-soe
+      box_check_update: false
+      communicator: winrm
+      winrm:
+        username: vagrant
+        password: Fractalsol365
+        transport: plaintext
+        basic_auth_only: true
+        config.winrm.timeout: 240
+        retry_limit: 20
+      gui: false
+      platform: windows
+      linked_clone: true
+      customize:
+        clipboard: bidirectional
+        memory: 4096
+        cpus: 2
+        vram: 32
+      synced_folders:
+        - [ './../src' , 'c:/test-projects/Dynamics365Configuration/src' ]
+        - [ '.' , 'c:/test-projects/Dynamics365Configuration/tests' ]
+    transport:
+      name: winrm
   - name: win2016-soe
     driver:
       name: vagrant
@@ -336,7 +362,7 @@ suites:
 - name: URLDuplicatesDetect
   provisioner:
     name: shell
-    command: 'Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/RootModule.psm1; c:/test-projects/Dynamics365Configuration/tests\\URLDuplicates.ps1'
+    command: 'Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1; c:/test-projects/Dynamics365Configuration/tests\\URLDuplicates.ps1'
     powershell_shell: true
   includes:
     - win2019-basic
@@ -345,7 +371,7 @@ suites:
 - name: ValidUrls
   provisioner:
     name: shell
-    command: 'Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/RootModule.psm1; c:/test-projects/Dynamics365Configuration/tests\\ValidUrls.ps1'
+    command: 'Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1; c:/test-projects/Dynamics365Configuration/tests\\ValidUrls.ps1'
     powershell_shell: true
   includes:
     - win2019-basic
@@ -354,7 +380,7 @@ suites:
 - name: InstallAllPrerequisites
   provisioner:
     name: shell
-    command: 'Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/RootModule.psm1; c:/test-projects/Dynamics365Configuration/tests\\InstallAllPrerequisites.ps1'
+    command: 'Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1; c:/test-projects/Dynamics365Configuration/tests\\InstallAllPrerequisites.ps1'
     powershell_shell: true
   includes:
     - win2019-basic
@@ -363,24 +389,34 @@ suites:
 - name: InstallAllPrerequisitesLocal
   provisioner:
     name: shell
-    command: 'Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/RootModule.psm1; c:/test-projects/Dynamics365Configuration/tests\\InstallAllPrerequisitesLocal.ps1'
+    command: 'Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1; c:/test-projects/Dynamics365Configuration/tests\\InstallAllPrerequisitesLocal.ps1'
     powershell_shell: true
   includes:
     - win2019-basic
     - win2016-basic
     - win2012r2-basic
+- name: ExtractResources
+  provisioner:
+    name: shell
+    command: 'Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1; c:/test-projects/Dynamics365Configuration/tests\\extract.ps1'
+    powershell_shell: true
+  includes:
+    - win2019-soe
+    - win2016-soe
+    - win2012r2-soe
 - name: SaveAllResources
   provisioner:
     name: shell
-    command: 'Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/RootModule.psm1; c:/test-projects/Dynamics365Configuration/tests\\SaveAll.ps1'
+    command: 'Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1; c:/test-projects/Dynamics365Configuration/tests\\SaveAll.ps1'
     powershell_shell: true
   includes:
+    - win2019-soe
     - win2016-soe
     - win2012r2-soe
 - name: QuickProvisioning
   provisioner:
     name: shell
-    command: 'Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/RootModule.psm1; c:/test-projects/Dynamics365Configuration/tests\\Provision.ps1'
+    command: 'Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1; c:/test-projects/Dynamics365Configuration/tests\\Provision.ps1'
     powershell_shell: true
   includes:
     - win2019-ad-sql2016dbrs-dynamicsprereqs
@@ -392,7 +428,7 @@ suites:
 - name: QuickProvisioning2016
   provisioner:
     name: shell
-    command: 'Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/RootModule.psm1; c:/test-projects/Dynamics365Configuration/tests\\Provision2016.ps1'
+    command: 'Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1; c:/test-projects/Dynamics365Configuration/tests\\Provision2016.ps1'
     powershell_shell: true
   includes:
     - win2016-ad-sql2016dbrs-dynamicsprereqs
@@ -404,7 +440,7 @@ suites:
 - name: Provision90Full
   provisioner:
     name: shell
-    command: 'Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/RootModule.psm1; c:/test-projects/Dynamics365Configuration/tests\\Provision90Full.ps1'
+    command: 'Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1; c:/test-projects/Dynamics365Configuration/tests\\Provision90Full.ps1'
     powershell_shell: true
   includes:
     - win2019-ad-sql2016dbrs-dynamicsprereqs
@@ -416,7 +452,7 @@ suites:
 - name: Provision2016Full
   provisioner:
     name: shell
-    command: 'Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/RootModule.psm1; c:/test-projects/Dynamics365Configuration/tests\\Provision2016Full.ps1'
+    command: 'Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1; c:/test-projects/Dynamics365Configuration/tests\\Provision2016Full.ps1'
     powershell_shell: true
   includes:
     - win2016-ad-sql2016dbrs-dynamicsprereqs

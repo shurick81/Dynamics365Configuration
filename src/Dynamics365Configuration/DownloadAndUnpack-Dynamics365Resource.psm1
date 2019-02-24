@@ -39,9 +39,7 @@
                 Write-Output "Hash of the downloaded file: $fileHash";
                 if ( ( $fileHash -eq $expectedFileChecksum ) -or !$expectedFileChecksum )
                 {
-                    Write-Output "$(Get-Date) Unpacking $filePath to $directoryPath";
-                    Start-Process -FilePath $filePath -ArgumentList "/extract:$directoryPath /passive /quiet" -Wait -NoNewWindow;
-                    Write-Output "$(Get-Date) Finished unpacking";
+                    Expand-Dynamics365Resource -ResourcePath $filePath -TargetDirectory $directoryPath;
                     Start-Sleep 20;
                     Remove-Item $tempDirPath -Recurse -Force;
                 } else {
