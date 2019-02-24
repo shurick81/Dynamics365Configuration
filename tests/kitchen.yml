@@ -401,9 +401,9 @@ suites:
     command: 'Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1; c:/test-projects/Dynamics365Configuration/tests\\extract.ps1'
     powershell_shell: true
   includes:
-    - win2019-soe
-    - win2016-soe
-    - win2012r2-soe
+    - win2019-basic
+    - win2016-basic
+    - win2012r2-basic
 - name: SaveAllResources
   provisioner:
     name: shell
