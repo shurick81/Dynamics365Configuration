@@ -166,12 +166,6 @@ try
                 Path                = 'OU=CRM groups,DC=contoso,DC=local'
             }
 
-#            xADGroup EnterpriseAdminGroup
-#            {
-#                GroupName   = "Enterprise Admins"
-#                MembersToInclude    = $CRMInstallAccountCredential.GetNetworkCredential().UserName, "contoso\vagrant"
-#            }
-
         }
     }
 }

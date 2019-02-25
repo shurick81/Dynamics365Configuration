@@ -18,6 +18,55 @@ Install-Module -Name Dynamics365Configuration
 $Dynamics365Resources
 ```
 
+## Expand-Dynamics365Resource
+
+Extracts the content of the Dynamics .exe-file resource into a file folder.
+Requires elevation.
+
+### Syntax
+
+```PowerShell
+Expand-Dynamics365Resource
+    [[-ResourcePath] <string>]
+    [[-TargetDirectory] <string>]
+```
+
+### Parameters
+
+#### -ResourcePath
+
+A path to an exe-file.
+
+#### -TargetDirectory
+
+The directory path where the files or directories will be saved.
+
+### Examples
+
+Extracting all found exe-files to the current directory:
+
+```PowerShell
+Expand-Dynamics365Resource
+```
+
+Extracting C:\Install\Dynamics\CRM9.0-Server-ENU-amd64.exe to current directory:
+
+```PowerShell
+Expand-Dynamics365Resource -ResourcePath C:\Install\Dynamics\CRM9.0-Server-ENU-amd64.exe
+```
+
+Loading all found exe-files to the specified directory:
+
+```PowerShell
+Expand-Dynamics365Resource -TargetDirectory C:\Install\Dynamics
+```
+
+Loading C:\Install\Dynamics\CRM9.0-Server-ENU-amd64.exe to the specified directory:
+
+```PowerShell
+Expand-Dynamics365Resource -ResourcePath C:\Install\Dynamics\CRM9.0-Server-ENU-amd64.exe -TargetDirectory C:\Install\Dynamics\CRM9.0-Server-ENU-amd64
+```
+
 ## Save-Dynamics365Resource
 
 Downloads the file resource and extracts into the folder.
@@ -64,7 +113,7 @@ Save-Dynamics365Resource -TargetDirectory c:\DynamicsResources
 Loading CRM2016LanguagePackRus to the specified directory:
 
 ```PowerShell
-Save-Dynamics365Resource -Resource CRM2016LanguagePackRus c:\DynamicsResources\CRM2016LanguagePackRus
+Save-Dynamics365Resource -Resource CRM2016LanguagePackRus -TargetDirectory c:\DynamicsResources\CRM2016LanguagePackRus
 ```
 
 ## Install-Dynamics365Prerequisite

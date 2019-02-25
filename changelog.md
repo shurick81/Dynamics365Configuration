@@ -10,6 +10,7 @@
   * `BaseCurrencySymbol` is not required
   * `BaseCurrencyPrecision` is not required
   * `OrganizationCollation` is not required
+* A new command, `Expand-Dynamics365Resource` for extracting file resource from downloaded files.
 * Refactoring
   * Adding Windows 2019 to testing platforms, which brings total number of compatible platforms to three: Windows 2012 R2, Windows Server 2016, Windows Server 2019.
 
