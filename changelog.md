@@ -2,6 +2,10 @@
 
 ## Not released
 
+N/A
+
+## v1.1
+
 * `Dynamics365Prerequisites` renamed to `Dynamics365Prerequisite`
 * Change in `Install-Dynamics365Server` parameters
   * `InstallDir` is not required
