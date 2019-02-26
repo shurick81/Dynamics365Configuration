@@ -1,6 +1,25 @@
 # Introduction
 
-A module to ease infrastructure as code tasks for Dynamics 365.
+A module to ease infrastructure as code tasks for Dynamics 365. It allows to use PowerShell commands in order to download and install Dynamics 365 on premise.
+
+## Commands overview
+
+* `Expand-Dynamics365Resource`, extracts the content of the Dynamics .exe-file resource into a file folder.
+* `Save-Dynamics365Resource`, downloads the file resource and extracts into the folder.
+
+* `Install-Dynamics365Prerequisite`, installs one specified or all the software prerequisites.
+
+* `Install-Dynamics365Server`, installs Dynamics 365 Server with new or existing organization.
+
+* `Install-Dynamics365ReportingExtensions`, installs Dynamics 365 Reporting Extensions.
+
+* `Install-Dynamics365Update`, installs Dynamics 365 Server update.
+
+* `Install-Dynamics365Language`, installs Dynamics 365 language pack.
+
+## Compatibility and support
+
+See [Compatibility page](./compatibility.md)
 
 # Installation
 
