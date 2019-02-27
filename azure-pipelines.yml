@@ -35,7 +35,7 @@ jobs:
   - powershell: cd tests; kitchen test InstallAllPrerequisitesLocal-win2019-basic;
     displayName: kitchen test InstallAllPrerequisitesLocal-win2019-basic
     errorActionPreference: continue
-  - powershell: cd infrastructure/images; ./preparevmimages.ps1 win2016-sql2016dbrs,win2012r2-ad-sql2016dbrs,win2016-ad,win2016-soe
+  - powershell: cd infrastructure/images; ./preparevmimages.ps1 win2016-sql2016dbrs,win2012r2-ad-sql2016dbrs,win2016-ad,win2019-soe,win2016-soe
     displayName: Building images
     errorActionPreference: continue
   - powershell: if ( !( vagrant box list | ? { $_ -like "win2016-sql2016dbrs *" } ) ) { exit 1 }
@@ -46,6 +46,9 @@ jobs:
     errorActionPreference: continue
   - powershell: if ( !( vagrant box list | ? { $_ -like "win2016-ad *" } ) ) { exit 1 }
     displayName: Checking the win2016-ad image
+    errorActionPreference: continue
+  - powershell: if ( !( vagrant box list | ? { $_ -like "win2019-soe *" } ) ) { exit 1 }
+    displayName: Checking the win2019-soe image
     errorActionPreference: continue
   - powershell: if ( !( vagrant box list | ? { $_ -like "win2016-soe *" } ) ) { exit 1 }
     displayName: Checking the win2016-soe image
