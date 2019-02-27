@@ -48,7 +48,7 @@ jobs:
     displayName: Checking the win2016-ad image
     errorActionPreference: continue
   - powershell: if ( !( vagrant box list | ? { $_ -like "win2019-soe *" } ) ) { exit 1 }
-    displayName: Checking the win2016-soe image
+    displayName: Checking the win2019-soe image
     errorActionPreference: continue
   - powershell: if ( !( vagrant box list | ? { $_ -like "win2016-soe *" } ) ) { exit 1 }
     displayName: Checking the win2016-soe image
