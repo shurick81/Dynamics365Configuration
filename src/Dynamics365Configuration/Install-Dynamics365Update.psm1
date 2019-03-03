@@ -5,7 +5,14 @@
         [string]
         $MediaDir,
         [pscredential]
-        $InstallAccount
+        $InstallAccount,
+        [string]
+        $LogFilePath = $null,
+        [ValidateRange(1,3600)]
+        [int]
+        $LogFilePullIntervalInSeconds = 30,
+        [switch]
+        $LogFilePullToOutput = $False
     )
     $setupFilePath = "$mediaDir\CrmUpdateWrapper.exe";
     $fileVersion = ( Get-Command $setupFilePath ).FileVersionInfo.FileVersionRaw.ToString();
@@ -35,33 +42,62 @@
     }
     if ( $productDetected -and ( $productDetected -lt $fileVersion ) -and ( $productDetected.Substring( 0, 2 ) -eq $fileVersion.Substring( 0, 2 ) ) ) {
         $localInstallationScriptBlock = {
-            param( $setupFilePath )
+            param( $setupFilePath, $logFilePath, $logFilePullIntervalInSeconds, $logFilePullToOutput)
             Write-Output "$(Get-Date) Starting $setupFilePath";
-            $timeStamp = ( Get-Date -Format u ).Replace(" ","-").Replace(":","-");
-            $logFileName = "$env:Temp\CRMUpdateInstallationLog_$timeStamp.txt";
             $installCrmScript = {
-                param( $setupFilePath, $logFileName );
-                Write-Output "Start-Process '$setupFilePath' -ArgumentList '/q /log $logFileName /norestart' -Wait;";
-                Start-Process "$setupFilePath" -ArgumentList "/q /log $logFileName /norestart" -Wait;
+                param( $setupFilePath, $logFilePath );
+                Write-Output "Start-Process '$setupFilePath' -ArgumentList '/q /log $logFilePath /norestart' -Wait;";
+                Start-Process "$setupFilePath" -ArgumentList "/q /log $logFilePath /norestart" -Wait;
             }
-            $job = Start-Job -ScriptBlock $installCrmScript -ArgumentList $setupFilePath, $logFileName;
-            Write-Output "$(Get-Date) Started installation job, log will be saved in $logFileName";
+            $job = Start-Job -ScriptBlock $installCrmScript -ArgumentList $setupFilePath, $logFilePath;
+            Write-Output "$(Get-Date) Started installation job, log will be saved in $logFilePath";
+            $lastLinesCount = 0;
+
             While ( $job.State -ne "Completed" )
             {
-                Write-Output "$(Get-Date) Waiting until CRM update installation job is done";
-                Start-Sleep 60;
+                Write-Output "$(Get-Date) Waiting until CRM installation job is done, sleeping $logFilePullIntervalInSeconds sec";
+                Start-Sleep $logFilePullIntervalInSeconds;
+                if(($logFilePullToOutput -eq $True) -and ((Test-Path $logFilePath) -eq $True)) {
+
+                    $linesCount    = (Get-Content $logFilePath | Measure-Object -Line).Lines;
+                    $newLinesCount = $linesCount - $lastLinesCount;
+
+                    if($newLinesCount -gt 0) {
+                        Write-Output "$(Get-Date) - new logs: $newLinesCount lines";
+                        $lines = Get-Content $logFilePath | Select-Object -First $newLinesCount -Skip $lastLinesCount;
+
+                        foreach($line in $lines) {
+                            Write-Output $line;
+                        }
+                    } else {
+                       Write-Output "$(Get-Date) - no new logs";
+                    }
+
+                    $lastLinesCount = $linesCount;
+                }
             }
+
             Write-Output "$(Get-Date) Job is complete, output:";
             Write-Output ( Receive-Job $job );
             Remove-Job $job;
         }
+        if([String]::IsNullOrEmpty($logFilePath) -eq $True) {
+            $timeStamp = ( Get-Date -Format u ).Replace(" ","-").Replace(":","-");
+            $logFilePath = "$env:Temp\DynamicsReportingExtensionsInstallationLog_$timeStamp.txt";
+        }
         if ( $installAccount )
         {
-            Invoke-Command -ScriptBlock $localInstallationScriptBlock $env:COMPUTERNAME -Credential $installAccount -Authentication CredSSP -ArgumentList $setupFilePath;
+            Invoke-Command -ScriptBlock $localInstallationScriptBlock `
+                -ComputerName $env:COMPUTERNAME `
+                -Credential $installAccount `
+                -Authentication CredSSP `
+                -ArgumentList $setupFilePath, $logFilePath, $logFilePullIntervalInSeconds, $logFilePullToOutput;
         } else {
-            Invoke-Command -ScriptBlock $localInstallationScriptBlock -ArgumentList $setupFilePath;
+            Invoke-Command -ScriptBlock $localInstallationScriptBlock `
+                -ArgumentList $setupFilePath, $logFilePath, $logFilePullIntervalInSeconds, $logFilePullToOutput;
         }
         $testScriptBlock = {
+            param( $logFilePath )
             try {
                 Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
                 if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
@@ -76,18 +112,34 @@
         }
         if ( $installAccount )
         {
-            $testResponse = Invoke-Command -ScriptBlock $testScriptBlock $env:COMPUTERNAME -Credential $installAccount -Authentication CredSSP;
+            $testResponse = Invoke-Command -ScriptBlock $testScriptBlock `
+                -ComputerName $env:COMPUTERNAME `
+                -Credential $installAccount `
+                -Authentication CredSSP;
         } else {
             $testResponse = Invoke-Command -ScriptBlock $testScriptBlock;
         }
         if ( $testResponse -eq $fileVersion ) {
             Write-Output "Installation is finished and verified successfully. Dynamics version installed: '$testResponse'";
         } else {
-            Write-Output "Installation job finished but the product is still not installed. Current Dynamics version installed: '$testResponse'";
-            Throw "Installation job finished but the product is still not installed. Current Dynamics version installed: '$testResponse'";
+            if( (Test-Path $logFilePath) -eq $True) {
+                $errorLines = Get-Content $logFilePath | Select-String -Pattern "Error" -SimpleMatch;
+
+                if($null -ne $errorLines) {
+                    "Errors from install log: $logFilePath";
+
+                    foreach($errorLine in $errorLines) {
+                        $errorLine;
+                    }
+                }
+            }
+            $errorMessage = "Installation job finished but the product is still not installed. Current product version installed is '$testResponse'";
+
+            Write-Output $errorMessage;
+            Throw $errorMessage;
         }
     } else {
-        Write-Output "Required product is not installed, skipping the upgrade. Current Dynamics version installed: '$testResponse'"
+        Write-Output "Required product is not installed, skipping the upgrade. Current Dynamics version installed: '$testResponse'";
     }
 }
 
