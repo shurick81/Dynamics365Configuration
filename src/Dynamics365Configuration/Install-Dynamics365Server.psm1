@@ -339,6 +339,7 @@
             Remove-Job $job;
             Start-Sleep 10;
 
+            Write-Output "$(Get-Date) Removing xml configuration file";
             Remove-Item $tempFilePath;
         }
         if([String]::IsNullOrEmpty($logFilePath) -eq $True) {
@@ -356,7 +357,8 @@
             Invoke-Command -ScriptBlock $localInstallationScriptBlock `
                 -ArgumentList $setupFilePath, $stringWriter.ToString(), $logFilePath, $logFilePullIntervalInSeconds, $logFilePullToOutput;
         }
-
+        Write-Output "Sleeping after installation";
+        Start-Sleep 10;
         $testScriptBlock = {
             try {
                 Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
@@ -379,6 +381,8 @@
         } else {
             $testResponse = Invoke-Command -ScriptBlock $testScriptBlock
         }
+        Write-Output "Sleeping after version obtaining";
+        Start-Sleep 10;
         if ( $testResponse -eq $fileVersion ) {
             Write-Output "Installation is finished and verified successfully";
         } else {
@@ -402,4 +406,3 @@
         Write-Output "Product version '$testResponse' is already installed, skipping";
     }
 }
-

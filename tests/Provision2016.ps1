@@ -78,6 +78,7 @@ try {
         -LogFilePullIntervalInSeconds 15 `
         -LogFilePullToOutput
 } catch {
+    Write-Host "Failed in invoking of Install-Dynamics365Server";
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
