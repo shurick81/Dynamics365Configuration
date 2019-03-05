@@ -84,7 +84,14 @@
         [switch]
         $Reboot = $false,
         [pscredential]
-        $InstallAccount
+        $InstallAccount,
+        [string]
+        $LogFilePath = $null,
+        [ValidateRange(1,3600)]
+        [int]
+        $LogFilePullIntervalInSeconds = 30,
+        [switch]
+        $LogFilePullToOutput = $false
     )
     $setupFilePath = "$mediaDir\SetupServer.exe";
     $fileVersion = ( Get-Command $setupFilePath ).FileVersionInfo.FileVersionRaw.ToString();
@@ -281,38 +288,77 @@
         $stringWriter.Flush();
 
         $localInstallationScriptBlock = {
-            param( $setupFilePath, $xmlConfig )
+            param( $setupFilePath, $xmlConfig, $logFilePath, $logFilePullIntervalInSeconds, $logFilePullToOutput)
+
             $tempFileName = [guid]::NewGuid().Guid;
             $tempFilePath = "$env:Temp\$tempFileName.xml";
+
             Write-Output "$(Get-Date) Saving configuration temporary to $tempFilePath";
             Set-Content -Path $tempFilePath -Value $xmlConfig;
+
             Write-Output "$(Get-Date) Starting $setupFilePath";
-            $timeStamp = ( Get-Date -Format u ).Replace(" ","-").Replace(":","-");
-            $logFileName = "$env:Temp\CRMInstallationLog_$timeStamp.txt";
+
             $installCrmScript = {
-                param( $setupFilePath, $tempFilePath, $logFileName );
-                Write-Output "Start-Process '$setupFilePath' -ArgumentList '/Q /config $tempFilePath /L $logFileName' -Wait;";
-                Start-Process "$setupFilePath" -ArgumentList "/Q /config $tempFilePath /L $logFileName" -Wait;
+                param( $setupFilePath, $tempFilePath, $logFilePath );
+
+                Write-Output "Start-Process '$setupFilePath' -ArgumentList '/Q /config $tempFilePath /L $logFilePath' -Wait;";
+                Start-Process "$setupFilePath" -ArgumentList "/Q /config $tempFilePath /L $logFilePath" -Wait;
             }
-            $job = Start-Job -ScriptBlock $installCrmScript -ArgumentList $setupFilePath, $tempFilePath, $logFileName;
-            Write-Output "$(Get-Date) Started installation job, log will be saved in $logFileName";
+
+            $job = Start-Job -ScriptBlock $installCrmScript -ArgumentList $setupFilePath, $tempFilePath, $logFilePath;
+            Write-Output "$(Get-Date) Started installation job, log will be saved in $logFilePath";
+            $lastLinesCount = 0;
+
             While ( $job.State -ne "Completed" )
             {
-                Write-Output "$(Get-Date) Waiting until CRM installation job is done";
-                Start-Sleep 60;
+                Write-Output "$(Get-Date) Waiting until CRM installation job is done, sleeping $logFilePullIntervalInSeconds sec";
+                Start-Sleep $logFilePullIntervalInSeconds;
+                if(($logFilePullToOutput -eq $True) -and ((Test-Path $logFilePath) -eq $True)) {
+
+                    $linesCount    = (Get-Content $logFilePath | Measure-Object -Line).Lines;
+                    $newLinesCount = $linesCount - $lastLinesCount;
+
+                    if($newLinesCount -gt 0) {
+                        Write-Output "$(Get-Date) - new logs: $newLinesCount lines";
+                        $lines = Get-Content $logFilePath | Select-Object -First $newLinesCount -Skip $lastLinesCount;
+
+                        foreach($line in $lines) {
+                            Write-Output $line;
+                        }
+                    } else {
+                       Write-Output "$(Get-Date) - no new logs";
+                    }
+
+                    $lastLinesCount = $linesCount;
+                }
             }
+
             Write-Output "$(Get-Date) Job is complete, output:";
             Write-Output ( Receive-Job $job );
+
             Remove-Job $job;
             Start-Sleep 10;
+
+            Write-Output "$(Get-Date) Removing xml configuration file";
             Remove-Item $tempFilePath;
+        }
+        if([String]::IsNullOrEmpty($logFilePath) -eq $True) {
+            $timeStamp = ( Get-Date -Format u ).Replace(" ","-").Replace(":","-");
+            $logFilePath = "$env:Temp\CRMInstallationLog_$timeStamp.txt";
         }
         if ( $installAccount )
         {
-            Invoke-Command -ScriptBlock $localInstallationScriptBlock $env:COMPUTERNAME -Credential $installAccount -Authentication CredSSP -ArgumentList $setupFilePath, $stringWriter.ToString();
+            Invoke-Command -ScriptBlock $localInstallationScriptBlock `
+                -ComputerName $env:COMPUTERNAME `
+                -Credential $installAccount `
+                -Authentication CredSSP `
+                -ArgumentList $setupFilePath, $stringWriter.ToString(), $logFilePath, $logFilePullIntervalInSeconds, $logFilePullToOutput;
         } else {
-            Invoke-Command -ScriptBlock $localInstallationScriptBlock -ArgumentList $setupFilePath, $stringWriter.ToString();
+            Invoke-Command -ScriptBlock $localInstallationScriptBlock `
+                -ArgumentList $setupFilePath, $stringWriter.ToString(), $logFilePath, $logFilePullIntervalInSeconds, $logFilePullToOutput;
         }
+        Write-Output "Sleeping after installation";
+        Start-Sleep 10;
         $testScriptBlock = {
             try {
                 Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
@@ -328,17 +374,35 @@
         }
         if ( $installAccount )
         {
-            $testResponse = Invoke-Command -ScriptBlock $testScriptBlock $env:COMPUTERNAME -Credential $installAccount -Authentication CredSSP;
+            $testResponse = Invoke-Command -ScriptBlock $testScriptBlock `
+                -ComputerName $env:COMPUTERNAME `
+                -Credential $installAccount `
+                -Authentication CredSSP
         } else {
-            $testResponse = Invoke-Command -ScriptBlock $testScriptBlock;
+            $testResponse = Invoke-Command -ScriptBlock $testScriptBlock
         }
+        Write-Output "Sleeping after version obtaining";
+        Start-Sleep 10;
         if ( $testResponse -eq $fileVersion ) {
             Write-Output "Installation is finished and verified successfully";
         } else {
-            Write-Output "Installation job finished but the product is still not installed. Current product version installed is '$testResponse'";
-            Throw "Installation job finished but the product is still not installed. Current product version installed is '$testResponse'";
+            if( (Test-Path $logFilePath) -eq $True) {
+                $errorLines = Get-Content $logFilePath | Select-String -Pattern "Error" -SimpleMatch;
+
+                if($null -ne $errorLines) {
+                    "Errors from install log: $logFilePath";
+
+                    foreach($errorLine in $errorLines) {
+                        $errorLine;
+                    }
+                }
+            }
+            $errorMessage = "Installation job finished but the product is still not installed. Current product version installed is '$testResponse'";
+
+            Write-Output $errorMessage;
+            Throw $errorMessage;
         }
     } else {
-        Write-Output "Product version '$testResponse' is already installed, skipping"
+        Write-Output "Product version '$testResponse' is already installed, skipping";
     }
 }

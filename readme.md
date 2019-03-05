@@ -235,6 +235,9 @@ Install-Dynamics365Server
     [-MUOptin <switch>]
     [-Reboot <switch>]
     [-InstallAccount <pscredential>]
+    [-LogFilePath <string>]
+    [-LogFilePullIntervalInSeconds <int32>]
+    [-LogFilePullToOutput <switch>]
 ```
 
 Have a look at Microsoft Dynamics 365 Server documentation: https://technet.microsoft.com/en-us/library/hh699830.aspx.
@@ -369,6 +372,20 @@ See `<Reboot>` XML node description in https://technet.microsoft.com/en-us/libra
 
 An account that has permissions to install the software and create a database. If not specified, the current account is used. If specified, CredSSP must be configured for invoking scripts locally on the machine with altered credential.
 
+#### LogFilePath
+
+Installation log file path. By default, installation process generates time-stamped log file path unless `LogFilePath` parameter is set.
+
+#### LogFilePullIntervalInSeconds
+
+Interval in seconds to be used during installation process updates. By default, installation process updates output every 30 seconds.
+
+#### LogFilePullToOutput
+
+Switch to pull installation logs into the output every `LogFilePullIntervalInSeconds` seconds. By default, installation process updates output without detailed installation logs. This option makes installation pull newest logs from `LogFilePath` file and push them into output every `LogFilePullIntervalInSeconds` seconds. 
+
+Use this option to get a detailed feedback on the installation process.
+
 ### Examples
 
 ```PowerShell
@@ -409,7 +426,10 @@ Install-Dynamics365Server `
     -BaseCurrencyPrecision 2 `
     -OrganizationCollation Latin1_General_CI_AI `
     -ReportingUrl http://$env:COMPUTERNAME/ReportServer_RSInstance01 `
-    -InstallAccount $CRMInstallAccountCredential
+    -InstallAccount $CRMInstallAccountCredential `
+    -LogFilePath c:\tmp\Dynamics365ServerInstallLog.txt `
+    -LogFilePullIntervalInSeconds 15 `
+    -LogFilePullToOutput
 ```
 
 ## Install-Dynamics365ReportingExtensions
@@ -425,6 +445,9 @@ Install-Dynamics365Server
     [-ConfigDBServer <string>]
     [-InstallAccount <pscredential>]
     [-MUOptin <switch>]
+    [-LogFilePath <string>]
+    [-LogFilePullIntervalInSeconds <int32>]
+    [-LogFilePullToOutput <switch>]
 ```
 
 ### Parameters
@@ -449,6 +472,20 @@ An account that has permissions to install the software and create a database. I
 
 See `<muoptin>` XML node description in http://157.56.148.23/en-us/library/hh699826.aspx and http://157.56.148.23/en-us/library/hh699684.aspx.
 
+#### LogFilePath
+
+Installation log file path. By default, installation process generates time-stamped log file path unless `LogFilePath` parameter is set.
+
+#### LogFilePullIntervalInSeconds
+
+Interval in seconds to be used during installation process updates. By default, installation process updates output every 30 seconds.
+
+#### LogFilePullToOutput
+
+Switch to pull installation logs into the output every `LogFilePullIntervalInSeconds` seconds. By default, installation process updates output without detailed installation logs. This option makes installation pull newest logs from `LogFilePath` file and push them into output every `LogFilePullIntervalInSeconds` seconds. 
+
+Use this option to get a detailed feedback on the installation process.
+
 ### Examples
 
 ```PowerShell
@@ -466,10 +503,13 @@ Install-Dynamics365ReportingExtensions `
     -MediaDir \\$env:COMPUTERNAME\c$\Install\Dynamics\Dynamics365Server90RTMEnu\SrsDataConnector `
     -ConfigDBServer $dbHostName `
     -InstanceName SQLInstance01 `
-    -InstallAccount $CRMInstallAccountCredential
+    -InstallAccount $CRMInstallAccountCredential `
+    -LogFilePath c:\tmp\Dynamics365ServerInstallLog.txt `
+    -LogFilePullIntervalInSeconds 15 `
+    -LogFilePullToOutput
 ```
 
-Installs Reporting Extensions on the remote SQL machine.
+Installs Reporting Extensions on the remote SQL machine, with detailed output.
 
 ## Install-Dynamics365Update
 
@@ -481,6 +521,9 @@ Installs Dynamics 365 Server update.
 Install-Dynamics365Update
     [-MediaDir] <string>
     [-InstallAccount <pscredential>]
+    [-LogFilePath <string>]
+    [-LogFilePullIntervalInSeconds <int32>]
+    [-LogFilePullToOutput <switch>]
 ```
 
 ### Parameters
@@ -493,13 +536,29 @@ Specifies the location of the Dynamics 365 Server update installation files.
 
 An account that has permissions to install the software and update the database. If not specified, the current account is used. If specified, CredSSP must be configured for invoking scripts locally on the machine with altered credential.
 
+#### LogFilePath
+
+Installation log file path. By default, installation process generates time-stamped log file path unless `LogFilePath` parameter is set.
+
+#### LogFilePullIntervalInSeconds
+
+Interval in seconds to be used during installation process updates. By default, installation process updates output every 30 seconds.
+
+#### LogFilePullToOutput
+
+Switch to pull installation logs into the output every `LogFilePullIntervalInSeconds` seconds. By default, installation process updates output without detailed installation logs. This option makes installation pull newest logs from `LogFilePath` file and push them into output every `LogFilePullIntervalInSeconds` seconds. 
+
+Use this option to get a detailed feedback on the installation process.
+
 ### Examples
 
 ```PowerShell
 $securedPassword = ConvertTo-SecureString "c0mp1Expa~~" -AsPlainText -Force
 $CRMInstallAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmadmin", $securedPassword );
-Save-Dynamics365Resource -Resource CRM2016ServicePack2Update02 -TargetDirectory C:\Install\Dynamics\CRM2016ServicePack2Update02
-Install-Dynamics365Update -MediaDir C:\Install\Dynamics\CRM2016ServicePack2Update02 -InstallAccount $CRMInstallAccountCredential
+Save-Dynamics365Resource -Resource CRM2016ServicePack2Update02 `
+    -TargetDirectory C:\Install\Dynamics\CRM2016ServicePack2Update02
+Install-Dynamics365Update -MediaDir C:\Install\Dynamics\CRM2016ServicePack2Update02 `
+    -InstallAccount $CRMInstallAccountCredential
 ```
 
 ## Install-Dynamics365Language
@@ -522,6 +581,7 @@ Specifies the location of the Dynamics 365 language pack installation files.
 ### Examples
 
 ```PowerShell
-Save-Dynamics365Resource -Resource Dynamics365Server90LanguagePackSve -TargetDirectory C:\Install\Dynamics\Dynamics365Server90LanguagePackSve
+Save-Dynamics365Resource -Resource Dynamics365Server90LanguagePackSve `
+    -TargetDirectory C:\Install\Dynamics\Dynamics365Server90LanguagePackSve
 Install-Dynamics365Language -MediaDir C:\Install\Dynamics\Dynamics365Server90LanguagePackSve
 ```

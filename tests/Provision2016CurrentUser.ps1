@@ -58,6 +58,7 @@ try {
         -OrganizationCollation Latin1_General_CI_AI `
         -ReportingUrl http://$dbHostName/ReportServer_RSInstance01
 } catch {
+    Write-Host "Failed in invoking of Install-Dynamics365Server";
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }

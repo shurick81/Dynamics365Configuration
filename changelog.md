@@ -2,11 +2,14 @@
 
 ## Not released
 
-N/A
+* `Install-Dynamics365Server`, `Install-Dynamics365ReportingExtension` and `Install-Dynamics365Update` have new parameters:
+  * `LogFilePath`
+  * `LogFilePullIntervalInSeconds`
+  * `LogFilePullToOutput`
 
 ## v1.1
 
-* `Dynamics365Prerequisites` renamed to `Dynamics365Prerequisite`
+* `Install-Dynamics365Prerequisites` renamed to `Install-Dynamics365Prerequisite`
 * Change in `Install-Dynamics365Server` parameters
   * `InstallDir` is not required
   * `BaseISOCurrencyCode` is not required

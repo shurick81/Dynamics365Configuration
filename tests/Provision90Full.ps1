@@ -149,6 +149,7 @@ try {
         -ReportingUrl http://$dbHostName/ReportServer_RSInstance01 `
         -InstallAccount $CRMInstallAccountCredential
 } catch {
+    Write-Host "Failed in invoking of Install-Dynamics365Server";
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }

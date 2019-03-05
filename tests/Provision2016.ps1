@@ -9,6 +9,8 @@ $VSSWriterServiceAccountCredential = New-Object System.Management.Automation.PSC
 $AsyncServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmasync", $securedPassword );
 $MonitoringServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmmon", $securedPassword );
 
+$domainName = (Get-WmiObject Win32_ComputerSystem).Domain;
+
 try {
     Save-Dynamics365Resource -Resource CRM2016RTMSve -TargetDirectory C:\Install\Dynamics\CRM2016RTMSve
 } catch {
@@ -71,8 +73,12 @@ try {
         -Organization "Contoso Ltd." `
         -OrganizationUniqueName Contoso `
         -ReportingUrl http://$dbHostName/ReportServer_RSInstance01 `
-        -InstallAccount $CRMInstallAccountCredential
+        -InstallAccount $CRMInstallAccountCredential `
+        -LogFilePath c:\tmp\Dynamics365ServerInstallLog.txt `
+        -LogFilePullIntervalInSeconds 15 `
+        -LogFilePullToOutput
 } catch {
+    Write-Host "Failed in invoking of Install-Dynamics365Server";
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
@@ -98,19 +104,32 @@ if ( $testResponse -eq "8.0.0.1088" )
     Write-Host "Software installed version is '$testResponse'. Test is not OK"
     Exit 1;
 }
+if( Test-Path "c:\tmp\Dynamics365ServerInstallLog.txt" )
+{
+    Write-Output "File c:\tmp\Dynamics365ServerInstallLog.txt is found, test OK"
+} else {
+    Write-Output "File c:\tmp\Dynamics365ServerInstallLog.txt is not found"
+    Exit 1;
+}
 
 try {
     if ( $dbHostName -eq $env:COMPUTERNAME ) {
         Install-Dynamics365ReportingExtensions `
             -MediaDir C:\Install\Dynamics\CRM2016RTMSve\SrsDataConnector `
             -InstanceName SQLInstance01 `
-            -InstallAccount $CRMInstallAccountCredential
+            -InstallAccount $CRMInstallAccountCredential `
+            -LogFilePath c:\tmp\Dynamics365ServerInstallLog.txt `
+            -LogFilePullIntervalInSeconds 15 `
+            -LogFilePullToOutput
     } else {
         Install-Dynamics365ReportingExtensions `
             -MediaDir \\$env:COMPUTERNAME\c$\Install\Dynamics\CRM2016RTMSve\SrsDataConnector `
             -ConfigDBServer $dbHostName `
             -InstanceName SQLInstance01 `
-            -InstallAccount $CRMInstallAccountCredential
+            -InstallAccount $CRMInstallAccountCredential `
+            -LogFilePath c:\tmp\Dynamics365ServerReportingExtensionsInstallLog.txt `
+            -LogFilePullIntervalInSeconds 15 `
+            -LogFilePullToOutput
     }
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
@@ -125,6 +144,21 @@ if ( $installedProduct ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected software is not installed, test is not OK";
+    Exit 1;
+}
+$testScriptBlock = {
+    Test-Path "c:\tmp\Dynamics365ServerReportingExtensionsInstallLog.txt";
+}
+if ( $dbHostName -eq $env:COMPUTERNAME ) {
+    $testResponse = Invoke-Command $testScriptBlock
+} else {
+    $testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
+}
+if ( $testResponse )
+{
+    Write-Output "File c:\tmp\Dynamics365ServerReportingExtensionsInstallLog.txt is found, test OK"
+} else {
+    Write-Output "File c:\tmp\Dynamics365ServerReportingExtensionsInstallLog.txt is not found"
     Exit 1;
 }
 
@@ -161,7 +195,11 @@ if ( $operationStatus.State -eq "Completed" ) {
 }
 
 try {
-    Install-Dynamics365Update -MediaDir C:\Install\Dynamics\CRM2016ServicePack2Update03Sve -InstallAccount $CRMInstallAccountCredential
+    Install-Dynamics365Update -MediaDir C:\Install\Dynamics\CRM2016ServicePack2Update03Sve `
+        -InstallAccount $CRMInstallAccountCredential `
+        -LogFilePath c:\tmp\Dynamics365ServerUpdate823InstallLog.txt `
+        -LogFilePullIntervalInSeconds 15 `
+        -LogFilePullToOutput
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
@@ -186,6 +224,13 @@ if ( $testResponse -eq "8.2.3.8" )
     Write-Host "Test OK";
 } else {
     Write-Host "Software installed version is '$testResponse'. Test is not OK"
+    Exit 1;
+}
+if( Test-Path "c:\tmp\Dynamics365ServerUpdate823InstallLog.txt" )
+{
+    Write-Output "File c:\tmp\Dynamics365ServerUpdate823InstallLog.txt is found, test OK"
+} else {
+    Write-Output "File c:\tmp\Dynamics365ServerUpdate823InstallLog.txt is not found"
     Exit 1;
 }
 
