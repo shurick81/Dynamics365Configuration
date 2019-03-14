@@ -6,6 +6,7 @@
   * `LogFilePath`
   * `LogFilePullIntervalInSeconds`
   * `LogFilePullToOutput`
+* `Install-Dynamics365Update` can install updates for Dynamics language packs and for Reporting Extensions.
 
 ## v1.1
 
