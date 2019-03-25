@@ -520,7 +520,6 @@ Installs Dynamics 365 Server update.
 ```PowerShell
 Install-Dynamics365Update
     [-MediaDir] <string>
-    [-InstallAccount <pscredential>]
     [-LogFilePath <string>]
     [-LogFilePullIntervalInSeconds <int32>]
     [-LogFilePullToOutput <switch>]
@@ -531,10 +530,6 @@ Install-Dynamics365Update
 #### MediaDir
 
 Specifies the location of the Dynamics 365 Server update installation files.
-
-#### InstallAccount
-
-An account that has permissions to install the software and update the database. If not specified, the current account is used. If specified, CredSSP must be configured for invoking scripts locally on the machine with altered credential.
 
 #### LogFilePath
 
@@ -559,6 +554,9 @@ Save-Dynamics365Resource -Resource CRM2016ServicePack2Update02 `
     -TargetDirectory C:\Install\Dynamics\CRM2016ServicePack2Update02
 Install-Dynamics365Update -MediaDir C:\Install\Dynamics\CRM2016ServicePack2Update02 `
     -InstallAccount $CRMInstallAccountCredential
+Invoke-Command "DB01.contoso.local" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+    Install-Dynamics365Update -MediaDir \\$env:COMPUTERNAME\c$\Install\Dynamics\CRM2016ReportingExtensionsUpdate01Nor
+}
 ```
 
 ## Install-Dynamics365Language

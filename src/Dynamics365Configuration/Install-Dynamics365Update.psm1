@@ -4,8 +4,6 @@
         Mandatory=$true)]
         [string]
         $MediaDir,
-        [pscredential]
-        $InstallAccount,
         [string]
         $LogFilePath = $null,
         [ValidateRange(1,3600)]
@@ -17,24 +15,17 @@
     $setupFilePath = "$mediaDir\CrmUpdateWrapper.exe";
     $fileVersion = ( Get-Command $setupFilePath ).FileVersionInfo.FileVersionRaw.ToString();
     Write-Output "Version of software to be installed: $fileVersion";
-    $testScriptBlock = {
-        try {
-            Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
-            if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
-                $CrmOrganization = Get-CrmOrganization;
-                $CrmOrganization.Version;
-            } else {
-                "Could not load Microsoft.Crm.PowerShell PSSnapin";
-            }
-        } catch {
-            $_.Exception.Message;
+    $testResponse = $null;
+    try {
+        Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
+        if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
+            $CrmOrganization = Get-CrmOrganization;
+            $testResponse = $CrmOrganization.Version;
+        } else {
+            "Could not load Microsoft.Crm.PowerShell PSSnapin";
         }
-    }
-    if ( $installAccount )
-    {
-        $testResponse = Invoke-Command -ScriptBlock $testScriptBlock $env:COMPUTERNAME -Credential $installAccount -Authentication CredSSP;
-    } else {
-        $testResponse = Invoke-Command -ScriptBlock $testScriptBlock;
+    } catch {
+        $_.Exception.Message;
     }
     $productDetected = $null;
     if ( $testResponse.StartsWith( "9." ) -or $testResponse.StartsWith( "8." ) ) {
@@ -43,82 +34,63 @@
     if ( $productDetected -and ( $productDetected -lt $fileVersion ) -and ( $productDetected.Substring( 0, 2 ) -eq $fileVersion.Substring( 0, 2 ) ) ) {
         $localInstallationScriptBlock = {
             param( $setupFilePath, $logFilePath, $logFilePullIntervalInSeconds, $logFilePullToOutput)
-            Write-Output "$(Get-Date) Starting $setupFilePath";
-            $installCrmScript = {
-                param( $setupFilePath, $logFilePath );
-                Write-Output "Start-Process '$setupFilePath' -ArgumentList '/q /log $logFilePath /norestart' -Wait;";
-                Start-Process "$setupFilePath" -ArgumentList "/q /log $logFilePath /norestart" -Wait;
-            }
-            $job = Start-Job -ScriptBlock $installCrmScript -ArgumentList $setupFilePath, $logFilePath;
-            Write-Output "$(Get-Date) Started installation job, log will be saved in $logFilePath";
-            $lastLinesCount = 0;
-
-            While ( $job.State -ne "Completed" )
-            {
-                Write-Output "$(Get-Date) Waiting until CRM installation job is done, sleeping $logFilePullIntervalInSeconds sec";
-                Start-Sleep $logFilePullIntervalInSeconds;
-                if(($logFilePullToOutput -eq $True) -and ((Test-Path $logFilePath) -eq $True)) {
-
-                    $linesCount    = (Get-Content $logFilePath | Measure-Object -Line).Lines;
-                    $newLinesCount = $linesCount - $lastLinesCount;
-
-                    if($newLinesCount -gt 0) {
-                        Write-Output "$(Get-Date) - new logs: $newLinesCount lines";
-                        $lines = Get-Content $logFilePath | Select-Object -First $newLinesCount -Skip $lastLinesCount;
-
-                        foreach($line in $lines) {
-                            Write-Output $line;
-                        }
-                    } else {
-                       Write-Output "$(Get-Date) - no new logs";
-                    }
-
-                    $lastLinesCount = $linesCount;
-                }
-            }
-
-            Write-Output "$(Get-Date) Job is complete, output:";
-            Write-Output ( Receive-Job $job );
-            Remove-Job $job;
         }
         if([String]::IsNullOrEmpty($logFilePath) -eq $True) {
             $timeStamp = ( Get-Date -Format u ).Replace(" ","-").Replace(":","-");
             $logFilePath = "$env:Temp\DynamicsReportingExtensionsInstallationLog_$timeStamp.txt";
         }
-        if ( $installAccount )
-        {
-            Invoke-Command -ScriptBlock $localInstallationScriptBlock `
-                -ComputerName $env:COMPUTERNAME `
-                -Credential $installAccount `
-                -Authentication CredSSP `
-                -ArgumentList $setupFilePath, $logFilePath, $logFilePullIntervalInSeconds, $logFilePullToOutput;
-        } else {
-            Invoke-Command -ScriptBlock $localInstallationScriptBlock `
-                -ArgumentList $setupFilePath, $logFilePath, $logFilePullIntervalInSeconds, $logFilePullToOutput;
+
+        Write-Output "$(Get-Date) Starting $setupFilePath";
+        $installCrmScript = {
+            param( $setupFilePath, $logFilePath );
+            Write-Output "Start-Process '$setupFilePath' -ArgumentList '/q /log $logFilePath /norestart' -Wait;";
+            Start-Process "$setupFilePath" -ArgumentList "/q /log $logFilePath /norestart" -Wait;
         }
-        $testScriptBlock = {
-            param( $logFilePath )
-            try {
-                Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
-                if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
-                    $CrmOrganization = Get-CrmOrganization;
-                    $CrmOrganization.Version;
+        $job = Start-Job -ScriptBlock $installCrmScript -ArgumentList $setupFilePath, $logFilePath;
+        Write-Output "$(Get-Date) Started installation job, log will be saved in $logFilePath";
+        $lastLinesCount = 0;
+
+        While ( $job.State -ne "Completed" )
+        {
+            Write-Output "$(Get-Date) Waiting until CRM installation job is done, sleeping $logFilePullIntervalInSeconds sec";
+            Start-Sleep $logFilePullIntervalInSeconds;
+            if(($logFilePullToOutput -eq $True) -and ((Test-Path $logFilePath) -eq $True)) {
+
+                $linesCount    = (Get-Content $logFilePath | Measure-Object -Line).Lines;
+                $newLinesCount = $linesCount - $lastLinesCount;
+
+                if($newLinesCount -gt 0) {
+                    Write-Output "$(Get-Date) - new logs: $newLinesCount lines";
+                    $lines = Get-Content $logFilePath | Select-Object -First $newLinesCount -Skip $lastLinesCount;
+
+                    foreach($line in $lines) {
+                        Write-Output $line;
+                    }
                 } else {
-                    "Could not load Microsoft.Crm.PowerShell PSSnapin";
+                   Write-Output "$(Get-Date) - no new logs";
                 }
-            } catch {
-                $_.Exception.Message;
+
+                $lastLinesCount = $linesCount;
             }
         }
-        if ( $installAccount )
-        {
-            $testResponse = Invoke-Command -ScriptBlock $testScriptBlock `
-                -ComputerName $env:COMPUTERNAME `
-                -Credential $installAccount `
-                -Authentication CredSSP;
-        } else {
-            $testResponse = Invoke-Command -ScriptBlock $testScriptBlock;
+
+        Write-Output "$(Get-Date) Job is complete, output:";
+        Write-Output ( Receive-Job $job );
+        Remove-Job $job;
+
+        $testResponse = $null;
+        try {
+            Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
+            if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
+                $CrmOrganization = Get-CrmOrganization;
+                $testResponse = $CrmOrganization.Version;
+            } else {
+                "Could not load Microsoft.Crm.PowerShell PSSnapin";
+            }
+        } catch {
+            $_.Exception.Message;
         }
+
         if ( $testResponse -eq $fileVersion ) {
             Write-Output "Installation is finished and verified successfully. Dynamics version installed: '$testResponse'";
         } else {

@@ -4,7 +4,7 @@ Vagrant.configure(2) do |config|
     config.winrm.password = "Fractalsol365"
     config.winrm.transport = :plaintext
     config.winrm.basic_auth_only = true
-    config.vm.synced_folder ".", "/vagrant", disabled: true
+    config.vm.synced_folder './../../../src' , 'c:/test-projects/Dynamics365Configuration/src'
     config.vm.define "AD01" do |vm_config|
         vm_config.vm.hostname = "AD01"
         vm_config.vm.box = "win2016-ad"
