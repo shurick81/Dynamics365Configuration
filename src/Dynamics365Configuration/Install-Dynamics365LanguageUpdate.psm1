@@ -17,7 +17,7 @@
     $fileVersionFull = "$($fileVersion.Major).$($fileVersion.Minor).$($fileVersion.Build.ToString("0000")).$($fileVersion.Revision.ToString("0000"))";
     Write-Output "$(Get-Date) Version of software to be installed: $fileVersionFull";
 
-    Write-Host "Checking the msp file name"
+    Write-Output "Checking the msp file name"
     $languagePackUpdateMspFile = Get-Item "$mediaDir\Mui_KB???????_amd64_????.msp";
     $fileLanguageCode = $languagePackUpdateMspFile.BaseName.Substring(20,4);
     if ( !$languagePackUpdateMspFile ) {
@@ -39,8 +39,8 @@
         Write-Output $errorMessage;
         Throw $errorMessage;
     }
-    $baseResourceName = $baseResource.Name; 
-    Write-Host "Base resource installed: $baseResourceName"
+    $baseResourceName = $baseResource.Name;
+    Write-Output "Base resource installed: $baseResourceName"
     $currentProductInstalled = Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "{$( $Dynamics365Resources.( $baseResourceName ).identifyingNumber )}" }
     if ( !$currentProductInstalled ) {
         $errorMessage = "Base product for this update is not installed";

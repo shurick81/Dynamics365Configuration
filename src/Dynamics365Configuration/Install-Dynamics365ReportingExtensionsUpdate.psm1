@@ -17,7 +17,7 @@
     $fileVersionFull = "$($fileVersion.Major).$($fileVersion.Minor).$($fileVersion.Build.ToString("0000")).$($fileVersion.Revision.ToString("0000"))";
     Write-Output "$(Get-Date) Version of software to be installed: $fileVersionFull";
 
-    Write-Host "Checking the msp file name"
+    Write-Output "Checking the msp file name"
     $reportingExtensionsUpdateMspFile = Get-Item "$mediaDir\Srs_KB???????_amd64_????.msp";
     if ( $reportingExtensionsUpdateMspFile ) {
         Write-Output "The update seems to correspond to Reporting Extensions";

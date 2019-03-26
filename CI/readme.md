@@ -22,8 +22,8 @@ Write-Host "Unpacking $tempFilePath to $dirPath";
 Set-ExecutionPolicy Bypass -Force;
 iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 choco install -y packer
-choco install -y virtualbox --version 5.2.22
-choco install -y vagrant --version 2.2.0
+choco install -y virtualbox
+choco install -y vagrant --version 2.2.3
 ```
 Reboot the machine if vagrant had not been installed before.
 
