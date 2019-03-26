@@ -2,6 +2,10 @@
 
 ## Not released
 
+N/A
+
+## v1.2
+
 * `Install-Dynamics365Server`, `Install-Dynamics365ReportingExtension` and `Install-Dynamics365Update` have new parameters:
   * `LogFilePath`
   * `LogFilePullIntervalInSeconds`
