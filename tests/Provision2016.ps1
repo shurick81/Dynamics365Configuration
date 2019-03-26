@@ -46,7 +46,33 @@ try {
 if ( Get-ChildItem C:\Install\Dynamics\CRM2016ServicePack2Update03Sve ) {
     Write-Host "Test OK";
 } else {
-    Write-Host "Expected files are not found in C:\Install\Dynamics\CRM2016LanguagePackNor, test is not OK";
+    Write-Host "Expected files are not found in C:\Install\Dynamics\CRM2016ServicePack2Update03Sve, test is not OK";
+    Exit 1;
+}
+
+try {
+    Save-Dynamics365Resource -Resource CRM2016ReportingExtensionsServicePack2Update03Sve -TargetDirectory C:\Install\Dynamics\CRM2016ReportingExtensionsServicePack2Update03Sve
+} catch {
+    Write-Host $_.Exception.Message -ForegroundColor Red;
+    Exit 1;
+}
+if ( Get-ChildItem C:\Install\Dynamics\CRM2016ReportingExtensionsServicePack2Update03Sve ) {
+    Write-Host "Test OK";
+} else {
+    Write-Host "Expected files are not found in C:\Install\Dynamics\CRM2016ReportingExtensionsServicePack2Update03Sve, test is not OK";
+    Exit 1;
+}
+
+try {
+    Save-Dynamics365Resource -Resource CRM2016LanguagePackServicePack2Update03Nor -TargetDirectory C:\Install\Dynamics\CRM2016LanguagePackServicePack2Update03Nor
+} catch {
+    Write-Host $_.Exception.Message -ForegroundColor Red;
+    Exit 1;
+}
+if ( Get-ChildItem C:\Install\Dynamics\CRM2016LanguagePackServicePack2Update03Nor ) {
+    Write-Host "Test OK";
+} else {
+    Write-Host "Expected files are not found in C:\Install\Dynamics\CRM2016LanguagePackServicePack2Update03Nor, test is not OK";
     Exit 1;
 }
 
@@ -195,11 +221,13 @@ if ( $operationStatus.State -eq "Completed" ) {
 }
 
 try {
-    Install-Dynamics365Update -MediaDir C:\Install\Dynamics\CRM2016ServicePack2Update03Sve `
-        -InstallAccount $CRMInstallAccountCredential `
-        -LogFilePath c:\tmp\Dynamics365ServerUpdate823InstallLog.txt `
-        -LogFilePullIntervalInSeconds 15 `
-        -LogFilePullToOutput
+    Invoke-Command "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+        Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
+        Install-Dynamics365Update -MediaDir C:\Install\Dynamics\CRM2016ServicePack2Update03Sve `
+            -LogFilePath c:\tmp\Dynamics365ServerUpdate823InstallLog.txt `
+            -LogFilePullIntervalInSeconds 15 `
+            -LogFilePullToOutput
+    }
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
@@ -231,6 +259,53 @@ if( Test-Path "c:\tmp\Dynamics365ServerUpdate823InstallLog.txt" )
     Write-Output "File c:\tmp\Dynamics365ServerUpdate823InstallLog.txt is found, test OK"
 } else {
     Write-Output "File c:\tmp\Dynamics365ServerUpdate823InstallLog.txt is not found"
+    Exit 1;
+}
+
+try {
+    if ( $dbHostName -eq $env:COMPUTERNAME ) {
+        $mediaDir = "C:\Install\Dynamics\CRM2016ReportingExtensionsServicePack2Update03Sve";
+    } else {
+        $mediaDir = "\\$env:COMPUTERNAME\c$\Install\Dynamics\CRM2016ReportingExtensionsServicePack2Update03Sve";
+    }
+    Write-Output "dbHostName is $dbHostName"
+    Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+        param( $mediaDir )
+        Import-Module C:\test-projects\Dynamics365Configuration\src\Dynamics365Configuration\Dynamics365Configuration.psd1
+        Write-Output "mediaDir is $mediaDir"
+        Install-Dynamics365ReportingExtensionsUpdate -MediaDir $mediaDir `
+            -LogFilePath c:\tmp\Dynamics365ServerInstallLog.txt `
+            -LogFilePullIntervalInSeconds 15 `
+            -LogFilePullToOutput
+    } -ArgumentList $mediaDir;
+} catch {
+    Write-Host "Failed in invoking of Install-Dynamics365Update";
+    Write-Host $_.Exception.Message -ForegroundColor Red;
+    Exit 1;
+}
+$currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+    Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
+}
+Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
+if ( $currentProductInstalled.DisplayVersion -eq "8.2.0003.0008" ) {
+    Write-Host "Test OK";
+} else {
+    Write-Host "Expected update is not installed, test is not OK";
+    Exit 1;
+}
+
+try {
+    Install-Dynamics365LanguageUpdate -MediaDir C:\Install\Dynamics\CRM2016LanguagePackServicePack2Update03Nor
+} catch {
+    Write-Host $_.Exception.Message -ForegroundColor Red;
+    Exit 1;
+}
+$currentProductInstalled = Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "{0C524DC1-1414-0080-8121-88490F4D5549}" }
+Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
+if ( $currentProductInstalled.DisplayVersion -eq "8.2.0003.0008" ) {
+    Write-Host "Test OK";
+} else {
+    Write-Host "Expected update is not installed, test is not OK";
     Exit 1;
 }
 

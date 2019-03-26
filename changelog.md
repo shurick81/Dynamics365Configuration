@@ -6,6 +6,17 @@
   * `LogFilePath`
   * `LogFilePullIntervalInSeconds`
   * `LogFilePullToOutput`
+* `Install-Dynamics365Update` does not have `-InstallAccount` parameter.
+* New commands `Install-Dynamics365ReportingExtensionUpdate` and `Install-Dynamics365LanguageUpdate`.
+* Added missing resources: `CRM2016LanguagePackHrv`
+* New resources:
+  * `CRM2016LanguagePackUpdate01\<Language\>`
+  * `CRM2016LanguagePackServicePack1\<Language\>`
+  * `CRM2016LanguagePackServicePack1Update01\<Language\>`
+  * `CRM2016LanguagePackServicePack2\<Language\>`
+  * `CRM2016LanguagePackServicePack2Update01\<Language\>`
+  * `CRM2016LanguagePackServicePack2Update02\<Language\>`
+  * `CRM2016LanguagePackServicePack2Update03\<Language\>`
 
 ## v1.1
 
