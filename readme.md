@@ -13,9 +13,13 @@ A module to ease infrastructure as code tasks for Dynamics 365. It allows to use
 
 * `Install-Dynamics365ReportingExtensions`, installs Dynamics 365 Reporting Extensions.
 
+* `Install-Dynamics365Language`, installs Dynamics 365 language pack.
+
 * `Install-Dynamics365Update`, installs Dynamics 365 Server update.
 
-* `Install-Dynamics365Language`, installs Dynamics 365 language pack.
+* `Install-Dynamics365ReportingExtensionsUpdate`, installs Dynamics 365 Server Reporting Extensions update.
+
+* `Install-Dynamics365LanguageUpdate`, installs Dynamics 365 Server Language Pack update.
 
 ## Compatibility and support
 
@@ -511,6 +515,31 @@ Install-Dynamics365ReportingExtensions `
 
 Installs Reporting Extensions on the remote SQL machine, with detailed output.
 
+## Install-Dynamics365Language
+
+Installs Dynamics 365 language pack. This command does not activate language pack in CRM organization, only installs it.
+
+### Syntax
+
+```PowerShell
+Install-Dynamics365Language
+    [-MediaDir] <string>
+```
+
+### Parameters
+
+#### MediaDir
+
+Specifies the location of the Dynamics 365 language pack installation files.
+
+### Examples
+
+```PowerShell
+Save-Dynamics365Resource -Resource Dynamics365Server90LanguagePackSve `
+    -TargetDirectory C:\Install\Dynamics\Dynamics365Server90LanguagePackSve
+Install-Dynamics365Language -MediaDir C:\Install\Dynamics\Dynamics365Server90LanguagePackSve
+```
+
 ## Install-Dynamics365Update
 
 Installs Dynamics 365 Server update.
@@ -550,36 +579,100 @@ Use this option to get a detailed feedback on the installation process.
 ```PowerShell
 $securedPassword = ConvertTo-SecureString "c0mp1Expa~~" -AsPlainText -Force
 $CRMInstallAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmadmin", $securedPassword );
-Save-Dynamics365Resource -Resource CRM2016ServicePack2Update02 `
-    -TargetDirectory C:\Install\Dynamics\CRM2016ServicePack2Update02
-Install-Dynamics365Update -MediaDir C:\Install\Dynamics\CRM2016ServicePack2Update02 `
-    -InstallAccount $CRMInstallAccountCredential
-Invoke-Command "DB01.contoso.local" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
-    Install-Dynamics365Update -MediaDir \\$env:COMPUTERNAME\c$\Install\Dynamics\CRM2016ReportingExtensionsUpdate01Nor
+Save-Dynamics365Resource -Resource CRM2016ServicePack2Update03Sve `
+    -TargetDirectory C:\Install\Dynamics\CRM2016ServicePack2Update03Sve
+Invoke-Command "$env:COMPUTERNAME.contoso.local" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+    Install-Dynamics365Update -MediaDir C:\Install\Dynamics\CRM2016ServicePack2Update03Sve `
+        -LogFilePath c:\tmp\Dynamics365ServerUpdate823InstallLog.txt `
+        -LogFilePullIntervalInSeconds 15 `
+        -LogFilePullToOutput
 }
 ```
 
-## Install-Dynamics365Language
+## Install-Dynamics365ReportingExtensionsUpdate
 
-Installs Dynamics 365 language pack. This command does not activate language pack in CRM organization, only installs it.
+Installs Dynamics 365 Server Reporting Extensions update.
 
 ### Syntax
 
 ```PowerShell
-Install-Dynamics365Language
+Install-Dynamics365ReportingExtensionsUpdate
     [-MediaDir] <string>
+    [-LogFilePath <string>]
+    [-LogFilePullIntervalInSeconds <int32>]
+    [-LogFilePullToOutput <switch>]
 ```
 
 ### Parameters
 
 #### MediaDir
 
-Specifies the location of the Dynamics 365 language pack installation files.
+Specifies the location of the Dynamics 365 Server update installation files.
+
+#### LogFilePath
+
+Installation log file path. By default, installation process generates time-stamped log file path unless `LogFilePath` parameter is set.
+
+#### LogFilePullIntervalInSeconds
+
+Interval in seconds to be used during installation process updates. By default, installation process updates output every 30 seconds.
+
+#### LogFilePullToOutput
+
+Switch to pull installation logs into the output every `LogFilePullIntervalInSeconds` seconds. By default, installation process updates output without detailed installation logs. This option makes installation pull newest logs from `LogFilePath` file and push them into output every `LogFilePullIntervalInSeconds` seconds. 
+
+Use this option to get a detailed feedback on the installation process.
 
 ### Examples
 
 ```PowerShell
-Save-Dynamics365Resource -Resource Dynamics365Server90LanguagePackSve `
-    -TargetDirectory C:\Install\Dynamics\Dynamics365Server90LanguagePackSve
-Install-Dynamics365Language -MediaDir C:\Install\Dynamics\Dynamics365Server90LanguagePackSve
+$securedPassword = ConvertTo-SecureString "c0mp1Expa~~" -AsPlainText -Force
+$CRMInstallAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmadmin", $securedPassword );
+Save-Dynamics365Resource -Resource CRM2016ReportingExtensionsUpdate01Nor `
+    -TargetDirectory C:\Install\Dynamics\CRM2016ReportingExtensionsUpdate01Nor
+Invoke-Command "DB01.contoso.local" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+    Install-Dynamics365ReportingExtensionsUpdate -MediaDir \\$env:COMPUTERNAME\c$\Install\Dynamics\CRM2016ReportingExtensionsUpdate01Nor
+}
+```
+
+## Install-Dynamics365LanguageUpdate
+
+Installs Dynamics 365 Server Language Pack update.
+
+### Syntax
+
+```PowerShell
+Install-Dynamics365ReportingExtensionsUpdate
+    [-MediaDir] <string>
+    [-LogFilePath <string>]
+    [-LogFilePullIntervalInSeconds <int32>]
+    [-LogFilePullToOutput <switch>]
+```
+
+### Parameters
+
+#### MediaDir
+
+Specifies the location of the Dynamics 365 Server update installation files.
+
+#### LogFilePath
+
+Installation log file path. By default, installation process generates time-stamped log file path unless `LogFilePath` parameter is set.
+
+#### LogFilePullIntervalInSeconds
+
+Interval in seconds to be used during installation process updates. By default, installation process updates output every 30 seconds.
+
+#### LogFilePullToOutput
+
+Switch to pull installation logs into the output every `LogFilePullIntervalInSeconds` seconds. By default, installation process updates output without detailed installation logs. This option makes installation pull newest logs from `LogFilePath` file and push them into output every `LogFilePullIntervalInSeconds` seconds. 
+
+Use this option to get a detailed feedback on the installation process.
+
+### Examples
+
+```PowerShell
+Save-Dynamics365Resource -Resource CRM2016LanguagePackServicePack2Update03Nor `
+    -TargetDirectory C:\Install\Dynamics\CRM2016LanguagePackServicePack2Update03Nor
+Install-Dynamics365ReportingExtensionsUpdate -MediaDir C:\Install\Dynamics\CRM2016LanguagePackServicePack2Update03Nor
 ```
