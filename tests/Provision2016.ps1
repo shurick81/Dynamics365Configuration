@@ -64,15 +64,15 @@ if ( Get-ChildItem C:\Install\Dynamics\CRM2016ReportingExtensionsServicePack2Upd
 }
 
 try {
-    Save-Dynamics365Resource -Resource CRM2016LanguagePackUpdate01Nor -TargetDirectory C:\Install\Dynamics\CRM2016LanguagePackUpdate01Nor
+    Save-Dynamics365Resource -Resource CRM2016LanguagePackServicePack2Update03Nor -TargetDirectory C:\Install\Dynamics\CRM2016LanguagePackServicePack2Update03Nor
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-if ( Get-ChildItem C:\Install\Dynamics\CRM2016LanguagePackUpdate01Nor ) {
+if ( Get-ChildItem C:\Install\Dynamics\CRM2016LanguagePackServicePack2Update03Nor ) {
     Write-Host "Test OK";
 } else {
-    Write-Host "Expected files are not found in C:\Install\Dynamics\CRM2016LanguagePackUpdate01Nor, test is not OK";
+    Write-Host "Expected files are not found in C:\Install\Dynamics\CRM2016LanguagePackServicePack2Update03Nor, test is not OK";
     Exit 1;
 }
 
@@ -295,14 +295,14 @@ if ( $currentProductInstalled.DisplayVersion -eq "8.2.0003.0008" ) {
 }
 
 try {
-    Install-Dynamics365LanguageUpdate -MediaDir C:\Install\Dynamics\CRM2016LanguagePackUpdate01Nor
+    Install-Dynamics365LanguageUpdate -MediaDir C:\Install\Dynamics\CRM2016LanguagePackServicePack2Update03Nor
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
 $currentProductInstalled = Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "{0C524DC1-1414-0080-8121-88490F4D5549}" }
 Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( $currentProductInstalled.DisplayVersion -eq "8.0.0001.0079" ) {
+if ( $currentProductInstalled.DisplayVersion -eq "8.2.0003.0008" ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected update is not installed, test is not OK";
