@@ -2,7 +2,9 @@
 
 ## Not released
 
-N/A
+* New resources:
+  * `Dynamics365Server90Update03\<Language\>`
+  * `Dynamics365Server90ReportingExtensionsUpdate03\<Language\>`
 
 ## v1.2
 
