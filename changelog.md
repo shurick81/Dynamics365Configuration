@@ -2,7 +2,14 @@
 
 ## Not released
 
-N/A
+* New resources:
+  * `CRM2016ServicePack2Update04\<Language\>`
+  * `CRM2016ReportingExtensionsServicePack2Update04\<Language\>`
+  * `CRM2016LanguagePackServicePack2Update04\<Language\>`
+  * `CRM2016ServicePack2Update05\<Language\>`
+  * `CRM2016ReportingExtensionsServicePack2Update05\<Language\>`
+  * `CRM2016LanguagePackServicePack2Update05\<Language\>`
+* Corrections in readme: fixed typos in list of valid values for -Resource parameter of Save-Dynamics365Resource commandlet.
 
 ## v1.2
 
