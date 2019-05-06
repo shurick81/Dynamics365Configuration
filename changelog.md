@@ -3,6 +3,8 @@
 ## Not released
 
 * New resources:
+  * `Dynamics365Server90Update03\<Language\>`
+  * `Dynamics365Server90ReportingExtensionsUpdate03\<Language\>`
   * `CRM2016ServicePack2Update04\<Language\>`
   * `CRM2016ReportingExtensionsServicePack2Update04\<Language\>`
   * `CRM2016LanguagePackServicePack2Update04\<Language\>`

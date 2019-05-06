@@ -107,7 +107,7 @@ Save-Dynamics365Resource
 
 #### -Resource
 
-The resource for downloading, possible values are [Dynamics365Server90RTM\<Language\>,VisualCPlusPlusRuntime,VisualCPlusPlus2010Runtime,SQLNCli2012SP4,SQLSysClrTypes2016,SharedManagementObjects2016,MSODBCSQL,Dynamics365Server90LanguagePack\<Language\>,CRM2016RTM\<Language\>,SQLNCli2018R2,SQLSysClrTypes2012,SharedManagementObjects2012,ReportViewer2012,CRM2016LanguagePack\<Language\>,CRM2016Update01\<Language\>,CRM2016ServicePack1\<Language\>,CRM2016ServicePack1Update01\<Language\>,CRM2016ServicePack2\<Language\>,CRM2016ServicePack2Update01\<Language\>,CRM2016ServicePack2Update02\<Language\>,CRM2016ServicePack2Update03\<Language\>,CRM2016ServicePack2Update04\<Language\>,CRM2016ServicePack2Update05\<Language\>,CRM2016ReportingExtensionsUpdate01\<Language\>,CRM2016ReportingExtensionsServicePack1\<Language\>,CRM2016ReportingExtensionsServicePack1Update01\<Language\>,CRM2016ReportingExtensionsServicePack2\<Language\>,CRM2016ReportingExtensionsServicePack2Update01\<Language\>,CRM2016ReportingExtensionsServicePack2Update02\<Language\>,CRM2016ReportingExtensionsServicePack2Update03\<Language\>,CRM2016ReportingExtensionsServicePack2Update04\<Language\>,CRM2016ReportingExtensionsServicePack2Update05\<Language\>,CRM2016LanguagePackUpdate01\<Language\>,CRM2016LanguagePackServicePack1\<Language\>,CRM2016LanguagePackServicePack1Update01\<Language\>,CRM2016LanguagePackServicePack2\<Language\>,CRM2016LanguagePackServicePack2Update01\<Language\>,CRM2016LanguagePackServicePack2Update02\<Language\>,CRM2016LanguagePackServicePack2Update03\<Language\>,CRM2016LanguagePackServicePack2Update04\<Language\>,CRM2016LanguagePackServicePack2Update05\<Language\>]
+The resource for downloading, possible values are [Dynamics365Server90RTM\<Language\>,VisualCPlusPlusRuntime,VisualCPlusPlus2010Runtime,SQLNCli2012SP4,SQLSysClrTypes2016,SharedManagementObjects2016,MSODBCSQL,Dynamics365Server90LanguagePack\<Language\>,Dynamics365Server90Update03\<Language\>,Dynamics365Server90ReportingExtensionsUpdate03\<Language\>,CRM2016RTM\<Language\>,SQLNCli2018R2,SQLSysClrTypes2012,SharedManagementObjects2012,ReportViewer2012,CRM2016LanguagePack\<Language\>,CRM2016Update01\<Language\>,CRM2016ServicePack1\<Language\>,CRM2016ServicePack1Update01\<Language\>,CRM2016ServicePack2\<Language\>,CRM2016ServicePack2Update01\<Language\>,CRM2016ServicePack2Update02\<Language\>,CRM2016ServicePack2Update03\<Language\>,CRM2016ServicePack2Update04\<Language\>,CRM2016ServicePack2Update05\<Language\>,CRM2016ReportingExtensionsUpdate01\<Language\>,CRM2016ReportingExtensionsServicePack1\<Language\>,CRM2016ReportingExtensionsServicePack1Update01\<Language\>,CRM2016ReportingExtensionsServicePack2\<Language\>,CRM2016ReportingExtensionsServicePack2Update01\<Language\>,CRM2016ReportingExtensionsServicePack2Update02\<Language\>,CRM2016ReportingExtensionsServicePack2Update03\<Language\>,CRM2016ReportingExtensionsServicePack2Update04\<Language\>,CRM2016ReportingExtensionsServicePack2Update05\<Language\>,CRM2016LanguagePackUpdate01\<Language\>,CRM2016LanguagePackServicePack1\<Language\>,CRM2016LanguagePackServicePack1Update01\<Language\>,CRM2016LanguagePackServicePack2\<Language\>,CRM2016LanguagePackServicePack2Update01\<Language\>,CRM2016LanguagePackServicePack2Update02\<Language\>,CRM2016LanguagePackServicePack2Update03\<Language\>,CRM2016LanguagePackServicePack2Update04\<Language\>,CRM2016LanguagePackServicePack2Update05\<Language\>]
 
 #### -TargetDirectory
 
@@ -579,10 +579,10 @@ Use this option to get a detailed feedback on the installation process.
 ```PowerShell
 $securedPassword = ConvertTo-SecureString "c0mp1Expa~~" -AsPlainText -Force
 $CRMInstallAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmadmin", $securedPassword );
-Save-Dynamics365Resource -Resource CRM2016ServicePack2Update03Sve `
-    -TargetDirectory C:\Install\Dynamics\CRM2016ServicePack2Update03Sve
+Save-Dynamics365Resource -Resource Dynamics365Server90Update03Sve `
+    -TargetDirectory C:\Install\Dynamics\Dynamics365Server90Update03Sve
 Invoke-Command "$env:COMPUTERNAME.contoso.local" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
-    Install-Dynamics365Update -MediaDir C:\Install\Dynamics\CRM2016ServicePack2Update03Sve `
+    Install-Dynamics365Update -MediaDir C:\Install\Dynamics\Dynamics365Server90Update03Sve `
         -LogFilePath c:\tmp\Dynamics365ServerUpdate823InstallLog.txt `
         -LogFilePullIntervalInSeconds 15 `
         -LogFilePullToOutput
@@ -628,10 +628,10 @@ Use this option to get a detailed feedback on the installation process.
 ```PowerShell
 $securedPassword = ConvertTo-SecureString "c0mp1Expa~~" -AsPlainText -Force
 $CRMInstallAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmadmin", $securedPassword );
-Save-Dynamics365Resource -Resource CRM2016ReportingExtensionsUpdate01Nor `
-    -TargetDirectory C:\Install\Dynamics\CRM2016ReportingExtensionsUpdate01Nor
+Save-Dynamics365Resource -Resource Dynamics365Server90ReportingExtensionsUpdate03Nor `
+    -TargetDirectory C:\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate03Nor
 Invoke-Command "DB01.contoso.local" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
-    Install-Dynamics365ReportingExtensionsUpdate -MediaDir \\$env:COMPUTERNAME\c$\Install\Dynamics\CRM2016ReportingExtensionsUpdate01Nor
+    Install-Dynamics365ReportingExtensionsUpdate -MediaDir \\$env:COMPUTERNAME\c$\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate03Nor
 }
 ```
 
