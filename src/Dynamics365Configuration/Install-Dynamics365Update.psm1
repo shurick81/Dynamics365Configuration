@@ -37,7 +37,7 @@
         }
         if([String]::IsNullOrEmpty($logFilePath) -eq $True) {
             $timeStamp = ( Get-Date -Format u ).Replace(" ","-").Replace(":","-");
-            $logFilePath = "$env:Temp\DynamicsReportingExtensionsInstallationLog_$timeStamp.txt";
+            $logFilePath = "$env:Temp\DynamicsUpdateInstallationLog_$timeStamp.txt";
         }
 
         Write-Output "$(Get-Date) Starting $setupFilePath";

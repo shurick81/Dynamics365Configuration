@@ -11,6 +11,8 @@
   * `CRM2016ServicePack2Update05\<Language\>`
   * `CRM2016ReportingExtensionsServicePack2Update05\<Language\>`
   * `CRM2016LanguagePackServicePack2Update05\<Language\>`
+* `Install-Dynamics365ReportingExtensionsUpdate`: default log path name is `$env:Temp\DynamicsReportingExtensionsUpdateInstallationLog_$timeStamp.txt`
+* `Install-Dynamics365Update`: default log file path is `$env:Temp\DynamicsUpdateInstallationLog_$timeStamp.txt`
 * Corrections in readme: fixed typos in list of valid values for -Resource parameter of Save-Dynamics365Resource commandlet.
 
 ## v1.2
