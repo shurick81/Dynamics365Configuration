@@ -90,7 +90,7 @@
         }
         if ([String]::IsNullOrEmpty($logFilePath) -eq $True) {
             $timeStamp = ( Get-Date -Format u ).Replace(" ", "-").Replace(":", "-");
-            $logFilePath = "$env:Temp\DynamicsReportingExtensionsInstallationLog_$timeStamp.txt";
+            $logFilePath = "$env:Temp\DynamicsReportingExtensionsUpdateInstallationLog_$timeStamp.txt";
         }
         Invoke-Command -ScriptBlock $localInstallationScriptBlock `
             -ArgumentList $setupFilePath, $logFilePath, $logFilePullIntervalInSeconds, $logFilePullToOutput;

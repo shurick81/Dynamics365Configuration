@@ -8,6 +8,8 @@
 ## Updates
 
 * Microsoft Dynamics 365 Server v9.0 (on-premises) Update 0.3
+* Microsoft Dynamics 365, version 8.2 (on-premises) Update 2.5
+* Microsoft Dynamics 365 (on-premises) Update 2.4
 * Microsoft Dynamics 365 (online and on-premises) Update 2.3
 * Microsoft Dynamics 365 Update 2.2
 * Microsoft Dynamics 365 Update 2.1
