@@ -1,6 +1,8 @@
 # Dynamics365Configuration module change log
 
-## Not released
+## v1.4
+
+* Fixing issue with updated SQL resource checksums
 
 N/A
 

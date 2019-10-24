@@ -217,12 +217,12 @@
     "SQLSysClrTypes2016": {
         "URL": "https://download.microsoft.com/download/8/7/2/872BCECA-C849-4B40-8EBE-21D48CDF1456/ENU/x64/SQLSysClrTypes.msi",
         "identifyingNumber": "96EB5054-C775-4BEF-B7B9-AA96A295EDCD",
-        "checksum": "359F50C51A874CB333B8B75B4A81F2BC4C707097"
+        "checksum": "CC540FB1492047C4E2A61CD6E86F60ACB67CED8C"
     },
     "SharedManagementObjects2016": {
         "URL": "https://download.microsoft.com/download/8/7/2/872BCECA-C849-4B40-8EBE-21D48CDF1456/ENU/x64/SharedManagementObjects.msi",
         "identifyingNumber": "20EA85AA-2A1D-4F11-B09F-4BA2BF3C8989",
-        "checksum": "EB8CE88CB0F6C79AB3BF808D74FCD4F90D0F231C"
+        "checksum": "70AA73F05FCEC68E0601245784BAF1D3F0FD9472"
     },
     "MSODBCSQL": {
         "URL": "https://download.microsoft.com/download/D/5/E/D5EEF288-A277-45C8-855B-8E2CB7E25B96/x64/msodbcsql.msi",
