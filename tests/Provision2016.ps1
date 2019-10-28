@@ -77,32 +77,43 @@ if ( Get-ChildItem C:\Install\Dynamics\CRM2016LanguagePackServicePack2Update05No
 }
 
 try {
-    Install-Dynamics365Server `
-        -MediaDir C:\Install\Dynamics\CRM2016RTMSve `
-        -LicenseKey WCPQN-33442-VH2RQ-M4RKF-GXYH4 `
-        -CreateDatabase `
-        -SqlServer $dbHostName\SQLInstance01 `
-        -PrivUserGroup "CN=CRM01PrivUserGroup,OU=CRM groups,DC=contoso,DC=local" `
-        -SQLAccessGroup "CN=CRM01SQLAccessGroup,OU=CRM groups,DC=contoso,DC=local" `
-        -UserGroup "CN=CRM01UserGroup,OU=CRM groups,DC=contoso,DC=local" `
-        -ReportingGroup "CN=CRM01ReportingGroup,OU=CRM groups,DC=contoso,DC=local" `
-        -PrivReportingGroup "CN=CRM01PrivReportingGroup,OU=CRM groups,DC=contoso,DC=local" `
-        -CrmServiceAccount $CRMServiceAccountCredential `
-        -DeploymentServiceAccount $DeploymentServiceAccountCredential `
-        -SandboxServiceAccount $SandboxServiceAccountCredential `
-        -VSSWriterServiceAccount $VSSWriterServiceAccountCredential `
-        -AsyncServiceAccount $AsyncServiceAccountCredential `
-        -MonitoringServiceAccount $MonitoringServiceAccountCredential `
-        -CreateWebSite `
-        -WebSitePort 5555 `
-        -WebSiteUrl https://$env:COMPUTERNAME.contoso.local `
-        -Organization "Contoso Ltd." `
-        -OrganizationUniqueName Contoso `
-        -ReportingUrl http://$dbHostName/ReportServer_RSInstance01 `
-        -InstallAccount $CRMInstallAccountCredential `
-        -LogFilePath c:\tmp\Dynamics365ServerInstallLog.txt `
-        -LogFilePullIntervalInSeconds 15 `
-        -LogFilePullToOutput
+    Write-Host "Invoking command on $env:COMPUTERNAME with dbHostName=$dbHostName parameter";
+    Invoke-Command "$env:COMPUTERNAME.contoso.local" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+        param( $dbHostName )
+        Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
+        $securedPassword = ConvertTo-SecureString "c0mp1Expa~~" -AsPlainText -Force
+        $CRMServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmsrv", $securedPassword );
+        $DeploymentServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmdplsrv", $securedPassword );
+        $SandboxServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmsandbox", $securedPassword );
+        $VSSWriterServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmvsswrit", $securedPassword );
+        $AsyncServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmasync", $securedPassword );
+        $MonitoringServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmmon", $securedPassword );
+        Install-Dynamics365Server `
+            -MediaDir C:\Install\Dynamics\CRM2016RTMSve `
+            -LicenseKey WCPQN-33442-VH2RQ-M4RKF-GXYH4 `
+            -CreateDatabase `
+            -SqlServer $dbHostName\SQLInstance01 `
+            -PrivUserGroup "CN=CRM01PrivUserGroup,OU=CRM groups,DC=contoso,DC=local" `
+            -SQLAccessGroup "CN=CRM01SQLAccessGroup,OU=CRM groups,DC=contoso,DC=local" `
+            -UserGroup "CN=CRM01UserGroup,OU=CRM groups,DC=contoso,DC=local" `
+            -ReportingGroup "CN=CRM01ReportingGroup,OU=CRM groups,DC=contoso,DC=local" `
+            -PrivReportingGroup "CN=CRM01PrivReportingGroup,OU=CRM groups,DC=contoso,DC=local" `
+            -CrmServiceAccount $CRMServiceAccountCredential `
+            -DeploymentServiceAccount $DeploymentServiceAccountCredential `
+            -SandboxServiceAccount $SandboxServiceAccountCredential `
+            -VSSWriterServiceAccount $VSSWriterServiceAccountCredential `
+            -AsyncServiceAccount $AsyncServiceAccountCredential `
+            -MonitoringServiceAccount $MonitoringServiceAccountCredential `
+            -CreateWebSite `
+            -WebSitePort 5555 `
+            -WebSiteUrl https://$env:COMPUTERNAME.contoso.local `
+            -Organization "Contoso Ltd." `
+            -OrganizationUniqueName Contoso `
+            -ReportingUrl http://$dbHostName/ReportServer_RSInstance01 `
+            -LogFilePath c:\tmp\Dynamics365ServerInstallLog.txt `
+            -LogFilePullIntervalInSeconds 15 `
+            -LogFilePullToOutput
+    } -ArgumentList $dbHostName;
 } catch {
     Write-Host "Failed in invoking of Install-Dynamics365Server";
     Write-Host $_.Exception.Message -ForegroundColor Red;
@@ -139,23 +150,28 @@ if( Test-Path "c:\tmp\Dynamics365ServerInstallLog.txt" )
 }
 
 try {
+    Write-Host "Invoking command on $env:COMPUTERNAME with dbHostName=$dbHostName parameter";
     if ( $dbHostName -eq $env:COMPUTERNAME ) {
-        Install-Dynamics365ReportingExtensions `
-            -MediaDir C:\Install\Dynamics\CRM2016RTMSve\SrsDataConnector `
-            -InstanceName SQLInstance01 `
-            -InstallAccount $CRMInstallAccountCredential `
-            -LogFilePath c:\tmp\Dynamics365ServerReportingExtensionsInstallLog.txt `
-            -LogFilePullIntervalInSeconds 15 `
-            -LogFilePullToOutput
+        Invoke-Command "$dbHostName.contoso.local" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+            Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
+            Install-Dynamics365ReportingExtensions `
+                -MediaDir C:\Install\Dynamics\CRM2016RTMSve\SrsDataConnector `
+                -InstanceName SQLInstance01 `
+                -LogFilePath c:\tmp\Dynamics365ServerReportingExtensionsInstallLog.txt `
+                -LogFilePullIntervalInSeconds 15 `
+                -LogFilePullToOutput
+            }
     } else {
-        Install-Dynamics365ReportingExtensions `
-            -MediaDir \\$env:COMPUTERNAME\c$\Install\Dynamics\CRM2016RTMSve\SrsDataConnector `
-            -ConfigDBServer $dbHostName `
-            -InstanceName SQLInstance01 `
-            -InstallAccount $CRMInstallAccountCredential `
-            -LogFilePath c:\tmp\Dynamics365ServerReportingExtensionsInstallLog.txt `
-            -LogFilePullIntervalInSeconds 15 `
-            -LogFilePullToOutput
+        Invoke-Command "$dbHostName.contoso.local" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+            param( $fileShareHost )
+            Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
+            Install-Dynamics365ReportingExtensions `
+                -MediaDir \\$env:COMPUTERNAME\c$\Install\Dynamics\CRM2016RTMSve\SrsDataConnector `
+                -InstanceName SQLInstance01 `
+                -LogFilePath c:\tmp\Dynamics365ServerReportingExtensionsInstallLog.txt `
+                -LogFilePullIntervalInSeconds 15 `
+                -LogFilePullToOutput
+        } -ArgumentList $env:COMPUTERNAME;
     }
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;

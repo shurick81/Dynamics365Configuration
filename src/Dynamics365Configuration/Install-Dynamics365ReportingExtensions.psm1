@@ -10,8 +10,6 @@
         $ConfigDBServer,
         [switch]
         $MUOptin = $false,
-        [pscredential]
-        $InstallAccount,
         [string]
         $LogFilePath = $null,
         [ValidateRange(1,3600)]
@@ -33,12 +31,7 @@
     } else {
         $configDBServerXmlParameter = $env:COMPUTERNAME;
     }
-    if ( $InstallAccount -and $configDBServer )
-    {
-        $installedProducts = Get-WmiObject Win32_Product -ComputerName $configDBServerXmlParameter -Credential $InstallAccount | ForEach-Object { $_.IdentifyingNumber }
-    } else {
-        $installedProducts = Get-WmiObject Win32_Product -ComputerName $configDBServerXmlParameter | ForEach-Object { $_.IdentifyingNumber }
-    }
+    $installedProducts = Get-WmiObject Win32_Product -ComputerName $env:COMPUTERNAME | ForEach-Object { $_.IdentifyingNumber }
     if ( $foundFileResource )
     {
         Write-Output "Found corresponding resource in the catalog: $foundFileResource";
@@ -131,37 +124,15 @@
             $timeStamp = ( Get-Date -Format u ).Replace(" ","-").Replace(":","-");
             $logFilePath = "$env:Temp\DynamicsReportingExtensionsInstallationLog_$timeStamp.txt";
         }
-        if ( $installAccount )
-        {
-            $domainName = (Get-WmiObject Win32_ComputerSystem).Domain;
-            Invoke-Command -ScriptBlock $localInstallationScriptBlock `
-                -ComputerName "$configDBServerXmlParameter.$domainName" `
-                -Credential $installAccount `
-                -Authentication CredSSP `
-                -ArgumentList $setupFilePath, $stringWriter.ToString(), $logFilePath, $logFilePullIntervalInSeconds, $logFilePullToOutput;
-        } else {
-            Invoke-Command -ScriptBlock $localInstallationScriptBlock `
-                -ArgumentList $setupFilePath, $stringWriter.ToString(), $logFilePath, $logFilePullIntervalInSeconds, $logFilePullToOutput;
-        }
+        Invoke-Command -ScriptBlock $localInstallationScriptBlock `
+            -ArgumentList $setupFilePath, $stringWriter.ToString(), $logFilePath, $logFilePullIntervalInSeconds, $logFilePullToOutput;
         Write-Output "The following products were installed:"
-        if ( $InstallAccount -and $configDBServer )
-        {
-            Get-WmiObject Win32_Product -ComputerName $configDBServerXmlParameter -Credential $InstallAccount | ForEach-Object {
-                if ( !$expectedProductIdentifyingNumber -or ( $_.IdentifyingNumber -eq "{$expectedProductIdentifyingNumber}" ) ) {
-                    $isInstalled = $true;
-                }
-                if ( !( $installedProducts -contains $_.IdentifyingNumber ) ) {
-                    Write-Output $_.IdentifyingNumber, $_.Name;
-                }
+        Get-WmiObject Win32_Product -ComputerName $env:COMPUTERNAME | ForEach-Object {
+            if ( !$expectedProductIdentifyingNumber -or ( $_.IdentifyingNumber -eq "{$expectedProductIdentifyingNumber}" ) ) {
+                $isInstalled = $true;
             }
-        } else {
-            Get-WmiObject Win32_Product -ComputerName $configDBServerXmlParameter | ForEach-Object {
-                if ( !$expectedProductIdentifyingNumber -or ( $_.IdentifyingNumber -eq "{$expectedProductIdentifyingNumber}" ) ) {
-                    $isInstalled = $true;
-                }
-                if ( !( $installedProducts -contains $_.IdentifyingNumber ) ) {
-                    Write-Output $_.IdentifyingNumber, $_.Name;
-                }
+            if ( !( $installedProducts -contains $_.IdentifyingNumber ) ) {
+                Write-Output $_.IdentifyingNumber, $_.Name;
             }
         }
         if ( $expectedProductIdentifyingNumber )
@@ -183,17 +154,8 @@
                         }
                     }
                 }
-                if ( $installAccount )
-                {
-                    Invoke-Command -ScriptBlock $getErrorLogScriptBlock `
-                        -ComputerName "$configDBServerXmlParameter.$domainName" `
-                        -Credential $installAccount `
-                        -Authentication CredSSP `
-                        -ArgumentList $logFilePath
-                } else {
-                    Invoke-Command -ScriptBlock $getErrorLogScriptBlock `
-                        -ArgumentList $logFilePath
-                }
+                Invoke-Command -ScriptBlock $getErrorLogScriptBlock `
+                    -ArgumentList $logFilePath
                 $errorMessage = "Installation job finished but the product $expectedProductIdentifyingNumber is still not installed";
 
                 Write-Output $errorMessage;
