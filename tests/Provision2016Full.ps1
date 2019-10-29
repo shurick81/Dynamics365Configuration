@@ -256,7 +256,7 @@ try {
             param( $fileShareHost )
             Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
             Install-Dynamics365ReportingExtensions `
-                -MediaDir \\$env:COMPUTERNAME\c$\Install\Dynamics\CRM2016RTMDan\SrsDataConnector `
+                -MediaDir \\$fileShareHost\c$\Install\Dynamics\CRM2016RTMDan\SrsDataConnector `
                 -InstanceName SQLInstance01
         } -ArgumentList $env:COMPUTERNAME;
     }
