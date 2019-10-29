@@ -37,8 +37,6 @@
             ],
             "headless": true,
             "shutdown_command": "a:/sysprep.bat",
-            "ram_size": 2048,
-            "cpu": 4,
             "switch_name": "Default Switch",
             "communicator": "winrm",
             "winrm_username": "packer",

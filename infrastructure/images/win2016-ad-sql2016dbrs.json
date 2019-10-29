@@ -40,8 +40,6 @@
             "headless": true,
             "http_directory": "http",
             "shutdown_command": "a:/sysprep.bat",
-            "ram_size": 4096,
-            "cpu": 4,
             "disk_size": 102400,
             "switch_name": "Default Switch",
             "communicator": "winrm",
