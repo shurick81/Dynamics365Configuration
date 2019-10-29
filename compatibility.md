@@ -7,7 +7,18 @@
 
 ## Updates
 
+* Microsoft Dynamics 365 Server, v9.0 (on-premises) Update 0.9
+* Microsoft Dynamics 365 Server, v9.0 (on-premises) Update 0.8
+* Microsoft Dynamics 365 Server, v9.0 (on-premises) Update 0.7
+* Microsoft Dynamics 365 Server, v9.0 (on-premises) Update 0.6
+* Microsoft Dynamics 365 Server, v9.0 (on-premises) Update 0.5
+* Microsoft Dynamics 365 for Customer Engagement, v9.0 (on-premises) Update 0.4
 * Microsoft Dynamics 365 Server v9.0 (on-premises) Update 0.3
+* Microsoft Dynamics 365 (on-premises) Update 2.10
+* Microsoft Dynamics 365 (on-premises) Update 2.9
+* Microsoft Dynamics 365 (on premises) Update 2.8
+* Microsoft Dynamics 365 (on-premises) Update 2.7
+* Microsoft Dynamics 365 (on-premises) Update 2.6
 * Microsoft Dynamics 365, version 8.2 (on-premises) Update 2.5
 * Microsoft Dynamics 365 (on-premises) Update 2.4
 * Microsoft Dynamics 365 (online and on-premises) Update 2.3
@@ -46,7 +57,7 @@
 * SVE (sv-SE)
 * TRK (tr-TR)
 
-# Dynamics 365 Server Language packs, for both v8 and v9
+## Dynamics 365 Server Language packs, for both v8 and v9
 
 * SAU (ar-SA)
 * EUS (eu-ES)
