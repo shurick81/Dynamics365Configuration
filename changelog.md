@@ -2,6 +2,8 @@
 
 ## v1.4
 
+* Breaking change: Install-Dynamics365Server does not support -InstallAccount parameter.
+* Breaking change: Install-Dynamics365ReportingExtension does not support -InstallAccount parameter.
 * Fixing issue with updated SQL resource checksums
 
 N/A

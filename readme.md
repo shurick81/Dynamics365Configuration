@@ -238,7 +238,6 @@ Install-Dynamics365Server
     [-SQM <switch>]
     [-MUOptin <switch>]
     [-Reboot <switch>]
-    [-InstallAccount <pscredential>]
     [-LogFilePath <string>]
     [-LogFilePullIntervalInSeconds <int32>]
     [-LogFilePullToOutput <switch>]
@@ -372,10 +371,6 @@ See `<muoptin>` XML node description in https://technet.microsoft.com/en-us/libr
 
 See `<Reboot>` XML node description in https://technet.microsoft.com/en-us/library/hh699830.aspx.
 
-#### InstallAccount
-
-An account that has permissions to install the software and create a database. If not specified, the current account is used. If specified, CredSSP must be configured for invoking scripts locally on the machine with altered credential.
-
 #### LogFilePath
 
 Installation log file path. By default, installation process generates time-stamped log file path unless `LogFilePath` parameter is set.
@@ -395,45 +390,47 @@ Use this option to get a detailed feedback on the installation process.
 ```PowerShell
 $securedPassword = ConvertTo-SecureString "c0mp1Expa~~" -AsPlainText -Force
 $CRMInstallAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmadmin", $securedPassword );
-$CRMServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmsrv", $securedPassword );
-$DeploymentServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmdplsrv", $securedPassword );
-$SandboxServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmsandbox", $securedPassword );
-$VSSWriterServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmvsswrit", $securedPassword );
-$AsyncServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmasync", $securedPassword );
-$MonitoringServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmmon", $securedPassword );
-Save-Dynamics365Resource -Resource Dynamics365Server90RTMEnu -TargetDirectory C:\Install\Dynamics\Dynamics365Server90RTMEnu
-Install-Dynamics365Server `
-    -MediaDir C:\Install\Dynamics\Dynamics365Server90RTMEnu `
-    -LicenseKey KKNV2-4YYK8-D8HWD-GDRMW-29YTW `
-    -InstallDir "c:\Program Files\Microsoft Dynamics CRM" `
-    -CreateDatabase `
-    -SqlServer $env:COMPUTERNAME\SQLInstance01 `
-    -PrivUserGroup "CN=CRM01PrivUserGroup,OU=CRM groups,DC=contoso,DC=local" `
-    -SQLAccessGroup "CN=CRM01SQLAccessGroup,OU=CRM groups,DC=contoso,DC=local" `
-    -UserGroup "CN=CRM01UserGroup,OU=CRM groups,DC=contoso,DC=local" `
-    -ReportingGroup "CN=CRM01ReportingGroup,OU=CRM groups,DC=contoso,DC=local" `
-    -PrivReportingGroup "CN=CRM01PrivReportingGroup,OU=CRM groups,DC=contoso,DC=local" `
-    -CrmServiceAccount $CRMServiceAccountCredential `
-    -DeploymentServiceAccount $DeploymentServiceAccountCredential `
-    -SandboxServiceAccount $SandboxServiceAccountCredential `
-    -VSSWriterServiceAccount $VSSWriterServiceAccountCredential `
-    -AsyncServiceAccount $AsyncServiceAccountCredential `
-    -MonitoringServiceAccount $MonitoringServiceAccountCredential `
-    -CreateWebSite `
-    -WebSitePort 5555 `
-    -WebSiteUrl https://$env:COMPUTERNAME.contoso.local `
-    -Organization "Contoso Ltd." `
-    -OrganizationUniqueName Contoso `
-    -BaseISOCurrencyCode USD `
-    -BaseCurrencyName "US Dollar" `
-    -BaseCurrencySymbol `$ `
-    -BaseCurrencyPrecision 2 `
-    -OrganizationCollation Latin1_General_CI_AI `
-    -ReportingUrl http://$env:COMPUTERNAME/ReportServer_RSInstance01 `
-    -InstallAccount $CRMInstallAccountCredential `
-    -LogFilePath c:\tmp\Dynamics365ServerInstallLog.txt `
-    -LogFilePullIntervalInSeconds 15 `
-    -LogFilePullToOutput
+Invoke-Command "$env:COMPUTERNAME.contoso.local" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+    $securedPassword = ConvertTo-SecureString "c0mp1Expa~~" -AsPlainText -Force
+    $CRMServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmsrv", $securedPassword );
+    $DeploymentServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmdplsrv", $securedPassword );
+    $SandboxServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmsandbox", $securedPassword );
+    $VSSWriterServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmvsswrit", $securedPassword );
+    $AsyncServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmasync", $securedPassword );
+    $MonitoringServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmmon", $securedPassword );
+    Save-Dynamics365Resource -Resource Dynamics365Server90RTMEnu -TargetDirectory C:\Install\Dynamics\Dynamics365Server90RTMEnu
+    Install-Dynamics365Server `
+        -MediaDir C:\Install\Dynamics\Dynamics365Server90RTMEnu `
+        -LicenseKey KKNV2-4YYK8-D8HWD-GDRMW-29YTW `
+        -InstallDir "c:\Program Files\Microsoft Dynamics CRM" `
+        -CreateDatabase `
+        -SqlServer $env:COMPUTERNAME\SQLInstance01 `
+        -PrivUserGroup "CN=CRM01PrivUserGroup,OU=CRM groups,DC=contoso,DC=local" `
+        -SQLAccessGroup "CN=CRM01SQLAccessGroup,OU=CRM groups,DC=contoso,DC=local" `
+        -UserGroup "CN=CRM01UserGroup,OU=CRM groups,DC=contoso,DC=local" `
+        -ReportingGroup "CN=CRM01ReportingGroup,OU=CRM groups,DC=contoso,DC=local" `
+        -PrivReportingGroup "CN=CRM01PrivReportingGroup,OU=CRM groups,DC=contoso,DC=local" `
+        -CrmServiceAccount $CRMServiceAccountCredential `
+        -DeploymentServiceAccount $DeploymentServiceAccountCredential `
+        -SandboxServiceAccount $SandboxServiceAccountCredential `
+        -VSSWriterServiceAccount $VSSWriterServiceAccountCredential `
+        -AsyncServiceAccount $AsyncServiceAccountCredential `
+        -MonitoringServiceAccount $MonitoringServiceAccountCredential `
+        -CreateWebSite `
+        -WebSitePort 5555 `
+        -WebSiteUrl https://$env:COMPUTERNAME.contoso.local `
+        -Organization "Contoso Ltd." `
+        -OrganizationUniqueName Contoso `
+        -BaseISOCurrencyCode USD `
+        -BaseCurrencyName "US Dollar" `
+        -BaseCurrencySymbol `$ `
+        -BaseCurrencyPrecision 2 `
+        -OrganizationCollation Latin1_General_CI_AI `
+        -ReportingUrl http://$env:COMPUTERNAME/ReportServer_RSInstance01 `
+        -LogFilePath c:\tmp\Dynamics365ServerInstallLog.txt `
+        -LogFilePullIntervalInSeconds 15 `
+        -LogFilePullToOutput
+}
 ```
 
 ## Install-Dynamics365ReportingExtensions
@@ -443,11 +440,10 @@ Installs Dynamics 365 Reporting Extensions.
 ### Syntax
 
 ```PowerShell
-Install-Dynamics365Server
+Install-Dynamics365ReportingExtensions
     -MediaDir <string>
     -InstanceName <string>
     [-ConfigDBServer <string>]
-    [-InstallAccount <pscredential>]
     [-MUOptin <switch>]
     [-LogFilePath <string>]
     [-LogFilePullIntervalInSeconds <int32>]
@@ -503,14 +499,14 @@ Installs the software locally.
 ```PowerShell
 $securedPassword = ConvertTo-SecureString "c0mp1Expa~~" -AsPlainText -Force
 $CRMInstallAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmadmin", $securedPassword );
-Install-Dynamics365ReportingExtensions `
-    -MediaDir \\$env:COMPUTERNAME\c$\Install\Dynamics\Dynamics365Server90RTMEnu\SrsDataConnector `
-    -ConfigDBServer $dbHostName `
-    -InstanceName SQLInstance01 `
-    -InstallAccount $CRMInstallAccountCredential `
-    -LogFilePath c:\tmp\Dynamics365ServerInstallLog.txt `
-    -LogFilePullIntervalInSeconds 15 `
-    -LogFilePullToOutput
+Invoke-Command "DB01.contoso.local" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+    Install-Dynamics365ReportingExtensions `
+        -MediaDir C:\Install\Dynamics\Dynamics365Server90RTMEnu\SrsDataConnector `
+        -InstanceName SQLInstance01 `
+        -LogFilePath c:\tmp\Dynamics365ServerInstallLog.txt `
+        -LogFilePullIntervalInSeconds 15 `
+        -LogFilePullToOutput
+}
 ```
 
 Installs Reporting Extensions on the remote SQL machine, with detailed output.

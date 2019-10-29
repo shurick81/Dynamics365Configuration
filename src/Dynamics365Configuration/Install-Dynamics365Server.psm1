@@ -83,8 +83,6 @@
         $MUOptin = $false,
         [switch]
         $Reboot = $false,
-        [pscredential]
-        $InstallAccount,
         [string]
         $LogFilePath = $null,
         [ValidateRange(1,3600)]
@@ -110,12 +108,7 @@
             $_.Exception.Message;
         }
     }
-    if ( $installAccount )
-    {
-        $testResponse = Invoke-Command -ScriptBlock $testScriptBlock $env:COMPUTERNAME -Credential $installAccount -Authentication CredSSP;
-    } else {
-        $testResponse = Invoke-Command -ScriptBlock $testScriptBlock;
-    }
+    $testResponse = Invoke-Command -ScriptBlock $testScriptBlock;
     $productDetected = $null;
     if ( $testResponse.StartsWith( "9." ) -or $testResponse.StartsWith( "8." ) ) {
         $productDetected = $testResponse;
@@ -346,17 +339,8 @@
             $timeStamp = ( Get-Date -Format u ).Replace(" ","-").Replace(":","-");
             $logFilePath = "$env:Temp\CRMInstallationLog_$timeStamp.txt";
         }
-        if ( $installAccount )
-        {
-            Invoke-Command -ScriptBlock $localInstallationScriptBlock `
-                -ComputerName $env:COMPUTERNAME `
-                -Credential $installAccount `
-                -Authentication CredSSP `
-                -ArgumentList $setupFilePath, $stringWriter.ToString(), $logFilePath, $logFilePullIntervalInSeconds, $logFilePullToOutput;
-        } else {
-            Invoke-Command -ScriptBlock $localInstallationScriptBlock `
-                -ArgumentList $setupFilePath, $stringWriter.ToString(), $logFilePath, $logFilePullIntervalInSeconds, $logFilePullToOutput;
-        }
+        Invoke-Command -ScriptBlock $localInstallationScriptBlock `
+            -ArgumentList $setupFilePath, $stringWriter.ToString(), $logFilePath, $logFilePullIntervalInSeconds, $logFilePullToOutput;
         Write-Output "Sleeping after installation";
         Start-Sleep 10;
         $testScriptBlock = {
@@ -372,15 +356,7 @@
                 $_.Exception.Message;
             }
         }
-        if ( $installAccount )
-        {
-            $testResponse = Invoke-Command -ScriptBlock $testScriptBlock `
-                -ComputerName $env:COMPUTERNAME `
-                -Credential $installAccount `
-                -Authentication CredSSP
-        } else {
-            $testResponse = Invoke-Command -ScriptBlock $testScriptBlock
-        }
+        $testResponse = Invoke-Command -ScriptBlock $testScriptBlock
         Write-Output "Sleeping after version obtaining";
         Start-Sleep 10;
         if ( $testResponse -eq $fileVersion ) {
