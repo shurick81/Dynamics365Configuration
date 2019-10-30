@@ -130,14 +130,14 @@ if ( $testResponse -eq "9.0.2.3034" )
 try {
     Write-Host "Invoking command on $env:COMPUTERNAME with dbHostName=$dbHostName parameter";
     if ( $dbHostName -eq $env:COMPUTERNAME ) {
-        Invoke-Command "$dbHostName.contoso.local" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+        Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
             Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
             Install-Dynamics365ReportingExtensions `
                 -MediaDir C:\Install\Dynamics\Dynamics365Server90RTMEnu\SrsDataConnector `
                 -InstanceName SQLInstance01
         }
     } else {
-        Invoke-Command "$dbHostName.contoso.local" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+        Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
             param( $fileShareHost )
             Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
             Install-Dynamics365ReportingExtensions `

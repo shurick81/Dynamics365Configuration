@@ -78,7 +78,7 @@ if ( Get-ChildItem C:\Install\Dynamics\CRM2016LanguagePackServicePack2Update11No
 
 try {
     Write-Host "Invoking command on $env:COMPUTERNAME with dbHostName=$dbHostName parameter";
-    Invoke-Command "$env:COMPUTERNAME.contoso.local" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+    Invoke-Command "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
         param( $dbHostName )
         Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
         $securedPassword = ConvertTo-SecureString "c0mp1Expa~~" -AsPlainText -Force
@@ -152,7 +152,7 @@ if( Test-Path "c:\tmp\Dynamics365ServerInstallLog.txt" )
 try {
     Write-Host "Invoking command on $env:COMPUTERNAME with dbHostName=$dbHostName parameter";
     if ( $dbHostName -eq $env:COMPUTERNAME ) {
-        Invoke-Command "$dbHostName.contoso.local" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+        Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
             Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
             Install-Dynamics365ReportingExtensions `
                 -MediaDir C:\Install\Dynamics\CRM2016RTMSve\SrsDataConnector `
@@ -162,7 +162,7 @@ try {
                 -LogFilePullToOutput
             }
     } else {
-        Invoke-Command "$dbHostName.contoso.local" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+        Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
             param( $fileShareHost )
             Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
             Install-Dynamics365ReportingExtensions `
