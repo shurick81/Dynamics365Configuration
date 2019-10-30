@@ -5,8 +5,40 @@
 * Breaking change: Install-Dynamics365Server does not support -InstallAccount parameter.
 * Breaking change: Install-Dynamics365ReportingExtension does not support -InstallAccount parameter.
 * Fixing issue with updated SQL resource checksums
+    * SQLSysClrTypes2016
+    * SharedManagementObjects2016
+* New Dynamics 365 updates (857 new downloadables in total):
 
-N/A
+  * Dynamics365Server90Update04\<Language\>
+  * Dynamics365Server90ReportingExtensionsUpdate04\<Language\>
+  * Dynamics365Server90Update05\<Language\>
+  * Dynamics365Server90ReportingExtensionsUpdate05\<Language\>
+  * Dynamics365Server90Update06\<Language\>
+  * Dynamics365Server90ReportingExtensionsUpdate06\<Language\>
+  * Dynamics365Server90Update07\<Language\>
+  * Dynamics365Server90ReportingExtensionsUpdate07\<Language\>
+  * Dynamics365Server90Update08\<Language\>
+  * Dynamics365Server90ReportingExtensionsUpdate08\<Language\>
+  * Dynamics365Server90Update09\<Language\>
+  * Dynamics365Server90ReportingExtensionsUpdate09\<Language\>
+  * CRM2016ServicePack2Update06\<Language\>
+  * CRM2016ReportingExtensionsServicePack2Update06\<Language\>
+  * CRM2016LanguagePackServicePack2Update06\<Language\>
+  * CRM2016ServicePack2Update07\<Language\>
+  * CRM2016ReportingExtensionsServicePack2Update07\<Language\>
+  * CRM2016LanguagePackServicePack2Update07\<Language\>
+  * CRM2016ServicePack2Update08\<Language\>
+  * CRM2016ReportingExtensionsServicePack2Update08\<Language\>
+  * CRM2016LanguagePackServicePack2Update08\<Language\>
+  * CRM2016ServicePack2Update09\<Language\>
+  * CRM2016ReportingExtensionsServicePack2Update09\<Language\>
+  * CRM2016LanguagePackServicePack2Update09\<Language\>
+  * CRM2016ServicePack2Update10\<Language\>
+  * CRM2016ReportingExtensionsServicePack2Update10\<Language\>
+  * CRM2016LanguagePackServicePack2Update10\<Language\>
+  * CRM2016ServicePack2Update11\<Language\>
+  * CRM2016ReportingExtensionsServicePack2Update11\<Language\>
+  * CRM2016LanguagePackServicePack2Update11\<Language\>
 
 ## v1.3
 
