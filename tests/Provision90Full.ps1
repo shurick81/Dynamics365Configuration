@@ -756,7 +756,7 @@ $testScriptBlock = {
     }
 }
 $testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
-if ( $testResponse -eq "9.0.8.5" )
+if ( $testResponse -eq "9.0.8.9" )
 {
     Write-Host "Test OK";
 } else {
@@ -796,7 +796,7 @@ $currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential 
     Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
 }
 Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( $currentProductInstalled.DisplayVersion -eq "9.0.0008.0005" ) {
+if ( $currentProductInstalled.DisplayVersion -eq "9.0.0008.0009" ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected update is not installed, test is not OK";
