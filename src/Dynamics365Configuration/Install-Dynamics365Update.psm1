@@ -31,7 +31,7 @@
     if ( $testResponse.StartsWith( "9." ) -or $testResponse.StartsWith( "8." ) ) {
         $productDetected = $testResponse;
     }
-    if ( $productDetected -and ( [version]$productDetected -lt [version]$fileVersion ) -and ( ( [version]$productDetected ).Major -eq [version]$fileVersion ).Major ) ) {
+    if ( $productDetected -and ( [version]$productDetected -lt [version]$fileVersion ) -and ( ( [version]$productDetected ).Major -eq ( [version]$fileVersion ).Major ) ) {
         $localInstallationScriptBlock = {
             param( $setupFilePath, $logFilePath, $logFilePullIntervalInSeconds, $logFilePullToOutput)
         }
