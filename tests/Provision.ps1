@@ -65,7 +65,7 @@ if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpd
 
 try {
     Write-Host "Invoking command on $env:COMPUTERNAME with dbHostName=$dbHostName parameter";
-    Invoke-Command $env:COMPUTERNAME -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+    Invoke-Command "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
         param( $dbHostName )
         Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
         $securedPassword = ConvertTo-SecureString "c0mp1Expa~~" -AsPlainText -Force
