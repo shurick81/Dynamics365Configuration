@@ -64,9 +64,10 @@ if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpd
 }
 
 try {
-    Write-Host "Invoking command on $env:COMPUTERNAME with dbHostName=$dbHostName parameter";
+    Write-Host "Invoking command on $env:COMPUTERNAME.$domainName with dbHostName=$dbHostName parameter";
     Invoke-Command "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
         param( $dbHostName )
+        Write-Host "Invoked, starting execution";
         Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
         $securedPassword = ConvertTo-SecureString "c0mp1Expa~~" -AsPlainText -Force
         $CRMServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmsrv", $securedPassword );
@@ -128,7 +129,7 @@ if ( $testResponse -eq "9.0.2.3034" )
 }
 
 try {
-    Write-Host "Invoking command on $env:COMPUTERNAME with dbHostName=$dbHostName parameter";
+    Write-Host "Invoking command on $env:COMPUTERNAME.$domainName with dbHostName=$dbHostName parameter";
     if ( $dbHostName -eq $env:COMPUTERNAME ) {
         Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
             Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;

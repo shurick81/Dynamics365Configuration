@@ -77,7 +77,7 @@ if ( Get-ChildItem C:\Install\Dynamics\CRM2016LanguagePackServicePack2Update11No
 }
 
 try {
-    Write-Host "Invoking command on $env:COMPUTERNAME with dbHostName=$dbHostName parameter";
+    Write-Host "Invoking command on $env:COMPUTERNAME.$domainName with dbHostName=$dbHostName parameter";
     Invoke-Command "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
         param( $dbHostName )
         Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
@@ -150,7 +150,7 @@ if( Test-Path "c:\tmp\Dynamics365ServerInstallLog.txt" )
 }
 
 try {
-    Write-Host "Invoking command on $env:COMPUTERNAME with dbHostName=$dbHostName parameter";
+    Write-Host "Invoking command on $env:COMPUTERNAME.$domainName with dbHostName=$dbHostName parameter";
     if ( $dbHostName -eq $env:COMPUTERNAME ) {
         Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
             Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
