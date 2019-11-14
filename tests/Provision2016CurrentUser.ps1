@@ -66,7 +66,7 @@ $testScriptBlock = {
     try {
         Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
         if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
-            $CrmOrganization = Get-CrmOrganization;
+            $CrmOrganization = ( Get-CrmOrganization )[0];
             $CrmOrganization.Version;
         } else {
             "Could not load Microsoft.Crm.PowerShell PSSnapin";
@@ -111,7 +111,7 @@ $testScriptBlock = {
     try {
         Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
         if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
-            $CrmOrganization = Get-CrmOrganization;
+            $CrmOrganization = ( Get-CrmOrganization )[0];
             $CrmOrganization.Version;
         } else {
             "Could not load Microsoft.Crm.PowerShell PSSnapin";

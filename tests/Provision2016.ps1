@@ -123,7 +123,7 @@ $testScriptBlock = {
     try {
         Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
         if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
-            $CrmOrganization = Get-CrmOrganization;
+            $CrmOrganization = ( Get-CrmOrganization )[0];
             $CrmOrganization.Version;
         } else {
             "Could not load Microsoft.Crm.PowerShell PSSnapin";
@@ -240,7 +240,7 @@ try {
     Invoke-Command "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
         Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
         Install-Dynamics365Update -MediaDir C:\Install\Dynamics\CRM2016ServicePack2Update11Sve `
-            -LogFilePath c:\tmp\Dynamics365ServerUpdate825InstallLog.txt `
+            -LogFilePath c:\tmp\Dynamics365ServerUpdate8211InstallLog.txt `
             -LogFilePullIntervalInSeconds 15 `
             -LogFilePullToOutput
     }
@@ -252,7 +252,7 @@ $testScriptBlock = {
     try {
         Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
         if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
-            $CrmOrganization = Get-CrmOrganization;
+            $CrmOrganization = ( Get-CrmOrganization )[0];
             $CrmOrganization.Version;
         } else {
             "Could not load Microsoft.Crm.PowerShell PSSnapin";
@@ -270,11 +270,11 @@ if ( $testResponse -eq "8.2.11.13" )
     Write-Host "Software installed version is '$testResponse'. Test is not OK"
     Exit 1;
 }
-if( Test-Path "c:\tmp\Dynamics365ServerUpdate825InstallLog.txt" )
+if( Test-Path "c:\tmp\Dynamics365ServerUpdate8211InstallLog.txt" )
 {
-    Write-Output "File c:\tmp\Dynamics365ServerUpdate825InstallLog.txt is found, test OK"
+    Write-Output "File c:\tmp\Dynamics365ServerUpdate8211InstallLog.txt is found, test OK"
 } else {
-    Write-Output "File c:\tmp\Dynamics365ServerUpdate825InstallLog.txt is not found"
+    Write-Output "File c:\tmp\Dynamics365ServerUpdate8211InstallLog.txt is not found"
     Exit 1;
 }
 
