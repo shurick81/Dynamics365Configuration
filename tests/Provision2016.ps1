@@ -133,7 +133,7 @@ $testScriptBlock = {
         Exit 1;
     }
 }
-$testResponse = Invoke-Command -ScriptBlock $testScriptBlock $env:COMPUTERNAME -Credential $CRMInstallAccountCredential -Authentication CredSSP;
+$testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP;
 if ( $testResponse -eq "8.0.0.1088" )
 {
     Write-Host "Test OK";
@@ -262,7 +262,7 @@ $testScriptBlock = {
         Exit 1;
     }
 }
-$testResponse = Invoke-Command -ScriptBlock $testScriptBlock $env:COMPUTERNAME -Credential $CRMInstallAccountCredential -Authentication CredSSP
+$testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
 if ( $testResponse -eq "8.2.11.13" )
 {
     Write-Host "Test OK";

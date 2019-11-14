@@ -269,7 +269,7 @@ $testScriptBlock = {
         $_.Exception.Message;
     }
 }
-$testResponse = Invoke-Command -ScriptBlock $testScriptBlock $env:COMPUTERNAME -Credential $CRMInstallAccountCredential -Authentication CredSSP;
+$testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP;
 if ( $testResponse -eq "8.0.0.1088" )
 {
     Write-Host "Test OK";
@@ -442,7 +442,7 @@ $testScriptBlock = {
         $_.Exception.Message;
     }
 }
-$testResponse = Invoke-Command -ScriptBlock $testScriptBlock $env:COMPUTERNAME -Credential $CRMInstallAccountCredential -Authentication CredSSP;
+$testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP;
 if ( $testResponse -eq "8.0.1.79" )
 {
     Write-Host "Test OK";
@@ -520,7 +520,7 @@ $testScriptBlock = {
         $_.Exception.Message;
     }
 }
-$testResponse = Invoke-Command -ScriptBlock $testScriptBlock $env:COMPUTERNAME -Credential $CRMInstallAccountCredential -Authentication CredSSP
+$testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
 if ( $testResponse -eq "8.1.0.359" )
 {
     Write-Host "Test OK";
@@ -598,7 +598,7 @@ $testScriptBlock = {
         $_.Exception.Message;
     }
 }
-$testResponse = Invoke-Command -ScriptBlock $testScriptBlock $env:COMPUTERNAME -Credential $CRMInstallAccountCredential -Authentication CredSSP
+$testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
 if ( $testResponse -eq "8.1.1.1005" )
 {
     Write-Host "Test OK";
@@ -676,7 +676,7 @@ $testScriptBlock = {
         $_.Exception.Message;
     }
 }
-$testResponse = Invoke-Command -ScriptBlock $testScriptBlock $env:COMPUTERNAME -Credential $CRMInstallAccountCredential -Authentication CredSSP
+$testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
 if ( $testResponse -eq "8.2.0.749" )
 {
     Write-Host "Test OK";
@@ -754,7 +754,7 @@ $testScriptBlock = {
         $_.Exception.Message;
     }
 }
-$testResponse = Invoke-Command -ScriptBlock $testScriptBlock $env:COMPUTERNAME -Credential $CRMInstallAccountCredential -Authentication CredSSP
+$testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
 if ( $testResponse -eq "8.2.1.176" )
 {
     Write-Host "Test OK";
@@ -832,7 +832,7 @@ $testScriptBlock = {
         $_.Exception.Message;
     }
 }
-$testResponse = Invoke-Command -ScriptBlock $testScriptBlock $env:COMPUTERNAME -Credential $CRMInstallAccountCredential -Authentication CredSSP
+$testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
 if ( $testResponse -eq "8.2.2.112" )
 {
     Write-Host "Test OK";
@@ -910,7 +910,7 @@ $testScriptBlock = {
         $_.Exception.Message;
     }
 }
-$testResponse = Invoke-Command -ScriptBlock $testScriptBlock $env:COMPUTERNAME -Credential $CRMInstallAccountCredential -Authentication CredSSP
+$testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
 if ( $testResponse -eq "8.2.3.8" )
 {
     Write-Host "Test OK";
@@ -988,7 +988,7 @@ $testScriptBlock = {
         $_.Exception.Message;
     }
 }
-$testResponse = Invoke-Command -ScriptBlock $testScriptBlock $env:COMPUTERNAME -Credential $CRMInstallAccountCredential -Authentication CredSSP
+$testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
 if ( $testResponse -eq "8.2.4.6" )
 {
     Write-Host "Test OK";
@@ -1066,7 +1066,7 @@ $testScriptBlock = {
         $_.Exception.Message;
     }
 }
-$testResponse = Invoke-Command -ScriptBlock $testScriptBlock $env:COMPUTERNAME -Credential $CRMInstallAccountCredential -Authentication CredSSP
+$testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
 if ( $testResponse -eq "8.2.5.4" )
 {
     Write-Host "Test OK";
@@ -1144,7 +1144,7 @@ $testScriptBlock = {
         $_.Exception.Message;
     }
 }
-$testResponse = Invoke-Command -ScriptBlock $testScriptBlock $env:COMPUTERNAME -Credential $CRMInstallAccountCredential -Authentication CredSSP
+$testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
 if ( $testResponse -eq "8.2.6.19" )
 {
     Write-Host "Test OK";
@@ -1222,7 +1222,7 @@ $testScriptBlock = {
         $_.Exception.Message;
     }
 }
-$testResponse = Invoke-Command -ScriptBlock $testScriptBlock $env:COMPUTERNAME -Credential $CRMInstallAccountCredential -Authentication CredSSP
+$testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
 if ( $testResponse -eq "8.2.7.13" )
 {
     Write-Host "Test OK";
@@ -1300,7 +1300,7 @@ $testScriptBlock = {
         $_.Exception.Message;
     }
 }
-$testResponse = Invoke-Command -ScriptBlock $testScriptBlock $env:COMPUTERNAME -Credential $CRMInstallAccountCredential -Authentication CredSSP
+$testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
 if ( $testResponse -eq "8.2.8.15" )
 {
     Write-Host "Test OK";
@@ -1378,7 +1378,7 @@ $testScriptBlock = {
         $_.Exception.Message;
     }
 }
-$testResponse = Invoke-Command -ScriptBlock $testScriptBlock $env:COMPUTERNAME -Credential $CRMInstallAccountCredential -Authentication CredSSP
+$testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
 if ( $testResponse -eq "8.2.9.19" )
 {
     Write-Host "Test OK";
@@ -1456,7 +1456,7 @@ $testScriptBlock = {
         $_.Exception.Message;
     }
 }
-$testResponse = Invoke-Command -ScriptBlock $testScriptBlock $env:COMPUTERNAME -Credential $CRMInstallAccountCredential -Authentication CredSSP
+$testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
 if ( $testResponse -eq "8.2.10.24" )
 {
     Write-Host "Test OK";
@@ -1534,7 +1534,7 @@ $testScriptBlock = {
         $_.Exception.Message;
     }
 }
-$testResponse = Invoke-Command -ScriptBlock $testScriptBlock $env:COMPUTERNAME -Credential $CRMInstallAccountCredential -Authentication CredSSP
+$testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
 if ( $testResponse -eq "8.2.11.13" )
 {
     Write-Host "Test OK";
