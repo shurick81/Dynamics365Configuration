@@ -8,10 +8,7 @@ pr:
     - README.md
     - changelog.md
     - publishing
-trigger:
-  branches:
-    exclude:
-    - develop
+trigger: none
 jobs:
 - job:
   displayName: Running all tests
