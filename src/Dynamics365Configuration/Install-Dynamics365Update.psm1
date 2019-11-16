@@ -19,7 +19,7 @@
     try {
         Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
         if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
-            $CrmOrganization = Get-CrmOrganization;
+            $CrmOrganization = ( Get-CrmOrganization )[0];
             $testResponse = $CrmOrganization.Version;
         } else {
             "Could not load Microsoft.Crm.PowerShell PSSnapin";
@@ -31,7 +31,7 @@
     if ( $testResponse.StartsWith( "9." ) -or $testResponse.StartsWith( "8." ) ) {
         $productDetected = $testResponse;
     }
-    if ( $productDetected -and ( $productDetected -lt $fileVersion ) -and ( $productDetected.Substring( 0, 2 ) -eq $fileVersion.Substring( 0, 2 ) ) ) {
+    if ( $productDetected -and ( [version]$productDetected -lt [version]$fileVersion ) -and ( ( [version]$productDetected ).Major -eq ( [version]$fileVersion ).Major ) ) {
         $localInstallationScriptBlock = {
             param( $setupFilePath, $logFilePath, $logFilePullIntervalInSeconds, $logFilePullToOutput)
         }
@@ -82,7 +82,7 @@
         try {
             Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
             if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
-                $CrmOrganization = Get-CrmOrganization;
+                $CrmOrganization = ( Get-CrmOrganization )[0];
                 $testResponse = $CrmOrganization.Version;
             } else {
                 "Could not load Microsoft.Crm.PowerShell PSSnapin";

@@ -38,47 +38,47 @@ if ( Get-ChildItem C:\Install\Dynamics\CRM2016LanguagePackNor ) {
 }
 
 try {
-    Save-Dynamics365Resource -Resource CRM2016ServicePack2Update05Sve -TargetDirectory C:\Install\Dynamics\CRM2016ServicePack2Update05Sve
+    Save-Dynamics365Resource -Resource CRM2016ServicePack2Update11Sve -TargetDirectory C:\Install\Dynamics\CRM2016ServicePack2Update11Sve
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-if ( Get-ChildItem C:\Install\Dynamics\CRM2016ServicePack2Update05Sve ) {
+if ( Get-ChildItem C:\Install\Dynamics\CRM2016ServicePack2Update11Sve ) {
     Write-Host "Test OK";
 } else {
-    Write-Host "Expected files are not found in C:\Install\Dynamics\CRM2016ServicePack2Update05Sve, test is not OK";
+    Write-Host "Expected files are not found in C:\Install\Dynamics\CRM2016ServicePack2Update11Sve, test is not OK";
     Exit 1;
 }
 
 try {
-    Save-Dynamics365Resource -Resource CRM2016ReportingExtensionsServicePack2Update05Sve -TargetDirectory C:\Install\Dynamics\CRM2016ReportingExtensionsServicePack2Update05Sve
+    Save-Dynamics365Resource -Resource CRM2016ReportingExtensionsServicePack2Update11Sve -TargetDirectory C:\Install\Dynamics\CRM2016ReportingExtensionsServicePack2Update11Sve
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-if ( Get-ChildItem C:\Install\Dynamics\CRM2016ReportingExtensionsServicePack2Update05Sve ) {
+if ( Get-ChildItem C:\Install\Dynamics\CRM2016ReportingExtensionsServicePack2Update11Sve ) {
     Write-Host "Test OK";
 } else {
-    Write-Host "Expected files are not found in C:\Install\Dynamics\CRM2016ReportingExtensionsServicePack2Update05Sve, test is not OK";
+    Write-Host "Expected files are not found in C:\Install\Dynamics\CRM2016ReportingExtensionsServicePack2Update11Sve, test is not OK";
     Exit 1;
 }
 
 try {
-    Save-Dynamics365Resource -Resource CRM2016LanguagePackServicePack2Update05Nor -TargetDirectory C:\Install\Dynamics\CRM2016LanguagePackServicePack2Update05Nor
+    Save-Dynamics365Resource -Resource CRM2016LanguagePackServicePack2Update11Nor -TargetDirectory C:\Install\Dynamics\CRM2016LanguagePackServicePack2Update11Nor
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-if ( Get-ChildItem C:\Install\Dynamics\CRM2016LanguagePackServicePack2Update05Nor ) {
+if ( Get-ChildItem C:\Install\Dynamics\CRM2016LanguagePackServicePack2Update11Nor ) {
     Write-Host "Test OK";
 } else {
-    Write-Host "Expected files are not found in C:\Install\Dynamics\CRM2016LanguagePackServicePack2Update05Nor, test is not OK";
+    Write-Host "Expected files are not found in C:\Install\Dynamics\CRM2016LanguagePackServicePack2Update11Nor, test is not OK";
     Exit 1;
 }
 
 try {
-    Write-Host "Invoking command on $env:COMPUTERNAME with dbHostName=$dbHostName parameter";
-    Invoke-Command "$env:COMPUTERNAME.contoso.local" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+    Write-Host "Invoking command on $env:COMPUTERNAME.$domainName with dbHostName=$dbHostName parameter";
+    Invoke-Command "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
         param( $dbHostName )
         Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
         $securedPassword = ConvertTo-SecureString "c0mp1Expa~~" -AsPlainText -Force
@@ -123,7 +123,7 @@ $testScriptBlock = {
     try {
         Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
         if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
-            $CrmOrganization = Get-CrmOrganization;
+            $CrmOrganization = ( Get-CrmOrganization )[0];
             $CrmOrganization.Version;
         } else {
             "Could not load Microsoft.Crm.PowerShell PSSnapin";
@@ -133,7 +133,7 @@ $testScriptBlock = {
         Exit 1;
     }
 }
-$testResponse = Invoke-Command -ScriptBlock $testScriptBlock $env:COMPUTERNAME -Credential $CRMInstallAccountCredential -Authentication CredSSP;
+$testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP;
 if ( $testResponse -eq "8.0.0.1088" )
 {
     Write-Host "Test OK";
@@ -150,9 +150,9 @@ if( Test-Path "c:\tmp\Dynamics365ServerInstallLog.txt" )
 }
 
 try {
-    Write-Host "Invoking command on $env:COMPUTERNAME with dbHostName=$dbHostName parameter";
+    Write-Host "Invoking command on $env:COMPUTERNAME.$domainName with dbHostName=$dbHostName parameter";
     if ( $dbHostName -eq $env:COMPUTERNAME ) {
-        Invoke-Command "$dbHostName.contoso.local" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+        Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
             Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
             Install-Dynamics365ReportingExtensions `
                 -MediaDir C:\Install\Dynamics\CRM2016RTMSve\SrsDataConnector `
@@ -162,7 +162,7 @@ try {
                 -LogFilePullToOutput
             }
     } else {
-        Invoke-Command "$dbHostName.contoso.local" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+        Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
             param( $fileShareHost )
             Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
             Install-Dynamics365ReportingExtensions `
@@ -239,8 +239,8 @@ if ( $operationStatus.State -eq "Completed" ) {
 try {
     Invoke-Command "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
         Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
-        Install-Dynamics365Update -MediaDir C:\Install\Dynamics\CRM2016ServicePack2Update05Sve `
-            -LogFilePath c:\tmp\Dynamics365ServerUpdate825InstallLog.txt `
+        Install-Dynamics365Update -MediaDir C:\Install\Dynamics\CRM2016ServicePack2Update11Sve `
+            -LogFilePath c:\tmp\Dynamics365ServerUpdate8211InstallLog.txt `
             -LogFilePullIntervalInSeconds 15 `
             -LogFilePullToOutput
     }
@@ -252,7 +252,7 @@ $testScriptBlock = {
     try {
         Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
         if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
-            $CrmOrganization = Get-CrmOrganization;
+            $CrmOrganization = ( Get-CrmOrganization )[0];
             $CrmOrganization.Version;
         } else {
             "Could not load Microsoft.Crm.PowerShell PSSnapin";
@@ -262,27 +262,27 @@ $testScriptBlock = {
         Exit 1;
     }
 }
-$testResponse = Invoke-Command -ScriptBlock $testScriptBlock $env:COMPUTERNAME -Credential $CRMInstallAccountCredential -Authentication CredSSP
-if ( $testResponse -eq "8.2.5.4" )
+$testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
+if ( $testResponse -eq "8.2.11.13" )
 {
     Write-Host "Test OK";
 } else {
     Write-Host "Software installed version is '$testResponse'. Test is not OK"
     Exit 1;
 }
-if( Test-Path "c:\tmp\Dynamics365ServerUpdate825InstallLog.txt" )
+if( Test-Path "c:\tmp\Dynamics365ServerUpdate8211InstallLog.txt" )
 {
-    Write-Output "File c:\tmp\Dynamics365ServerUpdate825InstallLog.txt is found, test OK"
+    Write-Output "File c:\tmp\Dynamics365ServerUpdate8211InstallLog.txt is found, test OK"
 } else {
-    Write-Output "File c:\tmp\Dynamics365ServerUpdate825InstallLog.txt is not found"
+    Write-Output "File c:\tmp\Dynamics365ServerUpdate8211InstallLog.txt is not found"
     Exit 1;
 }
 
 try {
     if ( $dbHostName -eq $env:COMPUTERNAME ) {
-        $mediaDir = "C:\Install\Dynamics\CRM2016ReportingExtensionsServicePack2Update05Sve";
+        $mediaDir = "C:\Install\Dynamics\CRM2016ReportingExtensionsServicePack2Update11Sve";
     } else {
-        $mediaDir = "\\$env:COMPUTERNAME\c$\Install\Dynamics\CRM2016ReportingExtensionsServicePack2Update05Sve";
+        $mediaDir = "\\$env:COMPUTERNAME\c$\Install\Dynamics\CRM2016ReportingExtensionsServicePack2Update11Sve";
     }
     Write-Output "dbHostName is $dbHostName"
     Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
@@ -303,7 +303,7 @@ $currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential 
     Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
 }
 Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( $currentProductInstalled.DisplayVersion -eq "8.2.0005.0004" ) {
+if ( $currentProductInstalled.DisplayVersion -eq "8.2.0011.0013" ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected update is not installed, test is not OK";
@@ -311,14 +311,14 @@ if ( $currentProductInstalled.DisplayVersion -eq "8.2.0005.0004" ) {
 }
 
 try {
-    Install-Dynamics365LanguageUpdate -MediaDir C:\Install\Dynamics\CRM2016LanguagePackServicePack2Update05Nor
+    Install-Dynamics365LanguageUpdate -MediaDir C:\Install\Dynamics\CRM2016LanguagePackServicePack2Update11Nor
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
 $currentProductInstalled = Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "{0C524DC1-1414-0080-8121-88490F4D5549}" }
 Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( $currentProductInstalled.DisplayVersion -eq "8.2.0005.0004" ) {
+if ( $currentProductInstalled.DisplayVersion -eq "8.2.0011.0013" ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected update is not installed, test is not OK";

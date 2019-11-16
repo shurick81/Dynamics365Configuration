@@ -107,7 +107,7 @@ Save-Dynamics365Resource
 
 #### -Resource
 
-The resource for downloading, possible values are [Dynamics365Server90RTM\<Language\>,VisualCPlusPlusRuntime,VisualCPlusPlus2010Runtime,SQLNCli2012SP4,SQLSysClrTypes2016,SharedManagementObjects2016,MSODBCSQL,Dynamics365Server90LanguagePack\<Language\>,Dynamics365Server90Update03\<Language\>,Dynamics365Server90ReportingExtensionsUpdate03\<Language\>,CRM2016RTM\<Language\>,SQLNCli2018R2,SQLSysClrTypes2012,SharedManagementObjects2012,ReportViewer2012,CRM2016LanguagePack\<Language\>,CRM2016Update01\<Language\>,CRM2016ServicePack1\<Language\>,CRM2016ServicePack1Update01\<Language\>,CRM2016ServicePack2\<Language\>,CRM2016ServicePack2Update01\<Language\>,CRM2016ServicePack2Update02\<Language\>,CRM2016ServicePack2Update03\<Language\>,CRM2016ServicePack2Update04\<Language\>,CRM2016ServicePack2Update05\<Language\>,CRM2016ReportingExtensionsUpdate01\<Language\>,CRM2016ReportingExtensionsServicePack1\<Language\>,CRM2016ReportingExtensionsServicePack1Update01\<Language\>,CRM2016ReportingExtensionsServicePack2\<Language\>,CRM2016ReportingExtensionsServicePack2Update01\<Language\>,CRM2016ReportingExtensionsServicePack2Update02\<Language\>,CRM2016ReportingExtensionsServicePack2Update03\<Language\>,CRM2016ReportingExtensionsServicePack2Update04\<Language\>,CRM2016ReportingExtensionsServicePack2Update05\<Language\>,CRM2016LanguagePackUpdate01\<Language\>,CRM2016LanguagePackServicePack1\<Language\>,CRM2016LanguagePackServicePack1Update01\<Language\>,CRM2016LanguagePackServicePack2\<Language\>,CRM2016LanguagePackServicePack2Update01\<Language\>,CRM2016LanguagePackServicePack2Update02\<Language\>,CRM2016LanguagePackServicePack2Update03\<Language\>,CRM2016LanguagePackServicePack2Update04\<Language\>,CRM2016LanguagePackServicePack2Update05\<Language\>]
+The resource for downloading, possible values are listed in [File Resources](#File-Resources) section.
 
 #### -TargetDirectory
 
@@ -575,10 +575,10 @@ Use this option to get a detailed feedback on the installation process.
 ```PowerShell
 $securedPassword = ConvertTo-SecureString "c0mp1Expa~~" -AsPlainText -Force
 $CRMInstallAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmadmin", $securedPassword );
-Save-Dynamics365Resource -Resource Dynamics365Server90Update03Sve `
-    -TargetDirectory C:\Install\Dynamics\Dynamics365Server90Update03Sve
+Save-Dynamics365Resource -Resource Dynamics365Server90Update09Sve `
+    -TargetDirectory C:\Install\Dynamics\Dynamics365Server90Update09Sve
 Invoke-Command "$env:COMPUTERNAME.contoso.local" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
-    Install-Dynamics365Update -MediaDir C:\Install\Dynamics\Dynamics365Server90Update03Sve `
+    Install-Dynamics365Update -MediaDir C:\Install\Dynamics\Dynamics365Server90Update09Sve `
         -LogFilePath c:\tmp\Dynamics365ServerUpdate823InstallLog.txt `
         -LogFilePullIntervalInSeconds 15 `
         -LogFilePullToOutput
@@ -624,10 +624,10 @@ Use this option to get a detailed feedback on the installation process.
 ```PowerShell
 $securedPassword = ConvertTo-SecureString "c0mp1Expa~~" -AsPlainText -Force
 $CRMInstallAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmadmin", $securedPassword );
-Save-Dynamics365Resource -Resource Dynamics365Server90ReportingExtensionsUpdate03Nor `
-    -TargetDirectory C:\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate03Nor
+Save-Dynamics365Resource -Resource Dynamics365Server90ReportingExtensionsUpdate09Nor `
+    -TargetDirectory C:\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate09Nor
 Invoke-Command "DB01.contoso.local" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
-    Install-Dynamics365ReportingExtensionsUpdate -MediaDir \\$env:COMPUTERNAME\c$\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate03Nor
+    Install-Dynamics365ReportingExtensionsUpdate -MediaDir \\$env:COMPUTERNAME\c$\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate09Nor
 }
 ```
 
@@ -638,7 +638,7 @@ Installs Dynamics 365 Server Language Pack update.
 ### Syntax
 
 ```PowerShell
-Install-Dynamics365ReportingExtensionsUpdate
+Install-Dynamics365LanguageUpdate
     [-MediaDir] <string>
     [-LogFilePath <string>]
     [-LogFilePullIntervalInSeconds <int32>]
@@ -668,7 +668,160 @@ Use this option to get a detailed feedback on the installation process.
 ### Examples
 
 ```PowerShell
-Save-Dynamics365Resource -Resource CRM2016LanguagePackServicePack2Update03Nor `
-    -TargetDirectory C:\Install\Dynamics\CRM2016LanguagePackServicePack2Update03Nor
-Install-Dynamics365ReportingExtensionsUpdate -MediaDir C:\Install\Dynamics\CRM2016LanguagePackServicePack2Update03Nor
+Save-Dynamics365Resource -Resource CRM2016LanguagePackServicePack2Update09Nor `
+    -TargetDirectory C:\Install\Dynamics\CRM2016LanguagePackServicePack2Update09Nor
+Install-Dynamics365LanguageUpdate -MediaDir C:\Install\Dynamics\CRM2016LanguagePackServicePack2Update09Nor
 ```
+
+# File Resources
+
+The following file resources can be referenced in the module:
+
+| Resource group | Code Name | Number of files | Comments |
+| -- | -- | -: | -- |
+| **Dynamics 9** |  |  |  |
+| RTM | Dynamics365Server90RTM\<Language\> | 25 |  |
+| Language pack | Dynamics365Server90LanguagePack<Language> | 45 |  |
+| Server Update 0.3 | Dynamics365Server90Update03\<Language\> | 25 |  |
+| RS Extensions Update 0.3 | Dynamics365Server90ReportingExtensionsUpdate03\<Language\> | 24 | Chk language is missing |
+| Server Update 0.4 | Dynamics365Server90Update04\<Language\> | 25 |  |
+| RS Extensions Update 0.4 | Dynamics365Server90ReportingExtensionsUpdate04\<Language\> | 25 |  |
+| Server Update 0.5 | Dynamics365Server90Update05\<Language\> | 25 |  |
+| RS Extensions Update 0.5 | Dynamics365Server90ReportingExtensionsUpdate05\<Language\> | 25 |  |
+| Server Update 0.6 | Dynamics365Server90Update06\<Language\> | 25 |  |
+| RS Extensions Update 0.6 | Dynamics365Server90ReportingExtensionsUpdate06\<Language\> | 25 |  |
+| Server Update 0.7 | Dynamics365Server90Update07\<Language\> | 25 |  |
+| RS Extensions Update 0.7 | Dynamics365Server90ReportingExtensionsUpdate07\<Language\> | 25 |  |
+| Server Update 0.8 | Dynamics365Server90Update08\<Language\> | 25 |  |
+| RS Extensions Update 0.8 | Dynamics365Server90ReportingExtensionsUpdate08\<Language\> | 25 |  |
+| Server Update 0.9 | Dynamics365Server90Update09\<Language\> | 25 |  |
+| RS Extensions Update 0.9 | Dynamics365Server90ReportingExtensionsUpdate09\<Language\> | 25 |  |
+| **Dynamics 8** |  |  |  |
+| RTM | CRM2016RTM\<Language\> | 25 |  |
+| Language pack | CRM2016LanguagePack<Language> | 45 |  |
+| Server Update 0.1 | CRM2016Update01\<Language\> | 25 |  |
+| RS Extensions Update 0.1 | CRM2016ReportingExtensionsUpdate01\<Language\> | 25 |  |
+| MUI Update 0.1 | CRM2016LanguagePackUpdate01\<Language\> | 45 |  |
+| Server Update 1.0 | CRM2016ServicePack1\<Language\> | 25 |  |
+| RS Extensions Update 1.0 | CRM2016ReportingExtensionsServicePack1\<Language\> | 25 |  |
+| MUI Update 1.0 | CRM2016LanguagePackServicePack1\<Language\> | 45 |  |
+| Server Update 1.1 | CRM2016ServicePack1Update01\<Language\> | 25 |  |
+| RS Extensions Update 1.1 | CRM2016ReportingExtensionsServicePack1Update01\<Language\> | 25 |  |
+| MUI Update 1.1 | CRM2016LanguagePackServicePack1Update01\<Language\> | 45 |  |
+| Server Update 2.0 | CRM2016ServicePack2\<Language\> | 25 |  |
+| RS Extensions Update 2.0 | CRM2016ReportingExtensionsServicePack2\<Language\> | 25 |  |
+| MUI Update 2.0 | CRM2016LanguagePackServicePack2\<Language\> | 45 |  |
+| Server Update 2.1 | CRM2016ServicePack2Update01\<Language\> | 25 |  |
+| RS Extensions Update 2.1 | CRM2016ReportingExtensionsServicePack2Update01\<Language\> | 25 |  |
+| MUI Update 2.1 | CRM2016LanguagePackServicePack2Update01\<Language\> | 45 |  |
+| Server Update 2.2 | CRM2016ServicePack2Update02\<Language\> | 25 |  |
+| RS Extensions Update 2.2 | CRM2016ReportingExtensionsServicePack2Update02\<Language\> | 25 |  |
+| MUI Update 2.2 | CRM2016LanguagePackServicePack2Update02\<Language\> | 45 |  |
+| Server Update 2.2 | CRM2016ServicePack2Update02\<Language\> | 25 |  |
+| RS Extensions Update 2.2 | CRM2016ReportingExtensionsServicePack2Update02\<Language\> | 25 |  |
+| MUI Update 2.2 | CRM2016LanguagePackServicePack2Update02\<Language\> | 45 |  |
+| Server Update 2.3 | CRM2016ServicePack2Update03\<Language\> | 25 |  |
+| RS Extensions Update 2.3 | CRM2016ReportingExtensionsServicePack2Update03\<Language\> | 25 |  |
+| MUI Update 2.3 | CRM2016LanguagePackServicePack2Update03\<Language\> | 45 |  |
+| Server Update 2.4 | CRM2016ServicePack2Update04\<Language\> | 25 |  |
+| RS Extensions Update 2.4 | CRM2016ReportingExtensionsServicePack2Update04\<Language\> | 25 |  |
+| MUI Update 2.4 | CRM2016LanguagePackServicePack2Update04\<Language\> | 45 |  |
+| Server Update 2.5 | CRM2016ServicePack2Update05\<Language\> | 25 |  |
+| RS Extensions Update 2.5 | CRM2016ReportingExtensionsServicePack2Update05\<Language\> | 25 |  |
+| MUI Update 2.5 | CRM2016LanguagePackServicePack2Update05\<Language\> | 45 |  |
+| Server Update 2.6 | CRM2016ServicePack2Update06\<Language\> | 25 |  |
+| RS Extensions Update 2.6 | CRM2016ReportingExtensionsServicePack2Update06\<Language\> | 25 |  |
+| MUI Update 2.6 | CRM2016LanguagePackServicePack2Update06\<Language\> | 45 |  |
+| Server Update 2.7 | CRM2016ServicePack2Update07\<Language\> | 25 |  |
+| RS Extensions Update 2.7 | CRM2016ReportingExtensionsServicePack2Update07\<Language\> | 25 |  |
+| MUI Update 2.7 | CRM2016LanguagePackServicePack2Update07\<Language\> | 45 |  |
+| Server Update 2.8 | CRM2016ServicePack2Update08\<Language\> | 24 | Sve language is missing |
+| RS Extensions Update 2.8 | CRM2016ReportingExtensionsServicePack2Update08\<Language\> | 24 | Sve language is missing |
+| MUI Update 2.8 | CRM2016LanguagePackServicePack2Update08\<Language\> | 44 | Sve language is missing |
+| Server Update 2.9 | CRM2016ServicePack2Update09\<Language\> | 25 |  |
+| RS Extensions Update 2.9 | CRM2016ReportingExtensionsServicePack2Update09\<Language\> | 25 |  |
+| MUI Update 2.9 | CRM2016LanguagePackServicePack2Update09\<Language\> | 45 |  |
+| Server Update 2.10 | CRM2016ServicePack2Update10\<Language\> | 25 |  |
+| RS Extensions Update 2.10 | CRM2016ReportingExtensionsServicePack2Update10\<Language\> | 25 |  |
+| MUI Update 2.10 | CRM2016LanguagePackServicePack2Update10\<Language\> | 45 |  |
+| Server Update 2.11 | CRM2016ServicePack2Update11\<Language\> | 25 |  |
+| RS Extensions Update 2.11 | CRM2016ReportingExtensionsServicePack2Update11\<Language\> | 25 |  |
+| MUI Update 2.11 | CRM2016LanguagePackServicePack2Update11\<Language\> | 45 |  |
+| Prerequisites |  | 10 |  |
+| **Total** |  | 1921 |  |
+
+## Languages of RTM versions, for both v8 and v9
+
+* ENU (en-US)
+* SAU (ar-SA)
+* CHK (zh-HK)
+* CHS (zh-CN)
+* CHT (zh-TW)
+* CSY (cs-CZ)
+* DAN (da-DK)
+* NLD (nl-NL)
+* FIN (fi-FI)
+* FRA (fr-FR)
+* DEU (de-DE)
+* ELL (el-GR)
+* HEB (he-IL)
+* HUN (hu-HU)
+* ITA (it-IT)
+* JPN (ja-JP)
+* KOR (ko-KR)
+* NOR (nb-NO)
+* PLK (pl-PL)
+* PTB (pt-BR)
+* PTG (pt-PT)
+* RUS (ru-RU)
+* ESN (es-ES)
+* SVE (sv-SE)
+* TRK (tr-TR)
+
+## Dynamics 365 Server Language packs, for both v8 and v9
+
+* SAU (ar-SA)
+* EUS (eu-ES)
+* BGR (bg-BG)
+* CAT (ca-ES)
+* CHK (zh-HK)
+* CHS (zh-CN)
+* CHT (zh-TW)
+* HRV (hr-HR)
+* CSY (cs-CZ)
+* DAN (da-DK)
+* NLD (nl-NL)
+* ENU (en-US)
+* ETI (et-EE)
+* FIN (fi-FI)
+* FRA (fr-FR)
+* GLC (gl-ES)
+* DEU (de-DE)
+* ELL (el-GR)
+* HEB (he-IL)
+* HIN (hi-IN)
+* HUN (hu-HU)
+* IND (id-ID)
+* ITA (it-IT)
+* JPN (ja-JP)
+* KKZ (kk-KZ)
+* KOR (ko-KR)
+* LVI (lv-LV)
+* LTH (lt-LT)
+* MSL (ms-MY)
+* NOR (nb-NO)
+* PLK (pl-PL)
+* PTB (pt-BR)
+* PTG (pt-PT)
+* ROM (ro-RO)
+* RUS (ru-RU)
+* SRB (sr-Cyrl-RS)
+* SRL (sr-Latn-RS)
+* SKY (sk-SK)
+* SLV (sl-SI)
+* ESN (es-ES)
+* SVE (sv-SE)
+* THA (th-TH)
+* TRK (tr-TR)
+* UKR (uk-UA)
+* VIT (vi-VN)
