@@ -1111,7 +1111,7 @@
     },
     "Dynamics365Server90Update05Sve": {
         "URL": "https://download.microsoft.com/download/D/5/9/D592E291-1284-4D69-A72A-1CE1F5C94F6F/CRM9.0-Server-KB4500497-SVE-Amd64.exe",
-        "checksum": "3B8E0F7AC47D1F57FEDB5558C7936D144D1F2558",
+        "checksum": "570AACB45FB9AD86837D5B9D48A86207100DE3C7",
         "mediaFileVersion": "9.0.5.0005"
     },
     "Dynamics365Server90Update05Trk": {
@@ -6441,7 +6441,7 @@
     },
     "CRM2016LanguagePackServicePack2Update04Lvi": {
         "URL": "https://download.microsoft.com/download/8/8/7/887A914D-FED5-4522-A95B-9AE65FB7455A/CRM2016-Mui-KB4490601-LVI-Amd64.exe",
-        "checksum": "C14FBC449F93BEAEB8703B7D5486574A970ABCCC",
+        "checksum": "FDB9C7765B2E14B5E3CF193782A3187C8CD7A7B9",
         "mediaFileVersion": "8.2.4.6"
     },
     "CRM2016LanguagePackServicePack2Update04Lth": {

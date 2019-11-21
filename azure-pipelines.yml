@@ -23,11 +23,14 @@ jobs:
   - powershell: cd tests; kitchen test ExtractResources-win2019-basic;
     displayName: kitchen test ExtractResources-win2019-basic
     errorActionPreference: continue
-  - powershell: cd tests; kitchen test URLDuplicatesDetect-win2019-basic;
-    displayName: kitchen test URLDuplicatesDetect-win2019-basic
+  - powershell: cd tests; kitchen test URLDuplicatesDetect-win2016-basic;
+    displayName: kitchen test URLDuplicatesDetect-win2016-basic
     errorActionPreference: continue
-  - powershell: cd tests; kitchen test ValidUrls-win2019-basic;
-    displayName: kitchen test ValidUrls-win2019-basic
+  - powershell: cd tests; kitchen test ValidUrls-win2012r2-basic;
+    displayName: kitchen test ValidUrls-win2012r2-basic
+    errorActionPreference: continue
+  - powershell: cd tests; kitchen test ValidChecksums-win2012r2-basic;
+    displayName: kitchen test ValidChecksums-win2012-r2basic
     errorActionPreference: continue
   - powershell: cd tests; kitchen test InstallAllPrerequisitesLocal-win2019-basic;
     displayName: kitchen test InstallAllPrerequisitesLocal-win2019-basic
