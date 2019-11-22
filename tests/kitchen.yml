@@ -362,7 +362,7 @@ suites:
 - name: URLDuplicatesDetect
   provisioner:
     name: shell
-    command: 'Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1; c:/test-projects/Dynamics365Configuration/tests\\URLDuplicates.ps1'
+    command: 'Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1; c:/test-projects/Dynamics365Configuration/tests\\URLDuplicatesQuick.ps1'
     powershell_shell: true
   includes:
     - win2019-basic

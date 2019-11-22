@@ -29,8 +29,8 @@ jobs:
   - powershell: cd tests; kitchen test ValidUrls-win2012r2-basic;
     displayName: kitchen test ValidUrls-win2012r2-basic
     errorActionPreference: continue
-  - powershell: cd tests; kitchen test ValidChecksums-win2012r2-basic;
-    displayName: kitchen test ValidChecksums-win2012-r2basic
+  - powershell: cd tests; kitchen test ValidChecksums-win2016-basic;
+    displayName: kitchen test ValidChecksums-win2016-basic
     errorActionPreference: continue
   - powershell: cd tests; kitchen test InstallAllPrerequisitesLocal-win2019-basic;
     displayName: kitchen test InstallAllPrerequisitesLocal-win2019-basic
