@@ -386,6 +386,9 @@ suites:
     - win2019-basic
     - win2016-basic
     - win2012r2-basic
+    - win2019-soe
+    - win2016-soe
+    - win2012r2-soe
 - name: InstallAllPrerequisites
   provisioner:
     name: shell
