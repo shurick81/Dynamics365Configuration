@@ -11,7 +11,18 @@ pr:
 trigger: none
 jobs:
 - job:
-  displayName: Running all tests
+  displayName: Running tests on MS agent
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 1440
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; ./tests/ChecksumVerification.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running tests on a self hosted agent
+  pool: Default
   timeoutInMinutes: 1440
   steps:
   - powershell: cd ci; ./booknode.ps1
@@ -34,9 +45,6 @@ jobs:
     errorActionPreference: continue
   - powershell: cd infrastructure/images; ./preparevmimages.ps1 win2016-sql2016dbrs,win2012r2-ad-sql2016dbrs,win2016-ad,win2019-soe,win2016-soe
     displayName: Building images
-    errorActionPreference: continue
-  - powershell: cd tests; kitchen test ValidChecksums-win2016-soe;
-    displayName: kitchen test ValidChecksums-win2016-soe
     errorActionPreference: continue
   - powershell: if ( !( vagrant box list | ? { $_ -like "win2016-sql2016dbrs *" } ) ) { exit 1 }
     displayName: Checking the win2016-sql2016dbrs image
