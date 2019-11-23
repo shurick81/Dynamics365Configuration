@@ -75,6 +75,15 @@ jobs:
     displayName: InstallAllPrerequisites windows-2012-r2
     errorActionPreference: continue
 - job:
+  displayName: negative test
+  pool:
+    name: Hosted
+    vmImage: vs2015-win2012r2
+  steps:
+  - powershell: Exit 1;
+    displayName: negative test
+    errorActionPreference: continue
+- job:
   displayName: Running tests on a self hosted agent
   pool: Default
   timeoutInMinutes: 1440
