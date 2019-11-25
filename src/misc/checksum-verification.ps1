@@ -1,10 +1,10 @@
 $resources = $Dynamics365Resources | Get-Member -MemberType NoteProperty;
 $resourceCount = $resources.Count;
-$resourceCounter = 0;
+$resourceCounter = 1;
 Write-Host "Starting resource enumeration";
 $resources | % {
     $resourceName = $_.Name;
-    Write-Progress -Activity "Verifying $resourceName" -PercentComplete ( ( $resourceCounter + 1 ) / ( $resourceCount + 1 ) * 100 );
+    Write-Progress -Activity "Verifying $resourceName" -PercentComplete ( $resourceCounter / ( $resourceCount + 1 ) * 100 );
     $resourceUrl = $Dynamics365Resources.$resourceName.URL;
     $resourceUrl -match '[^/\\&\?]+\.\w{3,4}(?=([\?&].*$|$))' | Out-Null
     $resourceFileName = $matches[0];

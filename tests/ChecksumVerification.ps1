@@ -1,7 +1,7 @@
 Try {
     $resources = $Dynamics365Resources | Get-Member -MemberType NoteProperty;
     $resourceCount = $resources.Count;
-    $resourceCounter = 0;
+    $resourceCounter = 1;
     Write-Host "Starting resource enumeration";
     $resources | % {
         $resourceName = $_.Name;
