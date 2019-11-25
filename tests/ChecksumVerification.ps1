@@ -11,6 +11,7 @@ Try {
         $resourceFileName = $matches[0];
         $previousHash = $Dynamics365Resources.$resourceName.Checksum;
         do {
+            $fileHash = "";
             $tempDirName = [guid]::NewGuid().Guid;
             $tempDirPath = "$env:Temp\$tempDirName";
             $filePath = "$tempDirPath\$resourceFileName";
@@ -22,7 +23,7 @@ Try {
             $fileHash = ( Get-FileHash $filePath -Algorithm SHA1 ).Hash;
             Start-Sleep 20;
             Remove-Item $tempDirPath -Recurse -Force;
-            $lastMatches = ( $fileHash -eq $previousHash ) -or ( $fileHash -eq $Dynamics365Resources.$resourceName.Checksum )
+            $lastMatches = $fileHash -and ( ( $fileHash -eq $previousHash ) -or ( $fileHash -eq $Dynamics365Resources.$resourceName.Checksum ) );
             if ( !$lastMatches ) {
                 Write-Host "Does not match with either previous or reference checksum: $resourceName checksum is $fileHash";
                 Write-Host "Repeating download`r";
