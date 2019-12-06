@@ -1,5 +1,9 @@
 # Dynamics365Configuration module change log
 
+## Not Released yet
+
+ * Dynamics365Server90Update05Sve and CRM2016LanguagePackServicePack2Update04Lvi checksums corrected.
+
 ## v1.4
 
 * Breaking change: Install-Dynamics365Server does not support -InstallAccount parameter.
