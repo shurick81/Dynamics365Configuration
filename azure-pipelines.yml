@@ -38,14 +38,14 @@ jobs:
   - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; ./tests/extract.ps1
     displayName: extract
     errorActionPreference: continue
-- job:
-  displayName: Running ChecksumVerification on a self hosted agent
-  pool: Default
-  timeoutInMinutes: 1440
-  steps:
-  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; ./tests/ChecksumVerification.ps1
-    displayName: ChecksumVerification
-    errorActionPreference: continue
+#- job:
+#  displayName: Running ChecksumVerification on a self hosted agent
+#  pool: Default
+#  timeoutInMinutes: 2880
+#  steps:
+#  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; ./tests/ChecksumVerification.ps1
+#    displayName: ChecksumVerification
+#    errorActionPreference: continue
 - job:
   displayName: Running integration tests on a self hosted agent
   pool: Default
