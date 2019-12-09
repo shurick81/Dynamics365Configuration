@@ -172,7 +172,7 @@ if ( $installedProduct ) {
     Exit 1;
 }
 
-Start-Sleep 60;
+Start-Sleep 600;
 try {
     Invoke-Command "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
         Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
