@@ -9,7 +9,7 @@ $VSSWriterServiceAccountCredential = New-Object System.Management.Automation.PSC
 $AsyncServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmasync", $securedPassword );
 $MonitoringServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmmon", $securedPassword );
 
-$domainName = (Get-WmiObject Win32_ComputerSystem).Domain;
+$domainName = (Get-WmiObject Win32_ComputerSystem).Domain;Dynamics365ServerUpdate910InstallLog
 
 try {
     Save-Dynamics365Resource -Resource Dynamics365Server90RTMEnu -TargetDirectory C:\Install\Dynamics\Dynamics365Server90RTMEnu
@@ -176,7 +176,7 @@ try {
     Invoke-Command "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
         Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
         Install-Dynamics365Update -MediaDir C:\Install\Dynamics\Dynamics365Server90Update10Enu `
-            -LogFilePath c:\tmp\Dynamics365ServerUpdate909InstallLog.txt `
+            -LogFilePath c:\tmp\Dynamics365ServerUpdate910InstallLog.txt `
             -LogFilePullIntervalInSeconds 15 `
             -LogFilePullToOutput
     }
@@ -206,11 +206,11 @@ if ( $testResponse -eq "9.0.10.10" )
     Write-Host "Software installed version is '$testResponse'. Test is not OK"
     Exit 1;
 }
-if( Test-Path "c:\tmp\Dynamics365ServerUpdate909InstallLog.txt" )
+if( Test-Path "c:\tmp\Dynamics365ServerUpdate910InstallLog.txt" )
 {
-    Write-Output "File c:\tmp\Dynamics365ServerUpdate909InstallLog.txt is found, test OK"
+    Write-Output "File c:\tmp\Dynamics365ServerUpdate910InstallLog.txt is found, test OK"
 } else {
-    Write-Output "File c:\tmp\Dynamics365ServerUpdate909InstallLog.txt is not found"
+    Write-Output "File c:\tmp\Dynamics365ServerUpdate910InstallLog.txt is not found"
     Exit 1;
 }
 
