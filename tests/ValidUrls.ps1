@@ -2,9 +2,9 @@ $Dynamics365Resources | Get-Member -MemberType NoteProperty | % {
     $resourceName = $_.Name;
     $resourceUrl = $Dynamics365Resources.( $_.Name ).URL;
     Write-Host "Verifying $resourceName"
-    $response = $null;
     $attemptsLeft = 10;
     Do {
+        $response = $null;
         $response = Invoke-WebRequest $resourceUrl -UseBasicParsing -Method Head;
         if ( $response ) {
             if ( $response.StatusCode -eq "200" ) {
@@ -18,7 +18,7 @@ $Dynamics365Resources | Get-Member -MemberType NoteProperty | % {
             Start-Sleep 1;
         }
         $attemptsLeft--;
-    } until ( ( $response.StatusCode -eq "200" ) -or ( $attemptsLeft -gt 0 ) )
+    } until ( ( $response.StatusCode -eq "200" ) -or ( $attemptsLeft -eq 0 ) )
     if ( $response.StatusCode -ne "200" ) {
         Write-Host "Test is not OK"
         Exit 1;
