@@ -10,6 +10,7 @@ $resources | % {
     $resourceFileName = $matches[0];
     $previousHash = $Dynamics365Resources.$resourceName.Checksum;
     do {
+        $lastMatches = $false;
         $fileHash = "";
         $tempDirName = [guid]::NewGuid().Guid;
         $tempDirPath = "$env:Temp\$tempDirName";
