@@ -15,6 +15,7 @@ $Dynamics365Resources | Get-Member -MemberType NoteProperty | % {
         Write-Host "Test is not OK"
         Exit 1;
     }
+    Start-Sleep 1;
 }
 Write-Host "Test OK"
 Exit 0;
