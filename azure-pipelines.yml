@@ -20,15 +20,15 @@ jobs:
   - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; ./tests/URLDuplicatesQuick.ps1
     displayName: URLDuplicatesQuick
     errorActionPreference: continue
-- job:
-  displayName: Running ValidUrls test on MS agent
-  pool:
-    name: Hosted
-    vmImage: win1803
-  steps:
-  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; ./tests/ValidUrls.ps1
-    displayName: ValidUrls
-    errorActionPreference: continue
+#- job:
+#  displayName: Running ValidUrls test on MS agent
+#  pool:
+#    name: Hosted
+#    vmImage: win1803
+#  steps:
+#  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; ./tests/ValidUrls.ps1
+#    displayName: ValidUrls
+#    errorActionPreference: continue
 - job:
   displayName: Running Extract test on MS agent
   pool:
@@ -60,9 +60,9 @@ jobs:
   - powershell: cd tests; kitchen test InstallAllPrerequisitesLocal-win2019-basic;
     displayName: kitchen test InstallAllPrerequisitesLocal-win2019-basic
     errorActionPreference: continue
-#  - powershell: cd tests; kitchen test ValidUrls-win2012r2-basic;
-#    displayName: kitchen test ValidUrls-win2012r2-basic
-#    errorActionPreference: continue
+  - powershell: cd tests; kitchen test ValidUrls-win2012r2-basic;
+    displayName: kitchen test ValidUrls-win2012r2-basic
+    errorActionPreference: continue
   - powershell: cd infrastructure/images; ./preparevmimages.ps1 win2016-sql2016dbrs,win2012r2-ad-sql2016dbrs,win2016-ad,win2019-soe,win2016-soe
     displayName: Building images
     errorActionPreference: continue
