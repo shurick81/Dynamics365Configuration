@@ -38,7 +38,7 @@ if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server90LanguagePackSve ) {
 }
 
 try {
-    Save-Dynamics365Resource -Resource Dynamics365Server90Update09Enu -TargetDirectory C:\Install\Dynamics\Dynamics365Server90Update11Enu
+    Save-Dynamics365Resource -Resource Dynamics365Server90Update11Enu -TargetDirectory C:\Install\Dynamics\Dynamics365Server90Update11Enu
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
