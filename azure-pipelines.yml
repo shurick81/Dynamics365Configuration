@@ -47,13 +47,103 @@ jobs:
 #    displayName: ChecksumVerification
 #    errorActionPreference: continue
 - job:
-  displayName: Running ChecksumVerification on MS agent
+  displayName: Running ChecksumVerification on MS agent 0
   pool:
     name: Hosted
     vmImage: win1803
   timeoutInMinutes: 2880
   steps:
-  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; ./tests/ChecksumVerification.ps1
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; ./tests/ChecksumVerification0.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 1
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 2880
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; ./tests/ChecksumVerification1.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 2
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 2880
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; ./tests/ChecksumVerification2.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 3
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 2880
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; ./tests/ChecksumVerification3.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 4
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 2880
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; ./tests/ChecksumVerification4.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 5
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 2880
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; ./tests/ChecksumVerification5.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 6
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 2880
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; ./tests/ChecksumVerification6.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 7
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 2880
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; ./tests/ChecksumVerification7.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 8
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 2880
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; ./tests/ChecksumVerification8.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 9
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 2880
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; ./tests/ChecksumVerification9.ps1
     displayName: ChecksumVerification
     errorActionPreference: continue
 - job:
