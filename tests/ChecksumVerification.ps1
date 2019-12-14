@@ -18,7 +18,7 @@ $resources | % {
         New-Item $tempDirPath -ItemType Directory -Force | Out-Null;
         $currentProgressPreference = $ProgressPreference;
         $ProgressPreference = 'SilentlyContinue';
-        Write-Host "Downloading to $filePath";
+        Write-Host "$( Get-Date ) Downloading to $filePath";
         Try {
             Invoke-WebRequest -Uri $resourceUrl -OutFile $filePath;
         } catch {
@@ -26,6 +26,7 @@ $resources | % {
         }
         $ProgressPreference = $currentProgressPreference;
         if ( Test-Path $filePath ) {
+            Write-Host "$( Get-Date ) Calculating hash of $filePath";
             $fileHash = ( Get-FileHash $filePath -Algorithm SHA1 ).Hash;
             Start-Sleep 20;
             Remove-Item $tempDirPath -Recurse -Force;
@@ -35,7 +36,10 @@ $resources | % {
                 Write-Host "Repeating download`r";
                 $previousHash = $fileHash;
             }
+        } else {
+            Start-Sleep 5;
         }
+        Write-Host "Matches: $lastMatches";
     } until ( $lastMatches )
     if ( $Dynamics365Resources.$resourceName.Checksum -ne $fileHash ) {
         Write-Host "Incorrect data in module: $resourceName checksum is $fileHash";
