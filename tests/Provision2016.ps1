@@ -134,7 +134,7 @@ $testScriptBlock = {
     }
 }
 $testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP;
-if ( ([version]$testResponse).ToString(3) -eq "8.0.000.1088" )
+if ( ([version]$testResponse).ToString(3) -eq "8.0.0" )
 {
     Write-Host "Test OK";
 } else {
@@ -263,7 +263,7 @@ $testScriptBlock = {
     }
 }
 $testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
-if ( ([version]$testResponse).ToString(3) -eq "8.2.0013.0021" )
+if ( ([version]$testResponse).ToString(3) -eq "8.2.13" )
 {
     Write-Host "Test OK";
 } else {

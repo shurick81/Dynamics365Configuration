@@ -77,7 +77,7 @@ $testScriptBlock = {
     }
 }
 $testResponse = Invoke-Command -ScriptBlock $testScriptBlock;
-if ( ([version]$testResponse).ToString(3) -eq "8.0.000.1088" )
+if ( ([version]$testResponse).ToString(3) -eq "8.0.0" )
 {
     Write-Host "Test OK";
 } else {
@@ -122,7 +122,7 @@ $testScriptBlock = {
     }
 }
 $testResponse = Invoke-Command -ScriptBlock $testScriptBlock
-if ( ([version]$testResponse).ToString(3) -eq "8.2.0002.0112" )
+if ( ([version]$testResponse).ToString(3) -eq "8.2.2" )
 {
     Write-Host "Test OK";
 } else {
