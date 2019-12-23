@@ -1,6 +1,6 @@
 # Dynamics365Configuration module change log
 
-## Not Released yet
+## v1.5
 
 * Dynamics365Server90Update05Sve and CRM2016LanguagePackServicePack2Update04Lvi checksums corrected.
 * New Dynamics 365 updates (290 new downloadables in total):
