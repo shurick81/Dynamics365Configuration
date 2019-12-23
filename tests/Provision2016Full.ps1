@@ -74,6 +74,8 @@ try {
         "CRM2016ServicePack2Update09Dan",
         "CRM2016ServicePack2Update10Dan",
         "CRM2016ServicePack2Update11Dan",
+        "CRM2016ServicePack2Update12Dan",
+        "CRM2016ServicePack2Update13Dan",
         "CRM2016ReportingExtensionsUpdate01Dan",
         "CRM2016ReportingExtensionsServicePack1Dan",
         "CRM2016ReportingExtensionsServicePack1Update01Dan",
@@ -89,6 +91,8 @@ try {
         "CRM2016ReportingExtensionsServicePack2Update09Dan",
         "CRM2016ReportingExtensionsServicePack2Update10Dan",
         "CRM2016ReportingExtensionsServicePack2Update11Dan",
+        "CRM2016ReportingExtensionsServicePack2Update12Dan",
+        "CRM2016ReportingExtensionsServicePack2Update13Dan",
         "CRM2016LanguagePackUpdate01Enu",
         "CRM2016LanguagePackServicePack1Enu",
         "CRM2016LanguagePackServicePack1Update01Enu",
@@ -103,7 +107,9 @@ try {
         "CRM2016LanguagePackServicePack2Update08Enu",
         "CRM2016LanguagePackServicePack2Update09Enu",
         "CRM2016LanguagePackServicePack2Update10Enu",
-        "CRM2016LanguagePackServicePack2Update11Enu"
+        "CRM2016LanguagePackServicePack2Update11Enu",
+        "CRM2016LanguagePackServicePack2Update12Enu",
+        "CRM2016LanguagePackServicePack2Update13Enu"
     ) | % { Save-Dynamics365Resource -Resource $_ -TargetDirectory C:\Install\Dynamics\$_ }
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
@@ -171,6 +177,8 @@ try {
     "CRM2016ServicePack2Update09Dan",
     "CRM2016ServicePack2Update10Dan",
     "CRM2016ServicePack2Update11Dan",
+    "CRM2016ServicePack2Update12Dan",
+    "CRM2016ServicePack2Update13Dan",
     "CRM2016ReportingExtensionsUpdate01Dan",
     "CRM2016ReportingExtensionsServicePack1Dan",
     "CRM2016ReportingExtensionsServicePack1Update01Dan",
@@ -186,6 +194,8 @@ try {
     "CRM2016ReportingExtensionsServicePack2Update09Dan",
     "CRM2016ReportingExtensionsServicePack2Update10Dan",
     "CRM2016ReportingExtensionsServicePack2Update11Dan",
+    "CRM2016ReportingExtensionsServicePack2Update12Dan",
+    "CRM2016ReportingExtensionsServicePack2Update13Dan",
     "CRM2016LanguagePackUpdate01Enu",
     "CRM2016LanguagePackServicePack1Enu",
     "CRM2016LanguagePackServicePack1Update01Enu",
@@ -200,7 +210,9 @@ try {
     "CRM2016LanguagePackServicePack2Update08Enu",
     "CRM2016LanguagePackServicePack2Update09Enu",
     "CRM2016LanguagePackServicePack2Update10Enu",
-    "CRM2016LanguagePackServicePack2Update11Enu"
+    "CRM2016LanguagePackServicePack2Update11Enu",
+    "CRM2016LanguagePackServicePack2Update12Enu",
+    "CRM2016LanguagePackServicePack2Update13Enu"
 ) | % {
     if ( Get-ChildItem C:\Install\Dynamics\$_ ) {
         Write-Host "Test OK";
@@ -260,8 +272,8 @@ $testScriptBlock = {
     try {
         Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
         if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
-            $CrmOrganization = ( Get-CrmOrganization )[0];
-            $CrmOrganization.Version;
+            $crmServer = Get-CrmServer $env:COMPUTERNAME;
+            $crmServer.Version;
         } else {
             "Could not load Microsoft.Crm.PowerShell PSSnapin";
         }
@@ -270,7 +282,7 @@ $testScriptBlock = {
     }
 }
 $testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP;
-if ( $testResponse -eq "8.0.0.1088" )
+if ( ([version]$testResponse).ToString(3) -eq "8.0.0" )
 {
     Write-Host "Test OK";
 } else {
@@ -433,8 +445,8 @@ $testScriptBlock = {
     try {
         Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
         if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
-            $CrmOrganization = ( Get-CrmOrganization )[0];
-            $CrmOrganization.Version;
+            $crmServer = Get-CrmServer $env:COMPUTERNAME;
+            $crmServer.Version;
         } else {
             "Could not load Microsoft.Crm.PowerShell PSSnapin";
         }
@@ -443,7 +455,7 @@ $testScriptBlock = {
     }
 }
 $testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP;
-if ( $testResponse -eq "8.0.1.79" )
+if ( ([version]$testResponse).ToString(3) -eq "8.0.1" )
 {
     Write-Host "Test OK";
 } else {
@@ -476,7 +488,7 @@ $currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential 
     Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
 }
 Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( $currentProductInstalled.DisplayVersion -eq "8.0.0001.0079" ) {
+if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.0.1" ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected update is not installed, test is not OK";
@@ -491,7 +503,7 @@ try {
 }
 $currentProductInstalled = Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "{0C524DC1-1409-0080-8121-88490F4D5549}" }
 Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( $currentProductInstalled.DisplayVersion -eq "8.0.0001.0079" ) {
+if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.0.1" ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected update is not installed, test is not OK";
@@ -511,8 +523,8 @@ $testScriptBlock = {
     try {
         Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
         if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
-            $CrmOrganization = ( Get-CrmOrganization )[0];
-            $CrmOrganization.Version;
+            $crmServer = Get-CrmServer $env:COMPUTERNAME;
+            $crmServer.Version;
         } else {
             "Could not load Microsoft.Crm.PowerShell PSSnapin";
         }
@@ -521,7 +533,7 @@ $testScriptBlock = {
     }
 }
 $testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
-if ( $testResponse -eq "8.1.0.359" )
+if ( ([version]$testResponse).ToString(3) -eq "8.1.0" )
 {
     Write-Host "Test OK";
 } else {
@@ -554,7 +566,7 @@ $currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential 
     Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
 }
 Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( $currentProductInstalled.DisplayVersion -eq "8.1.0000.0359" ) {
+if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.1.0" ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected update is not installed, test is not OK";
@@ -569,7 +581,7 @@ try {
 }
 $currentProductInstalled = Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "{0C524DC1-1409-0080-8121-88490F4D5549}" }
 Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( $currentProductInstalled.DisplayVersion -eq "8.1.0000.0359" ) {
+if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.1.0" ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected update is not installed, test is not OK";
@@ -589,8 +601,8 @@ $testScriptBlock = {
     try {
         Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
         if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
-            $CrmOrganization = ( Get-CrmOrganization )[0];
-            $CrmOrganization.Version;
+            $crmServer = Get-CrmServer $env:COMPUTERNAME;
+            $crmServer.Version;
         } else {
             "Could not load Microsoft.Crm.PowerShell PSSnapin";
         }
@@ -599,7 +611,7 @@ $testScriptBlock = {
     }
 }
 $testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
-if ( $testResponse -eq "8.1.1.1005" )
+if ( ([version]$testResponse).ToString(3) -eq "8.1.1" )
 {
     Write-Host "Test OK";
 } else {
@@ -632,7 +644,7 @@ $currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential 
     Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
 }
 Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( $currentProductInstalled.DisplayVersion -eq "8.1.0001.1005" ) {
+if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.1.1" ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected update is not installed, test is not OK";
@@ -647,7 +659,7 @@ try {
 }
 $currentProductInstalled = Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "{0C524DC1-1409-0080-8121-88490F4D5549}" }
 Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( $currentProductInstalled.DisplayVersion -eq "8.1.0001.1005" ) {
+if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.1.1" ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected update is not installed, test is not OK";
@@ -667,8 +679,8 @@ $testScriptBlock = {
     try {
         Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
         if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
-            $CrmOrganization = ( Get-CrmOrganization )[0];
-            $CrmOrganization.Version;
+            $crmServer = Get-CrmServer $env:COMPUTERNAME;
+            $crmServer.Version;
         } else {
             "Could not load Microsoft.Crm.PowerShell PSSnapin";
         }
@@ -677,7 +689,7 @@ $testScriptBlock = {
     }
 }
 $testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
-if ( $testResponse -eq "8.2.0.749" )
+if ( ([version]$testResponse).ToString(3) -eq "8.2.0" )
 {
     Write-Host "Test OK";
 } else {
@@ -710,7 +722,7 @@ $currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential 
     Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
 }
 Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( $currentProductInstalled.DisplayVersion -eq "8.2.0000.0749" ) {
+if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.0" ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected update is not installed, test is not OK";
@@ -725,7 +737,7 @@ try {
 }
 $currentProductInstalled = Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "{0C524DC1-1409-0080-8121-88490F4D5549}" }
 Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( $currentProductInstalled.DisplayVersion -eq "8.2.0000.0749" ) {
+if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.0" ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected update is not installed, test is not OK";
@@ -745,8 +757,8 @@ $testScriptBlock = {
     try {
         Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
         if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
-            $CrmOrganization = ( Get-CrmOrganization )[0];
-            $CrmOrganization.Version;
+            $crmServer = Get-CrmServer $env:COMPUTERNAME;
+            $crmServer.Version;
         } else {
             "Could not load Microsoft.Crm.PowerShell PSSnapin";
         }
@@ -755,7 +767,7 @@ $testScriptBlock = {
     }
 }
 $testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
-if ( $testResponse -eq "8.2.1.176" )
+if ( ([version]$testResponse).ToString(3) -eq "8.2.1" )
 {
     Write-Host "Test OK";
 } else {
@@ -788,7 +800,7 @@ $currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential 
     Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
 }
 Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( $currentProductInstalled.DisplayVersion -eq "8.2.0001.0176" ) {
+if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.1" ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected update is not installed, test is not OK";
@@ -803,7 +815,7 @@ try {
 }
 $currentProductInstalled = Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "{0C524DC1-1409-0080-8121-88490F4D5549}" }
 Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( $currentProductInstalled.DisplayVersion -eq "8.2.0001.0176" ) {
+if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.1" ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected update is not installed, test is not OK";
@@ -823,8 +835,8 @@ $testScriptBlock = {
     try {
         Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
         if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
-            $CrmOrganization = ( Get-CrmOrganization )[0];
-            $CrmOrganization.Version;
+            $crmServer = Get-CrmServer $env:COMPUTERNAME;
+            $crmServer.Version;
         } else {
             "Could not load Microsoft.Crm.PowerShell PSSnapin";
         }
@@ -833,7 +845,7 @@ $testScriptBlock = {
     }
 }
 $testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
-if ( $testResponse -eq "8.2.2.112" )
+if ( ([version]$testResponse).ToString(3) -eq "8.2.2" )
 {
     Write-Host "Test OK";
 } else {
@@ -866,7 +878,7 @@ $currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential 
     Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
 }
 Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( $currentProductInstalled.DisplayVersion -eq "8.2.0002.0112" ) {
+if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.2" ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected update is not installed, test is not OK";
@@ -881,7 +893,7 @@ try {
 }
 $currentProductInstalled = Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "{0C524DC1-1409-0080-8121-88490F4D5549}" }
 Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( $currentProductInstalled.DisplayVersion -eq "8.2.0002.0112" ) {
+if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.2" ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected update is not installed, test is not OK";
@@ -901,8 +913,8 @@ $testScriptBlock = {
     try {
         Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
         if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
-            $CrmOrganization = ( Get-CrmOrganization )[0];
-            $CrmOrganization.Version;
+            $crmServer = Get-CrmServer $env:COMPUTERNAME;
+            $crmServer.Version;
         } else {
             "Could not load Microsoft.Crm.PowerShell PSSnapin";
         }
@@ -911,7 +923,7 @@ $testScriptBlock = {
     }
 }
 $testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
-if ( $testResponse -eq "8.2.3.8" )
+if ( ([version]$testResponse).ToString(3) -eq "8.2.3" )
 {
     Write-Host "Test OK";
 } else {
@@ -944,7 +956,7 @@ $currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential 
     Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
 }
 Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( $currentProductInstalled.DisplayVersion -eq "8.2.0003.0008" ) {
+if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.3" ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected update is not installed, test is not OK";
@@ -959,7 +971,7 @@ try {
 }
 $currentProductInstalled = Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "{0C524DC1-1409-0080-8121-88490F4D5549}" }
 Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( $currentProductInstalled.DisplayVersion -eq "8.2.0003.0008" ) {
+if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.3" ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected update is not installed, test is not OK";
@@ -979,8 +991,8 @@ $testScriptBlock = {
     try {
         Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
         if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
-            $CrmOrganization = ( Get-CrmOrganization )[0];
-            $CrmOrganization.Version;
+            $crmServer = Get-CrmServer $env:COMPUTERNAME;
+            $crmServer.Version;
         } else {
             "Could not load Microsoft.Crm.PowerShell PSSnapin";
         }
@@ -989,7 +1001,7 @@ $testScriptBlock = {
     }
 }
 $testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
-if ( $testResponse -eq "8.2.4.6" )
+if ( ([version]$testResponse).ToString(3) -eq "8.2.4" )
 {
     Write-Host "Test OK";
 } else {
@@ -1022,7 +1034,7 @@ $currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential 
     Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
 }
 Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( $currentProductInstalled.DisplayVersion -eq "8.2.0004.0006" ) {
+if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.4" ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected update is not installed, test is not OK";
@@ -1037,7 +1049,7 @@ try {
 }
 $currentProductInstalled = Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "{0C524DC1-1409-0080-8121-88490F4D5549}" }
 Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( $currentProductInstalled.DisplayVersion -eq "8.2.0004.0006" ) {
+if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.4" ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected update is not installed, test is not OK";
@@ -1057,8 +1069,8 @@ $testScriptBlock = {
     try {
         Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
         if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
-            $CrmOrganization = ( Get-CrmOrganization )[0];
-            $CrmOrganization.Version;
+            $crmServer = Get-CrmServer $env:COMPUTERNAME;
+            $crmServer.Version;
         } else {
             "Could not load Microsoft.Crm.PowerShell PSSnapin";
         }
@@ -1067,7 +1079,7 @@ $testScriptBlock = {
     }
 }
 $testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
-if ( $testResponse -eq "8.2.5.4" )
+if ( ([version]$testResponse).ToString(3) -eq "8.2.5" )
 {
     Write-Host "Test OK";
 } else {
@@ -1100,7 +1112,7 @@ $currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential 
     Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
 }
 Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( $currentProductInstalled.DisplayVersion -eq "8.2.0005.0004" ) {
+if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.5" ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected update is not installed, test is not OK";
@@ -1115,7 +1127,7 @@ try {
 }
 $currentProductInstalled = Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "{0C524DC1-1409-0080-8121-88490F4D5549}" }
 Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( $currentProductInstalled.DisplayVersion -eq "8.2.0005.0004" ) {
+if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.5" ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected update is not installed, test is not OK";
@@ -1135,8 +1147,8 @@ $testScriptBlock = {
     try {
         Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
         if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
-            $CrmOrganization = ( Get-CrmOrganization )[0];
-            $CrmOrganization.Version;
+            $crmServer = Get-CrmServer $env:COMPUTERNAME;
+            $crmServer.Version;
         } else {
             "Could not load Microsoft.Crm.PowerShell PSSnapin";
         }
@@ -1145,7 +1157,7 @@ $testScriptBlock = {
     }
 }
 $testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
-if ( $testResponse -eq "8.2.6.19" )
+if ( ([version]$testResponse).ToString(3) -eq "8.2.6" )
 {
     Write-Host "Test OK";
 } else {
@@ -1178,7 +1190,7 @@ $currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential 
     Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
 }
 Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( $currentProductInstalled.DisplayVersion -eq "8.2.0006.0019" ) {
+if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.6" ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected update is not installed, test is not OK";
@@ -1193,7 +1205,7 @@ try {
 }
 $currentProductInstalled = Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "{0C524DC1-1409-0080-8121-88490F4D5549}" }
 Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( $currentProductInstalled.DisplayVersion -eq "8.2.0006.0019" ) {
+if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.6" ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected update is not installed, test is not OK";
@@ -1213,8 +1225,8 @@ $testScriptBlock = {
     try {
         Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
         if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
-            $CrmOrganization = ( Get-CrmOrganization )[0];
-            $CrmOrganization.Version;
+            $crmServer = Get-CrmServer $env:COMPUTERNAME;
+            $crmServer.Version;
         } else {
             "Could not load Microsoft.Crm.PowerShell PSSnapin";
         }
@@ -1223,7 +1235,7 @@ $testScriptBlock = {
     }
 }
 $testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
-if ( $testResponse -eq "8.2.7.13" )
+if ( ([version]$testResponse).ToString(3) -eq "8.2.7" )
 {
     Write-Host "Test OK";
 } else {
@@ -1256,7 +1268,7 @@ $currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential 
     Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
 }
 Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( $currentProductInstalled.DisplayVersion -eq "8.2.0007.0013" ) {
+if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.7" ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected update is not installed, test is not OK";
@@ -1271,7 +1283,7 @@ try {
 }
 $currentProductInstalled = Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "{0C524DC1-1409-0080-8121-88490F4D5549}" }
 Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( $currentProductInstalled.DisplayVersion -eq "8.2.0007.0013" ) {
+if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.7" ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected update is not installed, test is not OK";
@@ -1291,8 +1303,8 @@ $testScriptBlock = {
     try {
         Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
         if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
-            $CrmOrganization = ( Get-CrmOrganization )[0];
-            $CrmOrganization.Version;
+            $crmServer = Get-CrmServer $env:COMPUTERNAME;
+            $crmServer.Version;
         } else {
             "Could not load Microsoft.Crm.PowerShell PSSnapin";
         }
@@ -1301,7 +1313,7 @@ $testScriptBlock = {
     }
 }
 $testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
-if ( $testResponse -eq "8.2.8.15" )
+if ( ([version]$testResponse).ToString(3) -eq "8.2.8" )
 {
     Write-Host "Test OK";
 } else {
@@ -1334,7 +1346,7 @@ $currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential 
     Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
 }
 Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( $currentProductInstalled.DisplayVersion -eq "8.2.0008.0015" ) {
+if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.8" ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected update is not installed, test is not OK";
@@ -1349,7 +1361,7 @@ try {
 }
 $currentProductInstalled = Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "{0C524DC1-1409-0080-8121-88490F4D5549}" }
 Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( $currentProductInstalled.DisplayVersion -eq "8.2.0008.0015" ) {
+if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.8" ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected update is not installed, test is not OK";
@@ -1369,8 +1381,8 @@ $testScriptBlock = {
     try {
         Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
         if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
-            $CrmOrganization = ( Get-CrmOrganization )[0];
-            $CrmOrganization.Version;
+            $crmServer = Get-CrmServer $env:COMPUTERNAME;
+            $crmServer.Version;
         } else {
             "Could not load Microsoft.Crm.PowerShell PSSnapin";
         }
@@ -1379,7 +1391,7 @@ $testScriptBlock = {
     }
 }
 $testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
-if ( $testResponse -eq "8.2.9.19" )
+if ( ([version]$testResponse).ToString(3) -eq "8.2.9" )
 {
     Write-Host "Test OK";
 } else {
@@ -1412,7 +1424,7 @@ $currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential 
     Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
 }
 Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( $currentProductInstalled.DisplayVersion -eq "8.2.0009.0019" ) {
+if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.9" ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected update is not installed, test is not OK";
@@ -1427,7 +1439,7 @@ try {
 }
 $currentProductInstalled = Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "{0C524DC1-1409-0080-8121-88490F4D5549}" }
 Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( $currentProductInstalled.DisplayVersion -eq "8.2.0009.0019" ) {
+if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.9" ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected update is not installed, test is not OK";
@@ -1447,8 +1459,8 @@ $testScriptBlock = {
     try {
         Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
         if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
-            $CrmOrganization = ( Get-CrmOrganization )[0];
-            $CrmOrganization.Version;
+            $crmServer = Get-CrmServer $env:COMPUTERNAME;
+            $crmServer.Version;
         } else {
             "Could not load Microsoft.Crm.PowerShell PSSnapin";
         }
@@ -1457,7 +1469,7 @@ $testScriptBlock = {
     }
 }
 $testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
-if ( $testResponse -eq "8.2.10.24" )
+if ( ([version]$testResponse).ToString(3) -eq "8.2.10" )
 {
     Write-Host "Test OK";
 } else {
@@ -1490,7 +1502,7 @@ $currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential 
     Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
 }
 Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( $currentProductInstalled.DisplayVersion -eq "8.2.0010.0024" ) {
+if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.10" ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected update is not installed, test is not OK";
@@ -1505,7 +1517,7 @@ try {
 }
 $currentProductInstalled = Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "{0C524DC1-1409-0080-8121-88490F4D5549}" }
 Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( $currentProductInstalled.DisplayVersion -eq "8.2.0010.0024" ) {
+if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.10" ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected update is not installed, test is not OK";
@@ -1525,8 +1537,8 @@ $testScriptBlock = {
     try {
         Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
         if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
-            $CrmOrganization = ( Get-CrmOrganization )[0];
-            $CrmOrganization.Version;
+            $crmServer = Get-CrmServer $env:COMPUTERNAME;
+            $crmServer.Version;
         } else {
             "Could not load Microsoft.Crm.PowerShell PSSnapin";
         }
@@ -1535,7 +1547,7 @@ $testScriptBlock = {
     }
 }
 $testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
-if ( $testResponse -eq "8.2.11.13" )
+if ( ([version]$testResponse).ToString(3) -eq "8.2.11" )
 {
     Write-Host "Test OK";
 } else {
@@ -1568,7 +1580,7 @@ $currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential 
     Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
 }
 Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( $currentProductInstalled.DisplayVersion -eq "8.2.0011.0013" ) {
+if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.11" ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected update is not installed, test is not OK";
@@ -1583,7 +1595,163 @@ try {
 }
 $currentProductInstalled = Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "{0C524DC1-1409-0080-8121-88490F4D5549}" }
 Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( $currentProductInstalled.DisplayVersion -eq "8.2.0011.0013" ) {
+if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.11" ) {
+    Write-Host "Test OK";
+} else {
+    Write-Host "Expected update is not installed, test is not OK";
+    Exit 1;
+}
+
+try {
+    Invoke-Command "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+        Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
+        Install-Dynamics365Update -MediaDir C:\Install\Dynamics\CRM2016ServicePack2Update12Dan
+    }
+} catch {
+    Write-Host $_.Exception.Message -ForegroundColor Red;
+    Exit 1;
+}
+$testScriptBlock = {
+    try {
+        Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
+        if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
+            $crmServer = Get-CrmServer $env:COMPUTERNAME;
+            $crmServer.Version;
+        } else {
+            "Could not load Microsoft.Crm.PowerShell PSSnapin";
+        }
+    } catch {
+        $_.Exception.Message;
+    }
+}
+$testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
+if ( ([version]$testResponse).ToString(3) -eq "8.2.12" )
+{
+    Write-Host "Test OK";
+} else {
+    Write-Host "Software installed version is '$testResponse'. Test is not OK"
+    Exit 1;
+}
+
+try {
+    if ( $dbHostName -eq $env:COMPUTERNAME ) {
+        $mediaDir = "C:\Install\Dynamics\CRM2016ReportingExtensionsServicePack2Update12Dan";
+    } else {
+        $mediaDir = "\\$env:COMPUTERNAME\c$\Install\Dynamics\CRM2016ReportingExtensionsServicePack2Update12Dan";
+    }
+    Write-Output "dbHostName is $dbHostName"
+    Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+        param( $mediaDir )
+        Import-Module C:\test-projects\Dynamics365Configuration\src\Dynamics365Configuration\Dynamics365Configuration.psd1
+        Write-Output "mediaDir is $mediaDir"
+        Install-Dynamics365ReportingExtensionsUpdate -MediaDir $mediaDir `
+            -LogFilePath c:\tmp\Dynamics365ServerInstallLog.txt `
+            -LogFilePullIntervalInSeconds 15 `
+            -LogFilePullToOutput
+    } -ArgumentList $mediaDir;
+} catch {
+    Write-Host "Failed in invoking of Install-Dynamics365Update";
+    Write-Host $_.Exception.Message -ForegroundColor Red;
+    Exit 1;
+}
+$currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+    Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
+}
+Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
+if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.12" ) {
+    Write-Host "Test OK";
+} else {
+    Write-Host "Expected update is not installed, test is not OK";
+    Exit 1;
+}
+
+try {
+    Install-Dynamics365LanguageUpdate -MediaDir C:\Install\Dynamics\CRM2016LanguagePackServicePack2Update12Enu
+} catch {
+    Write-Host $_.Exception.Message -ForegroundColor Red;
+    Exit 1;
+}
+$currentProductInstalled = Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "{0C524DC1-1409-0080-8121-88490F4D5549}" }
+Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
+if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.12" ) {
+    Write-Host "Test OK";
+} else {
+    Write-Host "Expected update is not installed, test is not OK";
+    Exit 1;
+}
+
+try {
+    Invoke-Command "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+        Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
+        Install-Dynamics365Update -MediaDir C:\Install\Dynamics\CRM2016ServicePack2Update13Dan
+    }
+} catch {
+    Write-Host $_.Exception.Message -ForegroundColor Red;
+    Exit 1;
+}
+$testScriptBlock = {
+    try {
+        Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
+        if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
+            $crmServer = Get-CrmServer $env:COMPUTERNAME;
+            $crmServer.Version;
+        } else {
+            "Could not load Microsoft.Crm.PowerShell PSSnapin";
+        }
+    } catch {
+        $_.Exception.Message;
+    }
+}
+$testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
+if ( ([version]$testResponse).ToString(3) -eq "8.2.13" )
+{
+    Write-Host "Test OK";
+} else {
+    Write-Host "Software installed version is '$testResponse'. Test is not OK"
+    Exit 1;
+}
+
+try {
+    if ( $dbHostName -eq $env:COMPUTERNAME ) {
+        $mediaDir = "C:\Install\Dynamics\CRM2016ReportingExtensionsServicePack2Update13Dan";
+    } else {
+        $mediaDir = "\\$env:COMPUTERNAME\c$\Install\Dynamics\CRM2016ReportingExtensionsServicePack2Update13Dan";
+    }
+    Write-Output "dbHostName is $dbHostName"
+    Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+        param( $mediaDir )
+        Import-Module C:\test-projects\Dynamics365Configuration\src\Dynamics365Configuration\Dynamics365Configuration.psd1
+        Write-Output "mediaDir is $mediaDir"
+        Install-Dynamics365ReportingExtensionsUpdate -MediaDir $mediaDir `
+            -LogFilePath c:\tmp\Dynamics365ServerInstallLog.txt `
+            -LogFilePullIntervalInSeconds 15 `
+            -LogFilePullToOutput
+    } -ArgumentList $mediaDir;
+} catch {
+    Write-Host "Failed in invoking of Install-Dynamics365Update";
+    Write-Host $_.Exception.Message -ForegroundColor Red;
+    Exit 1;
+}
+$currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+    Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
+}
+Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
+if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.13" ) {
+    Write-Host "Test OK";
+} else {
+    Write-Host "Expected update is not installed, test is not OK";
+    Exit 1;
+}
+
+try {
+    Install-Dynamics365LanguageUpdate -MediaDir C:\Install\Dynamics\CRM2016LanguagePackServicePack2Update13Enu
+} catch {
+    Write-Host $_.Exception.Message -ForegroundColor Red;
+    Exit 1;
+}
+$currentProductInstalled = Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "{0C524DC1-1409-0080-8121-88490F4D5549}" }
+Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
+if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.13" ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected update is not installed, test is not OK";

@@ -2,7 +2,21 @@
 
 ## Not Released yet
 
- * Dynamics365Server90Update05Sve and CRM2016LanguagePackServicePack2Update04Lvi checksums corrected.
+* Dynamics365Server90Update05Sve and CRM2016LanguagePackServicePack2Update04Lvi checksums corrected.
+* New Dynamics 365 updates (290 new downloadables in total):
+
+  * Dynamics365Server90Update10\<Language\>
+  * Dynamics365Server90ReportingExtensionsUpdate10\<Language\>
+  * CRM2016ServicePack2Update12\<Language\>
+  * CRM2016ReportingExtensionsServicePack2Update12\<Language\>
+  * CRM2016LanguagePackServicePack2Update12\<Language\>
+  * Dynamics365Server90Update11\<Language\>
+  * Dynamics365Server90ReportingExtensionsUpdate11\<Language\>
+  * CRM2016ServicePack2Update13\<Language\>
+  * CRM2016ReportingExtensionsServicePack2Update13\<Language\>
+  * CRM2016LanguagePackServicePack2Update13\<Language\>
+
+* New way of verifying Dynamics Server version installed: using Get-CrmServer instead of Get-CrmOrganization
 
 ## v1.4
 

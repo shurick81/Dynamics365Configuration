@@ -1,25 +1,32 @@
-Try {
-    $resources = $Dynamics365Resources | Get-Member -MemberType NoteProperty;
-    $resourceCount = $resources.Count;
-    $resourceCounter = 1;
-    Write-Host "Starting resource enumeration";
-    $resources | % {
-        $resourceName = $_.Name;
-        Write-Host "Verifying $resourceName, $resourceCounter of $resourceCount";
-        $resourceUrl = $Dynamics365Resources.$resourceName.URL;
-        $resourceUrl -match '[^/\\&\?]+\.\w{3,4}(?=([\?&].*$|$))' | Out-Null
-        $resourceFileName = $matches[0];
-        $previousHash = $Dynamics365Resources.$resourceName.Checksum;
-        do {
-            $fileHash = "";
-            $tempDirName = [guid]::NewGuid().Guid;
-            $tempDirPath = "$env:Temp\$tempDirName";
-            $filePath = "$tempDirPath\$resourceFileName";
-            New-Item $tempDirPath -ItemType Directory -Force | Out-Null;
-            $currentProgressPreference = $ProgressPreference;
-            $ProgressPreference = 'SilentlyContinue';
+$resources = $Dynamics365Resources | Get-Member -MemberType NoteProperty;
+$resourceCount = $resources.Count;
+$resourceCounter = 1;
+Write-Host "Starting resource enumeration";
+$resources | % {
+    $resourceName = $_.Name;
+    Write-Host "Verifying $resourceName, $resourceCounter of $resourceCount";
+    $resourceUrl = $Dynamics365Resources.$resourceName.URL;
+    $resourceUrl -match '[^/\\&\?]+\.\w{3,4}(?=([\?&].*$|$))' | Out-Null
+    $resourceFileName = $matches[0];
+    $previousHash = $Dynamics365Resources.$resourceName.Checksum;
+    do {
+        $lastMatches = $false;
+        $fileHash = "";
+        $tempDirName = [guid]::NewGuid().Guid;
+        $tempDirPath = "$env:Temp\$tempDirName";
+        $filePath = "$tempDirPath\$resourceFileName";
+        New-Item $tempDirPath -ItemType Directory -Force | Out-Null;
+        $currentProgressPreference = $ProgressPreference;
+        $ProgressPreference = 'SilentlyContinue';
+        Write-Host "$( Get-Date ) Downloading to $filePath";
+        Try {
             Invoke-WebRequest -Uri $resourceUrl -OutFile $filePath;
-            $ProgressPreference = $currentProgressPreference;
+        } catch {
+            Write-Host $_.Exception.Message -ForegroundColor Red;
+        }
+        $ProgressPreference = $currentProgressPreference;
+        if ( Test-Path $filePath ) {
+            Write-Host "$( Get-Date ) Calculating hash of $filePath";
             $fileHash = ( Get-FileHash $filePath -Algorithm SHA1 ).Hash;
             Start-Sleep 20;
             Remove-Item $tempDirPath -Recurse -Force;
@@ -29,14 +36,14 @@ Try {
                 Write-Host "Repeating download`r";
                 $previousHash = $fileHash;
             }
-        } until ( $lastMatches )
-        if ( $Dynamics365Resources.$resourceName.Checksum -ne $fileHash ) {
-            Write-Host "Incorrect data in module: $resourceName checksum is $fileHash";
-            Exit 1;
+        } else {
+            Start-Sleep 5;
         }
-        $resourceCounter++;
+        Write-Host "Matches: $lastMatches";
+    } until ( $lastMatches )
+    if ( $Dynamics365Resources.$resourceName.Checksum -ne $fileHash ) {
+        Write-Host "Incorrect data in module: $resourceName checksum is $fileHash";
+        Exit 1;
     }
-} catch {
-    Write-Host $_.Exception.Message -ForegroundColor Red;
-    Exit 1;
+    $resourceCounter++;
 }

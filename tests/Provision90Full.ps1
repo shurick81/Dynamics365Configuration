@@ -72,7 +72,11 @@ try {
         "Dynamics365Server90Update08Enu",
         "Dynamics365Server90ReportingExtensionsUpdate08Enu",
         "Dynamics365Server90Update09Enu",
-        "Dynamics365Server90ReportingExtensionsUpdate09Enu"
+        "Dynamics365Server90ReportingExtensionsUpdate09Enu",
+        "Dynamics365Server90Update10Enu",
+        "Dynamics365Server90ReportingExtensionsUpdate10Enu",
+        "Dynamics365Server90Update11Enu",
+        "Dynamics365Server90ReportingExtensionsUpdate11Enu"
     ) | % { Save-Dynamics365Resource -Resource $_ -TargetDirectory C:\Install\Dynamics\$_ }
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
@@ -138,7 +142,11 @@ try {
     "Dynamics365Server90Update08Enu",
     "Dynamics365Server90ReportingExtensionsUpdate08Enu",
     "Dynamics365Server90Update09Enu",
-    "Dynamics365Server90ReportingExtensionsUpdate09Enu"
+    "Dynamics365Server90ReportingExtensionsUpdate09Enu",
+    "Dynamics365Server90Update10Enu",
+    "Dynamics365Server90ReportingExtensionsUpdate10Enu",
+    "Dynamics365Server90Update11Enu",
+    "Dynamics365Server90ReportingExtensionsUpdate11Enu"
 ) | % {
     if ( Get-ChildItem C:\Install\Dynamics\$_ ) {
         Write-Host "Test OK";
@@ -187,7 +195,10 @@ try {
             -BaseCurrencySymbol `$ `
             -BaseCurrencyPrecision 2 `
             -OrganizationCollation Latin1_General_CI_AI `
-            -ReportingUrl http://$dbHostName/ReportServer_RSInstance01
+            -ReportingUrl http://$dbHostName/ReportServer_RSInstance01 `
+            -LogFilePath c:\tmp\Dynamics365ServerInstallLog.txt `
+            -LogFilePullIntervalInSeconds 15 `
+            -LogFilePullToOutput
     } -ArgumentList $dbHostName;
 } catch {
     Write-Host "Failed in invoking of Install-Dynamics365Server";
@@ -198,8 +209,8 @@ $testScriptBlock = {
     try {
         Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
         if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
-            $CrmOrganization = ( Get-CrmOrganization )[0];
-            $CrmOrganization.Version;
+            $crmServer = Get-CrmServer $env:COMPUTERNAME;
+            $crmServer.Version;
         } else {
             "Could not load Microsoft.Crm.PowerShell PSSnapin";
         }
@@ -209,7 +220,7 @@ $testScriptBlock = {
     }
 }
 $testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP;
-if ( $testResponse -eq "9.0.2.3034" )
+if ( ([version]$testResponse).ToString(3) -eq "9.0.2" )
 {
     Write-Host "Test OK";
 } else {
@@ -375,8 +386,8 @@ $testScriptBlock = {
     try {
         Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
         if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
-            $CrmOrganization = ( Get-CrmOrganization )[0];
-            $CrmOrganization.Version;
+            $crmServer = Get-CrmServer $env:COMPUTERNAME;
+            $crmServer.Version;
         } else {
             "Could not load Microsoft.Crm.PowerShell PSSnapin";
         }
@@ -386,7 +397,7 @@ $testScriptBlock = {
     }
 }
 $testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
-if ( $testResponse -eq "9.0.3.7" )
+if ( ([version]$testResponse).ToString(3) -eq "9.0.3" )
 {
     Write-Host "Test OK";
 } else {
@@ -426,7 +437,7 @@ $currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential 
     Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
 }
 Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( $currentProductInstalled.DisplayVersion -eq "9.0.0003.0007" ) {
+if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "9.0.3" ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected update is not installed, test is not OK";
@@ -449,8 +460,8 @@ $testScriptBlock = {
     try {
         Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
         if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
-            $CrmOrganization = ( Get-CrmOrganization )[0];
-            $CrmOrganization.Version;
+            $crmServer = Get-CrmServer $env:COMPUTERNAME;
+            $crmServer.Version;
         } else {
             "Could not load Microsoft.Crm.PowerShell PSSnapin";
         }
@@ -460,7 +471,7 @@ $testScriptBlock = {
     }
 }
 $testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
-if ( $testResponse -eq "9.0.4.5" )
+if ( ([version]$testResponse).ToString(3) -eq "9.0.4" )
 {
     Write-Host "Test OK";
 } else {
@@ -500,7 +511,7 @@ $currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential 
     Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
 }
 Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( $currentProductInstalled.DisplayVersion -eq "9.0.0004.0005" ) {
+if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "9.0.4" ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected update is not installed, test is not OK";
@@ -523,8 +534,8 @@ $testScriptBlock = {
     try {
         Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
         if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
-            $CrmOrganization = ( Get-CrmOrganization )[0];
-            $CrmOrganization.Version;
+            $crmServer = Get-CrmServer $env:COMPUTERNAME;
+            $crmServer.Version;
         } else {
             "Could not load Microsoft.Crm.PowerShell PSSnapin";
         }
@@ -534,8 +545,7 @@ $testScriptBlock = {
     }
 }
 $testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
-if ( $testResponse -eq "9.0.5.5" )
-{
+if ( ([version]$testResponse).ToString(3) -eq "9.0.5" ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Software installed version is '$testResponse'. Test is not OK"
@@ -574,7 +584,7 @@ $currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential 
     Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
 }
 Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( $currentProductInstalled.DisplayVersion -eq "9.0.0005.0005" ) {
+if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "9.0.5" ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected update is not installed, test is not OK";
@@ -597,8 +607,8 @@ $testScriptBlock = {
     try {
         Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
         if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
-            $CrmOrganization = ( Get-CrmOrganization )[0];
-            $CrmOrganization.Version;
+            $crmServer = Get-CrmServer $env:COMPUTERNAME;
+            $crmServer.Version;
         } else {
             "Could not load Microsoft.Crm.PowerShell PSSnapin";
         }
@@ -608,7 +618,7 @@ $testScriptBlock = {
     }
 }
 $testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
-if ( $testResponse -eq "9.0.6.9" )
+if ( ([version]$testResponse).ToString(3) -eq "9.0.6" )
 {
     Write-Host "Test OK";
 } else {
@@ -648,7 +658,7 @@ $currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential 
     Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
 }
 Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( $currentProductInstalled.DisplayVersion -eq "9.0.0006.0009" ) {
+if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "9.0.6" ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected update is not installed, test is not OK";
@@ -671,8 +681,8 @@ $testScriptBlock = {
     try {
         Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
         if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
-            $CrmOrganization = ( Get-CrmOrganization )[0];
-            $CrmOrganization.Version;
+            $crmServer = Get-CrmServer $env:COMPUTERNAME;
+            $crmServer.Version;
         } else {
             "Could not load Microsoft.Crm.PowerShell PSSnapin";
         }
@@ -682,7 +692,7 @@ $testScriptBlock = {
     }
 }
 $testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
-if ( $testResponse -eq "9.0.7.8" )
+if ( ([version]$testResponse).ToString(3) -eq "9.0.7" )
 {
     Write-Host "Test OK";
 } else {
@@ -722,7 +732,7 @@ $currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential 
     Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
 }
 Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( $currentProductInstalled.DisplayVersion -eq "9.0.0007.0008" ) {
+if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "9.0.7" ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected update is not installed, test is not OK";
@@ -745,8 +755,8 @@ $testScriptBlock = {
     try {
         Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
         if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
-            $CrmOrganization = ( Get-CrmOrganization )[0];
-            $CrmOrganization.Version;
+            $crmServer = Get-CrmServer $env:COMPUTERNAME;
+            $crmServer.Version;
         } else {
             "Could not load Microsoft.Crm.PowerShell PSSnapin";
         }
@@ -756,7 +766,7 @@ $testScriptBlock = {
     }
 }
 $testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
-if ( $testResponse -eq "9.0.8.9" )
+if ( ([version]$testResponse).ToString(3) -eq "9.0.8" )
 {
     Write-Host "Test OK";
 } else {
@@ -796,7 +806,7 @@ $currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential 
     Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
 }
 Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( $currentProductInstalled.DisplayVersion -eq "9.0.0008.0009" ) {
+if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "9.0.8" ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected update is not installed, test is not OK";
@@ -819,8 +829,8 @@ $testScriptBlock = {
     try {
         Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
         if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
-            $CrmOrganization = ( Get-CrmOrganization )[0];
-            $CrmOrganization.Version;
+            $crmServer = Get-CrmServer $env:COMPUTERNAME;
+            $crmServer.Version;
         } else {
             "Could not load Microsoft.Crm.PowerShell PSSnapin";
         }
@@ -830,7 +840,7 @@ $testScriptBlock = {
     }
 }
 $testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
-if ( $testResponse -eq "9.0.9.4" )
+if ( ([version]$testResponse).ToString(3) -eq "9.0.9" )
 {
     Write-Host "Test OK";
 } else {
@@ -870,7 +880,155 @@ $currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential 
     Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
 }
 Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( $currentProductInstalled.DisplayVersion -eq "9.0.0009.0004" ) {
+if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "9.0.9" ) {
+    Write-Host "Test OK";
+} else {
+    Write-Host "Expected update is not installed, test is not OK";
+    Exit 1;
+}
+
+try {
+    Invoke-Command "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+        Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
+        Install-Dynamics365Update -MediaDir C:\Install\Dynamics\Dynamics365Server90Update10Enu `
+            -LogFilePath c:\tmp\Dynamics365ServerUpdate910InstallLog.txt `
+            -LogFilePullIntervalInSeconds 15 `
+            -LogFilePullToOutput
+    }
+} catch {
+    Write-Host $_.Exception.Message -ForegroundColor Red;
+    Exit 1;
+}
+$testScriptBlock = {
+    try {
+        Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
+        if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
+            $crmServer = Get-CrmServer $env:COMPUTERNAME;
+            $crmServer.Version;
+        } else {
+            "Could not load Microsoft.Crm.PowerShell PSSnapin";
+        }
+    } catch {
+        $_.Exception.Message;
+        Exit 1;
+    }
+}
+$testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
+if ( ([version]$testResponse).ToString(3) -eq "9.0.10" )
+{
+    Write-Host "Test OK";
+} else {
+    Write-Host "Software installed version is '$testResponse'. Test is not OK"
+    Exit 1;
+}
+if( Test-Path "c:\tmp\Dynamics365ServerUpdate910InstallLog.txt" )
+{
+    Write-Output "File c:\tmp\Dynamics365ServerUpdate910InstallLog.txt is found, test OK"
+} else {
+    Write-Output "File c:\tmp\Dynamics365ServerUpdate910InstallLog.txt is not found"
+    Exit 1;
+}
+
+try {
+    if ( $dbHostName -eq $env:COMPUTERNAME ) {
+        $mediaDir = "C:\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate10Enu";
+    } else {
+        $mediaDir = "\\$env:COMPUTERNAME\c$\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate10Enu";
+    }
+    Write-Output "dbHostName is $dbHostName"
+    Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+        param( $mediaDir )
+        Import-Module C:\test-projects\Dynamics365Configuration\src\Dynamics365Configuration\Dynamics365Configuration.psd1
+        Write-Output "mediaDir is $mediaDir"
+        Install-Dynamics365ReportingExtensionsUpdate -MediaDir $mediaDir `
+            -LogFilePath c:\tmp\Dynamics365ServerInstallLog.txt `
+            -LogFilePullIntervalInSeconds 15 `
+            -LogFilePullToOutput
+    } -ArgumentList $mediaDir;
+} catch {
+    Write-Host "Failed in invoking of Install-Dynamics365Update";
+    Write-Host $_.Exception.Message -ForegroundColor Red;
+    Exit 1;
+}
+$currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+    Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
+}
+Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
+if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "9.0.10" ) {
+    Write-Host "Test OK";
+} else {
+    Write-Host "Expected update is not installed, test is not OK";
+    Exit 1;
+}
+
+try {
+    Invoke-Command "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+        Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
+        Install-Dynamics365Update -MediaDir C:\Install\Dynamics\Dynamics365Server90Update11Enu `
+            -LogFilePath c:\tmp\Dynamics365ServerUpdate911InstallLog.txt `
+            -LogFilePullIntervalInSeconds 15 `
+            -LogFilePullToOutput
+    }
+} catch {
+    Write-Host $_.Exception.Message -ForegroundColor Red;
+    Exit 1;
+}
+$testScriptBlock = {
+    try {
+        Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
+        if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
+            $crmServer = Get-CrmServer $env:COMPUTERNAME;
+            $crmServer.Version;
+        } else {
+            "Could not load Microsoft.Crm.PowerShell PSSnapin";
+        }
+    } catch {
+        $_.Exception.Message;
+        Exit 1;
+    }
+}
+$testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
+if ( ([version]$testResponse).ToString(3) -eq "9.0.11" )
+{
+    Write-Host "Test OK";
+} else {
+    Write-Host "Software installed version is '$testResponse'. Test is not OK"
+    Exit 1;
+}
+if( Test-Path "c:\tmp\Dynamics365ServerUpdate911InstallLog.txt" )
+{
+    Write-Output "File c:\tmp\Dynamics365ServerUpdate911InstallLog.txt is found, test OK"
+} else {
+    Write-Output "File c:\tmp\Dynamics365ServerUpdate911InstallLog.txt is not found"
+    Exit 1;
+}
+
+try {
+    if ( $dbHostName -eq $env:COMPUTERNAME ) {
+        $mediaDir = "C:\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate11Enu";
+    } else {
+        $mediaDir = "\\$env:COMPUTERNAME\c$\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate11Enu";
+    }
+    Write-Output "dbHostName is $dbHostName"
+    Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+        param( $mediaDir )
+        Import-Module C:\test-projects\Dynamics365Configuration\src\Dynamics365Configuration\Dynamics365Configuration.psd1
+        Write-Output "mediaDir is $mediaDir"
+        Install-Dynamics365ReportingExtensionsUpdate -MediaDir $mediaDir `
+            -LogFilePath c:\tmp\Dynamics365ServerInstallLog.txt `
+            -LogFilePullIntervalInSeconds 15 `
+            -LogFilePullToOutput
+    } -ArgumentList $mediaDir;
+} catch {
+    Write-Host "Failed in invoking of Install-Dynamics365Update";
+    Write-Host $_.Exception.Message -ForegroundColor Red;
+    Exit 1;
+}
+$currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+    Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
+}
+Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
+if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "9.0.11" ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected update is not installed, test is not OK";

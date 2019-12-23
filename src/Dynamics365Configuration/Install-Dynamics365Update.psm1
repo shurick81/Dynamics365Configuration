@@ -19,8 +19,8 @@
     try {
         Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
         if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
-            $CrmOrganization = ( Get-CrmOrganization )[0];
-            $testResponse = $CrmOrganization.Version;
+            $crmServer = Get-CrmServer $env:COMPUTERNAME;
+            $testResponse = $crmServer.Version;
         } else {
             "Could not load Microsoft.Crm.PowerShell PSSnapin";
         }
@@ -31,10 +31,7 @@
     if ( $testResponse.StartsWith( "9." ) -or $testResponse.StartsWith( "8." ) ) {
         $productDetected = $testResponse;
     }
-    if ( $productDetected -and ( [version]$productDetected -lt [version]$fileVersion ) -and ( ( [version]$productDetected ).Major -eq ( [version]$fileVersion ).Major ) ) {
-        $localInstallationScriptBlock = {
-            param( $setupFilePath, $logFilePath, $logFilePullIntervalInSeconds, $logFilePullToOutput)
-        }
+    if ( $productDetected -and ( [version]( ( [version]$productDetected ).ToString(3) ) -lt [version]( ( [version]$fileVersion ).ToString(3) ) ) -and ( ( [version]$productDetected ).Major -eq ( [version]$fileVersion ).Major ) ) {
         if([String]::IsNullOrEmpty($logFilePath) -eq $True) {
             $timeStamp = ( Get-Date -Format u ).Replace(" ","-").Replace(":","-");
             $logFilePath = "$env:Temp\DynamicsUpdateInstallationLog_$timeStamp.txt";
@@ -82,8 +79,8 @@
         try {
             Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
             if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
-                $CrmOrganization = ( Get-CrmOrganization )[0];
-                $testResponse = $CrmOrganization.Version;
+                $crmServer = Get-CrmServer $env:COMPUTERNAME;
+                $testResponse = $crmServer.Version;
             } else {
                 "Could not load Microsoft.Crm.PowerShell PSSnapin";
             }
@@ -91,7 +88,7 @@
             $_.Exception.Message;
         }
 
-        if ( $testResponse -eq $fileVersion ) {
+        if ( [version]( ( [version]$testResponse ).ToString(3) ) -eq [version]( ( [version]$fileVersion ).ToString(3) ) ) {
             Write-Output "Installation is finished and verified successfully. Dynamics version installed: '$testResponse'";
         } else {
             if( (Test-Path $logFilePath) -eq $True) {

@@ -66,8 +66,8 @@ $testScriptBlock = {
     try {
         Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
         if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
-            $CrmOrganization = ( Get-CrmOrganization )[0];
-            $CrmOrganization.Version;
+            $crmServer = Get-CrmServer $env:COMPUTERNAME;
+            $crmServer.Version;
         } else {
             "Could not load Microsoft.Crm.PowerShell PSSnapin";
         }
@@ -77,7 +77,7 @@ $testScriptBlock = {
     }
 }
 $testResponse = Invoke-Command -ScriptBlock $testScriptBlock;
-if ( $testResponse -eq "8.0.0.1088" )
+if ( ([version]$testResponse).ToString(3) -eq "8.0.0" )
 {
     Write-Host "Test OK";
 } else {
@@ -111,8 +111,8 @@ $testScriptBlock = {
     try {
         Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
         if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
-            $CrmOrganization = ( Get-CrmOrganization )[0];
-            $CrmOrganization.Version;
+            $crmServer = Get-CrmServer $env:COMPUTERNAME;
+            $crmServer.Version;
         } else {
             "Could not load Microsoft.Crm.PowerShell PSSnapin";
         }
@@ -122,7 +122,7 @@ $testScriptBlock = {
     }
 }
 $testResponse = Invoke-Command -ScriptBlock $testScriptBlock
-if ( $testResponse -eq "8.2.2.112" )
+if ( ([version]$testResponse).ToString(3) -eq "8.2.2" )
 {
     Write-Host "Test OK";
 } else {
