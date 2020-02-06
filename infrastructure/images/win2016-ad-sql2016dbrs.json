@@ -111,7 +111,7 @@
             "type": "powershell",
             "script": "sql2016mediaclean.ps1",
             "environment_vars": [
-                "SPDEVOPSSTARTER_NODSCTEST=TRUE"
+                "VMDEVOPSSTARTER_NODSCTEST=TRUE"
             ]
         },
         { "type": "powershell", "script": "xcredserver.ps1" },

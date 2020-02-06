@@ -6,7 +6,7 @@ Vagrant.configure(2) do |config|
     config.vm.provision :shell, path: "../../../../infrastructure/stacks/domainclient.ps1"
     config.vm.provision :shell, path: "../../../../infrastructure/stacks/xcredclient.ps1"
     config.vm.provision "reload"
-    config.vm.provision :shell, path: "../../../../infrastructure/stacks/crmdomainclientgroups.ps1", env: { "SPDEVOPSSTARTER_TRIALS" => 100 }
+    config.vm.provision :shell, path: "../../../../infrastructure/stacks/crmdomainclientgroups.ps1", env: { "VMDEVOPSSTARTER_TRIALS" => 100 }
     config.vm.provision :shell, path: "../../../../infrastructure/stacks/dbservernamefix.ps1"
     config.vm.provision :shell, path: "../../../../infrastructure/stacks/sqlconfig.ps1"
     config.vm.provision :shell, path: "../../../../infrastructure/stacks/rsconfig.ps1"

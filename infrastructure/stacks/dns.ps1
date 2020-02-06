@@ -64,7 +64,7 @@ catch
     $_.Exception.Message
     Exit 1;
 }
-if ( $env:SPDEVOPSSTARTER_NODSCTEST -ne "TRUE" )
+if ( $env:VMDEVOPSSTARTER_NODSCTEST -ne "TRUE" )
 {
     Write-Host "$(Get-Date) Testing DSC"
     try {

@@ -75,7 +75,7 @@ catch
 Write-Host "$(Get-Date) Starting DSC"
 try
 {
-    if ( $env:SPDEVOPSSTARTER_NODSCWAIT )
+    if ( $env:VMDEVOPSSTARTER_NODSCWAIT )
     {
         Start-DscConfiguration $configName -Verbose -Force;
         Sleep 20;
@@ -100,7 +100,7 @@ catch
     $_.Exception.Message
     Exit 1;
 }
-if ( $env:SPDEVOPSSTARTER_NODSCTEST -ne "TRUE" )
+if ( $env:VMDEVOPSSTARTER_NODSCTEST -ne "TRUE" )
 {
     Write-Host "$(Get-Date) Testing DSC"
     try {

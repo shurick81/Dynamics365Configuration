@@ -209,27 +209,28 @@ Installs Dynamics 365 Server with new or existing organization.
 Install-Dynamics365Server
     -MediaDir <string>
     -LicenseKey <string>
-    [-CreateDatabase <switch>]
     -SqlServer <string>
-    -PrivUserGroup <string>
-    -SQLAccessGroup <string>
-    -UserGroup <string>
-    -ReportingGroup <string>
-    -PrivReportingGroup <string>
-    -CrmServiceAccount <pscredential>
-    -DeploymentServiceAccount <pscredential>
-    -SandboxServiceAccount <pscredential>
-    -VSSWriterServiceAccount <pscredential>
-    -AsyncServiceAccount <pscredential>
-    -MonitoringServiceAccount <pscredential>
-    [-CreateWebSite <switch>]
-    -WebSitePort <int>
-    -WebSiteUrl <string>
-    [-IncomingExchangeServer <string>]
-    -Organization <string>
-    -OrganizationUniqueName <string>
-    -ReportingUrl <string>
     [-InstallDir <string>]
+    [-CreateDatabase <switch>]
+    [-ServerRoles <string>[]]
+    [-PrivUserGroup <string>]
+    [-SQLAccessGroup <string>]
+    [-UserGroup <string>]
+    [-ReportingGroup <string>]
+    [-PrivReportingGroup <string>]
+    [-CrmServiceAccount <pscredential>]
+    [-DeploymentServiceAccount <pscredential>]
+    [-SandboxServiceAccount <pscredential>]
+    [-VSSWriterServiceAccount <pscredential>]
+    [-AsyncServiceAccount <pscredential>]
+    [-MonitoringServiceAccount <pscredential>]
+    [-CreateWebSite <switch>]
+    [-WebSitePort <int>]
+    [-WebSiteUrl <string>]
+    [-IncomingExchangeServer <string>]
+    [-Organization <string>]
+    [-OrganizationUniqueName <string>]
+    [-ReportingUrl <string>]
     [-BaseISOCurrencyCode <string>]
     [-BaseCurrencyName <string>]
     [-BaseCurrencySymbol <string>]
@@ -255,6 +256,10 @@ Specifies the location of the Dynamics 365 RTM installation files.
 
 See `<LicenseKey>` XML node description in https://technet.microsoft.com/en-us/library/hh699830.aspx.
 
+#### SqlServer
+
+See `<SqlServer>` XML node description in https://technet.microsoft.com/en-us/library/hh699830.aspx.
+
 #### InstallDir
 
 See `<InstallDir>` XML node description in https://technet.microsoft.com/en-us/library/hh699830.aspx.
@@ -263,9 +268,9 @@ See `<InstallDir>` XML node description in https://technet.microsoft.com/en-us/l
 
 See `<Database>` XML node description in https://technet.microsoft.com/en-us/library/hh699830.aspx.
 
-#### SqlServer
+#### ServerRoles
 
-See `<SqlServer>` XML node description in https://technet.microsoft.com/en-us/library/hh699830.aspx.
+Array of strings containing server role names. Possible role names are `FrontEnd`, `BackEnd`, `DeploymentAdministration`, `WebApplicationServer`, `OrganizationWebService`, `DiscoveryWebService`, `HelpServer`, `AsynchronousProcessingService`, `EmailConnector`, `SandboxProcessingService`, `DeploymentTools`, `DeploymentWebService`, `VSSWriter`. For further information refer to https://docs.microsoft.com/en-us/dynamics365/customerengagement/on-premises/deploy/microsoft-dynamics-365-server-roles#available-group-server-roles and https://docs.microsoft.com/en-us/dynamics365/customerengagement/on-premises/deploy/install-using-command-prompt#microsoft-dynamics-365-server-role-names-used-in-the-xml-configuration-file.
 
 #### PrivUserGroup
 
@@ -387,6 +392,8 @@ Use this option to get a detailed feedback on the installation process.
 
 ### Examples
 
+Installing single server with organization
+
 ```PowerShell
 $securedPassword = ConvertTo-SecureString "c0mp1Expa~~" -AsPlainText -Force
 $CRMInstallAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmadmin", $securedPassword );
@@ -398,11 +405,9 @@ Invoke-Command "$env:COMPUTERNAME.contoso.local" -Credential $CRMInstallAccountC
     $VSSWriterServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmvsswrit", $securedPassword );
     $AsyncServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmasync", $securedPassword );
     $MonitoringServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmmon", $securedPassword );
-    Save-Dynamics365Resource -Resource Dynamics365Server90RTMEnu -TargetDirectory C:\Install\Dynamics\Dynamics365Server90RTMEnu
     Install-Dynamics365Server `
         -MediaDir C:\Install\Dynamics\Dynamics365Server90RTMEnu `
         -LicenseKey KKNV2-4YYK8-D8HWD-GDRMW-29YTW `
-        -InstallDir "c:\Program Files\Microsoft Dynamics CRM" `
         -CreateDatabase `
         -SqlServer $env:COMPUTERNAME\SQLInstance01 `
         -PrivUserGroup "CN=CRM01PrivUserGroup,OU=CRM groups,DC=contoso,DC=local" `
@@ -427,7 +432,56 @@ Invoke-Command "$env:COMPUTERNAME.contoso.local" -Credential $CRMInstallAccountC
         -BaseCurrencyPrecision 2 `
         -OrganizationCollation Latin1_General_CI_AI `
         -ReportingUrl http://$env:COMPUTERNAME/ReportServer_RSInstance01 `
-        -LogFilePath c:\tmp\Dynamics365ServerInstallLog.txt `
+        -LogFilePath "c:\tmp\Dynamics365ServerInstallLog$( ( Get-Date -Format u ).Replace(" ","-").Replace(":","-") ).txt" `
+        -LogFilePullIntervalInSeconds 15 `
+        -LogFilePullToOutput
+}
+```
+
+Installing only front end server roles, without organization
+
+```PowerShell
+$securedPassword = ConvertTo-SecureString "c0mp1Expa~~" -AsPlainText -Force
+$CRMInstallAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmadmin", $securedPassword );
+Invoke-Command "$env:COMPUTERNAME.contoso.local" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+    $securedPassword = ConvertTo-SecureString "c0mp1Expa~~" -AsPlainText -Force
+    $CRMServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmsrv", $securedPassword );
+    $MonitoringServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmmon", $securedPassword );
+    Install-Dynamics365Server `
+        -MediaDir C:\Install\Dynamics\Dynamics365Server90RTMEnu `
+        -LicenseKey KKNV2-4YYK8-D8HWD-GDRMW-29YTW `
+        -CreateDatabase `
+        -ServerRoles FrontEnd `
+        -SqlServer $env:COMPUTERNAME\SQLInstance01 `
+        -PrivUserGroup "CN=CRM01PrivUserGroup,OU=CRM groups,DC=contoso,DC=local" `
+        -SQLAccessGroup "CN=CRM01SQLAccessGroup,OU=CRM groups,DC=contoso,DC=local" `
+        -UserGroup "CN=CRM01UserGroup,OU=CRM groups,DC=contoso,DC=local" `
+        -ReportingGroup "CN=CRM01ReportingGroup,OU=CRM groups,DC=contoso,DC=local" `
+        -PrivReportingGroup "CN=CRM01PrivReportingGroup,OU=CRM groups,DC=contoso,DC=local" `
+        -CrmServiceAccount $CRMServiceAccountCredential `
+        -MonitoringServiceAccount $MonitoringServiceAccountCredential `
+        -CreateWebSite `
+        -WebSitePort 5555 `
+        -WebSiteUrl https://$env:COMPUTERNAME.contoso.local `
+        -LogFilePath "c:\tmp\Dynamics365ServerInstallLog$( ( Get-Date -Format u ).Replace(" ","-").Replace(":","-") ).txt" `
+        -LogFilePullIntervalInSeconds 15 `
+        -LogFilePullToOutput
+}
+```
+
+Adding Help Server role
+
+```PowerShell
+$securedPassword = ConvertTo-SecureString "c0mp1Expa~~" -AsPlainText -Force
+$CRMInstallAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmadmin", $securedPassword );
+Invoke-Command "$env:COMPUTERNAME.contoso.local" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+    Install-Dynamics365Server `
+        -MediaDir C:\Install\Dynamics\Dynamics365Server90RTMEnu `
+        -LicenseKey KKNV2-4YYK8-D8HWD-GDRMW-29YTW `
+        -InstallDir "c:\Program Files\Microsoft Dynamics CRM" `
+        -HelpServerRole `
+        -SqlServer $env:COMPUTERNAME\SQLInstance01 `
+        -LogFilePath "c:\tmp\Dynamics365ServerInstallLog$( ( Get-Date -Format u ).Replace(" ","-").Replace(":","-") ).txt" `
         -LogFilePullIntervalInSeconds 15 `
         -LogFilePullToOutput
 }

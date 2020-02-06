@@ -60,8 +60,8 @@ catch
     Exit 1;
 }
 Write-Host "$(Get-Date) Starting DSC"
-if ( $env:SPDEVOPSSTARTER_TRIALS ) {
-    $trialsLeft = [int]$env:SPDEVOPSSTARTER_TRIALS;
+if ( $env:VMDEVOPSSTARTER_TRIALS ) {
+    $trialsLeft = [int]$env:VMDEVOPSSTARTER_TRIALS;
 } else {
     $trialsLeft = 1;
 }
@@ -79,7 +79,7 @@ while ( !$complete -and ( $trialsLeft -gt 0 ) ) {
         Exit 1;
     }
     $trialsLeft--;
-    if ( $env:SPDEVOPSSTARTER_NODSCTEST -ne "TRUE" )
+    if ( $env:VMDEVOPSSTARTER_NODSCTEST -ne "TRUE" )
     {
         $failed = $false;
         Write-Host "$(Get-Date) Testing DSC"

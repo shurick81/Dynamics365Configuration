@@ -49,7 +49,7 @@
 
         While ( $job.State -ne "Completed" )
         {
-            Write-Output "$(Get-Date) Waiting until CRM installation job is done, sleeping $logFilePullIntervalInSeconds sec";
+            Write-Output "$(Get-Date) Waiting until CRM update installation job is done, sleeping $logFilePullIntervalInSeconds sec";
             Start-Sleep $logFilePullIntervalInSeconds;
             if(($logFilePullToOutput -eq $True) -and ((Test-Path $logFilePath) -eq $True)) {
 
