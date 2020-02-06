@@ -14,7 +14,7 @@ Vagrant.configure(2) do |config|
             vb.gui = false
             vb.memory = "4096"
             vb.cpus = 4
-            vb.customize ['modifyvm', :id, '--clipboard', 'bidirectional']
+            vb.customize ['modifyvm', :id, '--clipboard-mode', 'bidirectional']
         end
         vm_config.vm.provider "hyperv" do |hv, override|
             hv.memory = "4096"
