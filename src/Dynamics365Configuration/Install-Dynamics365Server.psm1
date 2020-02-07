@@ -24,7 +24,7 @@
             "SandboxProcessingService",
             "DeploymentTools",
             "DeploymentWebService",
-            "VSSWriter"
+            "VSSWriterService"
         )]
         [string[]]
         $ServerRoles,
@@ -106,7 +106,7 @@
             DeploymentAdministration = @(
                 "DeploymentTools",
                 "DeploymentWebService",
-                "VSSWriter"
+                "VSSWriterService"
             )
         }
         $refinedRoles = $ServerRoles | ForEach-Object {
@@ -128,7 +128,7 @@
                 "DeploymentAdministration" {
                     Write-Output "DeploymentTools";
                     Write-Output "DeploymentWebService";
-                    Write-Output "VSSWriter";
+                    Write-Output "VSSWriterService";
                     break;
                 }
                 default {
@@ -449,8 +449,8 @@
                         Remove-Job $job;
                         Start-Sleep 10;
 
-                        #Write-Output "$(Get-Date) Removing xml configuration file";
-                        #Remove-Item $tempFilePath;
+                        Write-Output "$(Get-Date) Removing xml configuration file";
+                        Remove-Item $tempFilePath;
                     }
                     if([String]::IsNullOrEmpty($logFilePath) -eq $True) {
                         $timeStamp = ( Get-Date -Format u ).Replace(" ","-").Replace(":","-");
