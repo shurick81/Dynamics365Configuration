@@ -160,9 +160,9 @@ jobs:
   - powershell: cd tests; kitchen destroy;
     displayName: Cleaning up the kitchen
     errorActionPreference: continue
-  - powershell: cd tests; kitchen test InstallAllPrerequisitesLocal-win2019-basic;
-    displayName: kitchen test InstallAllPrerequisitesLocal-win2019-basic
-    errorActionPreference: continue
+#  - powershell: cd tests; kitchen test InstallAllPrerequisitesLocal-win2019-basic;
+#    displayName: kitchen test InstallAllPrerequisitesLocal-win2019-basic
+#    errorActionPreference: continue
 #  - powershell: cd tests; kitchen test ValidUrls-win2012r2-basic;
 #    displayName: kitchen test ValidUrls-win2012r2-basic
 #    errorActionPreference: continue
