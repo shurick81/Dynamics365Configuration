@@ -1,4 +1,4 @@
-function Get-Dynamics365ServerRoles {
+function Get-Dynamics365ServerRole {
     $msCRMRegistryValues = Get-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\MSCRM -ErrorAction Ignore;
     if ( $msCRMRegistryValues ) {
         $roleNames = $msCRMRegistryValues.RoleNames;

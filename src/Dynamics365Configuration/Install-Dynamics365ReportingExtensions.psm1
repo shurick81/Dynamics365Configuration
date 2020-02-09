@@ -3,7 +3,6 @@
         [Parameter(Mandatory=$true)]
         [string]
         $MediaDir,
-        [Parameter(Mandatory=$true)]
         [string]
         $InstanceName,
         [string]
@@ -26,11 +25,6 @@
     $Dynamics365Resources | Get-Member -MemberType NoteProperty | Where-Object { $Dynamics365Resources.( $_.Name ).ReportingExtensionsIdentifyingNumber } | ForEach-Object {
         if ( ( $Dynamics365Resources.( $_.Name ).MediaFileVersion -eq $fileVersion ) -and ( $Dynamics365Resources.( $_.Name ).LanguageCode -eq $languageCode ) ) { $foundFileResource = $_.Name }
     }
-    if ( $configDBServer ) {
-        $configDBServerXmlParameter = $configDBServer;
-    } else {
-        $configDBServerXmlParameter = $env:COMPUTERNAME;
-    }
     $installedProducts = Get-WmiObject Win32_Product -ComputerName $env:COMPUTERNAME | ForEach-Object { $_.IdentifyingNumber }
     if ( $foundFileResource )
     {
@@ -49,23 +43,25 @@
     if ( !$expectedProductIdentifyingNumber -or !$isInstalled ) {
         $xml = [xml]"";
         $crmSetupElement = $xml.CreateElement( "CRMSetup" );
-            $srsCataConnectorElement = $xml.CreateElement( "srsdataconnector" );
+            $srsDataConnectorElement = $xml.CreateElement( "srsdataconnector" );
                 $configDBServerElement = $xml.CreateElement( "configdbserver" );
-                    $configDBServerElement.InnerText = "$configDBServerXmlParameter\$InstanceName";
-                $srsCataConnectorElement.AppendChild( $configDBServerElement ) | Out-Null;
+                    $configDBServerElement.InnerText = $configDBServer;
+                $srsDataConnectorElement.AppendChild( $configDBServerElement ) | Out-Null;
                 $autoGroupManagementOffElement = $xml.CreateElement( "autogroupmanagementoff" );
                     $autoGroupManagementOffElement.InnerText = 0;
-                $srsCataConnectorElement.AppendChild( $autoGroupManagementOffElement ) | Out-Null;
-                $instanceNameElement = $xml.CreateElement( "instancename" );
-                    $instanceNameElement.InnerText = $InstanceName;
-                $srsCataConnectorElement.AppendChild( $instanceNameElement ) | Out-Null;
+                $srsDataConnectorElement.AppendChild( $autoGroupManagementOffElement ) | Out-Null;
+                if ( $InstanceName ) {
+                    $instanceNameElement = $xml.CreateElement( "instancename" );
+                        $instanceNameElement.InnerText = $InstanceName;
+                    $srsDataConnectorElement.AppendChild( $instanceNameElement ) | Out-Null;
+                }
                 $patchElement = $xml.CreateElement( "Patch" );
                     $patchElement.SetAttribute( "Update", $false ) | Out-Null;
-                $srsCataConnectorElement.AppendChild( $patchElement ) | Out-Null;
+                $srsDataConnectorElement.AppendChild( $patchElement ) | Out-Null;
                 $MUOptinElement = $xml.CreateElement( "muoptin" );
                     $MUOptinElement.SetAttribute( "optin", $MUOptin.ToString().ToLower() ) | Out-Null;
-                $srsCataConnectorElement.AppendChild( $MUOptinElement ) | Out-Null;
-            $crmSetupElement.AppendChild( $srsCataConnectorElement ) | Out-Null;
+                $srsDataConnectorElement.AppendChild( $MUOptinElement ) | Out-Null;
+            $crmSetupElement.AppendChild( $srsDataConnectorElement ) | Out-Null;
         $xml.AppendChild( $crmSetupElement ) | Out-Null;
 
         $stringWriter = New-Object System.IO.StringWriter;

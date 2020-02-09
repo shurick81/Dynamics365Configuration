@@ -32,7 +32,6 @@ try {
     Install-Dynamics365Server `
         -MediaDir C:\Install\Dynamics\CRM2016RTMEnu `
         -LicenseKey WCPQN-33442-VH2RQ-M4RKF-GXYH4 `
-        -InstallDir "c:\Program Files\Microsoft Dynamics CRM" `
         -CreateDatabase `
         -SqlServer $dbHostName\SQLInstance01 `
         -PrivUserGroup "CN=CRM01PrivUserGroup,OU=CRM groups,DC=contoso,DC=local" `
@@ -87,8 +86,7 @@ if ( ([version]$testResponse).ToString(3) -eq "8.0.0" )
 
 try {
     Install-Dynamics365ReportingExtensions `
-        -MediaDir C:\Install\Dynamics\CRM2016RTMEnu\SrsDataConnector `
-        -InstanceName SQLInstance01
+        -MediaDir C:\Install\Dynamics\CRM2016RTMEnu\SrsDataConnector
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;

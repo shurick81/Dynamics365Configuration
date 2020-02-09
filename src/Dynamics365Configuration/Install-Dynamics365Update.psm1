@@ -13,102 +13,84 @@
         $LogFilePullToOutput = $False
     )
     $setupFilePath = "$mediaDir\CrmUpdateWrapper.exe";
-    $fileVersion = ( Get-Command $setupFilePath ).FileVersionInfo.FileVersionRaw.ToString();
-    Write-Output "Version of software to be installed: $fileVersion";
-    $testResponse = $null;
-    try {
-        Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
-        if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
-            $crmServer = Get-CrmServer $env:COMPUTERNAME;
-            $testResponse = $crmServer.Version;
-        } else {
-            "Could not load Microsoft.Crm.PowerShell PSSnapin";
-        }
-    } catch {
-        $_.Exception.Message;
+    $fileVersion = [version]( Get-Command $setupFilePath ).FileVersionInfo.FileVersion;
+    Write-Output "Version of software to be installed: $($fileVersion.ToString())";
+    $msCRMRegistryValues = Get-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\MSCRM -ErrorAction Ignore;
+    if ( !$msCRMRegistryValues ) {
+        $errorMessage = "Dynamics 365 Server for Customer Engagement is not installed on this machine";
+        Write-Output $errorMessage;
+        Throw $errorMessage;
     }
-    $productDetected = $null;
-    if ( $testResponse.StartsWith( "9." ) -or $testResponse.StartsWith( "8." ) ) {
-        $productDetected = $testResponse;
+    $installedVersion = Get-Dynamics365ServerVersion;
+    Write-Output "Currently installed: $($installedVersion.ToString())";
+    if ( $fileVersion.Major -ne $installedVersion.Major ) {
+        $errorMessage = "Major version of this update does not correspond to major version of installed software";
+        Write-Output $errorMessage;
+        Throw $errorMessage;
     }
-    if ( $productDetected -and ( [version]( ( [version]$productDetected ).ToString(3) ) -lt [version]( ( [version]$fileVersion ).ToString(3) ) ) -and ( ( [version]$productDetected ).Major -eq ( [version]$fileVersion ).Major ) ) {
-        if([String]::IsNullOrEmpty($logFilePath) -eq $True) {
-            $timeStamp = ( Get-Date -Format u ).Replace(" ","-").Replace(":","-");
-            $logFilePath = "$env:Temp\DynamicsUpdateInstallationLog_$timeStamp.txt";
-        }
+    if ( $fileVersion -le $installedVersion ) {
+        $errorMessage = "Version of this update is lower than version of installed software";
+        Write-Output $errorMessage;
+        Throw $errorMessage;
+    }
+    if([String]::IsNullOrEmpty($logFilePath) -eq $True) {
+        $timeStamp = ( Get-Date -Format u ).Replace(" ","-").Replace(":","-");
+        $logFilePath = "$env:Temp\DynamicsUpdateInstallationLog_$timeStamp.txt";
+    }
 
-        Write-Output "$(Get-Date) Starting $setupFilePath";
-        $installCrmScript = {
-            param( $setupFilePath, $logFilePath );
-            Write-Output "Start-Process '$setupFilePath' -ArgumentList '/q /log $logFilePath /norestart' -Wait;";
-            Start-Process "$setupFilePath" -ArgumentList "/q /log $logFilePath /norestart" -Wait;
-        }
-        $job = Start-Job -ScriptBlock $installCrmScript -ArgumentList $setupFilePath, $logFilePath;
-        Write-Output "$(Get-Date) Started installation job, log will be saved in $logFilePath";
-        $lastLinesCount = 0;
+    Write-Output "$(Get-Date) Starting $setupFilePath";
+    $installCrmScript = {
+        param( $setupFilePath, $logFilePath );
+        Write-Output "Start-Process '$setupFilePath' -ArgumentList '/q /log $logFilePath /norestart' -Wait;";
+        Start-Process "$setupFilePath" -ArgumentList "/q /log $logFilePath /norestart" -Wait;
+    }
+    $job = Start-Job -ScriptBlock $installCrmScript -ArgumentList $setupFilePath, $logFilePath;
+    Write-Output "$(Get-Date) Started installation job, log will be saved in $logFilePath";
+    $lastLinesCount = 0;
 
-        While ( $job.State -ne "Completed" )
-        {
-            Write-Output "$(Get-Date) Waiting until CRM update installation job is done, sleeping $logFilePullIntervalInSeconds sec";
-            Start-Sleep $logFilePullIntervalInSeconds;
-            if(($logFilePullToOutput -eq $True) -and ((Test-Path $logFilePath) -eq $True)) {
+    While ( $job.State -ne "Completed" )
+    {
+        Write-Output "$(Get-Date) Waiting until CRM update installation job is done, sleeping $logFilePullIntervalInSeconds sec";
+        Start-Sleep $logFilePullIntervalInSeconds;
+        if(($logFilePullToOutput -eq $True) -and ((Test-Path $logFilePath) -eq $True)) {
 
-                $linesCount    = (Get-Content $logFilePath | Measure-Object -Line).Lines;
-                $newLinesCount = $linesCount - $lastLinesCount;
+            $linesCount    = (Get-Content $logFilePath | Measure-Object -Line).Lines;
+            $newLinesCount = $linesCount - $lastLinesCount;
 
-                if($newLinesCount -gt 0) {
-                    Write-Output "$(Get-Date) - new logs: $newLinesCount lines";
-                    $lines = Get-Content $logFilePath | Select-Object -First $newLinesCount -Skip $lastLinesCount;
+            if($newLinesCount -gt 0) {
+                Write-Output "$(Get-Date) - new logs: $newLinesCount lines";
+                $lines = Get-Content $logFilePath | Select-Object -First $newLinesCount -Skip $lastLinesCount;
 
-                    foreach($line in $lines) {
-                        Write-Output $line;
-                    }
-                } else {
-                   Write-Output "$(Get-Date) - no new logs";
+                foreach($line in $lines) {
+                    Write-Output $line;
                 }
-
-                $lastLinesCount = $linesCount;
-            }
-        }
-
-        Write-Output "$(Get-Date) Job is complete, output:";
-        Write-Output ( Receive-Job $job );
-        Remove-Job $job;
-
-        $testResponse = $null;
-        try {
-            Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
-            if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
-                $crmServer = Get-CrmServer $env:COMPUTERNAME;
-                $testResponse = $crmServer.Version;
             } else {
-                "Could not load Microsoft.Crm.PowerShell PSSnapin";
+               Write-Output "$(Get-Date) - no new logs";
             }
-        } catch {
-            $_.Exception.Message;
+
+            $lastLinesCount = $linesCount;
         }
+    }
 
-        if ( [version]( ( [version]$testResponse ).ToString(3) ) -eq [version]( ( [version]$fileVersion ).ToString(3) ) ) {
-            Write-Output "Installation is finished and verified successfully. Dynamics version installed: '$testResponse'";
-        } else {
-            if( (Test-Path $logFilePath) -eq $True) {
-                $errorLines = Get-Content $logFilePath | Select-String -Pattern "Error" -SimpleMatch;
+    Write-Output "$(Get-Date) Job is complete, output:";
+    Write-Output ( Receive-Job $job );
+    Remove-Job $job;
 
-                if($null -ne $errorLines) {
-                    "Errors from install log: $logFilePath";
-
-                    foreach($errorLine in $errorLines) {
-                        $errorLine;
-                    }
+    $installedVersion = Get-Dynamics365ServerVersion;
+    if ( $fileVersion -ne $installedVersion ) {
+        if( (Test-Path $logFilePath) -eq $True) {
+            $errorLines = Get-Content $logFilePath | Select-String -Pattern "Error" -SimpleMatch;
+            if($null -ne $errorLines) {
+                "Errors from install log: $logFilePath";
+                foreach($errorLine in $errorLines) {
+                    $errorLine;
                 }
             }
-            $errorMessage = "Installation job finished but the product is still not installed. Current product version installed is '$testResponse'";
-
-            Write-Output $errorMessage;
-            Throw $errorMessage;
         }
+        $errorMessage = "Version of this update is lower than version of installed software";
+        Write-Output $errorMessage;
+        Throw $errorMessage;
     } else {
-        Write-Output "Required product is not installed, skipping the upgrade. Current Dynamics version installed: '$testResponse'";
+        Write-Output "Installation is finished and verified successfully";
     }
 }
-

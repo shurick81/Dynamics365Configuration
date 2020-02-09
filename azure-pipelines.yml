@@ -190,6 +190,18 @@ jobs:
   - powershell: cd infrastructure/stacks/kitchenci-ad-sql2016dbrs; ..\localdeploy.ps1;
     displayName: Spinning up service VMs
     errorActionPreference: continue
+  - powershell: cd tests; kitchen test RoleInstallation-win2019-dynamicsprereqs;
+    displayName: kitchen test RoleInstallation-win2019-dynamicsprereqs
+    errorActionPreference: continue
+  - powershell: cd tests; kitchen test RoleJoining-win2016-dynamicsprereqs;
+    displayName: kitchen test Provision90Full-win2016-sql2016dbrs-dynamicsprereqs
+    errorActionPreference: continue
+  - powershell: cd infrastructure/stacks/kitchenci-ad-sql2016dbrs; vagrant destroy DB01 --force;
+    displayName: Cleaning up the stack
+    errorActionPreference: continue
+  - powershell: cd infrastructure/stacks/kitchenci-ad-sql2016dbrs; ..\localdeploy.ps1;
+    displayName: Spinning up service VMs
+    errorActionPreference: continue
   - powershell: cd tests; kitchen test QuickProvisioning-win2019-dynamicsprereqs;
     displayName: kitchen test QuickProvisioning-win2019-dynamicsprereqs
     errorActionPreference: continue

@@ -1,5 +1,23 @@
 # Dynamics365Configuration module change log
 
+## Not released
+
+* Breaking changes in Install-Dynamics365ReportingExtensions
+
+  * ConfigDBServer represents entire instance name, not just server name part
+  * InstanceName represents RS instance name, not config db instance name
+
+* New commandlets
+
+  * Get-Dynamics365ServerLanguage
+  * Get-Dynamics365ServerRole
+  * Get-Dynamics365ServerVersion
+
+* Improvements in Install-Dynamics365
+
+  * ServerRoles allowing select what roles to be installed
+  * Removed obligation from number of parameters: `CreateDatabase`, `SQLAccessGroup`, `PrivUserGroup`, `UserGroup`, `ReportingGroup`, `PrivReportingGroup`, `CrmServiceAccount`, `DeploymentServiceAccount`, `SandboxServiceAccount`, `VSSWriterServiceAccount`, `AsyncServiceAccount`, `MonitoringServiceAccount`, `CreateWebSite`, `WebSitePort`, `WebSiteUrl`, `Organization`, `OrganizationUniqueName`, `ReportingUrl`.
+
 ## v1.5
 
 * Dynamics365Server90Update05Sve and CRM2016LanguagePackServicePack2Update04Lvi checksums corrected.

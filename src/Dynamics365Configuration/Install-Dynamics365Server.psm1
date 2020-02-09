@@ -24,7 +24,7 @@
             "SandboxProcessingService",
             "DeploymentTools",
             "DeploymentWebService",
-            "VSSWriterService"
+            "VSSWriter"
         )]
         [string[]]
         $ServerRoles,
@@ -106,7 +106,7 @@
             DeploymentAdministration = @(
                 "DeploymentTools",
                 "DeploymentWebService",
-                "VSSWriterService"
+                "VSSWriter"
             )
         }
         $refinedRoles = $ServerRoles | ForEach-Object {
@@ -128,14 +128,14 @@
                 "DeploymentAdministration" {
                     Write-Output "DeploymentTools";
                     Write-Output "DeploymentWebService";
-                    Write-Output "VSSWriterService";
+                    Write-Output "VSSWriter";
                     break;
                 }
                 default {
                     Write-Output $roleOrGroupName;
                     break;
                 }
-            }            
+            }
         } | Select-Object -Unique;
         $ServerRoles = $refinedRoles;
         Write-Output "Refined server roles:";
@@ -145,52 +145,31 @@
     }
     $setupFilePath = "$mediaDir\SetupServer.exe";
     if ( Test-Path $setupFilePath ) {
-        $fileVersion = ( Get-Command $setupFilePath ).FileVersionInfo.FileVersion;
+        $fileVersion = [version]( Get-Command $setupFilePath ).FileVersionInfo.FileVersion;
         Write-Output "Version of software to be installed: $($fileVersion.ToString())";
         if ( Test-Path "$mediaDir\LangPacks" ) {
             $languagePacks = Get-ChildItem "$mediaDir\LangPacks";
             if ( $languagePacks -and $languagePacks.Count -eq 1 ) {
                 $fileLanguageCode = [int]$languagePacks.Name;
                 Write-Output "Language code of software to be installed: $fileLanguageCode";
-                #$foundFileResource = $null;
-                #$Dynamics365Resources | Get-Member -MemberType NoteProperty | Where-Object { $_.StartsWith( "Dynamics365Server90RTM" ) -or $_.StartsWith( "CRM2016RTM" ) } ForEach-Object {
-                #    if ( [version]$Dynamics365Resources.( $_.Name ).MediaFileVersion -eq [version]$fileVersion -and $Dynamics365Resources.( $_.Name ).LanguageCode -eq $fileLanguageCode ) { $foundFileResource = $_.Name }
-                #}
-                #if ( $foundFileResource )
-                #{
-                    $msCRMRegistryValues = Get-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\MSCRM -ErrorAction Ignore;
-                    If ( $msCRMRegistryValues ) {
-                        $isInstalled = $true;
-                        $installedVersion = Get-Dynamics365ServerVersion;
-                        if ( $installedVersion -ne $fileVersion ) {
-                            $errorMessage = "Another version is already installed: $($installedVersion.ToString())";
-                            Write-Output $errorMessage;
-                            Throw $errorMessage;
-                        }
-                        $installedLanguage = Get-Dynamics365ServerLanguage;
-                        if ( $installedLanguage -ne $fileLanguageCode ) {
-                            $errorMessage = "Another language is already installed: $installedLanguage";
-                            Write-Output $errorMessage;
-                            Throw $errorMessage;
-                        }
-                    } else {
-                        $isInstalled = $false;
+                $msCRMRegistryValues = Get-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\MSCRM -ErrorAction Ignore;
+                If ( $msCRMRegistryValues ) {
+                    $isInstalled = $true;
+                    $installedVersion = Get-Dynamics365ServerVersion;
+                    if ( $installedVersion -ne $fileVersion ) {
+                        $errorMessage = "Another version is already installed: $($installedVersion.ToString())";
+                        Write-Output $errorMessage;
+                        Throw $errorMessage;
                     }
-                #    Write-Host "Found corresponding resource in the catalog: $foundFileResource";
-                #    $expectedProductIdentifyingNumber = $Dynamics365Resources.$foundFileResource.IdentifyingNumber;
-                #    $installedProducts = Get-WmiObject Win32_Product | ForEach-Object { $_.IdentifyingNumber }
-                #    if ( $expectedProductIdentifyingNumber )
-                #    {
-                #        Write-Output "Product identifying number of software to be installed: $expectedProductIdentifyingNumber";
-                #        $isInstalled = $installedProducts -contains "{$expectedProductIdentifyingNumber}";
-                #        Write-Output "Product with this identifying number is already found installed: $isInstalled";
-                #    } else {
-                #        Write-Host "IdentifyingNumber is not specified for this product, installation verification will be skipped";
-                #    }
-                #} else {
-                #    Write-Host "Corresponding resource is not found in the catalog. Installation verification will be skipped";
-                #}
-                #if ( !$expectedProductIdentifyingNumber -or !$isInstalled ) {
+                    $installedLanguage = Get-Dynamics365ServerLanguage;
+                    if ( $installedLanguage -ne $fileLanguageCode ) {
+                        $errorMessage = "Another language is already installed: $installedLanguage";
+                        Write-Output $errorMessage;
+                        Throw $errorMessage;
+                    }
+                } else {
+                    $isInstalled = $false;
+                }
                 if ( !$isInstalled ) {
                     $xml = [xml]"";
                     $crmSetupElement = $xml.CreateElement( "CRMSetup" );
@@ -476,41 +455,34 @@
                     } else {
                         $isInstalled = $false;
                     }
-                    #Write-Output "Sleeping after installation";
-                    #Start-Sleep 10;
-                    #Write-Host "The following products were installed:"
-                    #Get-WmiObject Win32_Product | ForEach-Object {
-                    #    if ( $_.IdentifyingNumber -eq "{$expectedProductIdentifyingNumber}" ) {
-                    #        $isInstalled = $true
-                    #    }
-                    #    if ( !( $installedProducts -contains $_.IdentifyingNumber ) ) {
-                    #        Write-Host $_.IdentifyingNumber, $_.Name;
-                    #    }
-                    #}
-                    #if ( $expectedProductIdentifyingNumber )
-                    #{
-                        if ( $isInstalled ) {
-                            Write-Host "Found Roles: ";
-                            $installedRoles = Get-Dynamics365ServerRoles;
-                            $installedRoles | Write-Host;
-                            if ( $ServerRoles ) {
-                                $ServerRoles | ForEach-Object {
-                                    if ( !( $installedRoles -contains $_ ) ) {
-                                        $errorMessage = "Installation job finished but $_ role is not installed";
-                                        Write-Output $errorMessage;
-                                        Throw $errorMessage;
-                                    }
+                    if ( $isInstalled ) {
+                        Write-Output "Found Roles: ";
+                        $installedRoles = Get-Dynamics365ServerRole;
+                        $installedRoles | Write-Output;
+                        if ( $ServerRoles ) {
+                            $ServerRoles | ForEach-Object {
+                                if ( !( $installedRoles -contains $_ -or ( $_ -eq "VssWriter" -and $installedRoles -contains "VssWriterService" ) ) ) {
+                                    $errorMessage = "Installation job finished but $_ role is not installed";
+                                    Write-Output $errorMessage;
+                                    Throw $errorMessage;
                                 }
                             }
-                            Write-Host "Installation is finished and verified successfully";
-                        } else {
-                            $errorMessage = "Installation job finished but the product is still not installed";
-                            Write-Output $errorMessage;
-                            Throw $errorMessage;
                         }
-                    #} else {
-                    #    Write-Host "Installation is finished but verification cannot be done without IdentifyingNumber specified.";
-                    #}
+                        Write-Output "Installation is finished and verified successfully";
+                    } else {
+                        if( (Test-Path $logFilePath) -eq $True) {
+                            $errorLines = Get-Content $logFilePath | Select-String -Pattern "Error" -SimpleMatch;
+                            if($null -ne $errorLines) {
+                                "Errors from install log: $logFilePath";
+                                foreach($errorLine in $errorLines) {
+                                    $errorLine;
+                                }
+                            }
+                        }
+                        $errorMessage = "Installation job finished but the product is still not installed";
+                        Write-Output $errorMessage;
+                        Throw $errorMessage;
+                    }
                 } else {
                     Write-Output "This product is already installed, skipping";
                 }

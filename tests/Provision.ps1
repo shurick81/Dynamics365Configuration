@@ -98,7 +98,10 @@ try {
             -WebSiteUrl https://$env:COMPUTERNAME.contoso.local `
             -Organization "Contoso Ltd." `
             -OrganizationUniqueName Contoso `
-            -ReportingUrl http://$dbHostName/ReportServer_RSInstance01
+            -ReportingUrl http://$dbHostName/ReportServer_RSInstance01 `
+            -LogFilePath c:\tmp\Dynamics365ServerInstallLog.txt `
+            -LogFilePullIntervalInSeconds 15 `
+            -LogFilePullToOutput
     } -ArgumentList $dbHostName;
 } catch {
     Write-Host "Failed in invoking of Install-Dynamics365Server";
@@ -140,7 +143,11 @@ try {
         Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
         Install-Dynamics365ReportingExtensions `
             -MediaDir $mediaDir `
-            -InstanceName SQLInstance01
+            -ConfigDBServer $env:COMPUTERNAME\SQLInstance01 `
+            -InstanceName RSInstance01 `
+            -LogFilePath c:\tmp\Dynamics365ServerReportingExtensionsInstallLog.txt `
+            -LogFilePullIntervalInSeconds 15 `
+            -LogFilePullToOutput
     } -ArgumentList $mediaDir;
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
@@ -226,7 +233,7 @@ try {
         Import-Module C:\test-projects\Dynamics365Configuration\src\Dynamics365Configuration\Dynamics365Configuration.psd1
         Write-Output "mediaDir is $mediaDir"
         Install-Dynamics365ReportingExtensionsUpdate -MediaDir $mediaDir `
-            -LogFilePath c:\tmp\Dynamics365ServerInstallLog.txt `
+            -LogFilePath c:\tmp\Dynamics365ServerReportingExtensionsUpdate9011InstallLog.txt `
             -LogFilePullIntervalInSeconds 15 `
             -LogFilePullToOutput
     } -ArgumentList $mediaDir;
