@@ -194,7 +194,7 @@ jobs:
     displayName: kitchen test RoleInstallation-win2019-dynamicsprereqs
     errorActionPreference: continue
   - powershell: cd tests; kitchen test RoleJoining-win2016-dynamicsprereqs;
-    displayName: kitchen test Provision90Full-win2016-sql2016dbrs-dynamicsprereqs
+    displayName: kitchen test RoleJoining-win2016-dynamicsprereqs
     errorActionPreference: continue
   - powershell: cd infrastructure/stacks/kitchenci-ad-sql2016dbrs; vagrant destroy DB01 --force;
     displayName: Cleaning up the stack
