@@ -189,29 +189,23 @@ if( Test-Path "c:\tmp\Dynamics365ServerInstallLog.txt" )
 }
 
 try {
-    Write-Host "Invoking command on $env:COMPUTERNAME.$domainName with dbHostName=$dbHostName parameter";
     if ( $dbHostName -eq $env:COMPUTERNAME ) {
-        Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
-            Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
-            Install-Dynamics365ReportingExtensions `
-                -MediaDir C:\Install\Dynamics\CRM2016RTMSve\SrsDataConnector `
-                -InstanceName SQLInstance01 `
-                -LogFilePath c:\tmp\Dynamics365ServerReportingExtensionsInstallLog.txt `
-                -LogFilePullIntervalInSeconds 15 `
-                -LogFilePullToOutput
-            }
+        $mediaDir = "C:\Install\Dynamics\CRM2016RTMSve\SrsDataConnector";
     } else {
-        Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
-            param( $fileShareHost )
-            Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
-            Install-Dynamics365ReportingExtensions `
-                -MediaDir \\$fileShareHost\c$\Install\Dynamics\CRM2016RTMSve\SrsDataConnector `
-                -InstanceName SQLInstance01 `
-                -LogFilePath c:\tmp\Dynamics365ServerReportingExtensionsInstallLog.txt `
-                -LogFilePullIntervalInSeconds 15 `
-                -LogFilePullToOutput
-        } -ArgumentList $env:COMPUTERNAME;
+        $mediaDir = "\\$env:COMPUTERNAME\c$\Install\Dynamics\CRM2016RTMSve\SrsDataConnector";
     }
+    Write-Host "Invoking command on $dbHostName.$domainName";
+    Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+        param( $mediaDir )
+        Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
+        Install-Dynamics365ReportingExtensions `
+            -MediaDir $mediaDir `
+            -ConfigDBServer $env:COMPUTERNAME\SQLInstance01 `
+            -InstanceName RSInstance01 `
+            -LogFilePath c:\tmp\Dynamics365ServerReportingExtensionsInstallLog.txt `
+            -LogFilePullIntervalInSeconds 15 `
+            -LogFilePullToOutput
+    } -ArgumentList $mediaDir;
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
@@ -279,7 +273,7 @@ try {
     Invoke-Command "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
         Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
         Install-Dynamics365Update -MediaDir C:\Install\Dynamics\CRM2016ServicePack1Sve `
-            -LogFilePath c:\tmp\Dynamics365ServerUpdate8213InstallLog.txt `
+            -LogFilePath c:\tmp\Dynamics365ServerUpdate810InstallLog.txt `
             -LogFilePullIntervalInSeconds 15 `
             -LogFilePullToOutput
     }
@@ -309,11 +303,11 @@ if ( ([version]$testResponse).ToString(3) -eq "8.1.0" )
     Write-Host "Software installed version is '$testResponse'. Test is not OK"
     Exit 1;
 }
-if( Test-Path "c:\tmp\Dynamics365ServerUpdate8213InstallLog.txt" )
+if( Test-Path "c:\tmp\Dynamics365ServerUpdate810InstallLog.txt" )
 {
-    Write-Output "File c:\tmp\Dynamics365ServerUpdate8213InstallLog.txt is found, test OK"
+    Write-Output "File c:\tmp\Dynamics365ServerUpdate810InstallLog.txt is found, test OK"
 } else {
-    Write-Output "File c:\tmp\Dynamics365ServerUpdate8213InstallLog.txt is not found"
+    Write-Output "File c:\tmp\Dynamics365ServerUpdate810InstallLog.txt is not found"
     Exit 1;
 }
 
@@ -329,7 +323,7 @@ try {
         Import-Module C:\test-projects\Dynamics365Configuration\src\Dynamics365Configuration\Dynamics365Configuration.psd1
         Write-Output "mediaDir is $mediaDir"
         Install-Dynamics365ReportingExtensionsUpdate -MediaDir $mediaDir `
-            -LogFilePath c:\tmp\Dynamics365ServerInstallLog.txt `
+            -LogFilePath c:\tmp\Dynamics365ServerReportingExtensionsUpdate810InstallLog.txt `
             -LogFilePullIntervalInSeconds 15 `
             -LogFilePullToOutput
     } -ArgumentList $mediaDir;
@@ -418,7 +412,7 @@ try {
         Import-Module C:\test-projects\Dynamics365Configuration\src\Dynamics365Configuration\Dynamics365Configuration.psd1
         Write-Output "mediaDir is $mediaDir"
         Install-Dynamics365ReportingExtensionsUpdate -MediaDir $mediaDir `
-            -LogFilePath c:\tmp\Dynamics365ServerInstallLog.txt `
+            -LogFilePath c:\tmp\Dynamics365ServerReportingExtensionsUpdate8213InstallLog.txt `
             -LogFilePullIntervalInSeconds 15 `
             -LogFilePullToOutput
     } -ArgumentList $mediaDir;

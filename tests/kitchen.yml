@@ -18,7 +18,7 @@ platforms:
       platform: windows
       linked_clone: true
       customize:
-        clipboard: bidirectional
+        clipboard-mode: bidirectional
         memory: 2048
         cpus: 2
         vram: 32
@@ -35,7 +35,7 @@ platforms:
       platform: windows
       linked_clone: true
       customize:
-        clipboard: bidirectional
+        clipboard-mode: bidirectional
         memory: 2048
         cpus: 2
         vram: 32
@@ -52,7 +52,7 @@ platforms:
       gui: false
       platformw: windows
       customize:
-        clipboard: bidirectional
+        clipboard-mode: bidirectional
         memory: 2048
         cpus: 2
       synced_folders:
@@ -77,7 +77,7 @@ platforms:
       platform: windows
       linked_clone: true
       customize:
-        clipboard: bidirectional
+        clipboard-mode: bidirectional
         memory: 4096
         cpus: 2
         vram: 32
@@ -103,7 +103,7 @@ platforms:
       platform: windows
       linked_clone: true
       customize:
-        clipboard: bidirectional
+        clipboard-mode: bidirectional
         memory: 4096
         cpus: 2
         vram: 32
@@ -129,7 +129,7 @@ platforms:
       platform: windows
       linked_clone: true
       customize:
-        clipboard: bidirectional
+        clipboard-mode: bidirectional
         memory: 4096
         cpus: 2
         vram: 32
@@ -154,7 +154,7 @@ platforms:
       gui: false
       platformw: windows
       customize:
-        clipboard: bidirectional
+        clipboard-mode: bidirectional
         memory: 7168
         cpus: 2
         audio: none
@@ -183,7 +183,7 @@ platforms:
       gui: false
       platformw: windows
       customize:
-        clipboard: bidirectional
+        clipboard-mode: bidirectional
         memory: 7168
         cpus: 2
         audio: none
@@ -212,7 +212,7 @@ platforms:
       gui: false
       platformw: windows
       customize:
-        clipboard: bidirectional
+        clipboard-mode: bidirectional
         memory: 6144
         cpus: 2
         audio: none
@@ -243,7 +243,7 @@ platforms:
       gui: false
       platformw: windows
       customize:
-        clipboard: bidirectional
+        clipboard-mode: bidirectional
         memory: 6144
         cpus: 2
         audio: none
@@ -275,7 +275,7 @@ platforms:
       gui: false
       platformw: windows
       customize:
-        clipboard: bidirectional
+        clipboard-mode: bidirectional
         memory: 4096
         cpus: 2
         audio: none
@@ -309,7 +309,7 @@ platforms:
       gui: false
       platformw: windows
       customize:
-        clipboard: bidirectional
+        clipboard-mode: bidirectional
         memory: 4096
         cpus: 2
         audio: none
@@ -343,7 +343,7 @@ platforms:
       gui: false
       platformw: windows
       customize:
-        clipboard: bidirectional
+        clipboard-mode: bidirectional
         memory: 4096
         cpus: 2
         audio: none
@@ -425,6 +425,26 @@ suites:
     - win2019-soe
     - win2016-soe
     - win2012r2-soe
+- name: RoleInstallation
+  provisioner:
+    name: shell
+    command: 'Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1; c:/test-projects/Dynamics365Configuration/tests\\InstallDynamicsRole.ps1'
+    powershell_shell: true
+  includes:
+    - win2019-ad-sql2016dbrs-dynamicsprereqs
+    - win2016-ad-sql2016dbrs-dynamicsprereqs
+    - win2019-sql2016dbrs-dynamicsprereqs
+    - win2016-sql2016dbrs-dynamicsprereqs
+    - win2019-dynamicsprereqs
+    - win2016-dynamicsprereqs
+- name: RoleJoining
+  provisioner:
+    name: shell
+    command: 'Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1; c:/test-projects/Dynamics365Configuration/tests\\JoinFrontEnd.ps1'
+    powershell_shell: true
+  includes:
+    - win2019-dynamicsprereqs
+    - win2016-dynamicsprereqs
 - name: QuickProvisioning
   provisioner:
     name: shell

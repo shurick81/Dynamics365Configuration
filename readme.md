@@ -1,10 +1,17 @@
 # Introduction
 
-A module to ease infrastructure as code tasks for Dynamics 365. It allows to use PowerShell commands in order to download and install Dynamics 365 on premise.
+A module to ease infrastructure as code tasks for Dynamics 365 Customer Engagement (on-premises). It allows to use PowerShell commands in order to download and install Dynamics 365 on premise.
 
 ## Commands overview
 
+* `Get-Dynamics365ServerLanguage`, returns primary Dynamics 365 Customer Engagement language installed on the machine.
+
+* `Get-Dynamics365ServerRole`, returns lists of installed server roles.
+
+* `Get-Dynamics365ServerVersion`, returns installed server version.
+
 * `Expand-Dynamics365Resource`, extracts the content of the Dynamics .exe-file resource into a file folder.
+
 * `Save-Dynamics365Resource`, downloads the file resource and extracts into the folder.
 
 * `Install-Dynamics365Prerequisite`, installs one specified or all the software prerequisites.
@@ -39,6 +46,36 @@ Install-Module -Name Dynamics365Configuration
 
 ```PowerShell
 $Dynamics365Resources
+```
+
+## Get-Dynamics365ServerLanguage
+
+Returns primary Dynamics 365 Customer Engagement language installed on the machine.
+
+### Syntax
+
+```PowerShell
+Get-Dynamics365ServerLanguage
+```
+
+## Get-Dynamics365ServerRole
+
+Returns primary Dynamics 365 Customer Engagement language installed on the machine.
+
+### Syntax
+
+```PowerShell
+Get-Dynamics365ServerRole
+```
+
+## Get-Dynamics365ServerVersion
+
+Returns primary Dynamics 365 Customer Engagement language installed on the machine.
+
+### Syntax
+
+```PowerShell
+Get-Dynamics365ServerVersion
 ```
 
 ## Expand-Dynamics365Resource
@@ -209,27 +246,28 @@ Installs Dynamics 365 Server with new or existing organization.
 Install-Dynamics365Server
     -MediaDir <string>
     -LicenseKey <string>
-    [-CreateDatabase <switch>]
     -SqlServer <string>
-    -PrivUserGroup <string>
-    -SQLAccessGroup <string>
-    -UserGroup <string>
-    -ReportingGroup <string>
-    -PrivReportingGroup <string>
-    -CrmServiceAccount <pscredential>
-    -DeploymentServiceAccount <pscredential>
-    -SandboxServiceAccount <pscredential>
-    -VSSWriterServiceAccount <pscredential>
-    -AsyncServiceAccount <pscredential>
-    -MonitoringServiceAccount <pscredential>
-    [-CreateWebSite <switch>]
-    -WebSitePort <int>
-    -WebSiteUrl <string>
-    [-IncomingExchangeServer <string>]
-    -Organization <string>
-    -OrganizationUniqueName <string>
-    -ReportingUrl <string>
     [-InstallDir <string>]
+    [-CreateDatabase <switch>]
+    [-ServerRoles <string>[]]
+    [-PrivUserGroup <string>]
+    [-SQLAccessGroup <string>]
+    [-UserGroup <string>]
+    [-ReportingGroup <string>]
+    [-PrivReportingGroup <string>]
+    [-CrmServiceAccount <pscredential>]
+    [-DeploymentServiceAccount <pscredential>]
+    [-SandboxServiceAccount <pscredential>]
+    [-VSSWriterServiceAccount <pscredential>]
+    [-AsyncServiceAccount <pscredential>]
+    [-MonitoringServiceAccount <pscredential>]
+    [-CreateWebSite <switch>]
+    [-WebSitePort <int>]
+    [-WebSiteUrl <string>]
+    [-IncomingExchangeServer <string>]
+    [-Organization <string>]
+    [-OrganizationUniqueName <string>]
+    [-ReportingUrl <string>]
     [-BaseISOCurrencyCode <string>]
     [-BaseCurrencyName <string>]
     [-BaseCurrencySymbol <string>]
@@ -255,17 +293,21 @@ Specifies the location of the Dynamics 365 RTM installation files.
 
 See `<LicenseKey>` XML node description in https://technet.microsoft.com/en-us/library/hh699830.aspx.
 
+#### SqlServer
+
+See `<SqlServer>` XML node description in https://technet.microsoft.com/en-us/library/hh699830.aspx.
+
 #### InstallDir
 
 See `<InstallDir>` XML node description in https://technet.microsoft.com/en-us/library/hh699830.aspx.
 
 #### CreateDatabase
 
-See `<Database>` XML node description in https://technet.microsoft.com/en-us/library/hh699830.aspx.
+Create Dynamics 365 configuration database. See `<Database>` XML node description in https://technet.microsoft.com/en-us/library/hh699830.aspx.
 
-#### SqlServer
+#### ServerRoles
 
-See `<SqlServer>` XML node description in https://technet.microsoft.com/en-us/library/hh699830.aspx.
+Array of strings containing server role names. Possible role names are `FrontEnd`, `BackEnd`, `DeploymentAdministration`, `WebApplicationServer`, `OrganizationWebService`, `DiscoveryWebService`, `HelpServer`, `AsynchronousProcessingService`, `EmailConnector`, `SandboxProcessingService`, `DeploymentTools`, `DeploymentWebService`, `VSSWriter`. For further information refer to https://docs.microsoft.com/en-us/dynamics365/customerengagement/on-premises/deploy/microsoft-dynamics-365-server-roles#available-group-server-roles and https://docs.microsoft.com/en-us/dynamics365/customerengagement/on-premises/deploy/install-using-command-prompt#microsoft-dynamics-365-server-role-names-used-in-the-xml-configuration-file.
 
 #### PrivUserGroup
 
@@ -387,6 +429,8 @@ Use this option to get a detailed feedback on the installation process.
 
 ### Examples
 
+Installing single server with organization
+
 ```PowerShell
 $securedPassword = ConvertTo-SecureString "c0mp1Expa~~" -AsPlainText -Force
 $CRMInstallAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmadmin", $securedPassword );
@@ -398,11 +442,9 @@ Invoke-Command "$env:COMPUTERNAME.contoso.local" -Credential $CRMInstallAccountC
     $VSSWriterServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmvsswrit", $securedPassword );
     $AsyncServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmasync", $securedPassword );
     $MonitoringServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmmon", $securedPassword );
-    Save-Dynamics365Resource -Resource Dynamics365Server90RTMEnu -TargetDirectory C:\Install\Dynamics\Dynamics365Server90RTMEnu
     Install-Dynamics365Server `
         -MediaDir C:\Install\Dynamics\Dynamics365Server90RTMEnu `
         -LicenseKey KKNV2-4YYK8-D8HWD-GDRMW-29YTW `
-        -InstallDir "c:\Program Files\Microsoft Dynamics CRM" `
         -CreateDatabase `
         -SqlServer $env:COMPUTERNAME\SQLInstance01 `
         -PrivUserGroup "CN=CRM01PrivUserGroup,OU=CRM groups,DC=contoso,DC=local" `
@@ -427,10 +469,59 @@ Invoke-Command "$env:COMPUTERNAME.contoso.local" -Credential $CRMInstallAccountC
         -BaseCurrencyPrecision 2 `
         -OrganizationCollation Latin1_General_CI_AI `
         -ReportingUrl http://$env:COMPUTERNAME/ReportServer_RSInstance01 `
-        -LogFilePath c:\tmp\Dynamics365ServerInstallLog.txt `
+        -LogFilePath "c:\tmp\Dynamics365ServerInstallLog$( ( Get-Date -Format u ).Replace(" ","-").Replace(":","-") ).txt" `
         -LogFilePullIntervalInSeconds 15 `
         -LogFilePullToOutput
 }
+```
+
+Installing only back end and deployment administration server roles, without organization provisioning
+
+```PowerShell
+$securedPassword = ConvertTo-SecureString "c0mp1Expa~~" -AsPlainText -Force
+$CRMInstallAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmadmin", $securedPassword );
+Invoke-Command "$env:COMPUTERNAME.contoso.local" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+    $securedPassword = ConvertTo-SecureString "c0mp1Expa~~" -AsPlainText -Force
+    $CRMServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmsrv", $securedPassword );
+    $DeploymentServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmdplsrv", $securedPassword );
+    $SandboxServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmsandbox", $securedPassword );
+    $VSSWriterServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmvsswrit", $securedPassword );
+    $AsyncServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmasync", $securedPassword );
+    $MonitoringServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmmon", $securedPassword );
+    Install-Dynamics365Server `
+        -MediaDir C:\Install\Dynamics\Dynamics365Server90RTMEnu `
+        -LicenseKey KKNV2-4YYK8-D8HWD-GDRMW-29YTW `
+        -CreateDatabase `
+        -ServerRoles BackEnd, DeploymentAdministration `
+        -SqlServer $env:COMPUTERNAME\SQLInstance01 `
+        -PrivUserGroup "CN=CRM01PrivUserGroup,OU=CRM groups,DC=contoso,DC=local" `
+        -SQLAccessGroup "CN=CRM01SQLAccessGroup,OU=CRM groups,DC=contoso,DC=local" `
+        -UserGroup "CN=CRM01UserGroup,OU=CRM groups,DC=contoso,DC=local" `
+        -ReportingGroup "CN=CRM01ReportingGroup,OU=CRM groups,DC=contoso,DC=local" `
+        -PrivReportingGroup "CN=CRM01PrivReportingGroup,OU=CRM groups,DC=contoso,DC=local" `
+        -CrmServiceAccount $CRMServiceAccountCredential `
+        -DeploymentServiceAccount $DeploymentServiceAccountCredential `
+        -SandboxServiceAccount $SandboxServiceAccountCredential `
+        -VSSWriterServiceAccount $VSSWriterServiceAccountCredential `
+        -AsyncServiceAccount $AsyncServiceAccountCredential `
+        -MonitoringServiceAccount $MonitoringServiceAccountCredential `
+        -CreateWebSite `
+        -WebSitePort 5555 `
+        -WebSiteUrl https://$env:COMPUTERNAME.contoso.local `
+        -LogFilePath "c:\tmp\Dynamics365ServerInstallLog$( ( Get-Date -Format u ).Replace(" ","-").Replace(":","-") ).txt" `
+        -LogFilePullIntervalInSeconds 15 `
+        -LogFilePullToOutput
+}
+```
+
+Jonining existing configuration database and Installing only front end server roles
+
+```PowerShell
+Install-Dynamics365Server `
+    -MediaDir C:\Install\Dynamics\Dynamics365Server90RTMEnu `
+    -LicenseKey KKNV2-4YYK8-D8HWD-GDRMW-29YTW `
+    -ServerRoles FrontEnd `
+    -SqlServer $dbHostName\SQLInstance01
 ```
 
 ## Install-Dynamics365ReportingExtensions
@@ -442,7 +533,7 @@ Installs Dynamics 365 Reporting Extensions.
 ```PowerShell
 Install-Dynamics365ReportingExtensions
     -MediaDir <string>
-    -InstanceName <string>
+    [-InstanceName <string>]
     [-ConfigDBServer <string>]
     [-MUOptin <switch>]
     [-LogFilePath <string>]
@@ -458,15 +549,11 @@ Specifies the location of the Dynamics 365 RTM installation files. Remote instal
 
 #### InstanceName
 
-See `<instancename>` XML node description in http://157.56.148.23/en-us/library/hh699826.aspx and http://157.56.148.23/en-us/library/hh699684.aspx.
+Reporting Services instance to use. For more details, see `<instancename>` XML node description in http://157.56.148.23/en-us/library/hh699826.aspx and http://157.56.148.23/en-us/library/hh699684.aspx.
 
 #### ConfigDBServer
 
-See `<configdbserver>` XML node description in http://157.56.148.23/en-us/library/hh699826.aspx and http://157.56.148.23/en-us/library/hh699684.aspx.
-
-#### InstallAccount
-
-An account that has permissions to install the software and create a database. If not specified, the current account is used. If specified, CredSSP must be configured for invoking scripts locally on the machine with altered credential.
+SQL instance that contains Dynamics configuration database. For more details, see `<configdbserver>` XML node description in http://157.56.148.23/en-us/library/hh699826.aspx and http://157.56.148.23/en-us/library/hh699684.aspx.
 
 #### MUOptin
 
@@ -491,6 +578,7 @@ Use this option to get a detailed feedback on the installation process.
 ```PowerShell
 Install-Dynamics365ReportingExtensions `
     -MediaDir C:\Install\Dynamics\Dynamics365Server90RTMEnu\SrsDataConnector `
+    -ConfigDBServer $env:COMPUTERNAME\SQLInstance01 `
     -InstanceName SQLInstance01
 ```
 
@@ -502,6 +590,7 @@ $CRMInstallAccountCredential = New-Object System.Management.Automation.PSCredent
 Invoke-Command "DB01.contoso.local" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
     Install-Dynamics365ReportingExtensions `
         -MediaDir C:\Install\Dynamics\Dynamics365Server90RTMEnu\SrsDataConnector `
+        -ConfigDBServer $env:COMPUTERNAME\SQLInstance01 `
         -InstanceName SQLInstance01 `
         -LogFilePath c:\tmp\Dynamics365ServerInstallLog.txt `
         -LogFilePullIntervalInSeconds 15 `

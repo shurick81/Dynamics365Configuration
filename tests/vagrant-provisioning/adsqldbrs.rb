@@ -1,7 +1,7 @@
 Vagrant.configure(2) do |config|
     config.vm.provision :shell, path: "../../../../infrastructure/images/basepsmodules.ps1"
     config.vm.provision :shell, path: "../../../../infrastructure/images/adpsmodules.ps1"
-    config.vm.provision :shell, path: "../../../../infrastructure/stacks/domain.ps1", env: {"SPDEVOPSSTARTER_NODSCTEST" => "TRUE"}
+    config.vm.provision :shell, path: "../../../../infrastructure/stacks/domain.ps1", env: {"VMDEVOPSSTARTER_NODSCTEST" => "TRUE"}
     config.vm.provision "reload"
     config.vm.provision :shell, path: "../../../../infrastructure/stacks/domain.ps1"
     config.vm.provision :shell, path: "../../../../infrastructure/stacks/crmdomaincustomizations.ps1"

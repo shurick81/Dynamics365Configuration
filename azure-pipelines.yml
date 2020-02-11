@@ -160,9 +160,9 @@ jobs:
   - powershell: cd tests; kitchen destroy;
     displayName: Cleaning up the kitchen
     errorActionPreference: continue
-  - powershell: cd tests; kitchen test InstallAllPrerequisitesLocal-win2019-basic;
-    displayName: kitchen test InstallAllPrerequisitesLocal-win2019-basic
-    errorActionPreference: continue
+#  - powershell: cd tests; kitchen test InstallAllPrerequisitesLocal-win2019-basic;
+#    displayName: kitchen test InstallAllPrerequisitesLocal-win2019-basic
+#    errorActionPreference: continue
 #  - powershell: cd tests; kitchen test ValidUrls-win2012r2-basic;
 #    displayName: kitchen test ValidUrls-win2012r2-basic
 #    errorActionPreference: continue
@@ -187,6 +187,18 @@ jobs:
   #- powershell: cd tests; kitchen test SaveAllResources-win2016-soe;
   #  displayName: kitchen test SaveAllResources-win2016-soe
   #  errorActionPreference: continue
+  - powershell: cd infrastructure/stacks/kitchenci-ad-sql2016dbrs; ..\localdeploy.ps1;
+    displayName: Spinning up service VMs
+    errorActionPreference: continue
+  - powershell: cd tests; kitchen test RoleInstallation-win2019-dynamicsprereqs;
+    displayName: kitchen test RoleInstallation-win2019-dynamicsprereqs
+    errorActionPreference: continue
+  - powershell: cd tests; kitchen test RoleJoining-win2016-dynamicsprereqs;
+    displayName: kitchen test RoleJoining-win2016-dynamicsprereqs
+    errorActionPreference: continue
+  - powershell: cd infrastructure/stacks/kitchenci-ad-sql2016dbrs; vagrant destroy DB01 --force;
+    displayName: Cleaning up the stack
+    errorActionPreference: continue
   - powershell: cd infrastructure/stacks/kitchenci-ad-sql2016dbrs; ..\localdeploy.ps1;
     displayName: Spinning up service VMs
     errorActionPreference: continue

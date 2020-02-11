@@ -11,7 +11,7 @@ try
         Node $AllNodes.NodeName
         {
             
-            if ( $env:SPDEVOPSSTARTER_LOCALSQL -eq 1 )
+            if ( $env:VMDEVOPSSTARTER_LOCALSQL -eq 1 )
             {
 
                 $sourcePath = "C:\Install\SQLInstall"
@@ -71,7 +71,7 @@ catch
     $_.Exception.Message
     Exit 1;
 }
-if ( $env:SPDEVOPSSTARTER_NODSCTEST -ne "TRUE" )
+if ( $env:VMDEVOPSSTARTER_NODSCTEST -ne "TRUE" )
 {
     Write-Host "$(Get-Date) Testing DSC"
     try {
