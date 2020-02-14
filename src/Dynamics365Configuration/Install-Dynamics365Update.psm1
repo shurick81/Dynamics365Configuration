@@ -77,6 +77,7 @@
     Remove-Job $job;
 
     $installedVersion = Get-Dynamics365ServerVersion;
+    Write-Output "Currently installed: $($installedVersion.ToString())";
     if ( $fileVersion -ne $installedVersion ) {
         if( (Test-Path $logFilePath) -eq $True) {
             $errorLines = Get-Content $logFilePath | Select-String -Pattern "Error" -SimpleMatch;
@@ -87,7 +88,7 @@
                 }
             }
         }
-        $errorMessage = "Version of this update is lower than version of installed software";
+        $errorMessage = "Version of installed software is not the same as installed update";
         Write-Output $errorMessage;
         Throw $errorMessage;
     } else {
