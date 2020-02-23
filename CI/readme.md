@@ -4,7 +4,7 @@
 
 Run in PowerShell:
 ```PowerShell
-$resourceUrl = "https://vstsagentpackage.azureedge.net/agent/2.144.0/vsts-agent-win-x64-2.144.0.zip";
+$resourceUrl = "https://vstsagentpackage.azureedge.net/agent/2.165.0/vsts-agent-win-x64-2.165.0.zip";
 $tempFileName = [guid]::NewGuid().Guid + ".zip";
 $tempFilePath = "$env:TEMP\$tempFileName";
 Write-Host "Downloading $resourceUrl to $tempFilePath";
