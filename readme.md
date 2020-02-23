@@ -787,8 +787,12 @@ The following file resources can be referenced in the module:
 | RS Extensions Update 0.9 | Dynamics365Server90ReportingExtensionsUpdate09\<Language\> | 25 |  |
 | Server Update 0.10 | Dynamics365Server90Update10\<Language\> | 25 |  |
 | RS Extensions Update 0.10 | Dynamics365Server90ReportingExtensionsUpdate10\<Language\> | 25 |  |
-| Server Update 0.10 | Dynamics365Server90Update11\<Language\> | 25 |  |
-| RS Extensions Update 0.10 | Dynamics365Server90ReportingExtensionsUpdate11\<Language\> | 25 |  |
+| Server Update 0.11 | Dynamics365Server90Update11\<Language\> | 25 |  |
+| RS Extensions Update 0.11 | Dynamics365Server90ReportingExtensionsUpdate11\<Language\> | 25 |  |
+| Server Update 0.12 | Dynamics365Server90Update12\<Language\> | 25 |  |
+| RS Extensions Update 0.12 | Dynamics365Server90ReportingExtensionsUpdate12\<Language\> | 25 |  |
+| Server Update 0.13 | Dynamics365Server90Update13\<Language\> | 25 |  |
+| RS Extensions Update 0.13 | Dynamics365Server90ReportingExtensionsUpdate13\<Language\> | 25 |  |
 | **Dynamics 8** |  |  |  |
 | RTM | CRM2016RTM\<Language\> | 25 |  |
 | Language pack | CRM2016LanguagePack<Language> | 45 |  |
@@ -807,9 +811,6 @@ The following file resources can be referenced in the module:
 | Server Update 2.1 | CRM2016ServicePack2Update01\<Language\> | 25 |  |
 | RS Extensions Update 2.1 | CRM2016ReportingExtensionsServicePack2Update01\<Language\> | 25 |  |
 | MUI Update 2.1 | CRM2016LanguagePackServicePack2Update01\<Language\> | 45 |  |
-| Server Update 2.2 | CRM2016ServicePack2Update02\<Language\> | 25 |  |
-| RS Extensions Update 2.2 | CRM2016ReportingExtensionsServicePack2Update02\<Language\> | 25 |  |
-| MUI Update 2.2 | CRM2016LanguagePackServicePack2Update02\<Language\> | 45 |  |
 | Server Update 2.2 | CRM2016ServicePack2Update02\<Language\> | 25 |  |
 | RS Extensions Update 2.2 | CRM2016ReportingExtensionsServicePack2Update02\<Language\> | 25 |  |
 | MUI Update 2.2 | CRM2016LanguagePackServicePack2Update02\<Language\> | 45 |  |
@@ -843,10 +844,17 @@ The following file resources can be referenced in the module:
 | Server Update 2.12 | CRM2016ServicePack2Update12\<Language\> | 25 |  |
 | RS Extensions Update 2.12 | CRM2016ReportingExtensionsServicePack2Update12\<Language\> | 25 |  |
 | MUI Update 2.12 | CRM2016LanguagePackServicePack2Update12\<Language\> | 45 |  |
-| RS Extensions Update 2.12 | CRM2016ReportingExtensionsServicePack2Update13\<Language\> | 25 |  |
-| MUI Update 2.12 | CRM2016LanguagePackServicePack2Update13\<Language\> | 45 |  |
+| Server Update 2.13 | CRM2016ServicePack2Update13\<Language\> | 25 |  |
+| RS Extensions Update 2.13 | CRM2016ReportingExtensionsServicePack2Update13\<Language\> | 25 |  |
+| MUI Update 2.13 | CRM2016LanguagePackServicePack2Update13\<Language\> | 45 |  |
+| Server Update 2.14 | CRM2016ServicePack2Update14\<Language\> | 25 |  |
+| RS Extensions Update 2.14 | CRM2016ReportingExtensionsServicePack2Update14\<Language\> | 25 |  |
+| MUI Update 2.14 | CRM2016LanguagePackServicePack2Update14\<Language\> | 45 |  |
+| Server Update 2.15 | CRM2016ServicePack2Update15\<Language\> | 25 |  |
+| RS Extensions Update 2.15 | CRM2016ReportingExtensionsServicePack2Update15\<Language\> | 25 |  |
+| MUI Update 2.15 | CRM2016LanguagePackServicePack2Update15\<Language\> | 45 |  |
 | Prerequisites |  | 10 |  |
-| **Total** |  | 2211 |  |
+| **Total** |  | 2501 |  |
 
 ## Languages of RTM versions, for both v8 and v9
 
