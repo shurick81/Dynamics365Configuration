@@ -1,6 +1,6 @@
 # Dynamics365Configuration module change log
 
-## Not released
+## v2.0
 
 * Breaking changes in Install-Dynamics365ReportingExtensions
 
@@ -13,7 +13,7 @@
   * Get-Dynamics365ServerRole
   * Get-Dynamics365ServerVersion
 
-* Improvements in Install-Dynamics365
+* Improvements in Install-Dynamics365Server
 
   * ServerRoles allowing select what roles to be installed
   * Removed obligation from number of parameters: `CreateDatabase`, `SQLAccessGroup`, `PrivUserGroup`, `UserGroup`, `ReportingGroup`, `PrivReportingGroup`, `CrmServiceAccount`, `DeploymentServiceAccount`, `SandboxServiceAccount`, `VSSWriterServiceAccount`, `AsyncServiceAccount`, `MonitoringServiceAccount`, `CreateWebSite`, `WebSitePort`, `WebSiteUrl`, `Organization`, `OrganizationUniqueName`, `ReportingUrl`.
