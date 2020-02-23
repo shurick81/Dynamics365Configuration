@@ -16,7 +16,7 @@ jobs:
   displayName: Relesing the module
   pool:
     name: Hosted
-    vmImage: win1803
+    vmImage: windows-2019
   steps:
   - powershell: ./publishing/psmodulepublishing.ps1
     displayName: Releasing the module
