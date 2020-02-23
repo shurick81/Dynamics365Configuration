@@ -7,9 +7,16 @@ trigger:
     - release-*
     exclude:
     - develop
+
+variables:
+  NuGetApiKey: 'put-the-key-here'
+
 jobs:
 - job:
   displayName: Relesing the module
+  pool:
+    name: Hosted
+    vmImage: win1803
   steps:
   - powershell: ./publishing/psmodulepublishing.ps1
     displayName: Releasing the module
