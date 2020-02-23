@@ -76,7 +76,11 @@ try {
         "Dynamics365Server90Update10Enu",
         "Dynamics365Server90ReportingExtensionsUpdate10Enu",
         "Dynamics365Server90Update11Enu",
-        "Dynamics365Server90ReportingExtensionsUpdate11Enu"
+        "Dynamics365Server90ReportingExtensionsUpdate11Enu",
+        "Dynamics365Server90Update12Enu",
+        "Dynamics365Server90ReportingExtensionsUpdate12Enu",
+        "Dynamics365Server90Update13Enu",
+        "Dynamics365Server90ReportingExtensionsUpdate13Enu"
     ) | % { Save-Dynamics365Resource -Resource $_ -TargetDirectory C:\Install\Dynamics\$_ }
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
@@ -146,7 +150,11 @@ try {
     "Dynamics365Server90Update10Enu",
     "Dynamics365Server90ReportingExtensionsUpdate10Enu",
     "Dynamics365Server90Update11Enu",
-    "Dynamics365Server90ReportingExtensionsUpdate11Enu"
+    "Dynamics365Server90ReportingExtensionsUpdate11Enu",
+    "Dynamics365Server90Update12Enu",
+    "Dynamics365Server90ReportingExtensionsUpdate12Enu",
+    "Dynamics365Server90Update13Enu",
+    "Dynamics365Server90ReportingExtensionsUpdate13Enu"
 ) | % {
     if ( Get-ChildItem C:\Install\Dynamics\$_ ) {
         Write-Host "Test OK";
@@ -1028,6 +1036,154 @@ $currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential 
 }
 Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
 if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "9.0.11" ) {
+    Write-Host "Test OK";
+} else {
+    Write-Host "Expected update is not installed, test is not OK";
+    Exit 1;
+}
+
+try {
+    Invoke-Command "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+        Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
+        Install-Dynamics365Update -MediaDir C:\Install\Dynamics\Dynamics365Server90Update12Enu `
+            -LogFilePath c:\tmp\Dynamics365ServerUpdate912InstallLog.txt `
+            -LogFilePullIntervalInSeconds 15 `
+            -LogFilePullToOutput
+    }
+} catch {
+    Write-Host $_.Exception.Message -ForegroundColor Red;
+    Exit 1;
+}
+$testScriptBlock = {
+    try {
+        Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
+        if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
+            $crmServer = Get-CrmServer $env:COMPUTERNAME;
+            $crmServer.Version;
+        } else {
+            "Could not load Microsoft.Crm.PowerShell PSSnapin";
+        }
+    } catch {
+        $_.Exception.Message;
+        Exit 1;
+    }
+}
+$testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
+if ( ([version]$testResponse).ToString(3) -eq "9.0.12" )
+{
+    Write-Host "Test OK";
+} else {
+    Write-Host "Software installed version is '$testResponse'. Test is not OK"
+    Exit 1;
+}
+if( Test-Path "c:\tmp\Dynamics365ServerUpdate912InstallLog.txt" )
+{
+    Write-Output "File c:\tmp\Dynamics365ServerUpdate912InstallLog.txt is found, test OK"
+} else {
+    Write-Output "File c:\tmp\Dynamics365ServerUpdate912InstallLog.txt is not found"
+    Exit 1;
+}
+
+try {
+    if ( $dbHostName -eq $env:COMPUTERNAME ) {
+        $mediaDir = "C:\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate12Enu";
+    } else {
+        $mediaDir = "\\$env:COMPUTERNAME\c$\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate12Enu";
+    }
+    Write-Output "dbHostName is $dbHostName"
+    Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+        param( $mediaDir )
+        Import-Module C:\test-projects\Dynamics365Configuration\src\Dynamics365Configuration\Dynamics365Configuration.psd1
+        Write-Output "mediaDir is $mediaDir"
+        Install-Dynamics365ReportingExtensionsUpdate -MediaDir $mediaDir `
+            -LogFilePath c:\tmp\Dynamics365ServerReportingExtensionsUpdate9012InstallLog.txt `
+            -LogFilePullIntervalInSeconds 15 `
+            -LogFilePullToOutput
+    } -ArgumentList $mediaDir;
+} catch {
+    Write-Host "Failed in invoking of Install-Dynamics365Update";
+    Write-Host $_.Exception.Message -ForegroundColor Red;
+    Exit 1;
+}
+$currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+    Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
+}
+Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
+if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "9.0.12" ) {
+    Write-Host "Test OK";
+} else {
+    Write-Host "Expected update is not installed, test is not OK";
+    Exit 1;
+}
+
+try {
+    Invoke-Command "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+        Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
+        Install-Dynamics365Update -MediaDir C:\Install\Dynamics\Dynamics365Server90Update13Enu `
+            -LogFilePath c:\tmp\Dynamics365ServerUpdate913InstallLog.txt `
+            -LogFilePullIntervalInSeconds 15 `
+            -LogFilePullToOutput
+    }
+} catch {
+    Write-Host $_.Exception.Message -ForegroundColor Red;
+    Exit 1;
+}
+$testScriptBlock = {
+    try {
+        Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
+        if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
+            $crmServer = Get-CrmServer $env:COMPUTERNAME;
+            $crmServer.Version;
+        } else {
+            "Could not load Microsoft.Crm.PowerShell PSSnapin";
+        }
+    } catch {
+        $_.Exception.Message;
+        Exit 1;
+    }
+}
+$testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
+if ( ([version]$testResponse).ToString(3) -eq "9.0.13" )
+{
+    Write-Host "Test OK";
+} else {
+    Write-Host "Software installed version is '$testResponse'. Test is not OK"
+    Exit 1;
+}
+if( Test-Path "c:\tmp\Dynamics365ServerUpdate913InstallLog.txt" )
+{
+    Write-Output "File c:\tmp\Dynamics365ServerUpdate913InstallLog.txt is found, test OK"
+} else {
+    Write-Output "File c:\tmp\Dynamics365ServerUpdate913InstallLog.txt is not found"
+    Exit 1;
+}
+
+try {
+    if ( $dbHostName -eq $env:COMPUTERNAME ) {
+        $mediaDir = "C:\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate13Enu";
+    } else {
+        $mediaDir = "\\$env:COMPUTERNAME\c$\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate13Enu";
+    }
+    Write-Output "dbHostName is $dbHostName"
+    Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+        param( $mediaDir )
+        Import-Module C:\test-projects\Dynamics365Configuration\src\Dynamics365Configuration\Dynamics365Configuration.psd1
+        Write-Output "mediaDir is $mediaDir"
+        Install-Dynamics365ReportingExtensionsUpdate -MediaDir $mediaDir `
+            -LogFilePath c:\tmp\Dynamics365ServerReportingExtensionsUpdate9013InstallLog.txt `
+            -LogFilePullIntervalInSeconds 15 `
+            -LogFilePullToOutput
+    } -ArgumentList $mediaDir;
+} catch {
+    Write-Host "Failed in invoking of Install-Dynamics365Update";
+    Write-Host $_.Exception.Message -ForegroundColor Red;
+    Exit 1;
+}
+$currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+    Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
+}
+Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
+if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "9.0.13" ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected update is not installed, test is not OK";

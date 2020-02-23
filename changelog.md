@@ -18,6 +18,19 @@
   * ServerRoles allowing select what roles to be installed
   * Removed obligation from number of parameters: `CreateDatabase`, `SQLAccessGroup`, `PrivUserGroup`, `UserGroup`, `ReportingGroup`, `PrivReportingGroup`, `CrmServiceAccount`, `DeploymentServiceAccount`, `SandboxServiceAccount`, `VSSWriterServiceAccount`, `AsyncServiceAccount`, `MonitoringServiceAccount`, `CreateWebSite`, `WebSitePort`, `WebSiteUrl`, `Organization`, `OrganizationUniqueName`, `ReportingUrl`.
 
+* New Dynamics 365 updates (290 new downloadables in total):
+
+  * Dynamics365Server90Update12\<Language\>
+  * Dynamics365Server90ReportingExtensionsUpdate12\<Language\>
+  * CRM2016ServicePack2Update14\<Language\>
+  * CRM2016ReportingExtensionsServicePack2Update14\<Language\>
+  * CRM2016LanguagePackServicePack2Update14\<Language\>
+  * Dynamics365Server90Update13\<Language\>
+  * Dynamics365Server90ReportingExtensionsUpdate13\<Language\>
+  * CRM2016ServicePack2Update15\<Language\>
+  * CRM2016ReportingExtensionsServicePack2Update15\<Language\>
+  * CRM2016LanguagePackServicePack2Update15\<Language\>
+
 ## v1.5
 
 * Dynamics365Server90Update05Sve and CRM2016LanguagePackServicePack2Update04Lvi checksums corrected.
