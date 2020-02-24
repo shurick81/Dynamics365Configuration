@@ -1,5 +1,4 @@
 Import-Module $PSScriptRoot\Dynamics365Resources.psm1
-$Dynamics365Resources = $Dynamics365Resources;
 Import-Module $PSScriptRoot\Expand-Dynamics365Resource.psm1
 Import-Module $PSScriptRoot\Save-Dynamics365Resource.psm1 -DisableNameChecking
 Import-Module $PSScriptRoot\Get-Dynamics365ServerVersion.psm1
