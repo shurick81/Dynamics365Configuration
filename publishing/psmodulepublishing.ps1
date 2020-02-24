@@ -1,2 +1,2 @@
-Install-PackageProvider -Name NuGet -Force -Scope CurrentUser
+Get-PackageProvider NuGet -ForceBootstrap
 Publish-Module -Path ".\src\Dynamics365Configuration" -NuGetApiKey $env:NuGetApiKey
