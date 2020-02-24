@@ -69,7 +69,7 @@ Description = 'A module to ease infrastructure as code tasks for Dynamics 365.'
 # NestedModules = @()
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-# FunctionsToExport = @(
+FunctionsToExport = @(
     'Expand-Dynamics365Resource',
     'Expand-Dynamics365Resource',
     'Save-Dynamics365Resource',
