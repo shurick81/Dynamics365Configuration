@@ -69,7 +69,21 @@ Description = 'A module to ease infrastructure as code tasks for Dynamics 365.'
 # NestedModules = @()
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
-# FunctionsToExport = @()
+# FunctionsToExport = @(
+    'Expand-Dynamics365Resource',
+    'Expand-Dynamics365Resource',
+    'Save-Dynamics365Resource',
+    'Get-Dynamics365ServerVersion',
+    'Get-Dynamics365ServerRole',
+    'Get-Dynamics365ServerLanguage',
+    'Install-Dynamics365Prerequisite',
+    'Install-Dynamics365Server',
+    'Install-Dynamics365ReportingExtensions',
+    'Install-Dynamics365Language',
+    'Install-Dynamics365Update',
+    'Install-Dynamics365ReportingExtensionsUpdate',
+    'Install-Dynamics365LanguageUpdate'
+)
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 # CmdletsToExport = @()
