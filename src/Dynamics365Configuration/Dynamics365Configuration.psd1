@@ -12,7 +12,7 @@
 RootModule = 'RootModule.psm1'
 
 # Version number of this module.
-ModuleVersion = '1.5.1'
+ModuleVersion = '1.5.2'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -27,7 +27,7 @@ Author = 'Aleksandr Sapozhkov'
 # CompanyName = 'Unknown'
 
 # Copyright statement for this module
-Copyright = '(c) 2019 Aleksandr Sapozhkov. All rights reserved.'
+Copyright = '(c) 2020 Aleksandr Sapozhkov. All rights reserved.'
 
 # Description of the functionality provided by this module
 Description = 'A module to ease infrastructure as code tasks for Dynamics 365.'
@@ -70,7 +70,19 @@ Description = 'A module to ease infrastructure as code tasks for Dynamics 365.'
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
 FunctionsToExport = @(
-    'Expand-Dynamics365Resource'
+    'Expand-Dynamics365Resource',
+    'Expand-Dynamics365Resource',
+    'Save-Dynamics365Resource',
+    'Get-Dynamics365ServerVersion',
+    'Get-Dynamics365ServerRole',
+    'Get-Dynamics365ServerLanguage',
+    'Install-Dynamics365Prerequisite',
+    'Install-Dynamics365Server',
+    'Install-Dynamics365ReportingExtensions',
+    'Install-Dynamics365Language',
+    'Install-Dynamics365Update',
+    'Install-Dynamics365ReportingExtensionsUpdate',
+    'Install-Dynamics365LanguageUpdate'
 )
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
