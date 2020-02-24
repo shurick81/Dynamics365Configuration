@@ -18,6 +18,5 @@ jobs:
   - task: NuGetToolInstaller@1    
   - powershell: ./publishing/psmodulepublishing.ps1
     displayName: Releasing the module
-    errorActionPreference: continue
     env:
       NuGetApiKey: $(NuGetApiKey)
