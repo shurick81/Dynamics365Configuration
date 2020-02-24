@@ -8,9 +8,6 @@ trigger:
     exclude:
     - develop
 
-variables:
-  NuGetApiKey: 'put-the-key-here'
-
 jobs:
 - job:
   displayName: Releasing the module
@@ -22,3 +19,5 @@ jobs:
   - powershell: ./publishing/psmodulepublishing.ps1
     displayName: Releasing the module
     errorActionPreference: continue
+  env:
+    NuGetApiKey: $(NuGetApiKey)
