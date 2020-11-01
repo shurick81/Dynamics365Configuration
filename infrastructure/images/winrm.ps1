@@ -30,3 +30,4 @@ if ( !( $env:PACKER_BUILDER_TYPE -eq "azure-arm" ) ) {
     New-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System -Name LocalAccountTokenFilterPolicy -PropertyType DWord -Value 1
 }
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Force
+Set-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\.NetFramework\v4.0.30319 -Name SchUseStrongCrypto -Value 1 -Type DWord;
