@@ -215,14 +215,14 @@
         "checksum": "987E185CFB57FEBAC85770ABCCC6DEFB62DE0B4A"
     },
     "SQLSysClrTypes2016": {
-        "URL": "https://download.microsoft.com/download/8/7/2/872BCECA-C849-4B40-8EBE-21D48CDF1456/ENU/x64/SQLSysClrTypes.msi",
-        "identifyingNumber": "96EB5054-C775-4BEF-B7B9-AA96A295EDCD",
-        "checksum": "CC540FB1492047C4E2A61CD6E86F60ACB67CED8C"
+        "URL": "https://download.microsoft.com/download/B/1/7/B1783FE9-717B-4F78-A39A-A2E27E3D679D/ENU/x64/SQLSysClrTypes.msi",
+        "identifyingNumber": "A5B947FD-875D-448C-AB7C-A737CA9FEA4C",
+        "checksum": "8E246A0A49316C615D220790FCD7E38337C355A7"
     },
     "SharedManagementObjects2016": {
-        "URL": "https://download.microsoft.com/download/8/7/2/872BCECA-C849-4B40-8EBE-21D48CDF1456/ENU/x64/SharedManagementObjects.msi",
-        "identifyingNumber": "20EA85AA-2A1D-4F11-B09F-4BA2BF3C8989",
-        "checksum": "70AA73F05FCEC68E0601245784BAF1D3F0FD9472"
+        "URL": "https://download.microsoft.com/download/8/7/2/B1783FE9-717B-4F78-A39A-A2E27E3D679D/ENU/x64/SharedManagementObjects.msi",
+        "identifyingNumber": "E3806E56-5AF2-4467-A6B8-F78331A9F194",
+        "checksum": "A8FAA994F207041AEC8294650A174672474AA3BF"
     },
     "MSODBCSQL": {
         "URL": "https://download.microsoft.com/download/D/5/E/D5EEF288-A277-45C8-855B-8E2CB7E25B96/x64/msodbcsql.msi",
@@ -3445,9 +3445,9 @@
         "LanguageCode": "1055"
     },
     "SQLNCli2018R2": {
-        "URL": "http://download.microsoft.com/download/B/6/3/B63CAC7F-44BB-41FA-92A3-CBF71360F022/1033/x64/sqlncli.msi",
-        "identifyingNumber": "2180B33F-3225-423E-BBC1-7798CFD3CD1F",
-        "checksum": "024BCA85B180113859C1A730F321DBA2464BC45E"
+        "URL": "https://download.microsoft.com/download/2/4/F/24FE862D-7D32-47F2-B91D-22DAFA270BBC/2008%20R2%20ENU-1033/x64/sqlncli.msi",
+        "identifyingNumber": "029C81F0-8B40-471A-A62F-6B547B2EDBCB",
+        "checksum": "5760B418BC74BF271DC53EDC062A311D07866061"
     },
     "SQLSysClrTypes2012": {
         "URL": "http://download.microsoft.com/download/F/E/D/FEDB200F-DE2A-46D8-B661-D019DFE9D470/ENU/x64/SQLSysClrTypes.msi",
