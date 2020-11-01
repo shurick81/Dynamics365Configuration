@@ -4,7 +4,7 @@ Save-Dynamics365Resource SQLNCli2012SP4;
 Save-Dynamics365Resource SQLSysClrTypes2016;
 Save-Dynamics365Resource SharedManagementObjects2016;
 Save-Dynamics365Resource MSODBCSQL;
-Save-Dynamics365Resource SQLNCli2018R2;
+Save-Dynamics365Resource SQLNCli2008R2;
 Save-Dynamics365Resource SQLSysClrTypes2012;
 Save-Dynamics365Resource SharedManagementObjects2012;
 Save-Dynamics365Resource ReportViewer2012;
@@ -16,7 +16,7 @@ $expectedFiles = @(
     ".\SQLSysClrTypes2016\SQLSysClrTypes.msi",
     ".\SharedManagementObjects2016\SharedManagementObjects.msi",
     ".\MSODBCSQL\msodbcsql.msi",
-    ".\SQLNCli2018R2\sqlncli.msi",
+    ".\SQLNCli2008R2\sqlncli.msi",
     ".\SQLSysClrTypes2012\SQLSysClrTypes.msi",
     ".\SharedManagementObjects2012\SharedManagementObjects.msi",
     ".\ReportViewer2012\ReportViewer.msi"

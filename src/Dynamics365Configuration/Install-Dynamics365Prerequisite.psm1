@@ -7,7 +7,7 @@
             'SQLSysClrTypes2016',
             'SharedManagementObjects2016',
             'MSODBCSQL',
-            'SQLNCli2018R2',
+            'SQLNCli2008R2',
             'SQLSysClrTypes2012',
             'SharedManagementObjects2012',
             'ReportViewer2012'
@@ -105,7 +105,7 @@
                 #    Start-Process "msiexec.exe" -ArgumentList $MSIArguments -Wait -NoNewWindow;
                 #    break;
                 #}
-                { ( $_ -eq 'SQLNCli2012SP4' ) -or ( $_ -eq 'SQLNCli2018R2' ) } {
+                { ( $_ -eq 'SQLNCli2012SP4' ) -or ( $_ -eq 'SQLNCli2008R2' ) } {
                     $MSIArguments = @(
                         "/qn"
                         "/i"
@@ -181,8 +181,8 @@
         Install-Dynamics365Prerequisite -Prerequisite SharedManagementObjects2016 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath;
         Write-Output "Install-Dynamics365Prerequisite -Prerequisite MSODBCSQL -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath";
         Install-Dynamics365Prerequisite -Prerequisite MSODBCSQL -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath;
-        Write-Output "Install-Dynamics365Prerequisite -Prerequisite SQLNCli2018R2 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath";
-        Install-Dynamics365Prerequisite -Prerequisite SQLNCli2018R2 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath;
+        Write-Output "Install-Dynamics365Prerequisite -Prerequisite SQLNCli2008R2 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath";
+        Install-Dynamics365Prerequisite -Prerequisite SQLNCli2008R2 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath;
         Write-Output "Install-Dynamics365Prerequisite -Prerequisite SQLSysClrTypes2012 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath";
         Install-Dynamics365Prerequisite -Prerequisite SQLSysClrTypes2012 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath;
         Write-Output "Install-Dynamics365Prerequisite -Prerequisite SharedManagementObjects2012 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath";

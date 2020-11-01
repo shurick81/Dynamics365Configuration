@@ -192,7 +192,7 @@ Install-Dynamics365Prerequisite
 
 #### -Prerequisite
 
-Specifies if only particular prerequisite must be installed. If $null is specified, all prerequisites are installed. For Dynamics 365 9.0 possible values are [SQLNCli2012SP4,SQLSysClrTypes2016,SharedManagementObjects2016,MSODBCSQL]. For CRM 2016 possible values are [SQLNCli2018R2,SQLSysClrTypes2012,SharedManagementObjects2012,ReportViewer2012].
+Specifies if only particular prerequisite must be installed. If $null is specified, all prerequisites are installed. For Dynamics 365 9.0 possible values are [SQLNCli2012SP4,SQLSysClrTypes2016,SharedManagementObjects2016,MSODBCSQL]. For CRM 2016 possible values are [SQLNCli2008R2,SQLSysClrTypes2012,SharedManagementObjects2012,ReportViewer2012].
 
 #### -DynamicsPrerequisiteFilePath
 

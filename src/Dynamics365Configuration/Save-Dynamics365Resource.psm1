@@ -2502,7 +2502,7 @@ function Save-Dynamics365Resource
             'SharedManagementObjects2012',
             'SharedManagementObjects2016',
             'SQLNCli2012SP4',
-            'SQLNCli2018R2',
+            'SQLNCli2008R2',
             'SQLSysClrTypes2012',
             'SQLSysClrTypes2016',
             'VisualCPlusPlus2010Runtime',

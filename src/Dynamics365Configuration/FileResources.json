@@ -3444,7 +3444,7 @@
         "reportingExtensionsIdentifyingNumber": "0C524D71-141F-0080-BFEE-D90853535253",
         "LanguageCode": "1055"
     },
-    "SQLNCli2018R2": {
+    "SQLNCli2008R2": {
         "URL": "https://download.microsoft.com/download/2/4/F/24FE862D-7D32-47F2-B91D-22DAFA270BBC/2008%20R2%20ENU-1033/x64/sqlncli.msi",
         "identifyingNumber": "029C81F0-8B40-471A-A62F-6B547B2EDBCB",
         "checksum": "5760B418BC74BF271DC53EDC062A311D07866061"

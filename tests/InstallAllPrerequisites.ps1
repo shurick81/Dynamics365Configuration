@@ -26,7 +26,7 @@ try {
     'SQLSysClrTypes2016',
     'SharedManagementObjects2016',
     'MSODBCSQL',
-    'SQLNCli2018R2',
+    'SQLNCli2008R2',
     'SQLSysClrTypes2012',
     'SharedManagementObjects2012',
     'ReportViewer2012'
