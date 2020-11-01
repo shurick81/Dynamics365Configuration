@@ -212,7 +212,7 @@
     "SQLNCli2012SP4": {
         "URL": "https://download.microsoft.com/download/F/3/C/F3C64941-22A0-47E9-BC9B-1A19B4CA3E88/ENU/x64/sqlncli.msi",
         "identifyingNumber": "B9274744-8BAE-4874-8E59-2610919CD419",
-        "checksum": "A391BF631CCA15E5CEB4BD6B5D17EAE4B1EA25C3"
+        "checksum": "987E185CFB57FEBAC85770ABCCC6DEFB62DE0B4A"
     },
     "SQLSysClrTypes2016": {
         "URL": "https://download.microsoft.com/download/8/7/2/872BCECA-C849-4B40-8EBE-21D48CDF1456/ENU/x64/SQLSysClrTypes.msi",
