@@ -84,13 +84,25 @@
         },
         {
             "type": "powershell",
-            "script": "wmf5.ps1",
+            "script": "win2012r2-updates.ps1",
             "elevated_user": "administrator", "elevated_password": "Fractalsol365",
             "only": ["virtualbox-iso", "hyperv-iso"]
         },
         {
             "type": "powershell",
-            "script": "wmf5_azure.ps1",
+            "inline": "Write-Host 'Fake script just for pause after Windows 2012 R2 updates installation'",
+            "only": ["virtualbox-iso", "hyperv-iso"],
+            "pause_before": "10m"
+        },
+        {
+            "type": "powershell",
+            "script": "win2012r2-wmf5.ps1",
+            "elevated_user": "administrator", "elevated_password": "Fractalsol365",
+            "only": ["virtualbox-iso", "hyperv-iso"]
+        },
+        {
+            "type": "powershell",
+            "script": "win2012r2-wmf5_azure.ps1",
             "elevated_user": "packer", "elevated_password": "{{.WinRMPassword}}",
             "only": ["azure-arm"]
         },
@@ -114,6 +126,7 @@
             "script": "winrm.ps1",
             "only": ["azure-arm"]
         },
+        { "type": "powershell", "script": "win-legacy-default-protocols.ps1" },
         { "type": "powershell", "script": "PackageManagementProviderResource.ps1" },
         { "type": "powershell", "script": "basepsmodules.ps1" },
         { "type": "powershell", "script": "sqlpsmodules.ps1" },
@@ -129,7 +142,6 @@
             ]
         },
         { "type": "powershell", "script": "xcredserver.ps1" },
-        { "type": "windows-restart" },
         { "type": "powershell", "script": "waitforcpucalm.ps1" },
         {
             "type": "powershell",

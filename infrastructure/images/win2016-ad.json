@@ -90,6 +90,7 @@
             "script": "winrm.ps1",
             "only": ["azure-arm"]
         },
+        { "type": "powershell", "script": "win-legacy-default-protocols.ps1" },
         { "type": "powershell", "script": "PackageManagementProviderResource.ps1" },
         { "type": "powershell", "script": "basepsmodules.ps1" },
         { "type": "powershell", "script": "adpsmodules.ps1" },
