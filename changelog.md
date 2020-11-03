@@ -1,5 +1,18 @@
 # Dynamics365Configuration module change log
 
+## v2.1
+
+* Fixes in resources:
+
+  * New SQLNCli2012SP4 checksum
+  * New Dynamics365Server90LanguagePack\<Language\> checksum (because version 9.00.0015.0010 is published instead of old)
+  * New version of SQLSysClrTypes2016 resource
+  * New version of SharedManagementObjects2016 resource
+  * New version of SQLNCli2008R2 resource
+  * Fixed typo in the SQLNCli2008R2 name
+
+* Dev Infrastructure Improvements: fixed Win2012R2 build after 2020 April TLS changes.
+
 ## v2.0
 
 * Breaking changes in Install-Dynamics365ReportingExtensions
