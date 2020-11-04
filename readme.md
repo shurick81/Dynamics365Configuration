@@ -793,6 +793,22 @@ The following file resources can be referenced in the module:
 | RS Extensions Update 0.12 | Dynamics365Server90ReportingExtensionsUpdate12\<Language\> | 25 |  |
 | Server Update 0.13 | Dynamics365Server90Update13\<Language\> | 25 |  |
 | RS Extensions Update 0.13 | Dynamics365Server90ReportingExtensionsUpdate13\<Language\> | 25 |  |
+| Server Update 0.14 | Dynamics365Server90Update14\<Language\> | 24 | Ell language is missing |
+| RS Extensions Update 0.14 | Dynamics365Server90ReportingExtensionsUpdate14\<Language\> | 24 | Ell language is missing |
+| Server Update 0.15 | Dynamics365Server90Update15\<Language\> | 25 |  |
+| RS Extensions Update 0.15 | Dynamics365Server90ReportingExtensionsUpdate15\<Language\> | 25 |  |
+| Server Update 0.16 | Dynamics365Server90Update16\<Language\> | 25 |  |
+| RS Extensions Update 0.16 | Dynamics365Server90ReportingExtensionsUpdate16\<Language\> | 25 |  |
+| Server Update 0.17 | Dynamics365Server90Update17\<Language\> | 25 |  |
+| RS Extensions Update 0.17 | Dynamics365Server90ReportingExtensionsUpdate17\<Language\> | 25 |  |
+| Server Update 0.18 | Dynamics365Server90Update18\<Language\> | 25 |  |
+| RS Extensions Update 0.18 | Dynamics365Server90ReportingExtensionsUpdate18\<Language\> | 25 |  |
+| Server Update 0.19 | Dynamics365Server90Update19\<Language\> | 25 |  |
+| RS Extensions Update 0.19 | Dynamics365Server90ReportingExtensionsUpdate19\<Language\> | 25 |  |
+| Server Update 0.20 | Dynamics365Server90Update20\<Language\> | 25 |  |
+| RS Extensions Update 0.20 | Dynamics365Server90ReportingExtensionsUpdate20\<Language\> | 25 |  |
+| Server Update 0.21 | Dynamics365Server90Update21\<Language\> | 25 |  |
+| RS Extensions Update 0.21 | Dynamics365Server90ReportingExtensionsUpdate21\<Language\> | 25 |  |
 | **Dynamics 8** |  |  |  |
 | RTM | CRM2016RTM\<Language\> | 25 |  |
 | Language pack | CRM2016LanguagePack<Language> | 45 |  |
@@ -853,8 +869,29 @@ The following file resources can be referenced in the module:
 | Server Update 2.15 | CRM2016ServicePack2Update15\<Language\> | 25 |  |
 | RS Extensions Update 2.15 | CRM2016ReportingExtensionsServicePack2Update15\<Language\> | 25 |  |
 | MUI Update 2.15 | CRM2016LanguagePackServicePack2Update15\<Language\> | 45 |  |
+| Server Update 2.16 | CRM2016ServicePack2Update16\<Language\> | 25 |  |
+| RS Extensions Update 2.16 | CRM2016ReportingExtensionsServicePack2Update16\<Language\> | 25 |  |
+| MUI Update 2.16 | CRM2016LanguagePackServicePack2Update16\<Language\> | 45 |  |
+| Server Update 2.17 | CRM2016ServicePack2Update17\<Language\> | 25 |  |
+| RS Extensions Update 2.17 | CRM2016ReportingExtensionsServicePack2Update17\<Language\> | 25 |  |
+| MUI Update 2.17 | CRM2016LanguagePackServicePack2Update17\<Language\> | 45 |  |
+| Server Update 2.18 | CRM2016ServicePack2Update18\<Language\> | 25 |  |
+| RS Extensions Update 2.18 | CRM2016ReportingExtensionsServicePack2Update18\<Language\> | 25 |  |
+| MUI Update 2.18 | CRM2016LanguagePackServicePack2Update18\<Language\> | 45 |  |
+| Server Update 2.19 | CRM2016ServicePack2Update19\<Language\> | 24 | Trk language missing |
+| RS Extensions Update 2.19 | CRM2016ReportingExtensionsServicePack2Update19\<Language\> | 24 | Trk language missing |
+| MUI Update 2.19 | CRM2016LanguagePackServicePack2Update19\<Language\> | 44 | Trk language missing |
+| Server Update 2.21 | CRM2016ServicePack2Update21\<Language\> | 25 |  |
+| RS Extensions Update 2.21 | CRM2016ReportingExtensionsServicePack2Update21\<Language\> | 25 |  |
+| MUI Update 2.21 | CRM2016LanguagePackServicePack2Update21\<Language\> | 45 |  |
+| Server Update 2.22 | CRM2016ServicePack2Update22\<Language\> | 25 |  |
+| RS Extensions Update 2.22 | CRM2016ReportingExtensionsServicePack2Update22\<Language\> | 25 |  |
+| MUI Update 2.22 | CRM2016LanguagePackServicePack2Update22\<Language\> | 45 |  |
+| Server Update 2.23 | CRM2016ServicePack2Update23\<Language\> | 25 |  |
+| RS Extensions Update 2.23 | CRM2016ReportingExtensionsServicePack2Update23\<Language\> | 25 |  |
+| MUI Update 2.23 | CRM2016LanguagePackServicePack2Update23\<Language\> | 45 |  |
 | Prerequisites |  | 10 |  |
-| **Total** |  | 2501 |  |
+| **Total** |  | 3561 |  |
 
 ## Languages of RTM versions, for both v8 and v9
 

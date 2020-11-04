@@ -2,6 +2,46 @@
 
 ## v2.1
 
+* New Dynamics 365 updates (1060 new downloadables in total):
+
+  * Dynamics365Server90Update14\<Language\>
+  * Dynamics365Server90ReportingExtensionsUpdate14\<Language\>
+  * CRM2016ServicePack2Update16\<Language\>
+  * CRM2016ReportingExtensionsServicePack2Update16\<Language\>
+  * CRM2016LanguagePackServicePack2Update16\<Language\>
+  * Dynamics365Server90Update15\<Language\>
+  * Dynamics365Server90ReportingExtensionsUpdate15\<Language\>
+  * CRM2016ServicePack2Update17\<Language\>
+  * CRM2016ReportingExtensionsServicePack2Update17\<Language\>
+  * CRM2016LanguagePackServicePack2Update17\<Language\>
+  * Dynamics365Server90Update16\<Language\>
+  * Dynamics365Server90ReportingExtensionsUpdate16\<Language\>
+  * CRM2016ServicePack2Update18\<Language\>
+  * CRM2016ReportingExtensionsServicePack2Update18\<Language\>
+  * CRM2016LanguagePackServicePack2Update18\<Language\>
+  * Dynamics365Server90Update17\<Language\>
+  * Dynamics365Server90ReportingExtensionsUpdate17\<Language\>
+  * CRM2016ServicePack2Update19\<Language\>
+  * CRM2016ReportingExtensionsServicePack2Update19\<Language\>
+  * CRM2016LanguagePackServicePack2Update19\<Language\>
+  * Dynamics365Server90Update18\<Language\>
+  * Dynamics365Server90ReportingExtensionsUpdate18\<Language\>
+  * Dynamics365Server90Update19\<Language\>
+  * Dynamics365Server90ReportingExtensionsUpdate19\<Language\>
+  * CRM2016ServicePack2Update21\<Language\>
+  * CRM2016ReportingExtensionsServicePack2Update21\<Language\>
+  * CRM2016LanguagePackServicePack2Update21\<Language\>
+  * Dynamics365Server90Update20\<Language\>
+  * Dynamics365Server90ReportingExtensionsUpdate20\<Language\>
+  * CRM2016ServicePack2Update22\<Language\>
+  * CRM2016ReportingExtensionsServicePack2Update2\<Language\>
+  * CRM2016LanguagePackServicePack2Update22\<Language\>
+  * Dynamics365Server90Update21\<Language\>
+  * Dynamics365Server90ReportingExtensionsUpdate21\<Language\>
+  * CRM2016ServicePack2Update23\<Language\>
+  * CRM2016ReportingExtensionsServicePack2Update23\<Language\>
+  * CRM2016LanguagePackServicePack2Update23\<Language\>
+
 * Fixes in resources:
 
   * New SQLNCli2012SP4 checksum
