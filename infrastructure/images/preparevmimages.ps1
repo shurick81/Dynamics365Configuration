@@ -52,4 +52,3 @@ $imageNames | % {
 }
 Write-Host "$(Get-Date) Operation took:";
 ( Get-Date ) - $startProcessingMoment;
-
