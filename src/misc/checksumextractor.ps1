@@ -23,12 +23,13 @@ $Dynamics365Resources | Get-Member -MemberType NoteProperty | % {
             if ( !$lastMatches ) {
                 Write-Host "Does not match with either previous or reference checksum: $( $_.Name ) checksum is $fileHash";
                 Write-Host "Repeating download";
+                Sleep 1;
                 $previousHash = $fileHash;
             }
         } until ( $lastMatches )
         $resultDictionary.( $_.Name ).Checksum = $fileHash;
+        $resultDictionary | ConvertTo-Json | Set-Content -Path C:/projects/Dynamics365Configuration/src/misc/FileResources.json
     } else {
         Write-Host "Resource has checksum specified";
     }
 }
-$resultDictionary | ConvertTo-Json
