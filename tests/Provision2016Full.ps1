@@ -82,7 +82,6 @@ try {
         "CRM2016ServicePack2Update17Dan",
         "CRM2016ServicePack2Update18Dan",
         "CRM2016ServicePack2Update19Dan",
-        "CRM2016ServicePack2Update20Dan",
         "CRM2016ServicePack2Update21Dan",
         "CRM2016ServicePack2Update22Dan",
         "CRM2016ServicePack2Update23Dan",
@@ -109,7 +108,6 @@ try {
         "CRM2016ReportingExtensionsServicePack2Update17Dan",
         "CRM2016ReportingExtensionsServicePack2Update18Dan",
         "CRM2016ReportingExtensionsServicePack2Update19Dan",
-        "CRM2016ReportingExtensionsServicePack2Update20Dan",
         "CRM2016ReportingExtensionsServicePack2Update21Dan",
         "CRM2016ReportingExtensionsServicePack2Update22Dan",
         "CRM2016ReportingExtensionsServicePack2Update23Dan",
@@ -136,7 +134,6 @@ try {
         "CRM2016LanguagePackServicePack2Update17Enu",
         "CRM2016LanguagePackServicePack2Update18Enu",
         "CRM2016LanguagePackServicePack2Update19Enu",
-        "CRM2016LanguagePackServicePack2Update20Enu",
         "CRM2016LanguagePackServicePack2Update21Enu",
         "CRM2016LanguagePackServicePack2Update22Enu",
         "CRM2016LanguagePackServicePack2Update23Enu"
@@ -215,7 +212,6 @@ try {
     "CRM2016ServicePack2Update17Dan",
     "CRM2016ServicePack2Update18Dan",
     "CRM2016ServicePack2Update19Dan",
-    "CRM2016ServicePack2Update20Dan",
     "CRM2016ServicePack2Update21Dan",
     "CRM2016ServicePack2Update22Dan",
     "CRM2016ServicePack2Update23Dan",
@@ -242,7 +238,6 @@ try {
     "CRM2016ReportingExtensionsServicePack2Update17Dan",
     "CRM2016ReportingExtensionsServicePack2Update18Dan",
     "CRM2016ReportingExtensionsServicePack2Update19Dan",
-    "CRM2016ReportingExtensionsServicePack2Update20Dan",
     "CRM2016ReportingExtensionsServicePack2Update21Dan",
     "CRM2016ReportingExtensionsServicePack2Update22Dan",
     "CRM2016ReportingExtensionsServicePack2Update23Dan",
@@ -269,7 +264,6 @@ try {
     "CRM2016LanguagePackServicePack2Update17Enu",
     "CRM2016LanguagePackServicePack2Update18Enu",
     "CRM2016LanguagePackServicePack2Update19Enu",
-    "CRM2016LanguagePackServicePack2Update20Enu",
     "CRM2016LanguagePackServicePack2Update21Enu",
     "CRM2016LanguagePackServicePack2Update22Enu",
     "CRM2016LanguagePackServicePack2Update23Enu"
@@ -1793,8 +1787,8 @@ if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.12"
 try {
     Invoke-Command "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
         Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
-        Install-Dynamics365Update -MediaDir C:\Install\Dynamics\CRM2016ServicePack2Update17Dan `
-            -LogFilePath c:\tmp\Dynamics365ServerUpdate8217InstallLog.txt `
+        Install-Dynamics365Update -MediaDir C:\Install\Dynamics\CRM2016ServicePack2Update13Dan `
+            -LogFilePath c:\tmp\Dynamics365ServerUpdate8213InstallLog.txt `
             -LogFilePullIntervalInSeconds 15 `
             -LogFilePullToOutput
     }
@@ -1816,7 +1810,7 @@ $testScriptBlock = {
     }
 }
 $testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
-if ( ([version]$testResponse).ToString(3) -eq "8.2.17" )
+if ( ([version]$testResponse).ToString(3) -eq "8.2.13" )
 {
     Write-Host "Test OK";
 } else {
@@ -1826,9 +1820,9 @@ if ( ([version]$testResponse).ToString(3) -eq "8.2.17" )
 
 try {
     if ( $dbHostName -eq $env:COMPUTERNAME ) {
-        $mediaDir = "C:\Install\Dynamics\CRM2016ReportingExtensionsServicePack2Update17Dan";
+        $mediaDir = "C:\Install\Dynamics\CRM2016ReportingExtensionsServicePack2Update13Dan";
     } else {
-        $mediaDir = "\\$env:COMPUTERNAME\c$\Install\Dynamics\CRM2016ReportingExtensionsServicePack2Update17Dan";
+        $mediaDir = "\\$env:COMPUTERNAME\c$\Install\Dynamics\CRM2016ReportingExtensionsServicePack2Update13Dan";
     }
     Write-Output "dbHostName is $dbHostName"
     Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
@@ -1836,7 +1830,7 @@ try {
         Import-Module C:\test-projects\Dynamics365Configuration\src\Dynamics365Configuration\Dynamics365Configuration.psd1
         Write-Output "mediaDir is $mediaDir"
         Install-Dynamics365ReportingExtensionsUpdate -MediaDir $mediaDir `
-            -LogFilePath c:\tmp\Dynamics365ServerReportingExtensionsUpdate8217InstallLog.txt `
+            -LogFilePath c:\tmp\Dynamics365ServerReportingExtensionsUpdate8213InstallLog.txt `
             -LogFilePullIntervalInSeconds 15 `
             -LogFilePullToOutput
     } -ArgumentList $mediaDir;
@@ -1849,7 +1843,7 @@ $currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential 
     Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
 }
 Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.17" ) {
+if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.13" ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected update is not installed, test is not OK";
@@ -1857,14 +1851,14 @@ if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.17"
 }
 
 try {
-    Install-Dynamics365LanguageUpdate -MediaDir C:\Install\Dynamics\CRM2016LanguagePackServicePack2Update17Enu
+    Install-Dynamics365LanguageUpdate -MediaDir C:\Install\Dynamics\CRM2016LanguagePackServicePack2Update13Enu
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
 $currentProductInstalled = Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "{0C524DC1-1409-0080-8121-88490F4D5549}" }
 Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.17" ) {
+if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.13" ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected update is not installed, test is not OK";
