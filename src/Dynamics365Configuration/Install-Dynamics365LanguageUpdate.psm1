@@ -66,9 +66,12 @@
     $job = Start-Job -ScriptBlock $installCrmScript -ArgumentList $setupFilePath, $logFilePath;
     Write-Output "$(Get-Date) Started installation job, log will be saved in $logFilePath";
     $lastLinesCount = 0;
-
+    $startTime = Get-Date;
+    Start-Sleep $logFilePullIntervalInSeconds;
     While ( $job.State -ne "Completed" ) {
-        Write-Output "$(Get-Date) Waiting until CRM installation job is done, sleeping $logFilePullIntervalInSeconds sec";
+        $elapsedTime = $( Get-Date ) - $startTime;
+        $elapsedString = "{0:HH:mm:ss}" -f ( [datetime]$elapsedTime.Ticks );
+        Write-Output "$(Get-Date) Elapsed $elapsedString. Waiting until CRM language pack update installation job is done, sleeping $logFilePullIntervalInSeconds sec";
         Start-Sleep $logFilePullIntervalInSeconds;
         if (($logFilePullToOutput -eq $True) -and ((Test-Path $logFilePath) -eq $True)) {
 

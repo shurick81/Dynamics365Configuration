@@ -1,5 +1,9 @@
 # Dynamics365Configuration module change log
 
+## Not released
+
+* Displayed elapsed time for long running operations.
+
 ## 2.1.0
 
 * New Dynamics 365 updates (1060 new downloadables in total):
