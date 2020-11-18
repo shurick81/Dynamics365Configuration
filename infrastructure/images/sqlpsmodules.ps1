@@ -46,7 +46,7 @@ try
                 Name                = "SqlServerDsc"
                 Repository          = "PSGallery"
                 InstallationPolicy  = "Trusted"
-                RequiredVersion     = "11.1.0.0"
+                RequiredVersion     = "14.2.1"
             }
 
         }

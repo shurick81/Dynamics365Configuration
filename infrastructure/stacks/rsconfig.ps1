@@ -11,8 +11,7 @@ try
             $SqlRSAccountCredential
         )
         Import-DscResource -ModuleName PSDesiredStateConfiguration
-#        Import-DscResource -ModuleName CertificateDsc -ModuleVersion 4.1.0.0
-        Import-DscResource -ModuleName SqlServerDsc -ModuleVersion 11.1.0.0
+        Import-DscResource -ModuleName SqlServerDsc -ModuleVersion 14.2.1
         Import-DscResource -ModuleName xNetworking -ModuleVersion 5.6.0.0
 
         $domainName = "contoso.local";

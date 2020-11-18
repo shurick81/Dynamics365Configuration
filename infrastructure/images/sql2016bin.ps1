@@ -7,7 +7,7 @@ try
 
         Import-DscResource -ModuleName PSDesiredStateConfiguration
         Import-DscResource -ModuleName xNetworking -ModuleVersion 5.6.0.0
-        Import-DscResource -ModuleName SqlServerDsc -ModuleVersion 11.1.0.0
+        Import-DscResource -ModuleName SqlServerDsc -ModuleVersion 14.2.1
 
         Node $AllNodes.NodeName
         {
@@ -52,7 +52,7 @@ try
                 BrowserSvcStartupType   = "Automatic"
             }
 
-            SqlServerMemory SQLServerMaxMemoryIs2GB
+            SqlMemory SQLServerMaxMemoryIs2GB
             {
                 ServerName      = $NodeName
                 DynamicAlloc    = $false
