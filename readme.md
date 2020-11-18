@@ -549,15 +549,15 @@ Specifies the location of the Dynamics 365 RTM installation files. Remote instal
 
 #### InstanceName
 
-Reporting Services instance to use. For more details, see `<instancename>` XML node description in http://157.56.148.23/en-us/library/hh699826.aspx and http://157.56.148.23/en-us/library/hh699684.aspx.
+Reporting Services instance to use. For more details, see `<instancename>` XML node description in http://157.56.148.23/en-us/library/hh699826.aspx and http://technet.microsoft.com/en-us/library/hh699826(v=crm.6).aspx.
 
 #### ConfigDBServer
 
-SQL instance that contains Dynamics configuration database. For more details, see `<configdbserver>` XML node description in http://157.56.148.23/en-us/library/hh699826.aspx and http://157.56.148.23/en-us/library/hh699684.aspx.
+SQL instance that contains Dynamics configuration database. For more details, see `<configdbserver>` XML node description in http://157.56.148.23/en-us/library/hh699826.aspx and http://technet.microsoft.com/en-us/library/hh699826(v=crm.6).aspx.
 
 #### MUOptin
 
-See `<muoptin>` XML node description in http://157.56.148.23/en-us/library/hh699826.aspx and http://157.56.148.23/en-us/library/hh699684.aspx.
+See `<muoptin>` XML node description in http://technet.microsoft.com/en-us/library/hh699826(v=crm.6).aspx and http://technet.microsoft.com/en-us/library/hh699826(v=crm.6).aspx.
 
 #### LogFilePath
 
