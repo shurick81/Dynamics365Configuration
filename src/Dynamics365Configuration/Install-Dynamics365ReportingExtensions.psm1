@@ -1,4 +1,4 @@
-﻿function Install-Dynamics365ReportingExtensions {
+function Install-Dynamics365ReportingExtensions {
     param (
         [Parameter(Mandatory=$true)]
         [string]
@@ -88,8 +88,7 @@
             $lastLinesCount = 0;
             $startTime = Get-Date;
             Start-Sleep $logFilePullIntervalInSeconds;
-            While ( $job.State -ne "Completed" )
-            {
+            do {
                 $elapsedTime = $( Get-Date ) - $startTime;
                 $elapsedString = "{0:HH:mm:ss}" -f ( [datetime]$elapsedTime.Ticks );
                 Write-Output "$(Get-Date) Elapsed $elapsedString. Waiting until CRM reporting extensions job is done, sleeping $logFilePullIntervalInSeconds sec";
@@ -112,7 +111,7 @@
 
                     $lastLinesCount = $linesCount;
                 }
-            }
+            } while ( $job.State -ne "Completed" )
             Write-Output "$(Get-Date) Job is complete, output:";
             Write-Output ( Receive-Job $job );
             Remove-Job $job;

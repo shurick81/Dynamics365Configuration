@@ -1,4 +1,4 @@
-﻿function Install-Dynamics365LanguageUpdate {
+function Install-Dynamics365LanguageUpdate {
     param (
         [parameter(Position = 0,
         Mandatory = $true)]
@@ -68,7 +68,7 @@
     $lastLinesCount = 0;
     $startTime = Get-Date;
     Start-Sleep $logFilePullIntervalInSeconds;
-    While ( $job.State -ne "Completed" ) {
+    do {
         $elapsedTime = $( Get-Date ) - $startTime;
         $elapsedString = "{0:HH:mm:ss}" -f ( [datetime]$elapsedTime.Ticks );
         Write-Output "$(Get-Date) Elapsed $elapsedString. Waiting until CRM language pack update installation job is done, sleeping $logFilePullIntervalInSeconds sec";
@@ -92,7 +92,7 @@
 
             $lastLinesCount = $linesCount;
         }
-    }
+    } until ( $job.State -eq "Completed" )
 
     Write-Output "$(Get-Date) Job is complete, output:";
     Write-Output ( Receive-Job $job );
