@@ -329,6 +329,10 @@ See `<ReportingGroup>` XML node description in https://technet.microsoft.com/en-
 
 See `<PrivReportingGroup>` XML node description in https://technet.microsoft.com/en-us/library/hh699830.aspx.
 
+#### AutoGroupManagementOff
+
+See `autogroupmanagementoff` XML attribute description in https://technet.microsoft.com/en-us/library/hh699830.aspx.
+
 #### CrmServiceAccount
 
 See `<CrmServiceAccount>` XML node description in https://technet.microsoft.com/en-us/library/hh699830.aspx.
@@ -554,6 +558,10 @@ Reporting Services instance to use. For more details, see `<instancename>` XML n
 #### ConfigDBServer
 
 SQL instance that contains Dynamics configuration database. For more details, see `<configdbserver>` XML node description in http://157.56.148.23/en-us/library/hh699826.aspx and http://technet.microsoft.com/en-us/library/hh699826(v=crm.6).aspx.
+
+#### AutoGroupManagementOff
+
+See `<autogroupmanagementoff>` XML node description in http://technet.microsoft.com/en-us/library/hh699826(v=crm.6).aspx.
 
 #### MUOptin
 

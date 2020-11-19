@@ -1,4 +1,4 @@
-function Install-Dynamics365ReportingExtensions {
+﻿function Install-Dynamics365ReportingExtensions {
     param (
         [Parameter(Mandatory=$true)]
         [string]
@@ -7,6 +7,8 @@ function Install-Dynamics365ReportingExtensions {
         $InstanceName,
         [string]
         $ConfigDBServer,
+        [switch]
+        $AutoGroupManagementOff,
         [switch]
         $MUOptin = $false,
         [string]
@@ -17,6 +19,7 @@ function Install-Dynamics365ReportingExtensions {
         [switch]
         $LogFilePullToOutput = $False
     )
+    $AutoGroupManagementOffBool = [bool]$AutoGroupManagementOff;
     $setupFilePath = "$mediaDir\SetupSrsDataConnector.exe";
     $fileVersion = ( Get-Command $setupFilePath ).FileVersionInfo.FileVersionRaw.ToString();
     Write-Output "Version of software to be installed: $fileVersion";
@@ -48,7 +51,7 @@ function Install-Dynamics365ReportingExtensions {
                     $configDBServerElement.InnerText = $configDBServer;
                 $srsDataConnectorElement.AppendChild( $configDBServerElement ) | Out-Null;
                 $autoGroupManagementOffElement = $xml.CreateElement( "autogroupmanagementoff" );
-                    $autoGroupManagementOffElement.InnerText = 0;
+                    $autoGroupManagementOffElement.InnerText = [int]$AutoGroupManagementOffBool;
                 $srsDataConnectorElement.AppendChild( $autoGroupManagementOffElement ) | Out-Null;
                 if ( $InstanceName ) {
                     $instanceNameElement = $xml.CreateElement( "instancename" );

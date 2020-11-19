@@ -1,4 +1,4 @@
-function Install-Dynamics365Server {
+﻿function Install-Dynamics365Server {
     param (
         [Parameter(Mandatory=$true)]
         [string]
@@ -38,6 +38,8 @@ function Install-Dynamics365Server {
         $ReportingGroup,
         [string]
         $PrivReportingGroup,
+        [switch]
+        $AutoGroupManagementOff,
         [pscredential]
         $CrmServiceAccount,
         [pscredential]
@@ -194,7 +196,7 @@ function Install-Dynamics365Server {
                             $serverElement.AppendChild( $SQLServerElement ) | Out-Null;
                             if ( $privUserGroup -or $SQLAccessGroup -or $userGroup -or $reportingGroup -or $privReportingGroup ) {
                                 $groupsElement = $xml.CreateElement( "Groups" );
-                                    $groupsElement.SetAttribute( "autogroupmanagementoff", $false ) | Out-Null;
+                                    $groupsElement.SetAttribute( "autogroupmanagementoff", $AutoGroupManagementOff ) | Out-Null;
                                     if ( $privUserGroup ) {
                                         $privUserGroupElement = $xml.CreateElement( "PrivUserGroup" );
                                             $privUserGroupElement.InnerText = $privUserGroup;

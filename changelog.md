@@ -3,6 +3,8 @@
 ## Not released
 
 * Displayed elapsed time for long running operations.
+* New parameter in Install-Dynamics365Server: AutoGroupManagementOff
+* New parameter in Install-Dynamics365ReportingExtensions: AutoGroupManagementOff
 
 ## 2.1.0
 
