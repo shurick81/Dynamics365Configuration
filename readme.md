@@ -255,6 +255,7 @@ Install-Dynamics365Server
     [-UserGroup <string>]
     [-ReportingGroup <string>]
     [-PrivReportingGroup <string>]
+    [-AutoGroupManagementOff <switch>]
     [-CrmServiceAccount <pscredential>]
     [-DeploymentServiceAccount <pscredential>]
     [-SandboxServiceAccount <pscredential>]
@@ -539,6 +540,7 @@ Install-Dynamics365ReportingExtensions
     -MediaDir <string>
     [-InstanceName <string>]
     [-ConfigDBServer <string>]
+    [-AutoGroupManagementOff <switch>]
     [-MUOptin <switch>]
     [-LogFilePath <string>]
     [-LogFilePullIntervalInSeconds <int32>]
