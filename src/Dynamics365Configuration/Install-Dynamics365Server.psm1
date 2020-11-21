@@ -1,5 +1,5 @@
 ﻿function Install-Dynamics365Server {
-    [CmdletBinding(DefaultParameterSetName = 'OU')]
+    [CmdletBinding(DefaultParameterSetName = 'Groups')]
     param (
         [Parameter(ParameterSetName = 'OU', Mandatory=$true)]
         [Parameter(ParameterSetName = 'Groups', Mandatory=$true)]
