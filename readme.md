@@ -247,6 +247,41 @@ Install-Dynamics365Server
     -MediaDir <string>
     -LicenseKey <string>
     -SqlServer <string>
+    -OU <string>
+    [-InstallDir <string>]
+    [-CreateDatabase <switch>]
+    [-ServerRoles <string>[]]
+    [-CrmServiceAccount <pscredential>]
+    [-DeploymentServiceAccount <pscredential>]
+    [-SandboxServiceAccount <pscredential>]
+    [-VSSWriterServiceAccount <pscredential>]
+    [-AsyncServiceAccount <pscredential>]
+    [-MonitoringServiceAccount <pscredential>]
+    [-CreateWebSite <switch>]
+    [-WebSitePort <int>]
+    [-WebSiteUrl <string>]
+    [-IncomingExchangeServer <string>]
+    [-Organization <string>]
+    [-OrganizationUniqueName <string>]
+    [-ReportingUrl <string>]
+    [-BaseISOCurrencyCode <string>]
+    [-BaseCurrencyName <string>]
+    [-BaseCurrencySymbol <string>]
+    [-BaseCurrencyPrecision <int>]
+    [-OrganizationCollation <string>]
+    [-SQM <switch>]
+    [-MUOptin <switch>]
+    [-Reboot <switch>]
+    [-LogFilePath <string>]
+    [-LogFilePullIntervalInSeconds <int32>]
+    [-LogFilePullToOutput <switch>]
+```
+
+```PowerShell
+Install-Dynamics365Server
+    -MediaDir <string>
+    -LicenseKey <string>
+    -SqlServer <string>
     [-InstallDir <string>]
     [-CreateDatabase <switch>]
     [-ServerRoles <string>[]]
@@ -309,6 +344,12 @@ Create Dynamics 365 configuration database. See `<Database>` XML node descriptio
 #### ServerRoles
 
 Array of strings containing server role names. Possible role names are `FrontEnd`, `BackEnd`, `DeploymentAdministration`, `WebApplicationServer`, `OrganizationWebService`, `DiscoveryWebService`, `HelpServer`, `AsynchronousProcessingService`, `EmailConnector`, `SandboxProcessingService`, `DeploymentTools`, `DeploymentWebService`, `VSSWriter`. For further information refer to https://docs.microsoft.com/en-us/dynamics365/customerengagement/on-premises/deploy/microsoft-dynamics-365-server-roles#available-group-server-roles and https://docs.microsoft.com/en-us/dynamics365/customerengagement/on-premises/deploy/install-using-command-prompt#microsoft-dynamics-365-server-role-names-used-in-the-xml-configuration-file.
+
+#### OU
+
+Specifies the Active Directory organizational unit (OU) where the security groups will be created. You can’t use `PrivUserGroup`, `SQLAccessGroup`, `UserGroup`, `ReportingGroup` or `PrivReportingGroup` parameters with the `OU` parameter. Setup won’t continue if you specify both elements together.
+
+See `<OU>` XML node description in https://technet.microsoft.com/en-us/library/hh699830.aspx.
 
 #### PrivUserGroup
 
@@ -434,7 +475,7 @@ Use this option to get a detailed feedback on the installation process.
 
 ### Examples
 
-Installing single server with organization
+Installing a single server with a an organization
 
 ```PowerShell
 $securedPassword = ConvertTo-SecureString "c0mp1Expa~~" -AsPlainText -Force
@@ -452,11 +493,7 @@ Invoke-Command "$env:COMPUTERNAME.contoso.local" -Credential $CRMInstallAccountC
         -LicenseKey KKNV2-4YYK8-D8HWD-GDRMW-29YTW `
         -CreateDatabase `
         -SqlServer $env:COMPUTERNAME\SQLInstance01 `
-        -PrivUserGroup "CN=CRM01PrivUserGroup,OU=CRM groups,DC=contoso,DC=local" `
-        -SQLAccessGroup "CN=CRM01SQLAccessGroup,OU=CRM groups,DC=contoso,DC=local" `
-        -UserGroup "CN=CRM01UserGroup,OU=CRM groups,DC=contoso,DC=local" `
-        -ReportingGroup "CN=CRM01ReportingGroup,OU=CRM groups,DC=contoso,DC=local" `
-        -PrivReportingGroup "CN=CRM01PrivReportingGroup,OU=CRM groups,DC=contoso,DC=local" `
+        -OU "OU=CRM groups,DC=contoso,DC=local" `
         -CrmServiceAccount $CRMServiceAccountCredential `
         -DeploymentServiceAccount $DeploymentServiceAccountCredential `
         -SandboxServiceAccount $SandboxServiceAccountCredential `
@@ -480,7 +517,7 @@ Invoke-Command "$env:COMPUTERNAME.contoso.local" -Credential $CRMInstallAccountC
 }
 ```
 
-Installing only back end and deployment administration server roles, without organization provisioning
+Installing only back end and deployment administration server roles, without organization provisioning, specific AD groups
 
 ```PowerShell
 $securedPassword = ConvertTo-SecureString "c0mp1Expa~~" -AsPlainText -Force

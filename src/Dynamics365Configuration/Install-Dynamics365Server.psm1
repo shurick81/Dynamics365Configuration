@@ -1,14 +1,20 @@
 ﻿function Install-Dynamics365Server {
+    [CmdletBinding(DefaultParameterSetName = 'OU')]
     param (
-        [Parameter(Mandatory=$true)]
+        [Parameter(ParameterSetName = 'OU', Mandatory=$true)]
+        [Parameter(ParameterSetName = 'Groups', Mandatory=$true)]
         [string]
         $MediaDir,
-        [Parameter(Mandatory=$true)]
+        [Parameter(ParameterSetName = 'OU', Mandatory=$true)]
+        [Parameter(ParameterSetName = 'Groups', Mandatory=$true)]
         [string]
         $LicenseKey,
-        [Parameter(Mandatory=$true)]
+        [Parameter(ParameterSetName = 'OU', Mandatory=$true)]
+        [Parameter(ParameterSetName = 'Groups', Mandatory=$true)]
         [string]
         $SqlServer,
+        [Parameter(ParameterSetName = 'OU', Mandatory=$false)]
+        [Parameter(ParameterSetName = 'Groups', Mandatory=$false)]
         [switch]
         $CreateDatabase,
         [ValidateSet(
@@ -28,67 +34,126 @@
         )]
         [string[]]
         $ServerRoles,
+        [Parameter(ParameterSetName = 'OU', Mandatory=$true)]
+        [string]
+        $OU,
+        [Parameter(ParameterSetName = 'Groups', Mandatory=$false)]
         [string]
         $PrivUserGroup,
+        [Parameter(ParameterSetName = 'Groups', Mandatory=$false)]
         [string]
         $SQLAccessGroup,
+        [Parameter(ParameterSetName = 'Groups', Mandatory=$false)]
         [string]
         $UserGroup,
+        [Parameter(ParameterSetName = 'Groups', Mandatory=$false)]
         [string]
         $ReportingGroup,
+        [Parameter(ParameterSetName = 'Groups', Mandatory=$false)]
         [string]
         $PrivReportingGroup,
+        [Parameter(ParameterSetName = 'Groups', Mandatory=$false)]
         [switch]
         $AutoGroupManagementOff,
+        [Parameter(ParameterSetName = 'OU', Mandatory=$false)]
+        [Parameter(ParameterSetName = 'Groups', Mandatory=$false)]
         [pscredential]
         $CrmServiceAccount,
+        [Parameter(ParameterSetName = 'OU', Mandatory=$false)]
+        [Parameter(ParameterSetName = 'Groups', Mandatory=$false)]
         [pscredential]
         $DeploymentServiceAccount,
+        [Parameter(ParameterSetName = 'OU', Mandatory=$false)]
+        [Parameter(ParameterSetName = 'Groups', Mandatory=$false)]
         [pscredential]
         $SandboxServiceAccount,
+        [Parameter(ParameterSetName = 'OU', Mandatory=$false)]
+        [Parameter(ParameterSetName = 'Groups', Mandatory=$false)]
         [pscredential]
         $VSSWriterServiceAccount,
+        [Parameter(ParameterSetName = 'OU', Mandatory=$false)]
+        [Parameter(ParameterSetName = 'Groups', Mandatory=$false)]
         [pscredential]
         $AsyncServiceAccount,
+        [Parameter(ParameterSetName = 'OU', Mandatory=$false)]
+        [Parameter(ParameterSetName = 'Groups', Mandatory=$false)]
         [pscredential]
         $MonitoringServiceAccount,
+        [Parameter(ParameterSetName = 'OU', Mandatory=$false)]
+        [Parameter(ParameterSetName = 'Groups', Mandatory=$false)]
         [switch]
         $CreateWebSite,
+        [Parameter(ParameterSetName = 'OU', Mandatory=$false)]
+        [Parameter(ParameterSetName = 'Groups', Mandatory=$false)]
         [int]
         $WebSitePort,
+        [Parameter(ParameterSetName = 'OU', Mandatory=$false)]
+        [Parameter(ParameterSetName = 'Groups', Mandatory=$false)]
         [string]
         $WebSiteUrl,
+        [Parameter(ParameterSetName = 'OU', Mandatory=$false)]
+        [Parameter(ParameterSetName = 'Groups', Mandatory=$false)]
         [string]
         $Organization,
+        [Parameter(ParameterSetName = 'OU', Mandatory=$false)]
+        [Parameter(ParameterSetName = 'Groups', Mandatory=$false)]
         [string]
         $OrganizationUniqueName,
+        [Parameter(ParameterSetName = 'OU', Mandatory=$false)]
+        [Parameter(ParameterSetName = 'Groups', Mandatory=$false)]
         [string]
         $ReportingUrl,
+        [Parameter(ParameterSetName = 'OU', Mandatory=$false)]
+        [Parameter(ParameterSetName = 'Groups', Mandatory=$false)]
         [string]
         $InstallDir,
+        [Parameter(ParameterSetName = 'OU', Mandatory=$false)]
+        [Parameter(ParameterSetName = 'Groups', Mandatory=$false)]
         [string]
         $IncomingExchangeServer,
+        [Parameter(ParameterSetName = 'OU', Mandatory=$false)]
+        [Parameter(ParameterSetName = 'Groups', Mandatory=$false)]
         [string]
         $BaseISOCurrencyCode,
+        [Parameter(ParameterSetName = 'OU', Mandatory=$false)]
+        [Parameter(ParameterSetName = 'Groups', Mandatory=$false)]
         [string]
         $BaseCurrencyName,
+        [Parameter(ParameterSetName = 'OU', Mandatory=$false)]
+        [Parameter(ParameterSetName = 'Groups', Mandatory=$false)]
         [string]
         $BaseCurrencySymbol,
+        [Parameter(ParameterSetName = 'OU', Mandatory=$false)]
+        [Parameter(ParameterSetName = 'Groups', Mandatory=$false)]
         [int]
         $BaseCurrencyPrecision,
+        [Parameter(ParameterSetName = 'OU', Mandatory=$false)]
+        [Parameter(ParameterSetName = 'Groups', Mandatory=$false)]
         [string]
         $OrganizationCollation,
+        [Parameter(ParameterSetName = 'OU', Mandatory=$false)]
+        [Parameter(ParameterSetName = 'Groups', Mandatory=$false)]
         [switch]
         $SQM = $false,
+        [Parameter(ParameterSetName = 'OU', Mandatory=$false)]
+        [Parameter(ParameterSetName = 'Groups', Mandatory=$false)]
         [switch]
         $MUOptin = $false,
+        [Parameter(ParameterSetName = 'OU', Mandatory=$false)]
+        [Parameter(ParameterSetName = 'Groups', Mandatory=$false)]
         [switch]
         $Reboot = $false,
+        [Parameter(ParameterSetName = 'OU', Mandatory=$false)]
+        [Parameter(ParameterSetName = 'Groups', Mandatory=$false)]
         [string]
         $LogFilePath = $null,
         [ValidateRange(1,3600)]
+        [Parameter(ParameterSetName = 'OU', Mandatory=$false)]
+        [Parameter(ParameterSetName = 'Groups', Mandatory=$false)]
         [int]
         $LogFilePullIntervalInSeconds = 30,
+        [Parameter(ParameterSetName = 'OU', Mandatory=$false)]
+        [Parameter(ParameterSetName = 'Groups', Mandatory=$false)]
         [switch]
         $LogFilePullToOutput = $false
     )
@@ -194,6 +259,11 @@
                             $SQLServerElement = $xml.CreateElement( "SqlServer" );
                                 $SQLServerElement.InnerText = $SQLServer;
                             $serverElement.AppendChild( $SQLServerElement ) | Out-Null;
+                            if ( $OU) {
+                                $OUElement = $xml.CreateElement( "OU" );
+                                    $OUElement.InnerText = $OU;
+                                $serverElement.AppendChild( $OUElement ) | Out-Null;
+                            }
                             if ( $privUserGroup -or $SQLAccessGroup -or $userGroup -or $reportingGroup -or $privReportingGroup ) {
                                 $groupsElement = $xml.CreateElement( "Groups" );
                                     $groupsElement.SetAttribute( "autogroupmanagementoff", $AutoGroupManagementOff ) | Out-Null;

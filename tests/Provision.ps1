@@ -82,11 +82,7 @@ try {
             -LicenseKey KKNV2-4YYK8-D8HWD-GDRMW-29YTW `
             -CreateDatabase `
             -SqlServer $dbHostName\SQLInstance01 `
-            -PrivUserGroup "CN=CRM01PrivUserGroup,OU=CRM groups,DC=contoso,DC=local" `
-            -SQLAccessGroup "CN=CRM01SQLAccessGroup,OU=CRM groups,DC=contoso,DC=local" `
-            -UserGroup "CN=CRM01UserGroup,OU=CRM groups,DC=contoso,DC=local" `
-            -ReportingGroup "CN=CRM01ReportingGroup,OU=CRM groups,DC=contoso,DC=local" `
-            -PrivReportingGroup "CN=CRM01PrivReportingGroup,OU=CRM groups,DC=contoso,DC=local" `
+            -OU "OU=CRM groups,DC=contoso,DC=local" `
             -CrmServiceAccount $CRMServiceAccountCredential `
             -DeploymentServiceAccount $DeploymentServiceAccountCredential `
             -SandboxServiceAccount $SandboxServiceAccountCredential `

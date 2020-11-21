@@ -5,6 +5,7 @@
 * Displayed elapsed time for long running operations.
 * New parameter in Install-Dynamics365Server: AutoGroupManagementOff
 * New parameter in Install-Dynamics365ReportingExtensions: AutoGroupManagementOff
+* New parameter in Install-Dynamics365Server: OU
 
 ## 2.1.0
 
