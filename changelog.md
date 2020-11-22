@@ -1,6 +1,6 @@
 # Dynamics365Configuration module change log
 
-## Not released
+## 2.2.0
 
 * Displayed elapsed time for long running operations.
 * New parameter in Install-Dynamics365Server: AutoGroupManagementOff
