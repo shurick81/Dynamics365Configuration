@@ -1,5 +1,20 @@
 # Dynamics365Configuration module change log
 
+## Not published
+
+* New Dynamics 365 updates (290 new downloadables in total):
+
+  * Dynamics365Server90Update22\<Language\>
+  * Dynamics365Server90ReportingExtensionsUpdate22\<Language\>
+  * CRM2016ServicePack2Update24\<Language\>
+  * CRM2016ReportingExtensionsServicePack2Update24\<Language\>
+  * CRM2016LanguagePackServicePack2Update24\<Language\>
+  * Dynamics365Server90Update23\<Language\>
+  * Dynamics365Server90ReportingExtensionsUpdate23\<Language\>
+  * CRM2016ServicePack2Update25\<Language\>
+  * CRM2016ReportingExtensionsServicePack2Update25\<Language\>
+  * CRM2016LanguagePackServicePack2Update25\<Language\>
+
 ## 2.2.0
 
 * Displayed elapsed time for long running operations.

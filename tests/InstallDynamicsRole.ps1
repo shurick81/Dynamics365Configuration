@@ -32,15 +32,15 @@ if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server90LanguagePackSve ) {
 }
 
 try {
-    Save-Dynamics365Resource -Resource Dynamics365Server90Update21Enu -TargetDirectory C:\Install\Dynamics\Dynamics365Server90Update21Enu
+    Save-Dynamics365Resource -Resource Dynamics365Server90Update23Enu -TargetDirectory C:\Install\Dynamics\Dynamics365Server90Update23Enu
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server90Update21Enu ) {
+if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server90Update23Enu ) {
     Write-Host "Test OK";
 } else {
-    Write-Host "Expected files are not found in C:\Install\Dynamics\Dynamics365Server90Update21Enu, test is not OK";
+    Write-Host "Expected files are not found in C:\Install\Dynamics\Dynamics365Server90Update23Enu, test is not OK";
     Exit 1;
 }
 
@@ -122,8 +122,8 @@ if ( $installedProduct ) {
 try {
     Invoke-Command "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
         Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
-        Install-Dynamics365Update -MediaDir C:\Install\Dynamics\Dynamics365Server90Update21Enu `
-            -LogFilePath c:\tmp\Dynamics365ServerUpdate9021InstallLog.txt `
+        Install-Dynamics365Update -MediaDir C:\Install\Dynamics\Dynamics365Server90Update23Enu `
+            -LogFilePath c:\tmp\Dynamics365ServerUpdate9023InstallLog.txt `
             -LogFilePullIntervalInSeconds 15 `
             -LogFilePullToOutput
     }
@@ -133,7 +133,7 @@ try {
 }
 $msCRMRegistryValues = Get-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\MSCRM;
 $installedVersion = Get-Dynamics365ServerVersion;
-if ( $installedVersion.ToString(3) -ne "9.0.21" ) {
+if ( $installedVersion.ToString(3) -ne "9.0.23" ) {
     Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
 }
@@ -141,7 +141,7 @@ if ( $installedVersion.ToString(3) -ne "9.0.21" ) {
 $msCRMRegistryValues = Get-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\MSCRM -ErrorAction Ignore;
 If ( $msCRMRegistryValues ) {
     $installedVersion = Get-Dynamics365ServerVersion;
-    if ( $installedVersion.ToString(3) -ne "9.0.21" ) {
+    if ( $installedVersion.ToString(3) -ne "9.0.23" ) {
         Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
         Exit 1;
     }
