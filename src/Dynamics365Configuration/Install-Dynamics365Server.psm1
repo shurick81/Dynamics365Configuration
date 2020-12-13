@@ -1,4 +1,4 @@
-function Install-Dynamics365Server {
+﻿function Install-Dynamics365Server {
     [CmdletBinding(DefaultParameterSetName = 'Groups')]
     param (
         [Parameter(ParameterSetName = 'OU', Mandatory=$true)]
@@ -520,7 +520,7 @@ function Install-Dynamics365Server {
                                         Write-Output $line;
                                     }
                                 } else {
-                                Write-Output "$(Get-Date) - no new logs";
+                                    Write-Output "$(Get-Date) - no new logs";
                                 }
 
                                 $lastLinesCount = $linesCount;
