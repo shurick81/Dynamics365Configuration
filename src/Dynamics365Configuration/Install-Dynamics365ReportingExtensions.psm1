@@ -115,7 +115,9 @@
                     $lastLinesCount = $linesCount;
                 }
             } while ( $job.State -ne "Completed" )
-            Write-Output "$(Get-Date) Job is complete, output:";
+            $elapsedTime = $( Get-Date ) - $startTime;
+            $elapsedString = "{0:HH:mm:ss}" -f ( [datetime]$elapsedTime.Ticks );
+            Write-Output "$(Get-Date) Elapsed $elapsedString. Job is complete, output:";
             Write-Output ( Receive-Job $job );
             Remove-Job $job;
             Start-Sleep 10;

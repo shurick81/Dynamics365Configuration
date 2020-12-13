@@ -20,6 +20,8 @@
   * Roles added on the server with Dynamics already installed
   * Automatically find trial license key if LicenseKey parameter is not used
 
+* Showing total time elapsed in `Install-Dynamics365Server`, `Install-Dynamics365ReportingExtensions`, `Install-Dynamics365Update`, `Install-Dynamics365ReportingExtensionsUpdate` and `Install-Dynamics365LanguageUpdate`
+
 ## 2.2.0
 
 * Displayed elapsed time for long running operations.
