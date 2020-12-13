@@ -510,7 +510,7 @@ Invoke-Command "$env:COMPUTERNAME.contoso.local" -Credential $CRMInstallAccountC
         -BaseCurrencyPrecision 2 `
         -OrganizationCollation Latin1_General_CI_AI `
         -ReportingUrl http://$env:COMPUTERNAME/ReportServer_RSInstance01 `
-        -LogFilePath "c:\tmp\Dynamics365ServerInstallLog$( ( Get-Date -Format u ).Replace(" ","-").Replace(":","-") ).txt" `
+        -LogFilePath "c:\tmp\Dynamics365ServerInstallLog$( ( Get-Date -Format u ).Replace(' ','-').Replace(':','-') ).txt" `
         -LogFilePullIntervalInSeconds 15 `
         -LogFilePullToOutput
 }
@@ -548,7 +548,7 @@ Invoke-Command "$env:COMPUTERNAME.contoso.local" -Credential $CRMInstallAccountC
         -CreateWebSite `
         -WebSitePort 5555 `
         -WebSiteUrl https://$env:COMPUTERNAME.contoso.local `
-        -LogFilePath "c:\tmp\Dynamics365ServerInstallLog$( ( Get-Date -Format u ).Replace(" ","-").Replace(":","-") ).txt" `
+        -LogFilePath "c:\tmp\Dynamics365ServerInstallLog$( ( Get-Date -Format u ).Replace(' ','-').Replace(':','-') ).txt" `
         -LogFilePullIntervalInSeconds 15 `
         -LogFilePullToOutput
 }
