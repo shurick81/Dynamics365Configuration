@@ -63,7 +63,6 @@ try {
         param( $dbHostName )
         Write-Host "Invoked, starting execution";
         Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
-        $securedPassword = ConvertTo-SecureString "c0mp1Expa~~" -AsPlainText -Force
         Write-Host "Joining Dynamics config db on $dbHostName";
         Install-Dynamics365Server `
             -MediaDir C:\Install\Dynamics\Dynamics365Server90RTMEnu `
