@@ -79,7 +79,6 @@ try {
         Write-Host "Creating new organization db on $dbHostName";
         Install-Dynamics365Server `
             -MediaDir C:\Install\Dynamics\Dynamics365Server90RTMEnu `
-            -LicenseKey KKNV2-4YYK8-D8HWD-GDRMW-29YTW `
             -CreateDatabase `
             -SqlServer $dbHostName\SQLInstance01 `
             -OU "OU=CRM groups,DC=contoso,DC=local" `

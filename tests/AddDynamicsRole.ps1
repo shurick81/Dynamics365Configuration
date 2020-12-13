@@ -17,7 +17,6 @@ try {
         Write-Host "Joining Dynamics config db on $dbHostName";
         Install-Dynamics365Server `
             -MediaDir C:\Install\Dynamics\Dynamics365Server90RTMEnu `
-            -LicenseKey KKNV2-4YYK8-D8HWD-GDRMW-29YTW `
             -ServerRoles FrontEnd `
             -SqlServer $dbHostName\SQLInstance01 `
             -CrmServiceAccount $CRMServiceAccountCredential `

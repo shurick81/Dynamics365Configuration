@@ -18,6 +18,7 @@
 * Improvements in Install-Dynamics365Server
 
   * Roles added on the server with Dynamics already installed
+  * Automatically find trial license key if LicenseKey parameter is not used
 
 ## 2.2.0
 

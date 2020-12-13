@@ -31,7 +31,6 @@ try {
 try {
     Install-Dynamics365Server `
         -MediaDir C:\Install\Dynamics\CRM2016RTMEnu `
-        -LicenseKey WCPQN-33442-VH2RQ-M4RKF-GXYH4 `
         -CreateDatabase `
         -SqlServer $dbHostName\SQLInstance01 `
         -PrivUserGroup "CN=CRM01PrivUserGroup,OU=CRM groups,DC=contoso,DC=local" `

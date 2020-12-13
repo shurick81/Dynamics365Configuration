@@ -245,9 +245,9 @@ Installs Dynamics 365 Server with new or existing organization.
 ```PowerShell
 Install-Dynamics365Server
     -MediaDir <string>
-    -LicenseKey <string>
     -SqlServer <string>
     -OU <string>
+    [-LicenseKey <string>]
     [-InstallDir <string>]
     [-CreateDatabase <switch>]
     [-ServerRoles <string>[]]
@@ -280,8 +280,8 @@ Install-Dynamics365Server
 ```PowerShell
 Install-Dynamics365Server
     -MediaDir <string>
-    -LicenseKey <string>
     -SqlServer <string>
+    [-LicenseKey <string>]
     [-InstallDir <string>]
     [-CreateDatabase <switch>]
     [-ServerRoles <string>[]]
@@ -490,7 +490,6 @@ Invoke-Command "$env:COMPUTERNAME.contoso.local" -Credential $CRMInstallAccountC
     $MonitoringServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmmon", $securedPassword );
     Install-Dynamics365Server `
         -MediaDir C:\Install\Dynamics\Dynamics365Server90RTMEnu `
-        -LicenseKey KKNV2-4YYK8-D8HWD-GDRMW-29YTW `
         -CreateDatabase `
         -SqlServer $env:COMPUTERNAME\SQLInstance01 `
         -OU "OU=CRM groups,DC=contoso,DC=local" `
@@ -532,7 +531,6 @@ Invoke-Command "$env:COMPUTERNAME.contoso.local" -Credential $CRMInstallAccountC
     $MonitoringServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmmon", $securedPassword );
     Install-Dynamics365Server `
         -MediaDir C:\Install\Dynamics\Dynamics365Server90RTMEnu `
-        -LicenseKey KKNV2-4YYK8-D8HWD-GDRMW-29YTW `
         -CreateDatabase `
         -ServerRoles BackEnd, DeploymentAdministration `
         -SqlServer $env:COMPUTERNAME\SQLInstance01 `
@@ -561,7 +559,6 @@ Jonining existing configuration database and Installing only front end server ro
 ```PowerShell
 Install-Dynamics365Server `
     -MediaDir C:\Install\Dynamics\Dynamics365Server90RTMEnu `
-    -LicenseKey KKNV2-4YYK8-D8HWD-GDRMW-29YTW `
     -ServerRoles FrontEnd `
     -SqlServer $dbHostName\SQLInstance01
 ```

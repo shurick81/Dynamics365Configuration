@@ -218,7 +218,6 @@ try {
         $MonitoringServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmmon", $securedPassword );
         Install-Dynamics365Server `
             -MediaDir C:\Install\Dynamics\Dynamics365Server90RTMEnu `
-            -LicenseKey KKNV2-4YYK8-D8HWD-GDRMW-29YTW `
             -CreateDatabase `
             -SqlServer $dbHostName\SQLInstance01 `
             -PrivUserGroup "CN=CRM01PrivUserGroup,OU=CRM groups,DC=contoso,DC=local" `

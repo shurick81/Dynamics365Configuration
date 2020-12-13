@@ -8,11 +8,11 @@ function Install-Dynamics365Server {
         [Parameter(ParameterSetName = 'OU', Mandatory=$true)]
         [Parameter(ParameterSetName = 'Groups', Mandatory=$true)]
         [string]
-        $LicenseKey,
-        [Parameter(ParameterSetName = 'OU', Mandatory=$true)]
-        [Parameter(ParameterSetName = 'Groups', Mandatory=$true)]
-        [string]
         $SqlServer,
+        [Parameter(ParameterSetName = 'OU', Mandatory=$false)]
+        [Parameter(ParameterSetName = 'Groups', Mandatory=$false)]
+        [string]
+        $LicenseKey,
         [Parameter(ParameterSetName = 'OU', Mandatory=$false)]
         [Parameter(ParameterSetName = 'Groups', Mandatory=$false)]
         [switch]
@@ -214,6 +214,19 @@ function Install-Dynamics365Server {
     if ( Test-Path $setupFilePath ) {
         $fileVersion = [version]( Get-Command $setupFilePath ).FileVersionInfo.FileVersion;
         Write-Output "Version of software to be installed: $($fileVersion.ToString())";
+        if ( !$LicenseKey ) {
+            if ( $fileVersion.Major -eq 8 ) {
+                $LicenseKey = "WCPQN-33442-VH2RQ-M4RKF-GXYH4";
+            }
+            if ( $fileVersion.Major -eq 9 ) {
+                $LicenseKey = "KKNV2-4YYK8-D8HWD-GDRMW-29YTW";
+            }
+            if ( !$LicenseKey ) {
+                $errorMessage = "License key is not specified and cannot be calculated";
+                Write-Output $errorMessage;
+                Throw $errorMessage;
+            }
+        }
         if ( Test-Path "$mediaDir\LangPacks" ) {
             $languagePacks = Get-ChildItem "$mediaDir\LangPacks";
             if ( $languagePacks -and $languagePacks.Count -eq 1 ) {
