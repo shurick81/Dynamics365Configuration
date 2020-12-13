@@ -557,8 +557,8 @@ function Install-Dynamics365Server {
                         $isInstalled = $false;
                     }
                     if ( $isInstalled ) {
-                        Write-Output "Found Roles: ";
                         $installedRoles = Get-Dynamics365ServerRole;
+                        Write-Output "Found Roles: ";
                         $installedRoles | Write-Output;
                         if ( $ServerRoles ) {
                             $ServerRoles | ForEach-Object {
