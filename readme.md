@@ -566,6 +566,8 @@ Install-Dynamics365Server `
     -SqlServer $dbHostName\SQLInstance01
 ```
 
+Use the same command for adding roles on the server where Dynamics is already installed
+
 ## Install-Dynamics365ReportingExtensions
 
 Installs Dynamics 365 Reporting Extensions.

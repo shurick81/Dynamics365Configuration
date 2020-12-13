@@ -1,4 +1,4 @@
-﻿function Install-Dynamics365Server {
+function Install-Dynamics365Server {
     [CmdletBinding(DefaultParameterSetName = 'Groups')]
     param (
         [Parameter(ParameterSetName = 'OU', Mandatory=$true)]
@@ -222,8 +222,9 @@
                 $msCRMRegistryValues = Get-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\MSCRM -ErrorAction Ignore;
                 If ( $msCRMRegistryValues ) {
                     $isInstalled = $true;
+                    Write-Output "Some version of Dynamics is already installed on this machine"
                     $installedVersion = Get-Dynamics365ServerVersion;
-                    if ( $installedVersion -ne $fileVersion ) {
+                    if ( $installedVersion.Major -ne $fileVersion.Major ) {
                         $errorMessage = "Another version is already installed: $($installedVersion.ToString())";
                         Write-Output $errorMessage;
                         Throw $errorMessage;
@@ -234,6 +235,18 @@
                         Write-Output $errorMessage;
                         Throw $errorMessage;
                     }
+                    $installedRoles = Get-Dynamics365ServerRole;
+                    Write-Output "Found Roles: ";
+                    $installedRoles | Write-Output;
+                    if ( $ServerRoles ) {
+                        $ServerRoles | ForEach-Object {
+                            if ( !( $installedRoles -contains $_ -or ( $_ -eq "VssWriter" -and $installedRoles -contains "VssWriterService" ) ) ) {
+                                Write-Output "The $_ role is missing, installation will be done"
+                                $isInstalled = $false;
+                                $installType = "Configure";
+                            }
+                        }
+                    }
                 } else {
                     $isInstalled = $false;
                 }
@@ -242,6 +255,11 @@
                     $crmSetupElement = $xml.CreateElement( "CRMSetup" );
                         $serverElement = $xml.CreateElement( "Server" );
                             #Patch is a required element for setup
+                            if ( $installType ) {
+                                $installTypeElement = $xml.CreateElement( "InstallType" );
+                                    $installTypeElement.InnerText = $installType;
+                                $serverElement.AppendChild( $installTypeElement ) | Out-Null;
+                            }
                             $patchElement = $xml.CreateElement( "Patch" );
                                 $patchElement.SetAttribute( "Update", $false ) | Out-Null;
                             $serverElement.AppendChild( $patchElement ) | Out-Null;
@@ -514,12 +532,6 @@
                     $msCRMRegistryValues = Get-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\MSCRM -ErrorAction Ignore;
                     If ( $msCRMRegistryValues ) {
                         $isInstalled = $true;
-                        $installedVersion = Get-Dynamics365ServerVersion;
-                        if ( $installedVersion -ne $fileVersion ) {
-                            $errorMessage = "Another version is already installed: $($installedVersion.ToString())";
-                            Write-Output $errorMessage;
-                            Throw $errorMessage;
-                        }
                         $installedLanguage = Get-Dynamics365ServerLanguage;
                         if ( $installedLanguage -ne $fileLanguageCode ) {
                             $errorMessage = "Another language is already installed: $installedLanguage";

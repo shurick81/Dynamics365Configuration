@@ -15,6 +15,10 @@
   * CRM2016ReportingExtensionsServicePack2Update25\<Language\>
   * CRM2016LanguagePackServicePack2Update25\<Language\>
 
+* Improvements in Install-Dynamics365Server
+
+  * Roles added on the server with Dynamics already installed
+
 ## 2.2.0
 
 * Displayed elapsed time for long running operations.
