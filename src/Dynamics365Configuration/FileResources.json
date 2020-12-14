@@ -5233,7 +5233,507 @@
         "URL": "https://download.microsoft.com/download/d/9/e/d9e076d4-53da-4c8c-b160-553c9c520b94/CRM9.0-Srs-KB4578106-TRK-Amd64.exe",
         "checksum": "AEBC18A6F26320BCC22D617259454BCA7A4BC95E",
         "mediaFileVersion": "9.0.21.0008"
-    },    
+    },
+    "Dynamics365Server90Update22Sau": {
+        "URL": "https://download.microsoft.com/download/1/a/8/1a8feb8c-1527-486d-a9b1-8429f60bb757/CRM9.0-Server-KB4584611-SAU-Amd64.exe",
+        "checksum": "D122052CAF892DC3A0ECC566C5E2323ACC136ECF",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90Update22Chk": {
+        "URL": "https://download.microsoft.com/download/e/6/d/e6d37de2-dcec-4080-ac4b-a66c6dba3d04/CRM9.0-Server-KB4584611-CHK-Amd64.exe",
+        "checksum": "FF88BCC48D060F1AF44518159003F9842B963D35",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90Update22Chs": {
+        "URL": "https://download.microsoft.com/download/f/4/8/f48385b1-328f-40ab-8375-be6350b65f95/CRM9.0-Server-KB4584611-CHS-Amd64.exe",
+        "checksum": "01C7322A4A8C2992020E3604529DBC849C93C522",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90Update22Cht": {
+        "URL": "https://download.microsoft.com/download/3/f/5/3f54c688-63a4-4c44-97f1-9e47a58695b2/CRM9.0-Server-KB4584611-CHT-Amd64.exe",
+        "checksum": "A26331FDA5A46CFE49BEEDB1C58F7D95A9BA8778",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90Update22Csy": {
+        "URL": "https://download.microsoft.com/download/f/5/3/f537903f-06c4-44e3-af28-2b04591c6ce6/CRM9.0-Server-KB4584611-CSY-Amd64.exe",
+        "checksum": "97540DA7CE5B418A8FE46E6778CDB5C326F17BC1",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90Update22Dan": {
+        "URL": "https://download.microsoft.com/download/8/4/7/847e9f6e-72a0-4aeb-aa17-f23940358ab5/CRM9.0-Server-KB4584611-DAN-Amd64.exe",
+        "checksum": "60AA7A7F9272ED92EBA2483BC2E4D9B356E091CF",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90Update22Nld": {
+        "URL": "https://download.microsoft.com/download/d/b/8/db8892f3-4b98-4262-b111-24662ac0577f/CRM9.0-Server-KB4584611-NLD-Amd64.exe",
+        "checksum": "B4BCFE8422673819B8F74E8F1705C5B2D3F958B8",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90Update22Enu": {
+        "URL": "https://download.microsoft.com/download/c/f/4/cf41f328-9560-4827-9e14-f127a9ac39ff/CRM9.0-Server-KB4584611-ENU-Amd64.exe",
+        "checksum": "C9FB658C1B99E23DFB6CE3E58733D5BDC3482830",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90Update22Fin": {
+        "URL": "https://download.microsoft.com/download/8/1/e/81e113bf-d1ab-4524-b06b-e79b51c24117/CRM9.0-Server-KB4584611-FIN-Amd64.exe",
+        "checksum": "30BD00222F57437E486903A5061A93A924C99A32",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90Update22Fra": {
+        "URL": "https://download.microsoft.com/download/c/2/7/c27061c0-66f3-4113-b3e6-b1c2f61a1ab8/CRM9.0-Server-KB4584611-FRA-Amd64.exe",
+        "checksum": "096D89FBE688A9620E8FC462DF79BB1DCC829154",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90Update22Deu": {
+        "URL": "https://download.microsoft.com/download/0/5/8/0583ff08-84c7-40ff-8a72-8a0dbaecc826/CRM9.0-Server-KB4584611-DEU-Amd64.exe",
+        "checksum": "65B1D663F4234E12941A49393AC11539C6D48A66",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90Update22Ell": {
+        "URL": "https://download.microsoft.com/download/9/0/1/90104b5d-0525-445a-a990-743fe94a14ad/CRM9.0-Server-KB4584611-ELL-Amd64.exe",
+        "checksum": "8102AB35F84FFEAE2234BF881A4899BF2328835A",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90Update22Heb": {
+        "URL": "https://download.microsoft.com/download/2/5/9/259d47be-d294-4642-8ac7-d56f4663b54b/CRM9.0-Server-KB4584611-HEB-Amd64.exe",
+        "checksum": "B7EFC0E7C65B6DB48BED0B5848669852DEEE0266",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90Update22Hun": {
+        "URL": "https://download.microsoft.com/download/b/5/7/b57053fb-80af-4277-937d-d3bb688da792/CRM9.0-Server-KB4584611-HUN-Amd64.exe",
+        "checksum": "919E426AE94986B2FBCC4A2DA9F2CC1148CC7914",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90Update22Ita": {
+        "URL": "https://download.microsoft.com/download/6/6/5/665aef44-dc36-4515-af3a-2942d0027551/CRM9.0-Server-KB4584611-ITA-Amd64.exe",
+        "checksum": "9E573FC32C301F7CBACEAAA04596E21A29834095",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90Update22Jpn": {
+        "URL": "https://download.microsoft.com/download/3/3/0/3303cd48-4d82-4c9f-8263-4f607b4ceeb3/CRM9.0-Server-KB4584611-JPN-Amd64.exe",
+        "checksum": "A7D6446CF18B9CDDBD29D2257670D0107357683A",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90Update22Kor": {
+        "URL": "https://download.microsoft.com/download/f/2/5/f2536965-2425-436f-87de-53f128ea5ee1/CRM9.0-Server-KB4584611-KOR-Amd64.exe",
+        "checksum": "7ECCB5EE088212D457CC9FA783FAA296C92AC3CB",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90Update22Nor": {
+        "URL": "https://download.microsoft.com/download/8/3/e/83e468de-6529-4eb3-ad07-ebd8ec6ba008/CRM9.0-Server-KB4584611-NOR-Amd64.exe",
+        "checksum": "EA857F222522CE4D236BD4300011BDB8F5E658A4",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90Update22Plk": {
+        "URL": "https://download.microsoft.com/download/5/b/7/5b74867f-ffaf-4ad5-bcd8-59c24a88e2f4/CRM9.0-Server-KB4584611-PLK-Amd64.exe",
+        "checksum": "98D90C8C9FDF30D3888F7215684F6DBCD3ACD639",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90Update22Ptb": {
+        "URL": "https://download.microsoft.com/download/5/2/b/52b63be4-27a2-4c2c-8910-d756c98fa5f3/CRM9.0-Server-KB4584611-PTB-Amd64.exe",
+        "checksum": "67528CE939D54578FC04FF329D54C61F4B8E34A7",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90Update22Ptg": {
+        "URL": "https://download.microsoft.com/download/4/3/f/43f5087d-dcd0-416b-ace7-b88737b694da/CRM9.0-Server-KB4584611-PTG-Amd64.exe",
+        "checksum": "2D4541B920BBE53E51014CF5B1AF3994FE97DBB5",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90Update22Rus": {
+        "URL": "https://download.microsoft.com/download/6/f/b/6fb3c1c2-e276-445e-a26d-99593881b1ef/CRM9.0-Server-KB4584611-RUS-Amd64.exe",
+        "checksum": "A797DAF94CAEC27030A12EF65FAA2588A7AAC396",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90Update22Esn": {
+        "URL": "https://download.microsoft.com/download/8/5/6/856fe251-8d63-41c8-9266-7c9d6c0564c2/CRM9.0-Server-KB4584611-ESN-Amd64.exe",
+        "checksum": "9DEFBD708217AF7ABFF4EF7977BDA2F250BB6F45",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90Update22Sve": {
+        "URL": "https://download.microsoft.com/download/a/5/a/a5adbbdd-2fec-4b27-bb1a-0935dc83a6f3/CRM9.0-Server-KB4584611-SVE-Amd64.exe",
+        "checksum": "074EBAFBD526C3E1704427F719A2EBB2C296860F",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90Update22Trk": {
+        "URL": "https://download.microsoft.com/download/3/8/9/389464d5-09cb-4e0a-b4e0-1a1670409f74/CRM9.0-Server-KB4584611-TRK-Amd64.exe",
+        "checksum": "51C2E8D280801CCD35D7947AD88657D2F8DB897F",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate22Sau": {
+        "URL": "https://download.microsoft.com/download/1/a/8/1a8feb8c-1527-486d-a9b1-8429f60bb757/CRM9.0-Srs-KB4584611-SAU-Amd64.exe",
+        "checksum": "9E191A671B3B514E5F0A9FD42C4A2503D966775B",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate22Chk": {
+        "URL": "https://download.microsoft.com/download/e/6/d/e6d37de2-dcec-4080-ac4b-a66c6dba3d04/CRM9.0-Srs-KB4584611-CHK-Amd64.exe",
+        "checksum": "37BAC233F4464D7C0EDB46924336E5B57B5894BA",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate22Chs": {
+        "URL": "https://download.microsoft.com/download/f/4/8/f48385b1-328f-40ab-8375-be6350b65f95/CRM9.0-Srs-KB4584611-CHS-Amd64.exe",
+        "checksum": "AAFE192B0F8483018593466526C7B6C210F8D72C",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate22Cht": {
+        "URL": "https://download.microsoft.com/download/3/f/5/3f54c688-63a4-4c44-97f1-9e47a58695b2/CRM9.0-Srs-KB4584611-CHT-Amd64.exe",
+        "checksum": "350256C764CE8DB962F2972172F918D787129EBA",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate22Csy": {
+        "URL": "https://download.microsoft.com/download/f/5/3/f537903f-06c4-44e3-af28-2b04591c6ce6/CRM9.0-Srs-KB4584611-CSY-Amd64.exe",
+        "checksum": "42EF646855DC51B8A8E344E36C517A1F1404CF81",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate22Dan": {
+        "URL": "https://download.microsoft.com/download/8/4/7/847e9f6e-72a0-4aeb-aa17-f23940358ab5/CRM9.0-Srs-KB4584611-DAN-Amd64.exe",
+        "checksum": "E87CBAF24FA2635C969A935AFD520789529E3CE4",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate22Nld": {
+        "URL": "https://download.microsoft.com/download/d/b/8/db8892f3-4b98-4262-b111-24662ac0577f/CRM9.0-Srs-KB4584611-NLD-Amd64.exe",
+        "checksum": "507FB9EE2610AFFF0A048A27FDF59415B0BDAB8B",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate22Enu": {
+        "URL": "https://download.microsoft.com/download/c/f/4/cf41f328-9560-4827-9e14-f127a9ac39ff/CRM9.0-Srs-KB4584611-ENU-Amd64.exe",
+        "checksum": "ED49DFD4FD0D36293C4310C04C2C61668727BC5E",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate22Fin": {
+        "URL": "https://download.microsoft.com/download/8/1/e/81e113bf-d1ab-4524-b06b-e79b51c24117/CRM9.0-Srs-KB4584611-FIN-Amd64.exe",
+        "checksum": "4F77B9A7E3A724E533B5D281449C34632ED3E68C",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate22Fra": {
+        "URL": "https://download.microsoft.com/download/c/2/7/c27061c0-66f3-4113-b3e6-b1c2f61a1ab8/CRM9.0-Srs-KB4584611-FRA-Amd64.exe",
+        "checksum": "95E33934D091CECABE361AF8832EECDBAD1D0EC3",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate22Deu": {
+        "URL": "https://download.microsoft.com/download/0/5/8/0583ff08-84c7-40ff-8a72-8a0dbaecc826/CRM9.0-Srs-KB4584611-DEU-Amd64.exe",
+        "checksum": "82B746B0E03971733CD783F222F3C28FE9D8C478",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate22Ell": {
+        "URL": "https://download.microsoft.com/download/9/0/1/90104b5d-0525-445a-a990-743fe94a14ad/CRM9.0-Srs-KB4584611-ELL-Amd64.exe",
+        "checksum": "55FAA804D0DC749FB579738B3D8430B13F5F19F1",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate22Heb": {
+        "URL": "https://download.microsoft.com/download/2/5/9/259d47be-d294-4642-8ac7-d56f4663b54b/CRM9.0-Srs-KB4584611-HEB-Amd64.exe",
+        "checksum": "5670596B4266A0F2B443B68AAB0E6F9726612E5E",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate22Hun": {
+        "URL": "https://download.microsoft.com/download/b/5/7/b57053fb-80af-4277-937d-d3bb688da792/CRM9.0-Srs-KB4584611-HUN-Amd64.exe",
+        "checksum": "B8A7F9CFF9B21202E69B8442F7A6F493D2309E0D",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate22Ita": {
+        "URL": "https://download.microsoft.com/download/6/6/5/665aef44-dc36-4515-af3a-2942d0027551/CRM9.0-Srs-KB4584611-ITA-Amd64.exe",
+        "checksum": "B06E12B91E8730CB2A12F9C9D85D29C5D26F4261",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate22Jpn": {
+        "URL": "https://download.microsoft.com/download/3/3/0/3303cd48-4d82-4c9f-8263-4f607b4ceeb3/CRM9.0-Srs-KB4584611-JPN-Amd64.exe",
+        "checksum": "F086A9F45C4BBDE5436B7B95380CA6F568D041A9",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate22Kor": {
+        "URL": "https://download.microsoft.com/download/f/2/5/f2536965-2425-436f-87de-53f128ea5ee1/CRM9.0-Srs-KB4584611-KOR-Amd64.exe",
+        "checksum": "70B833439D74D4BC4391F524606E80F8522D9219",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate22Nor": {
+        "URL": "https://download.microsoft.com/download/8/3/e/83e468de-6529-4eb3-ad07-ebd8ec6ba008/CRM9.0-Srs-KB4584611-NOR-Amd64.exe",
+        "checksum": "38AFFE3689A23A57CF181487604C7C2FB2557332",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate22Plk": {
+        "URL": "https://download.microsoft.com/download/5/b/7/5b74867f-ffaf-4ad5-bcd8-59c24a88e2f4/CRM9.0-Srs-KB4584611-PLK-Amd64.exe",
+        "checksum": "1FAB61D20D7F41DD4FFE6F48B1A9ADC8B80FAF76",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate22Ptb": {
+        "URL": "https://download.microsoft.com/download/5/2/b/52b63be4-27a2-4c2c-8910-d756c98fa5f3/CRM9.0-Srs-KB4584611-PTB-Amd64.exe",
+        "checksum": "D6C53BBB8531160A532F7EE8813BDF2058ABA670",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate22Ptg": {
+        "URL": "https://download.microsoft.com/download/4/3/f/43f5087d-dcd0-416b-ace7-b88737b694da/CRM9.0-Srs-KB4584611-PTG-Amd64.exe",
+        "checksum": "8691DC84120C43F46AB76AAE6586170702261DA9",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate22Rus": {
+        "URL": "https://download.microsoft.com/download/6/f/b/6fb3c1c2-e276-445e-a26d-99593881b1ef/CRM9.0-Srs-KB4584611-RUS-Amd64.exe",
+        "checksum": "AFC82D645B215B888B73E75C5038B75EB44A9891",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate22Esn": {
+        "URL": "https://download.microsoft.com/download/8/5/6/856fe251-8d63-41c8-9266-7c9d6c0564c2/CRM9.0-Srs-KB4584611-ESN-Amd64.exe",
+        "checksum": "8B8A9CD2E2BFD2BC1F5F1C2AE82DE162402972C4",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate22Sve": {
+        "URL": "https://download.microsoft.com/download/a/5/a/a5adbbdd-2fec-4b27-bb1a-0935dc83a6f3/CRM9.0-Srs-KB4584611-SVE-Amd64.exe",
+        "checksum": "082A1DA54F8E11C37D94F96C13DADDFEDF184EC4",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate22Trk": {
+        "URL": "https://download.microsoft.com/download/3/8/9/389464d5-09cb-4e0a-b4e0-1a1670409f74/CRM9.0-Srs-KB4584611-TRK-Amd64.exe",
+        "checksum": "EF48F59A30216395AD7CBDA2001C47A1A3335517",
+        "mediaFileVersion": "9.0.22.0008"
+    },
+    "Dynamics365Server90Update23Sau": {
+        "URL": "https://download.microsoft.com/download/9/8/0/980f2d57-837b-4c49-92a6-c592caf7dd9b/CRM9.0-Server-KB4595459-SAU-Amd64.exe",
+        "checksum": "466271E3FC7D206127CFBF50B6878A69E461F190",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90Update23Chk": {
+        "URL": "https://download.microsoft.com/download/d/c/9/dc9e0b0a-f4a4-4287-ada8-c53b360b34fe/CRM9.0-Server-KB4595459-CHK-Amd64.exe",
+        "checksum": "05FA7E958CC69598E63122FF3D8A7FD8BBF7A707",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90Update23Chs": {
+        "URL": "https://download.microsoft.com/download/0/4/4/044a6c03-639a-444e-8522-91d7e8f90118/CRM9.0-Server-KB4595459-CHS-Amd64.exe",
+        "checksum": "AACCB0E0101C804C362C1571B3AFFE682902FC02",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90Update23Cht": {
+        "URL": "https://download.microsoft.com/download/8/d/c/8dc59278-bd14-49fa-a5eb-3a41ae829d57/CRM9.0-Server-KB4595459-CHT-Amd64.exe",
+        "checksum": "7EE816A54DEF9D08676896B77F637B02616E2E02",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90Update23Csy": {
+        "URL": "https://download.microsoft.com/download/2/9/4/2949efba-a4f8-46a1-89ef-63fe9939cd07/CRM9.0-Server-KB4595459-CSY-Amd64.exe",
+        "checksum": "195444C35AD9BF93F71557C8B73A65D1F32755E5",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90Update23Dan": {
+        "URL": "https://download.microsoft.com/download/7/0/1/7012fc03-5499-4b72-a6b3-39760d63e0a8/CRM9.0-Server-KB4595459-DAN-Amd64.exe",
+        "checksum": "6EA6FADCF8BAEBFF5F592354D983AFCAA0AD73C5",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90Update23Nld": {
+        "URL": "https://download.microsoft.com/download/8/1/8/818bab07-654f-4bad-99ee-3c2f5fd37615/CRM9.0-Server-KB4595459-NLD-Amd64.exe",
+        "checksum": "E62DB8FB1BBE7E1EFC99E2C6E826615E6E693324",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90Update23Enu": {
+        "URL": "https://download.microsoft.com/download/0/0/9/00911caa-ac0f-4a47-af87-1ec339b26203/CRM9.0-Server-KB4595459-ENU-Amd64.exe",
+        "checksum": "F7FA7814E2B2BFCF5930C52F998FC0A2CA13C544",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90Update23Fin": {
+        "URL": "https://download.microsoft.com/download/a/0/8/a0887acd-6838-4de9-932d-e7f06888e71f/CRM9.0-Server-KB4595459-FIN-Amd64.exe",
+        "checksum": "B2C7F48C970FE3BAB3B5278BB64FEE4632E9CF7B",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90Update23Fra": {
+        "URL": "https://download.microsoft.com/download/0/b/3/0b3efd4e-6ef9-4c27-bd16-3884ddaedb9a/CRM9.0-Server-KB4595459-FRA-Amd64.exe",
+        "checksum": "ECDC630AEF8C6BFD3E23E09881808793BDBB055D",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90Update23Deu": {
+        "URL": "https://download.microsoft.com/download/4/7/d/47dac847-09d9-42cf-870b-e946c5f24b5f/CRM9.0-Server-KB4595459-DEU-Amd64.exe",
+        "checksum": "93A3A61B77000F452D2E1DBC841672103280461C",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90Update23Ell": {
+        "URL": "https://download.microsoft.com/download/d/d/1/dd1b792a-2bf8-4eb1-99a6-a30877a4684e/CRM9.0-Server-KB4595459-ELL-Amd64.exe",
+        "checksum": "5BDAEB0ED2ACDB3E0165EE0F410ECB012575C7E1",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90Update23Heb": {
+        "URL": "https://download.microsoft.com/download/a/e/8/ae8fe8a5-860b-4da9-bbdc-fcaece114732/CRM9.0-Server-KB4595459-HEB-Amd64.exe",
+        "checksum": "E7EA69DC459E166BB6D8A2C121227DF37BDFE7C1",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90Update23Hun": {
+        "URL": "https://download.microsoft.com/download/b/f/b/bfb1218f-710e-46ed-85c8-2b7024819109/CRM9.0-Server-KB4595459-HUN-Amd64.exe",
+        "checksum": "D86F1F6277578999BC2CDF0FD8D1BB7424D79EA3",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90Update23Ita": {
+        "URL": "https://download.microsoft.com/download/0/a/6/0a61aa4a-e3c0-4017-89db-4e9a90cba59d/CRM9.0-Server-KB4595459-ITA-Amd64.exe",
+        "checksum": "5B2E642C13A51BBAE74D7F108F616B0867839592",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90Update23Jpn": {
+        "URL": "https://download.microsoft.com/download/c/b/1/cb1a0615-1dc5-4ec8-ae43-d0d6026fbac7/CRM9.0-Server-KB4595459-JPN-Amd64.exe",
+        "checksum": "094BFE0C4B867BD0C59F5258C3C5F694FD82B841",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90Update23Kor": {
+        "URL": "https://download.microsoft.com/download/5/4/0/540e276e-9119-437b-a954-5da8f13c9fae/CRM9.0-Server-KB4595459-KOR-Amd64.exe",
+        "checksum": "C9E0BD2DCE5FD0CA11CB71152A8D28749A3789CB",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90Update23Nor": {
+        "URL": "https://download.microsoft.com/download/3/1/9/319855d8-8eff-463c-82c6-d5cdc1885ee0/CRM9.0-Server-KB4595459-NOR-Amd64.exe",
+        "checksum": "6D0C402EAF98B210158A930115C2BADFA75969DE",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90Update23Plk": {
+        "URL": "https://download.microsoft.com/download/5/c/8/5c8841cd-c6d8-4a76-b83c-05b962e430df/CRM9.0-Server-KB4595459-PLK-Amd64.exe",
+        "checksum": "598867EA2C14C8676C22F909F969BFF3E152A2C3",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90Update23Ptb": {
+        "URL": "https://download.microsoft.com/download/a/e/9/ae91a534-c853-4b80-943d-815c18f0e4ab/CRM9.0-Server-KB4595459-PTB-Amd64.exe",
+        "checksum": "307B3598BF546326E8C4D1A727E59F921AC54912",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90Update23Ptg": {
+        "URL": "https://download.microsoft.com/download/0/2/0/020f2a00-e36b-4692-af4f-6e90df33bef5/CRM9.0-Server-KB4595459-PTG-Amd64.exe",
+        "checksum": "42B5033F8DCB76A01A9653AF0BE0969C5B712671",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90Update23Rus": {
+        "URL": "https://download.microsoft.com/download/f/5/0/f502b2c2-9194-44bb-bb2c-3ba5f99ee12b/CRM9.0-Server-KB4595459-RUS-Amd64.exe",
+        "checksum": "5DA052A501B7E08A037E0441C913BCCA995E6491",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90Update23Esn": {
+        "URL": "https://download.microsoft.com/download/c/5/6/c56ebfbc-6727-4e23-93d8-9fa4eb33f0de/CRM9.0-Server-KB4595459-ESN-Amd64.exe",
+        "checksum": "015EB7CC113028D7AAA480573E4C131283887A28",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90Update23Sve": {
+        "URL": "https://download.microsoft.com/download/c/e/f/cefa4ec8-a042-46b6-b9e5-e9003f35d541/CRM9.0-Server-KB4595459-SVE-Amd64.exe",
+        "checksum": "AF578C3C682E7D17C5A4526C6193820116E55634",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90Update23Trk": {
+        "URL": "https://download.microsoft.com/download/d/f/0/df09146b-d264-42c2-906e-83ca92fa6fe3/CRM9.0-Server-KB4595459-TRK-Amd64.exe",
+        "checksum": "7D70E7F553546601EE8F27E82BC047B49E1BC030",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate23Sau": {
+        "URL": "https://download.microsoft.com/download/9/8/0/980f2d57-837b-4c49-92a6-c592caf7dd9b/CRM9.0-Srs-KB4595459-SAU-Amd64.exe",
+        "checksum": "8E090E14FC4436AA0A0B55F9F858B7226950CF48",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate23Chk": {
+        "URL": "https://download.microsoft.com/download/d/c/9/dc9e0b0a-f4a4-4287-ada8-c53b360b34fe/CRM9.0-Srs-KB4595459-CHK-Amd64.exe",
+        "checksum": "C98437BEF64822544DE7F517471CF4F116D60E21",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate23Chs": {
+        "URL": "https://download.microsoft.com/download/0/4/4/044a6c03-639a-444e-8522-91d7e8f90118/CRM9.0-Srs-KB4595459-CHS-Amd64.exe",
+        "checksum": "7F53F3C6A8DEB877B5BCF4793BA393B20399B57D",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate23Cht": {
+        "URL": "https://download.microsoft.com/download/8/d/c/8dc59278-bd14-49fa-a5eb-3a41ae829d57/CRM9.0-Srs-KB4595459-CHT-Amd64.exe",
+        "checksum": "6210DB5905132F9FC1CC1DA540FABD57AF4D19A4",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate23Csy": {
+        "URL": "https://download.microsoft.com/download/2/9/4/2949efba-a4f8-46a1-89ef-63fe9939cd07/CRM9.0-Srs-KB4595459-CSY-Amd64.exe",
+        "checksum": "D6CC17F51A2F6FFCB28D98241CD36370BADF8FD8",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate23Dan": {
+        "URL": "https://download.microsoft.com/download/7/0/1/7012fc03-5499-4b72-a6b3-39760d63e0a8/CRM9.0-Srs-KB4595459-DAN-Amd64.exe",
+        "checksum": "00CCFBB2F11F8D7A05721BB17FCA1D32B3F321FE",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate23Nld": {
+        "URL": "https://download.microsoft.com/download/8/1/8/818bab07-654f-4bad-99ee-3c2f5fd37615/CRM9.0-Srs-KB4595459-NLD-Amd64.exe",
+        "checksum": "C6ED14E8C930ED0B415A3FADE9FC228425BF21C2",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate23Enu": {
+        "URL": "https://download.microsoft.com/download/0/0/9/00911caa-ac0f-4a47-af87-1ec339b26203/CRM9.0-Srs-KB4595459-ENU-Amd64.exe",
+        "checksum": "9BF3F816A26B9C8EC3A8D33E2F5E6FAB9F86CB9B",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate23Fin": {
+        "URL": "https://download.microsoft.com/download/a/0/8/a0887acd-6838-4de9-932d-e7f06888e71f/CRM9.0-Srs-KB4595459-FIN-Amd64.exe",
+        "checksum": "2201982BE5757D6831950CD2F961E26CF3725314",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate23Fra": {
+        "URL": "https://download.microsoft.com/download/0/b/3/0b3efd4e-6ef9-4c27-bd16-3884ddaedb9a/CRM9.0-Srs-KB4595459-FRA-Amd64.exe",
+        "checksum": "DC75913D8B8E7361AA7D97A354D000F1F4C39169",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate23Deu": {
+        "URL": "https://download.microsoft.com/download/4/7/d/47dac847-09d9-42cf-870b-e946c5f24b5f/CRM9.0-Srs-KB4595459-DEU-Amd64.exe",
+        "checksum": "180C0AC77BF44E4385052862C3E83F294004AF07",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate23Ell": {
+        "URL": "https://download.microsoft.com/download/d/d/1/dd1b792a-2bf8-4eb1-99a6-a30877a4684e/CRM9.0-Srs-KB4595459-ELL-Amd64.exe",
+        "checksum": "387CE8830F5CC88B4B37CCAE0607954CD0C95A1E",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate23Heb": {
+        "URL": "https://download.microsoft.com/download/a/e/8/ae8fe8a5-860b-4da9-bbdc-fcaece114732/CRM9.0-Srs-KB4595459-HEB-Amd64.exe",
+        "checksum": "F94987C92E57B830BCCAE7032968D13BD5C2A357",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate23Hun": {
+        "URL": "https://download.microsoft.com/download/b/f/b/bfb1218f-710e-46ed-85c8-2b7024819109/CRM9.0-Srs-KB4595459-HUN-Amd64.exe",
+        "checksum": "6D9D02C18657E6F6A7C0B12F6C4E76A7B336260A",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate23Ita": {
+        "URL": "https://download.microsoft.com/download/0/a/6/0a61aa4a-e3c0-4017-89db-4e9a90cba59d/CRM9.0-Srs-KB4595459-ITA-Amd64.exe",
+        "checksum": "F119D917C03C57802551050492A4F34D57263204",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate23Jpn": {
+        "URL": "https://download.microsoft.com/download/c/b/1/cb1a0615-1dc5-4ec8-ae43-d0d6026fbac7/CRM9.0-Srs-KB4595459-JPN-Amd64.exe",
+        "checksum": "33A284E4C45E1CC6D104E37065103E05F4143217",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate23Kor": {
+        "URL": "https://download.microsoft.com/download/5/4/0/540e276e-9119-437b-a954-5da8f13c9fae/CRM9.0-Srs-KB4595459-KOR-Amd64.exe",
+        "checksum": "ED1773966F859073F6B1511E1A8E3FDDC1D53953",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate23Nor": {
+        "URL": "https://download.microsoft.com/download/3/1/9/319855d8-8eff-463c-82c6-d5cdc1885ee0/CRM9.0-Srs-KB4595459-NOR-Amd64.exe",
+        "checksum": "DD2B78BBCD7E492DC1B7F0A6A17EAAD7391B7128",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate23Plk": {
+        "URL": "https://download.microsoft.com/download/5/c/8/5c8841cd-c6d8-4a76-b83c-05b962e430df/CRM9.0-Srs-KB4595459-PLK-Amd64.exe",
+        "checksum": "3D25061D0A222A0FFD50C9797C04295069EC7F20",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate23Ptb": {
+        "URL": "https://download.microsoft.com/download/a/e/9/ae91a534-c853-4b80-943d-815c18f0e4ab/CRM9.0-Srs-KB4595459-PTB-Amd64.exe",
+        "checksum": "E655E6CC0BC78A0A82AB53CE8A4D0707018E1374",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate23Ptg": {
+        "URL": "https://download.microsoft.com/download/0/2/0/020f2a00-e36b-4692-af4f-6e90df33bef5/CRM9.0-Srs-KB4595459-PTG-Amd64.exe",
+        "checksum": "5DAA7F241EAC4843AE194A386428C9AC0F6DDFAE",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate23Rus": {
+        "URL": "https://download.microsoft.com/download/f/5/0/f502b2c2-9194-44bb-bb2c-3ba5f99ee12b/CRM9.0-Srs-KB4595459-RUS-Amd64.exe",
+        "checksum": "8C816FB5500C8CB235E9082CE9B8B40B83342A5A",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate23Esn": {
+        "URL": "https://download.microsoft.com/download/c/5/6/c56ebfbc-6727-4e23-93d8-9fa4eb33f0de/CRM9.0-Srs-KB4595459-ESN-Amd64.exe",
+        "checksum": "FE8B8CD25E1E9FCA9BAC7E43C208AF016947CF00",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate23Sve": {
+        "URL": "https://download.microsoft.com/download/c/e/f/cefa4ec8-a042-46b6-b9e5-e9003f35d541/CRM9.0-Srs-KB4595459-SVE-Amd64.exe",
+        "checksum": "84082EDB34E8C13EDD1ED0E9ECEC288F8361FEFA",
+        "mediaFileVersion": "9.0.23.0007"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate23Trk": {
+        "URL": "https://download.microsoft.com/download/d/f/0/df09146b-d264-42c2-906e-83ca92fa6fe3/CRM9.0-Srs-KB4595459-TRK-Amd64.exe",
+        "checksum": "328880F9FE6866D043C536F6D6161EE05C3C0CE8",
+        "mediaFileVersion": "9.0.23.0007"
+    },
     "CRM2016RTMSau": {
         "URL": "https://download.microsoft.com/download/F/1/C/F1C1F116-E4E6-49DD-9C81-A60BD8C678A8/CRM2016-Server-SAU-amd64.exe",
         "identifyingNumber": "0C524D55-1401-0080-BD7E-530E52560E52",
@@ -18043,5 +18543,955 @@
         "URL": "https://download.microsoft.com/download/f/a/6/fa689506-4baf-4579-8441-e399e7ba9df0/CRM2016-Mui-KB4578105-VIT-Amd64.exe",
         "checksum": "4A418D24D90BA7D81A51E3768C732A004A5BBEC1",
         "mediaFileVersion": "8.2.23.16"
+    },
+    "CRM2016ServicePack2Update24Sau": {
+        "URL": "https://download.microsoft.com/download/a/5/d/a5d6ce01-14c1-4c2a-a7d5-2cfdad630851/CRM2016-Server-KB4584612-SAU-Amd64.exe",
+        "checksum": "F29405DAA13FE37EE42A0F2229359E44801723B8",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ServicePack2Update24Chk": {
+        "URL": "https://download.microsoft.com/download/4/c/3/4c3dc94f-f64a-42d2-9363-d75b2b7280ff/CRM2016-Server-KB4584612-CHK-Amd64.exe",
+        "checksum": "03861137B464B84AC4720E3EF41D50207B687EBA",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ServicePack2Update24Chs": {
+        "URL": "https://download.microsoft.com/download/1/a/9/1a9aebc3-d042-4eb9-8fd9-37a16a01fa5b/CRM2016-Server-KB4584612-CHS-Amd64.exe",
+        "checksum": "7D3B5995E46AA727B1981A2901299EA8B5301B0B",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ServicePack2Update24Cht": {
+        "URL": "https://download.microsoft.com/download/b/a/5/ba59e90a-d78d-40ee-8f18-cf91c29974c4/CRM2016-Server-KB4584612-CHT-Amd64.exe",
+        "checksum": "6BCF2EEFE064973689E4E3A6BA8CF6F132019B89",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ServicePack2Update24Csy": {
+        "URL": "https://download.microsoft.com/download/9/a/8/9a8871f2-81a9-4659-852b-ecf3c34b52f8/CRM2016-Server-KB4584612-CSY-Amd64.exe",
+        "checksum": "B5BC3228FD9BC7A960E757702A2E04FEA4420727",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ServicePack2Update24Dan": {
+        "URL": "https://download.microsoft.com/download/8/0/2/802b0106-115c-4c20-9e0a-5b7646fb9fc6/CRM2016-Server-KB4584612-DAN-Amd64.exe",
+        "checksum": "C6D56EB4D169A77CA73B5FDA0BBF9C6D7ECB9253",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ServicePack2Update24Nld": {
+        "URL": "https://download.microsoft.com/download/9/e/0/9e0e6f9f-bccc-4ef7-bf50-302502ae7ac5/CRM2016-Server-KB4584612-NLD-Amd64.exe",
+        "checksum": "FC4A663EB98DD61064DC625F149A9B812DD3A68C",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ServicePack2Update24Enu": {
+        "URL": "https://download.microsoft.com/download/9/7/6/976787d4-ff22-4766-adad-563bc7ace0ca/CRM2016-Server-KB4584612-ENU-Amd64.exe",
+        "checksum": "E3D39AD6CB2C336F3797FDE0952929EA0252CCAE",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ServicePack2Update24Fin": {
+        "URL": "https://download.microsoft.com/download/7/f/0/7f071e46-fa4c-43c2-896f-a6df1185ec1c/CRM2016-Server-KB4584612-FIN-Amd64.exe",
+        "checksum": "E5B9DBF8E249B9E852DBC18D7101A92C7C8E3CBF",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ServicePack2Update24Fra": {
+        "URL": "https://download.microsoft.com/download/a/9/e/a9e39763-54cd-42d4-b9e8-980c6f88a371/CRM2016-Server-KB4584612-FRA-Amd64.exe",
+        "checksum": "F974AED9EE4F984AFAF78A9D3359289CEAC20E66",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ServicePack2Update24Deu": {
+        "URL": "https://download.microsoft.com/download/c/c/9/cc9c337c-8bbf-49ff-917a-923408826382/CRM2016-Server-KB4584612-DEU-Amd64.exe",
+        "checksum": "AB3B64B0BC08FB64633CBC9953DBBDC99F6A5EF4",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ServicePack2Update24Ell": {
+        "URL": "https://download.microsoft.com/download/0/4/5/0456018f-d06f-403c-a959-1db9ea7ab90b/CRM2016-Server-KB4584612-ELL-Amd64.exe",
+        "checksum": "1D3DA99810A1647D53C24473DDB0C146C3ECCE0B",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ServicePack2Update24Heb": {
+        "URL": "https://download.microsoft.com/download/0/2/6/0265788b-7e40-440b-ae9b-f0e4a07817a8/CRM2016-Server-KB4584612-HEB-Amd64.exe",
+        "checksum": "A5D690D052465C457C817D0CDD3562727A76656A",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ServicePack2Update24Hun": {
+        "URL": "https://download.microsoft.com/download/5/f/6/5f6e64f4-9fbe-4887-a3fb-48eec6f3148a/CRM2016-Server-KB4584612-HUN-Amd64.exe",
+        "checksum": "FB4A09ADDE7741033C8992B5D5836BBAD30A4D1A",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ServicePack2Update24Ita": {
+        "URL": "https://download.microsoft.com/download/1/c/5/1c562b1d-a9b5-43fe-910f-588fc1ff6987/CRM2016-Server-KB4584612-ITA-Amd64.exe",
+        "checksum": "DA7F061C6F20FFABE35C9FBB210613736763BDDE",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ServicePack2Update24Jpn": {
+        "URL": "https://download.microsoft.com/download/c/3/2/c3250272-433f-4fee-9620-8c6d3dd37cd3/CRM2016-Server-KB4584612-JPN-Amd64.exe",
+        "checksum": "452AD3D891B87CB7640D90DC8AA02565123C49CD",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ServicePack2Update24Kor": {
+        "URL": "https://download.microsoft.com/download/6/5/5/655681bc-d8ee-479f-9a14-755b20c57223/CRM2016-Server-KB4584612-KOR-Amd64.exe",
+        "checksum": "DEAA720578BDB128DBB2474F972DF5C00B4110AF",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ServicePack2Update24Nor": {
+        "URL": "https://download.microsoft.com/download/7/1/5/7158e9f6-6e03-4742-88a3-98c8dc6f3c4f/CRM2016-Server-KB4584612-NOR-Amd64.exe",
+        "checksum": "018650C9EE6234E8139BF70A0575E0A5164A9506",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ServicePack2Update24Plk": {
+        "URL": "https://download.microsoft.com/download/1/1/0/110998b4-ac34-448a-b574-528afc495647/CRM2016-Server-KB4584612-PLK-Amd64.exe",
+        "checksum": "A141E640476B11CCAFD6356CC4CDC75DC7AF8C87",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ServicePack2Update24Ptb": {
+        "URL": "https://download.microsoft.com/download/3/a/7/3a706242-6324-4ae8-ae5b-813120ad7868/CRM2016-Server-KB4584612-PTB-Amd64.exe",
+        "checksum": "5D1E3AE809DD92676BDF7445B9AAAE446FC05C3A",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ServicePack2Update24Ptg": {
+        "URL": "https://download.microsoft.com/download/d/3/4/d34917d7-99ca-44e3-a599-cdc0404cecab/CRM2016-Server-KB4584612-PTG-Amd64.exe",
+        "checksum": "37997496E63354BDF88CA93771D60D051548B359",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ServicePack2Update24Rus": {
+        "URL": "https://download.microsoft.com/download/2/2/9/22940f19-c118-4f52-a000-cd9464ba581e/CRM2016-Server-KB4584612-RUS-Amd64.exe",
+        "checksum": "210B7FF1130CEF9653FEC46F5D7BF1F48668FE94",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ServicePack2Update24Esn": {
+        "URL": "https://download.microsoft.com/download/9/9/1/991f2b95-5505-4460-a958-8aa160f4b2ad/CRM2016-Server-KB4584612-ESN-Amd64.exe",
+        "checksum": "2B20200D210161B46B4F28E35D1668F3E6EFA6D1",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ServicePack2Update24Sve": {
+        "URL": "https://download.microsoft.com/download/7/a/1/7a16dd3a-efcb-4991-9a50-be1dcad79610/CRM2016-Server-KB4584612-SVE-Amd64.exe",
+        "checksum": "D63543AACDAB2D26EEC7531C8AE036379C8543F8",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ServicePack2Update24Trk": {
+        "URL": "https://download.microsoft.com/download/8/9/d/89d52f0a-00ce-43ff-8faf-e4d2df23ce5a/CRM2016-Server-KB4584612-TRK-Amd64.exe",
+        "checksum": "6236DD7A97C6851164F34C56815272C4EED9FECC",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update24Sau": {
+        "URL": "https://download.microsoft.com/download/a/5/d/a5d6ce01-14c1-4c2a-a7d5-2cfdad630851/CRM2016-Srs-KB4584612-SAU-Amd64.exe",
+        "checksum": "1254C6B39E40678F7EE69F8E4576606454607E94",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update24Chk": {
+        "URL": "https://download.microsoft.com/download/4/c/3/4c3dc94f-f64a-42d2-9363-d75b2b7280ff/CRM2016-Srs-KB4584612-CHK-Amd64.exe",
+        "checksum": "40089E92DB95C2E02584D2AAB8C54D6EEFB829A5",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update24Chs": {
+        "URL": "https://download.microsoft.com/download/1/a/9/1a9aebc3-d042-4eb9-8fd9-37a16a01fa5b/CRM2016-Srs-KB4584612-CHS-Amd64.exe",
+        "checksum": "7EE03C85DC45755B812A508D9BB93FB2DC05DB0C",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update24Cht": {
+        "URL": "https://download.microsoft.com/download/b/a/5/ba59e90a-d78d-40ee-8f18-cf91c29974c4/CRM2016-Srs-KB4584612-CHT-Amd64.exe",
+        "checksum": "36A890D79A20A65C7CC72FF1E3DE02E56B39434C",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update24Csy": {
+        "URL": "https://download.microsoft.com/download/9/a/8/9a8871f2-81a9-4659-852b-ecf3c34b52f8/CRM2016-Srs-KB4584612-CSY-Amd64.exe",
+        "checksum": "F4F20002948845A6E2332BBCB3CD21F4DB227FA2",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update24Dan": {
+        "URL": "https://download.microsoft.com/download/8/0/2/802b0106-115c-4c20-9e0a-5b7646fb9fc6/CRM2016-Srs-KB4584612-DAN-Amd64.exe",
+        "checksum": "158BF65ECAFBABDCBD86D4C56D8D83ACD34E5E8D",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update24Nld": {
+        "URL": "https://download.microsoft.com/download/9/e/0/9e0e6f9f-bccc-4ef7-bf50-302502ae7ac5/CRM2016-Srs-KB4584612-NLD-Amd64.exe",
+        "checksum": "0AEF6DC971978BD75777CFFAF5CC9751891981B4",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update24Enu": {
+        "URL": "https://download.microsoft.com/download/9/7/6/976787d4-ff22-4766-adad-563bc7ace0ca/CRM2016-Srs-KB4584612-ENU-Amd64.exe",
+        "checksum": "7B00FA10E5D08F2D69CCABA66B6463FCBFB2F1CB",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update24Fin": {
+        "URL": "https://download.microsoft.com/download/7/f/0/7f071e46-fa4c-43c2-896f-a6df1185ec1c/CRM2016-Srs-KB4584612-FIN-Amd64.exe",
+        "checksum": "EA7BBD789C949564483BF39E12421E96B7B228A0",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update24Fra": {
+        "URL": "https://download.microsoft.com/download/a/9/e/a9e39763-54cd-42d4-b9e8-980c6f88a371/CRM2016-Srs-KB4584612-FRA-Amd64.exe",
+        "checksum": "3D366C4B0C10A56F7F03ED482563ACEB5773323C",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update24Deu": {
+        "URL": "https://download.microsoft.com/download/c/c/9/cc9c337c-8bbf-49ff-917a-923408826382/CRM2016-Srs-KB4584612-DEU-Amd64.exe",
+        "checksum": "1502129C627EF4B9DB1CB2650784CC84A4465D7D",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update24Ell": {
+        "URL": "https://download.microsoft.com/download/0/4/5/0456018f-d06f-403c-a959-1db9ea7ab90b/CRM2016-Srs-KB4584612-ELL-Amd64.exe",
+        "checksum": "B153D095E0B6638A951EFA4D8CD38C481BF99B7B",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update24Heb": {
+        "URL": "https://download.microsoft.com/download/0/2/6/0265788b-7e40-440b-ae9b-f0e4a07817a8/CRM2016-Srs-KB4584612-HEB-Amd64.exe",
+        "checksum": "A970B93606BF5215901C646C8C3036B3D8C2AEC6",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update24Hun": {
+        "URL": "https://download.microsoft.com/download/5/f/6/5f6e64f4-9fbe-4887-a3fb-48eec6f3148a/CRM2016-Srs-KB4584612-HUN-Amd64.exe",
+        "checksum": "92096D552BBD7823D2A64C8BE899F7E47C729E82",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update24Ita": {
+        "URL": "https://download.microsoft.com/download/1/c/5/1c562b1d-a9b5-43fe-910f-588fc1ff6987/CRM2016-Srs-KB4584612-ITA-Amd64.exe",
+        "checksum": "74CF5FA47EAF3C228B1863FC3EF15D60411CEC57",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update24Jpn": {
+        "URL": "https://download.microsoft.com/download/c/3/2/c3250272-433f-4fee-9620-8c6d3dd37cd3/CRM2016-Srs-KB4584612-JPN-Amd64.exe",
+        "checksum": "4F486C5165519CE3C91B8C3CF1833CD03C109E92",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update24Kor": {
+        "URL": "https://download.microsoft.com/download/6/5/5/655681bc-d8ee-479f-9a14-755b20c57223/CRM2016-Srs-KB4584612-KOR-Amd64.exe",
+        "checksum": "0E020A733D350FF6386B01E769FE9E6F8F7FA633",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update24Nor": {
+        "URL": "https://download.microsoft.com/download/7/1/5/7158e9f6-6e03-4742-88a3-98c8dc6f3c4f/CRM2016-Srs-KB4584612-NOR-Amd64.exe",
+        "checksum": "6B808A6773159DAA710507F6DA84788B33070F29",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update24Plk": {
+        "URL": "https://download.microsoft.com/download/1/1/0/110998b4-ac34-448a-b574-528afc495647/CRM2016-Srs-KB4584612-PLK-Amd64.exe",
+        "checksum": "BACB21FAC9DAE979A3CC0E5A47C718E30C2F6A4D",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update24Ptb": {
+        "URL": "https://download.microsoft.com/download/3/a/7/3a706242-6324-4ae8-ae5b-813120ad7868/CRM2016-Srs-KB4584612-PTB-Amd64.exe",
+        "checksum": "85E68143B33F56E4D3CE629A134AAEA0C89FE974",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update24Ptg": {
+        "URL": "https://download.microsoft.com/download/d/3/4/d34917d7-99ca-44e3-a599-cdc0404cecab/CRM2016-Srs-KB4584612-PTG-Amd64.exe",
+        "checksum": "938801EEFDE87BA2F30FDDB372C9EC057E62A8E7",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update24Rus": {
+        "URL": "https://download.microsoft.com/download/2/2/9/22940f19-c118-4f52-a000-cd9464ba581e/CRM2016-Srs-KB4584612-RUS-Amd64.exe",
+        "checksum": "ADD2B53C0D0B44A26858BD7F819E834FB73787D5",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update24Esn": {
+        "URL": "https://download.microsoft.com/download/9/9/1/991f2b95-5505-4460-a958-8aa160f4b2ad/CRM2016-Srs-KB4584612-ESN-Amd64.exe",
+        "checksum": "7D23722AE83ABD61318163E026FB1FFE31799A28",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update24Sve": {
+        "URL": "https://download.microsoft.com/download/7/a/1/7a16dd3a-efcb-4991-9a50-be1dcad79610/CRM2016-Srs-KB4584612-SVE-Amd64.exe",
+        "checksum": "5CEF7E14B3DB3C95E782849AD520745D393E0F40",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update24Trk": {
+        "URL": "https://download.microsoft.com/download/8/9/d/89d52f0a-00ce-43ff-8faf-e4d2df23ce5a/CRM2016-Srs-KB4584612-TRK-Amd64.exe",
+        "checksum": "1FB6B15A2CE83674A2C70E012C5A83C511584A6B",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016LanguagePackServicePack2Update24Sau": {
+        "URL": "https://download.microsoft.com/download/a/5/d/a5d6ce01-14c1-4c2a-a7d5-2cfdad630851/CRM2016-Mui-KB4584612-SAU-Amd64.exe",
+        "checksum": "4C4A5E04A0D6349114642ECE2F6BBB0E0F4465A2",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016LanguagePackServicePack2Update24Eus": {
+        "URL": "https://download.microsoft.com/download/6/d/3/6d3550af-02f1-44db-8310-43baf9ac0c5b/CRM2016-Mui-KB4584612-EUS-Amd64.exe",
+        "checksum": "D2CFBB5D263F70A69BB2A5E415AE98066C0984DD",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016LanguagePackServicePack2Update24Bgr": {
+        "URL": "https://download.microsoft.com/download/7/0/1/7016ab7e-a1b9-4cd9-bfee-a27aa3abb61b/CRM2016-Mui-KB4584612-BGR-Amd64.exe",
+        "checksum": "A917052A4C8B3190DCCC20FE34FE4C525690FB47",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016LanguagePackServicePack2Update24Cat": {
+        "URL": "https://download.microsoft.com/download/e/e/c/eec4177f-a077-4f9d-ae74-b8fc8902907c/CRM2016-Mui-KB4584612-CAT-Amd64.exe",
+        "checksum": "89849509742FC2645BCF1C623946C9F1642A276B",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016LanguagePackServicePack2Update24Chk": {
+        "URL": "https://download.microsoft.com/download/4/c/3/4c3dc94f-f64a-42d2-9363-d75b2b7280ff/CRM2016-Mui-KB4584612-CHK-Amd64.exe",
+        "checksum": "4513A60875BBEAF445DE5948F6B5398DC06762D2",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016LanguagePackServicePack2Update24Chs": {
+        "URL": "https://download.microsoft.com/download/1/a/9/1a9aebc3-d042-4eb9-8fd9-37a16a01fa5b/CRM2016-Mui-KB4584612-CHS-Amd64.exe",
+        "checksum": "0407ADBFE3B8A8C7B33915F957520A98902BEA5B",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016LanguagePackServicePack2Update24Cht": {
+        "URL": "https://download.microsoft.com/download/b/a/5/ba59e90a-d78d-40ee-8f18-cf91c29974c4/CRM2016-Mui-KB4584612-CHT-Amd64.exe",
+        "checksum": "E445E012EFFF2DE3D328AC13799B923A592F634F",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016LanguagePackServicePack2Update24Hrv": {
+        "URL": "https://download.microsoft.com/download/7/5/f/75fa52c9-7b18-452c-bf6d-8d36ff6d4def/CRM2016-Mui-KB4584612-HRV-Amd64.exe",
+        "checksum": "19C53FBDF5006855246F156E77D9BAC8D93F6708",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016LanguagePackServicePack2Update24Csy": {
+        "URL": "https://download.microsoft.com/download/9/a/8/9a8871f2-81a9-4659-852b-ecf3c34b52f8/CRM2016-Mui-KB4584612-CSY-Amd64.exe",
+        "checksum": "D5CD5EF2564C664C7EAD1827AF4E525D2CEDE63C",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016LanguagePackServicePack2Update24Dan": {
+        "URL": "https://download.microsoft.com/download/8/0/2/802b0106-115c-4c20-9e0a-5b7646fb9fc6/CRM2016-Mui-KB4584612-DAN-Amd64.exe",
+        "checksum": "7EF556417344CEFDE08B19BC133DD40EFFE57DA8",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016LanguagePackServicePack2Update24Nld": {
+        "URL": "https://download.microsoft.com/download/9/e/0/9e0e6f9f-bccc-4ef7-bf50-302502ae7ac5/CRM2016-Mui-KB4584612-NLD-Amd64.exe",
+        "checksum": "61B13DAF578677B9921D2D12EFB444C183109CB0",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016LanguagePackServicePack2Update24Enu": {
+        "URL": "https://download.microsoft.com/download/9/7/6/976787d4-ff22-4766-adad-563bc7ace0ca/CRM2016-Mui-KB4584612-ENU-Amd64.exe",
+        "checksum": "AE100A5D9FB1CC239F0DF363DBD48BCF3EFCF18E",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016LanguagePackServicePack2Update24Eti": {
+        "URL": "https://download.microsoft.com/download/e/b/7/eb730acf-7660-4216-b4a5-1d1c16f298c1/CRM2016-Mui-KB4584612-ETI-Amd64.exe",
+        "checksum": "6A4466DCE5C7E537A2188B1F6383F83374DBA69D",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016LanguagePackServicePack2Update24Fin": {
+        "URL": "https://download.microsoft.com/download/7/f/0/7f071e46-fa4c-43c2-896f-a6df1185ec1c/CRM2016-Mui-KB4584612-FIN-Amd64.exe",
+        "checksum": "8CF9294640A8EE4FCB059D3A4A544616CD1EAA71",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016LanguagePackServicePack2Update24Fra": {
+        "URL": "https://download.microsoft.com/download/a/9/e/a9e39763-54cd-42d4-b9e8-980c6f88a371/CRM2016-Mui-KB4584612-FRA-Amd64.exe",
+        "checksum": "D6A7852A5FD9EF00B3730001C40988DD7DF59D6B",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016LanguagePackServicePack2Update24Glc": {
+        "URL": "https://download.microsoft.com/download/4/e/4/4e457542-b33e-4015-87d8-68439a07d2a2/CRM2016-Mui-KB4584612-GLC-Amd64.exe",
+        "checksum": "D757087B5B02312A5E530A16C82F687E95B0809B",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016LanguagePackServicePack2Update24Deu": {
+        "URL": "https://download.microsoft.com/download/c/c/9/cc9c337c-8bbf-49ff-917a-923408826382/CRM2016-Mui-KB4584612-DEU-Amd64.exe",
+        "checksum": "7EB7CFD62BE03E29B9D90525612817393BE020F0",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016LanguagePackServicePack2Update24Ell": {
+        "URL": "https://download.microsoft.com/download/0/4/5/0456018f-d06f-403c-a959-1db9ea7ab90b/CRM2016-Mui-KB4584612-ELL-Amd64.exe",
+        "checksum": "F0DA2C1ACA10FF39CA809581B3B95F3365BD5DC5",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016LanguagePackServicePack2Update24Heb": {
+        "URL": "https://download.microsoft.com/download/0/2/6/0265788b-7e40-440b-ae9b-f0e4a07817a8/CRM2016-Mui-KB4584612-HEB-Amd64.exe",
+        "checksum": "C0A8D4AFD94E75DCD5DD7A0F5E2D249CD4E5F5EE",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016LanguagePackServicePack2Update24Hin": {
+        "URL": "https://download.microsoft.com/download/3/d/7/3d7f8859-b5b2-4972-8f66-0ca935a0ef0a/CRM2016-Mui-KB4584612-HIN-Amd64.exe",
+        "checksum": "E044030A712EC29FD4B21BD7A8231413B1CE08F3",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016LanguagePackServicePack2Update24Hun": {
+        "URL": "https://download.microsoft.com/download/5/f/6/5f6e64f4-9fbe-4887-a3fb-48eec6f3148a/CRM2016-Mui-KB4584612-HUN-Amd64.exe",
+        "checksum": "B98267AB4B355E91A725A89CC136843A95679979",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016LanguagePackServicePack2Update24Ind": {
+        "URL": "https://download.microsoft.com/download/d/6/2/d62f7751-0c0d-4e5a-8cf3-32b4ff500bb6/CRM2016-Mui-KB4584612-IND-Amd64.exe",
+        "checksum": "669DAD3BAB1D58E7594A0136CDE56EEE5F63431B",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016LanguagePackServicePack2Update24Ita": {
+        "URL": "https://download.microsoft.com/download/1/c/5/1c562b1d-a9b5-43fe-910f-588fc1ff6987/CRM2016-Mui-KB4584612-ITA-Amd64.exe",
+        "checksum": "B28691ED2B60D4AB72259357663F2415361214A2",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016LanguagePackServicePack2Update24Jpn": {
+        "URL": "https://download.microsoft.com/download/c/3/2/c3250272-433f-4fee-9620-8c6d3dd37cd3/CRM2016-Mui-KB4584612-JPN-Amd64.exe",
+        "checksum": "374CFE22C25C410F7916E5678A374C166D3F1786",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016LanguagePackServicePack2Update24Kkz": {
+        "URL": "https://download.microsoft.com/download/d/3/c/d3cad3b7-bdce-4834-a6d3-e46a4b2b5f66/CRM2016-Mui-KB4584612-KKZ-Amd64.exe",
+        "checksum": "0F7F621CB16FCCD03E5F4F8CDE9AAAA84C56B8AB",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016LanguagePackServicePack2Update24Kor": {
+        "URL": "https://download.microsoft.com/download/6/5/5/655681bc-d8ee-479f-9a14-755b20c57223/CRM2016-Mui-KB4584612-KOR-Amd64.exe",
+        "checksum": "20D8F325301F06F188BFDF2AEAD5910D6CAB1394",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016LanguagePackServicePack2Update24Lvi": {
+        "URL": "https://download.microsoft.com/download/9/2/8/92852b44-3684-4a0b-8923-8360e16cf992/CRM2016-Mui-KB4584612-LVI-Amd64.exe",
+        "checksum": "45D10688955CEA1869109330772F2DA99068F986",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016LanguagePackServicePack2Update24Lth": {
+        "URL": "https://download.microsoft.com/download/6/3/8/638af7f3-3473-4a96-9984-f06c265d617f/CRM2016-Mui-KB4584612-LTH-Amd64.exe",
+        "checksum": "D6C0109D1027D3D10EAB7D32736AFDDDFE438B25",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016LanguagePackServicePack2Update24Msl": {
+        "URL": "https://download.microsoft.com/download/9/e/3/9e37baa8-0041-4f9d-9a0c-440c4b5f3820/CRM2016-Mui-KB4584612-MSL-Amd64.exe",
+        "checksum": "FFE2E20C72C23F294E1EC1DC85F0CB7DBCE8CDFF",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016LanguagePackServicePack2Update24Nor": {
+        "URL": "https://download.microsoft.com/download/7/1/5/7158e9f6-6e03-4742-88a3-98c8dc6f3c4f/CRM2016-Mui-KB4584612-NOR-Amd64.exe",
+        "checksum": "E1E6A56904FBCC1D7AE5217A2244CB031F319084",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016LanguagePackServicePack2Update24Plk": {
+        "URL": "https://download.microsoft.com/download/1/1/0/110998b4-ac34-448a-b574-528afc495647/CRM2016-Mui-KB4584612-PLK-Amd64.exe",
+        "checksum": "C45B58567CBAEE6D0AF1A085FFAE029556DD3D66",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016LanguagePackServicePack2Update24Ptb": {
+        "URL": "https://download.microsoft.com/download/3/a/7/3a706242-6324-4ae8-ae5b-813120ad7868/CRM2016-Mui-KB4584612-PTB-Amd64.exe",
+        "checksum": "25ED9BDD4299B073600D01AC6DBBC881A77936F0",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016LanguagePackServicePack2Update24Ptg": {
+        "URL": "https://download.microsoft.com/download/d/3/4/d34917d7-99ca-44e3-a599-cdc0404cecab/CRM2016-Mui-KB4584612-PTG-Amd64.exe",
+        "checksum": "04627816A944549FA0E48DE3AC505D50D2208EFE",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016LanguagePackServicePack2Update24Rom": {
+        "URL": "https://download.microsoft.com/download/b/9/a/b9a9d049-b8eb-4f0f-8046-70942a37bb14/CRM2016-Mui-KB4584612-ROM-Amd64.exe",
+        "checksum": "AB5EB0547821411DC248A961FD52CEAC78BBEB2B",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016LanguagePackServicePack2Update24Rus": {
+        "URL": "https://download.microsoft.com/download/2/2/9/22940f19-c118-4f52-a000-cd9464ba581e/CRM2016-Mui-KB4584612-RUS-Amd64.exe",
+        "checksum": "90A0A3C5CBE51E7A42B4E7D28623A685F109FA44",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016LanguagePackServicePack2Update24Srb": {
+        "URL": "https://download.microsoft.com/download/4/0/c/40c5f158-2895-4e76-81b8-103daf338917/CRM2016-Mui-KB4584612-SRB-Amd64.exe",
+        "checksum": "6CA6445662D50C0ECF9B13B34ACEA80E0EF34314",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016LanguagePackServicePack2Update24Srl": {
+        "URL": "https://download.microsoft.com/download/a/6/e/a6e943b8-9fc3-473e-865f-10d374e7d79f/CRM2016-Mui-KB4584612-SRL-Amd64.exe",
+        "checksum": "89FAED0E05A47FA9E6973CE0B4EA88F5F486FB90",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016LanguagePackServicePack2Update24Sky": {
+        "URL": "https://download.microsoft.com/download/e/7/7/e7762891-0ab8-466f-a6f6-b459316d7fa3/CRM2016-Mui-KB4584612-SKY-Amd64.exe",
+        "checksum": "218AC613EC70E472D8370B70C3DBF8A0FEDBAAAF",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016LanguagePackServicePack2Update24Slv": {
+        "URL": "https://download.microsoft.com/download/a/b/2/ab2e4689-ee1d-4f3b-b4e8-1ab461ddf2d4/CRM2016-Mui-KB4584612-SLV-Amd64.exe",
+        "checksum": "0A4FA328F4D83BD8594C2D9E3C2CEFB2CA20EA90",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016LanguagePackServicePack2Update24Esn": {
+        "URL": "https://download.microsoft.com/download/9/9/1/991f2b95-5505-4460-a958-8aa160f4b2ad/CRM2016-Mui-KB4584612-ESN-Amd64.exe",
+        "checksum": "5C3EE3A0FFD0EBDAB6A19A66F0A9817B18DD6566",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016LanguagePackServicePack2Update24Sve": {
+        "URL": "https://download.microsoft.com/download/7/a/1/7a16dd3a-efcb-4991-9a50-be1dcad79610/CRM2016-Mui-KB4584612-SVE-Amd64.exe",
+        "checksum": "691B2D32C43625BD6B94FC8610521CF693A2AC46",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016LanguagePackServicePack2Update24Tha": {
+        "URL": "https://download.microsoft.com/download/e/2/5/e2590642-a9d1-43a8-8ca8-e5c53f932e97/CRM2016-Mui-KB4584612-THA-Amd64.exe",
+        "checksum": "95C089D5B822BDF360AB5BF23A7FC944BBF6FFFC",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016LanguagePackServicePack2Update24Trk": {
+        "URL": "https://download.microsoft.com/download/8/9/d/89d52f0a-00ce-43ff-8faf-e4d2df23ce5a/CRM2016-Mui-KB4584612-TRK-Amd64.exe",
+        "checksum": "ACD040296D82F1FA036B6F43ADB5DFF86DBFB1CF",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016LanguagePackServicePack2Update24Ukr": {
+        "URL": "https://download.microsoft.com/download/3/6/1/361c800e-6a36-4637-9367-4d5e1a1fbcd5/CRM2016-Mui-KB4584612-UKR-Amd64.exe",
+        "checksum": "F945ACC8094BBCDC7299DD66EB803D192D745063",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016LanguagePackServicePack2Update24Vit": {
+        "URL": "https://download.microsoft.com/download/5/3/8/538cad01-d269-44de-a7df-04c36fa81edf/CRM2016-Mui-KB4584612-VIT-Amd64.exe",
+        "checksum": "88A97BC87C9962D35B94235AF8A5FD8680F3D8A4",
+        "mediaFileVersion": "8.2.24.14"
+    },
+    "CRM2016ServicePack2Update25Sau": {
+        "URL": "https://download.microsoft.com/download/d/0/4/d0450d61-5d6a-4a5e-8658-b7dc15bb75fb/CRM2016-Server-KB4595462-SAU-Amd64.exe",
+        "checksum": "588D8BD9B176C87E242258C19093B05BEF255BD5",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ServicePack2Update25Chk": {
+        "URL": "https://download.microsoft.com/download/d/a/b/dab5619d-906d-4ca0-a21b-7da356b969d8/CRM2016-Server-KB4595462-CHK-Amd64.exe",
+        "checksum": "637F4F0E7804EABBAD5BD747B9F13AE147C88414",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ServicePack2Update25Chs": {
+        "URL": "https://download.microsoft.com/download/8/2/8/828cebce-e23d-4e47-b579-4ae92cdf8762/CRM2016-Server-KB4595462-CHS-Amd64.exe",
+        "checksum": "AA0814781D39A315C5CD3A61DB3D711A5888952D",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ServicePack2Update25Cht": {
+        "URL": "https://download.microsoft.com/download/c/d/9/cd9282bc-7051-47f6-a09a-ae469af053f7/CRM2016-Server-KB4595462-CHT-Amd64.exe",
+        "checksum": "90A0E2BE22F60C7FC68FF81CF93382EBECCC1AB4",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ServicePack2Update25Csy": {
+        "URL": "https://download.microsoft.com/download/4/f/0/4f01e711-96c7-4b44-9812-b3ea93053041/CRM2016-Server-KB4595462-CSY-Amd64.exe",
+        "checksum": "141B039A4AC87AEF6794068DAF7534E88E381BDB",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ServicePack2Update25Dan": {
+        "URL": "https://download.microsoft.com/download/e/e/4/ee4feecb-d0df-429f-8391-0dd30179f5ba/CRM2016-Server-KB4595462-DAN-Amd64.exe",
+        "checksum": "CD612431F9EC2C360B87965CBD7CEEFA1876B34E",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ServicePack2Update25Nld": {
+        "URL": "https://download.microsoft.com/download/2/6/a/26ab2b77-15e4-4240-b697-5360570dd7e1/CRM2016-Server-KB4595462-NLD-Amd64.exe",
+        "checksum": "5D992FFDB6BC8034453850CA0FA99228B2E3CAA7",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ServicePack2Update25Enu": {
+        "URL": "https://download.microsoft.com/download/1/c/f/1cf15f60-a7b8-42d8-a515-0c63a776f95d/CRM2016-Server-KB4595462-ENU-Amd64.exe",
+        "checksum": "852A200D197533E68CB5D15277C10EB17C21441C",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ServicePack2Update25Fin": {
+        "URL": "https://download.microsoft.com/download/5/4/3/54300bed-1c5b-4b71-8368-915d7df3b733/CRM2016-Server-KB4595462-FIN-Amd64.exe",
+        "checksum": "9CB78CB7D5A2F6C1C82A546AF8F8550629EBF256",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ServicePack2Update25Fra": {
+        "URL": "https://download.microsoft.com/download/4/1/5/41512c88-d9f0-4a89-a87c-46661d137730/CRM2016-Server-KB4595462-FRA-Amd64.exe",
+        "checksum": "FB5E9FBCD93A0995B9E5FF44705E4EF62F436E9D",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ServicePack2Update25Deu": {
+        "URL": "https://download.microsoft.com/download/5/6/2/56279d3f-1218-4d30-872b-0486ee700140/CRM2016-Server-KB4595462-DEU-Amd64.exe",
+        "checksum": "9CABBA7FED0BF24C249ABAB6AAD99E19CF2F4CFD",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ServicePack2Update25Ell": {
+        "URL": "https://download.microsoft.com/download/2/7/2/2729e7b8-be43-4b19-9573-0b66077ed135/CRM2016-Server-KB4595462-ELL-Amd64.exe",
+        "checksum": "EAC5B3BF92F080657EA3C545AC313D90C47CA95C",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ServicePack2Update25Heb": {
+        "URL": "https://download.microsoft.com/download/8/0/2/8022c498-a5e7-48f3-b57c-a4a6f2440f3c/CRM2016-Server-KB4595462-HEB-Amd64.exe",
+        "checksum": "57ED77DB0EB24BC409F5ACDF52690F8FB31088A6",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ServicePack2Update25Hun": {
+        "URL": "https://download.microsoft.com/download/6/7/8/67806322-7aad-4ce7-a039-2022bc51bf21/CRM2016-Server-KB4595462-HUN-Amd64.exe",
+        "checksum": "B4ACEADCF5EB46949BACABBC9BA3362734989AF9",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ServicePack2Update25Ita": {
+        "URL": "https://download.microsoft.com/download/8/b/8/8b8864ed-b025-446d-92d7-4315e6b65079/CRM2016-Server-KB4595462-ITA-Amd64.exe",
+        "checksum": "FC1E21F832DE692CBD98D03A67C297873FBCA924",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ServicePack2Update25Jpn": {
+        "URL": "https://download.microsoft.com/download/8/1/9/819b05b1-7d43-47fc-9b91-e66ceec3a1c8/CRM2016-Server-KB4595462-JPN-Amd64.exe",
+        "checksum": "B477035EB1AD48B9ABEE7933F10567200967D2EB",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ServicePack2Update25Kor": {
+        "URL": "https://download.microsoft.com/download/b/2/e/b2efa91d-14f9-4e70-bd36-589d2a55d5ec/CRM2016-Server-KB4595462-KOR-Amd64.exe",
+        "checksum": "233C593A6733EB513542F0CFF73D39A768471CD2",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ServicePack2Update25Nor": {
+        "URL": "https://download.microsoft.com/download/f/b/f/fbfedd72-3723-449b-96e1-049b2d691002/CRM2016-Server-KB4595462-NOR-Amd64.exe",
+        "checksum": "8A6E7C9FB0D68EEF64EA406285EC0FA75CF5EC57",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ServicePack2Update25Plk": {
+        "URL": "https://download.microsoft.com/download/0/2/9/029a6722-b5d9-4777-8f12-67b96a797d63/CRM2016-Server-KB4595462-PLK-Amd64.exe",
+        "checksum": "ED371A1AA44C271AC8E2D9BC5586F9AB22A065DF",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ServicePack2Update25Ptb": {
+        "URL": "https://download.microsoft.com/download/c/6/3/c6309893-0a33-467c-895c-863ab86b4954/CRM2016-Server-KB4595462-PTB-Amd64.exe",
+        "checksum": "B8C583A74C28FAD4A4F654AD1345579EA445ABA5",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ServicePack2Update25Ptg": {
+        "URL": "https://download.microsoft.com/download/2/d/b/2db8204a-0b90-427a-8b2a-a56f6cd75364/CRM2016-Server-KB4595462-PTG-Amd64.exe",
+        "checksum": "4200C353C058431D489FACDAB9E7C52D665BF9D0",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ServicePack2Update25Rus": {
+        "URL": "https://download.microsoft.com/download/d/9/b/d9b2c379-b681-47d3-9319-d53dd5c543e0/CRM2016-Server-KB4595462-RUS-Amd64.exe",
+        "checksum": "375BD336DD54B109390EF3D24231F6F03B8CC415",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ServicePack2Update25Esn": {
+        "URL": "https://download.microsoft.com/download/3/e/5/3e5ccb19-1538-4cd7-8bc8-d695c2d71432/CRM2016-Server-KB4595462-ESN-Amd64.exe",
+        "checksum": "37E9069847D90F15325DB93E412851732EFD9059",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ServicePack2Update25Sve": {
+        "URL": "https://download.microsoft.com/download/9/4/7/947a53a2-f5f7-4151-8996-23af948b59ad/CRM2016-Server-KB4595462-SVE-Amd64.exe",
+        "checksum": "D303D5A48572FEE835598151CE626AA08094F008",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ServicePack2Update25Trk": {
+        "URL": "https://download.microsoft.com/download/b/6/f/b6f3279c-2b66-4014-a741-5b666bf04cfe/CRM2016-Server-KB4595462-TRK-Amd64.exe",
+        "checksum": "A32CEE0273F45019B68B62745B1B81286807626C",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update25Sau": {
+        "URL": "https://download.microsoft.com/download/d/0/4/d0450d61-5d6a-4a5e-8658-b7dc15bb75fb/CRM2016-Srs-KB4595462-SAU-Amd64.exe",
+        "checksum": "08A61CC4815D094049337FA5AA3865744E2FA02D",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update25Chk": {
+        "URL": "https://download.microsoft.com/download/d/a/b/dab5619d-906d-4ca0-a21b-7da356b969d8/CRM2016-Srs-KB4595462-CHK-Amd64.exe",
+        "checksum": "3B2E1D60412782F7C5086A2FEBC542B34A3A9B99",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update25Chs": {
+        "URL": "https://download.microsoft.com/download/8/2/8/828cebce-e23d-4e47-b579-4ae92cdf8762/CRM2016-Srs-KB4595462-CHS-Amd64.exe",
+        "checksum": "4FB5BEB193DFB2D2169B75DDCBD23693F1F5287F",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update25Cht": {
+        "URL": "https://download.microsoft.com/download/c/d/9/cd9282bc-7051-47f6-a09a-ae469af053f7/CRM2016-Srs-KB4595462-CHT-Amd64.exe",
+        "checksum": "8461E036A4D1FC1FCB5E11485455FB5C4C5751F2",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update25Csy": {
+        "URL": "https://download.microsoft.com/download/4/f/0/4f01e711-96c7-4b44-9812-b3ea93053041/CRM2016-Srs-KB4595462-CSY-Amd64.exe",
+        "checksum": "96B1C5D63920B73A3A517748D704ED604FE4159B",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update25Dan": {
+        "URL": "https://download.microsoft.com/download/e/e/4/ee4feecb-d0df-429f-8391-0dd30179f5ba/CRM2016-Srs-KB4595462-DAN-Amd64.exe",
+        "checksum": "20B6E29B0DF4DEB3C91882B3854F925B31417D0C",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update25Nld": {
+        "URL": "https://download.microsoft.com/download/2/6/a/26ab2b77-15e4-4240-b697-5360570dd7e1/CRM2016-Srs-KB4595462-NLD-Amd64.exe",
+        "checksum": "6174E503371330AAF2914677D4A42F1A697B25B4",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update25Enu": {
+        "URL": "https://download.microsoft.com/download/1/c/f/1cf15f60-a7b8-42d8-a515-0c63a776f95d/CRM2016-Srs-KB4595462-ENU-Amd64.exe",
+        "checksum": "E8851BD3231F481FF78B62A47EA13DA75A0B0C0B",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update25Fin": {
+        "URL": "https://download.microsoft.com/download/5/4/3/54300bed-1c5b-4b71-8368-915d7df3b733/CRM2016-Srs-KB4595462-FIN-Amd64.exe",
+        "checksum": "C81048E576337F5D947B35C20BA21726696B4EA0",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update25Fra": {
+        "URL": "https://download.microsoft.com/download/4/1/5/41512c88-d9f0-4a89-a87c-46661d137730/CRM2016-Srs-KB4595462-FRA-Amd64.exe",
+        "checksum": "612D97767729E6FEA1516676DD7D9C7B79BDA429",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update25Deu": {
+        "URL": "https://download.microsoft.com/download/5/6/2/56279d3f-1218-4d30-872b-0486ee700140/CRM2016-Srs-KB4595462-DEU-Amd64.exe",
+        "checksum": "A74825D9639281F41762F656661BBA8A360D9387",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update25Ell": {
+        "URL": "https://download.microsoft.com/download/2/7/2/2729e7b8-be43-4b19-9573-0b66077ed135/CRM2016-Srs-KB4595462-ELL-Amd64.exe",
+        "checksum": "736F8F54C871E2A4F99224ADF79D5E63D1E95AA8",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update25Heb": {
+        "URL": "https://download.microsoft.com/download/8/0/2/8022c498-a5e7-48f3-b57c-a4a6f2440f3c/CRM2016-Srs-KB4595462-HEB-Amd64.exe",
+        "checksum": "B1776F0C7201A336C481D41D107CA1ECE9325A6E",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update25Hun": {
+        "URL": "https://download.microsoft.com/download/6/7/8/67806322-7aad-4ce7-a039-2022bc51bf21/CRM2016-Srs-KB4595462-HUN-Amd64.exe",
+        "checksum": "CD7A811D05808705794A6A46F75B59383352349D",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update25Ita": {
+        "URL": "https://download.microsoft.com/download/8/b/8/8b8864ed-b025-446d-92d7-4315e6b65079/CRM2016-Srs-KB4595462-ITA-Amd64.exe",
+        "checksum": "8F5751AD0CBAC71F7066908FB8D099F09B4173B4",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update25Jpn": {
+        "URL": "https://download.microsoft.com/download/8/1/9/819b05b1-7d43-47fc-9b91-e66ceec3a1c8/CRM2016-Srs-KB4595462-JPN-Amd64.exe",
+        "checksum": "8C962C5363941B126ED6F8491445DDD43A984DD5",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update25Kor": {
+        "URL": "https://download.microsoft.com/download/b/2/e/b2efa91d-14f9-4e70-bd36-589d2a55d5ec/CRM2016-Srs-KB4595462-KOR-Amd64.exe",
+        "checksum": "8C450788901110A68CC15311994B5A50EC2948F6",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update25Nor": {
+        "URL": "https://download.microsoft.com/download/f/b/f/fbfedd72-3723-449b-96e1-049b2d691002/CRM2016-Srs-KB4595462-NOR-Amd64.exe",
+        "checksum": "7A3634FE9919C86690DA57DCB9054D24222A279D",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update25Plk": {
+        "URL": "https://download.microsoft.com/download/0/2/9/029a6722-b5d9-4777-8f12-67b96a797d63/CRM2016-Srs-KB4595462-PLK-Amd64.exe",
+        "checksum": "FDF497469DF26565112BCF27CEABE6908FF88A00",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update25Ptb": {
+        "URL": "https://download.microsoft.com/download/c/6/3/c6309893-0a33-467c-895c-863ab86b4954/CRM2016-Srs-KB4595462-PTB-Amd64.exe",
+        "checksum": "7FE55675BF9D864DCAF9C1490291C647D988A23D",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update25Ptg": {
+        "URL": "https://download.microsoft.com/download/2/d/b/2db8204a-0b90-427a-8b2a-a56f6cd75364/CRM2016-Srs-KB4595462-PTG-Amd64.exe",
+        "checksum": "1FC8C2CD68B733F87C037228F3ABF4AE36406A9C",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update25Rus": {
+        "URL": "https://download.microsoft.com/download/d/9/b/d9b2c379-b681-47d3-9319-d53dd5c543e0/CRM2016-Srs-KB4595462-RUS-Amd64.exe",
+        "checksum": "C3F7AA91EAF538DD2347CFBAFDB23225D879D18A",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update25Esn": {
+        "URL": "https://download.microsoft.com/download/3/e/5/3e5ccb19-1538-4cd7-8bc8-d695c2d71432/CRM2016-Srs-KB4595462-ESN-Amd64.exe",
+        "checksum": "529E1A0562B1831A2117BC7F81C4B4C05E5ABED7",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update25Sve": {
+        "URL": "https://download.microsoft.com/download/9/4/7/947a53a2-f5f7-4151-8996-23af948b59ad/CRM2016-Srs-KB4595462-SVE-Amd64.exe",
+        "checksum": "22A440D802F81177497AE348DBF00A2594C31D11",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016ReportingExtensionsServicePack2Update25Trk": {
+        "URL": "https://download.microsoft.com/download/b/6/f/b6f3279c-2b66-4014-a741-5b666bf04cfe/CRM2016-Srs-KB4595462-TRK-Amd64.exe",
+        "checksum": "76304EC5875412211852C99942779DEA992AECC2",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016LanguagePackServicePack2Update25Sau": {
+        "URL": "https://download.microsoft.com/download/d/0/4/d0450d61-5d6a-4a5e-8658-b7dc15bb75fb/CRM2016-Mui-KB4595462-SAU-Amd64.exe",
+        "checksum": "8886414AD249C68D8AB445E48D8D9BEFCD44E98F",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016LanguagePackServicePack2Update25Eus": {
+        "URL": "https://download.microsoft.com/download/7/4/1/7416a954-0be4-47f3-9835-9785590740c3/CRM2016-Mui-KB4595462-EUS-Amd64.exe",
+        "checksum": "339F8117ED566FC23021F08A5AA59543BAF32131",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016LanguagePackServicePack2Update25Bgr": {
+        "URL": "https://download.microsoft.com/download/0/f/a/0fa41495-e3f2-4a21-b769-40e283cefa1c/CRM2016-Mui-KB4595462-BGR-Amd64.exe",
+        "checksum": "EF1B2AAD13D04F7D82FE622184DA4FE0E7A66D98",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016LanguagePackServicePack2Update25Cat": {
+        "URL": "https://download.microsoft.com/download/6/8/e/68ebbcc5-30bc-43b6-9e57-81082ab79c6b/CRM2016-Mui-KB4595462-CAT-Amd64.exe",
+        "checksum": "ED726D784FA292F6AEF69AD500CBAA6E8F2B04A5",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016LanguagePackServicePack2Update25Chk": {
+        "URL": "https://download.microsoft.com/download/d/a/b/dab5619d-906d-4ca0-a21b-7da356b969d8/CRM2016-Mui-KB4595462-CHK-Amd64.exe",
+        "checksum": "BD4EC34FDB4B4AA3CE6F3855CA8620018B0ABC12",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016LanguagePackServicePack2Update25Chs": {
+        "URL": "https://download.microsoft.com/download/8/2/8/828cebce-e23d-4e47-b579-4ae92cdf8762/CRM2016-Mui-KB4595462-CHS-Amd64.exe",
+        "checksum": "F116E9E13D285AF044C31E01C84C02FBFCB38D57",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016LanguagePackServicePack2Update25Cht": {
+        "URL": "https://download.microsoft.com/download/c/d/9/cd9282bc-7051-47f6-a09a-ae469af053f7/CRM2016-Mui-KB4595462-CHT-Amd64.exe",
+        "checksum": "16A785795B81CF3AFC6238119052B2EB891F02BF",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016LanguagePackServicePack2Update25Hrv": {
+        "URL": "https://download.microsoft.com/download/8/1/e/81ed538c-ee2f-4433-8628-4641bec6a50e/CRM2016-Mui-KB4595462-HRV-Amd64.exe",
+        "checksum": "A3032A9FA58F12C4315EC44E798BAC7798E34DD7",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016LanguagePackServicePack2Update25Csy": {
+        "URL": "https://download.microsoft.com/download/4/f/0/4f01e711-96c7-4b44-9812-b3ea93053041/CRM2016-Mui-KB4595462-CSY-Amd64.exe",
+        "checksum": "A4506F30E50EE7F15A19D5D6E2A5F75D45B8F8A6",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016LanguagePackServicePack2Update25Dan": {
+        "URL": "https://download.microsoft.com/download/e/e/4/ee4feecb-d0df-429f-8391-0dd30179f5ba/CRM2016-Mui-KB4595462-DAN-Amd64.exe",
+        "checksum": "B529EC4460AA0A81EEBBBF6E754647278D49330B",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016LanguagePackServicePack2Update25Nld": {
+        "URL": "https://download.microsoft.com/download/2/6/a/26ab2b77-15e4-4240-b697-5360570dd7e1/CRM2016-Mui-KB4595462-NLD-Amd64.exe",
+        "checksum": "BEF3B74B515D00731B19B3A585F5C4FC7B077003",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016LanguagePackServicePack2Update25Enu": {
+        "URL": "https://download.microsoft.com/download/1/c/f/1cf15f60-a7b8-42d8-a515-0c63a776f95d/CRM2016-Mui-KB4595462-ENU-Amd64.exe",
+        "checksum": "EA2467EF5139E0FD9B89BD6993083500097EF0AC",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016LanguagePackServicePack2Update25Eti": {
+        "URL": "https://download.microsoft.com/download/8/7/a/87a9b5af-7408-4906-8586-1d81f0186929/CRM2016-Mui-KB4595462-ETI-Amd64.exe",
+        "checksum": "F9890BEFB3C7343D96DD222AB170B25FEA99836D",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016LanguagePackServicePack2Update25Fin": {
+        "URL": "https://download.microsoft.com/download/5/4/3/54300bed-1c5b-4b71-8368-915d7df3b733/CRM2016-Mui-KB4595462-FIN-Amd64.exe",
+        "checksum": "AE341AC4068D96508DC83A8E036D0CDBBE772D26",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016LanguagePackServicePack2Update25Fra": {
+        "URL": "https://download.microsoft.com/download/4/1/5/41512c88-d9f0-4a89-a87c-46661d137730/CRM2016-Mui-KB4595462-FRA-Amd64.exe",
+        "checksum": "02A58DE7B15346B65CA4CB73A296C10DEF149B97",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016LanguagePackServicePack2Update25Glc": {
+        "URL": "https://download.microsoft.com/download/1/9/1/191f75ba-825e-4c88-801c-5c71b58a1719/CRM2016-Mui-KB4595462-GLC-Amd64.exe",
+        "checksum": "F0EB8A086A0E31DB9B805D09368B197BD6690DF9",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016LanguagePackServicePack2Update25Deu": {
+        "URL": "https://download.microsoft.com/download/5/6/2/56279d3f-1218-4d30-872b-0486ee700140/CRM2016-Mui-KB4595462-DEU-Amd64.exe",
+        "checksum": "A4B9BF41B340A3F1B4B3349B5F286822B28D9B89",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016LanguagePackServicePack2Update25Ell": {
+        "URL": "https://download.microsoft.com/download/2/7/2/2729e7b8-be43-4b19-9573-0b66077ed135/CRM2016-Mui-KB4595462-ELL-Amd64.exe",
+        "checksum": "CD2329EE88834D4D91DAEA86B4313754181BC546",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016LanguagePackServicePack2Update25Heb": {
+        "URL": "https://download.microsoft.com/download/8/0/2/8022c498-a5e7-48f3-b57c-a4a6f2440f3c/CRM2016-Mui-KB4595462-HEB-Amd64.exe",
+        "checksum": "2F17D6BC861C04473B04862966E2B7DD4C7AA946",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016LanguagePackServicePack2Update25Hin": {
+        "URL": "https://download.microsoft.com/download/f/c/b/fcb74e58-5251-444a-b6d4-58d32ce0fede/CRM2016-Mui-KB4595462-HIN-Amd64.exe",
+        "checksum": "CDA02E78B76ADD0A54993F6ED2602F399237233F",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016LanguagePackServicePack2Update25Hun": {
+        "URL": "https://download.microsoft.com/download/6/7/8/67806322-7aad-4ce7-a039-2022bc51bf21/CRM2016-Mui-KB4595462-HUN-Amd64.exe",
+        "checksum": "600769AB9932FDBB6C9EC372A7D0DA4B83976B19",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016LanguagePackServicePack2Update25Ind": {
+        "URL": "https://download.microsoft.com/download/d/9/a/d9ad5380-1753-4ded-824d-a643a39d11e4/CRM2016-Mui-KB4595462-IND-Amd64.exe",
+        "checksum": "8F074AECA5A351E03A0E36C27C97ADA56943A23C",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016LanguagePackServicePack2Update25Ita": {
+        "URL": "https://download.microsoft.com/download/8/b/8/8b8864ed-b025-446d-92d7-4315e6b65079/CRM2016-Mui-KB4595462-ITA-Amd64.exe",
+        "checksum": "6BEDE8ABEEBF2DFC093415C02E3C62B0CE5FE60E",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016LanguagePackServicePack2Update25Jpn": {
+        "URL": "https://download.microsoft.com/download/8/1/9/819b05b1-7d43-47fc-9b91-e66ceec3a1c8/CRM2016-Mui-KB4595462-JPN-Amd64.exe",
+        "checksum": "1A9AE31497F6F059C2629E4AA1973953E5C544B5",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016LanguagePackServicePack2Update25Kkz": {
+        "URL": "https://download.microsoft.com/download/0/4/6/0460fa10-1f51-4719-b0df-1ac9ebef8a7e/CRM2016-Mui-KB4595462-KKZ-Amd64.exe",
+        "checksum": "89C361EDF48E0AD16AC3DB9A6343A6CCB8802F9B",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016LanguagePackServicePack2Update25Kor": {
+        "URL": "https://download.microsoft.com/download/b/2/e/b2efa91d-14f9-4e70-bd36-589d2a55d5ec/CRM2016-Mui-KB4595462-KOR-Amd64.exe",
+        "checksum": "7203017D9FE81A0192FD028474C506C69C4E039E",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016LanguagePackServicePack2Update25Lvi": {
+        "URL": "https://download.microsoft.com/download/1/5/4/1549f8a1-82b2-49bb-811c-a101996e9351/CRM2016-Mui-KB4595462-LVI-Amd64.exe",
+        "checksum": "4AEC9D4D69FB8846C480FCEF25102548E8D82167",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016LanguagePackServicePack2Update25Lth": {
+        "URL": "https://download.microsoft.com/download/5/1/3/513ced83-1dbc-4356-812b-9363e6cebc28/CRM2016-Mui-KB4595462-LTH-Amd64.exe",
+        "checksum": "7371ED54E84DDA7119F141E41AB7A5A604E55D5D",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016LanguagePackServicePack2Update25Msl": {
+        "URL": "https://download.microsoft.com/download/a/e/c/aecbca54-7079-41df-8c16-e48293490349/CRM2016-Mui-KB4595462-MSL-Amd64.exe",
+        "checksum": "A41C427B26DB0E7FCFB9486864A9B19165BEB238",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016LanguagePackServicePack2Update25Nor": {
+        "URL": "https://download.microsoft.com/download/f/b/f/fbfedd72-3723-449b-96e1-049b2d691002/CRM2016-Mui-KB4595462-NOR-Amd64.exe",
+        "checksum": "EF46F0D37B9D13BD0C05BF9222ADCC61FA771090",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016LanguagePackServicePack2Update25Plk": {
+        "URL": "https://download.microsoft.com/download/0/2/9/029a6722-b5d9-4777-8f12-67b96a797d63/CRM2016-Mui-KB4595462-PLK-Amd64.exe",
+        "checksum": "1EB5E33B81F1A58246C6AAAA20BF14F0A85E662A",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016LanguagePackServicePack2Update25Ptb": {
+        "URL": "https://download.microsoft.com/download/c/6/3/c6309893-0a33-467c-895c-863ab86b4954/CRM2016-Mui-KB4595462-PTB-Amd64.exe",
+        "checksum": "0703E58E8606C44ECEF3885DAE325B482AFF9F34",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016LanguagePackServicePack2Update25Ptg": {
+        "URL": "https://download.microsoft.com/download/2/d/b/2db8204a-0b90-427a-8b2a-a56f6cd75364/CRM2016-Mui-KB4595462-PTG-Amd64.exe",
+        "checksum": "17B0B1325AAF5C4897899AEC5E00BB5561652942",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016LanguagePackServicePack2Update25Rom": {
+        "URL": "https://download.microsoft.com/download/8/b/f/8bfaf082-20e0-44c0-a15d-e43aafd2823d/CRM2016-Mui-KB4595462-ROM-Amd64.exe",
+        "checksum": "B6CF1357B8D13303D2128BEABDF63C902F3D67D3",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016LanguagePackServicePack2Update25Rus": {
+        "URL": "https://download.microsoft.com/download/d/9/b/d9b2c379-b681-47d3-9319-d53dd5c543e0/CRM2016-Mui-KB4595462-RUS-Amd64.exe",
+        "checksum": "5CAFB0C9A32DCA5BE3B02C96C65B480D22D1C295",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016LanguagePackServicePack2Update25Srb": {
+        "URL": "https://download.microsoft.com/download/1/3/9/13975be2-827e-4558-96ad-f9b7b01e6ddb/CRM2016-Mui-KB4595462-SRB-Amd64.exe",
+        "checksum": "3DDF26D1CB12A6539406E8B41DCCF2B1659D0B4F",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016LanguagePackServicePack2Update25Srl": {
+        "URL": "https://download.microsoft.com/download/8/2/8/828bb526-2e68-4520-975b-fe32e81245a3/CRM2016-Mui-KB4595462-SRL-Amd64.exe",
+        "checksum": "14F836C9E6476383BBEDC87076A72BFBE42075CC",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016LanguagePackServicePack2Update25Sky": {
+        "URL": "https://download.microsoft.com/download/8/a/3/8a323cb2-1402-42dd-ac46-dec370e8940d/CRM2016-Mui-KB4595462-SKY-Amd64.exe",
+        "checksum": "ECA1336462B3A7113698E22F05AFEB709A1AA77F",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016LanguagePackServicePack2Update25Slv": {
+        "URL": "https://download.microsoft.com/download/0/9/1/09156441-3605-4454-876c-4580ca65340c/CRM2016-Mui-KB4595462-SLV-Amd64.exe",
+        "checksum": "183AA973B574E8DF729A2C693F4132C6F212E8EC",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016LanguagePackServicePack2Update25Esn": {
+        "URL": "https://download.microsoft.com/download/3/e/5/3e5ccb19-1538-4cd7-8bc8-d695c2d71432/CRM2016-Mui-KB4595462-ESN-Amd64.exe",
+        "checksum": "60ACBAAB027103CFA9A14B0ADE81F250195E7251",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016LanguagePackServicePack2Update25Sve": {
+        "URL": "https://download.microsoft.com/download/9/4/7/947a53a2-f5f7-4151-8996-23af948b59ad/CRM2016-Mui-KB4595462-SVE-Amd64.exe",
+        "checksum": "C2D53D8EE658CF86A0F3D88656793B2EC9630B86",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016LanguagePackServicePack2Update25Tha": {
+        "URL": "https://download.microsoft.com/download/3/0/9/30919ee9-3cfc-449f-a476-a61cae12b0a8/CRM2016-Mui-KB4595462-THA-Amd64.exe",
+        "checksum": "34F785A3974F654302AD24277EB5CE692A72655D",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016LanguagePackServicePack2Update25Trk": {
+        "URL": "https://download.microsoft.com/download/b/6/f/b6f3279c-2b66-4014-a741-5b666bf04cfe/CRM2016-Mui-KB4595462-TRK-Amd64.exe",
+        "checksum": "FDD9FC4C120D3C22A1501EEC2CCCF4FFF672CA1A",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016LanguagePackServicePack2Update25Ukr": {
+        "URL": "https://download.microsoft.com/download/d/5/2/d526a6fd-c45a-481c-872f-f410f192d572/CRM2016-Mui-KB4595462-UKR-Amd64.exe",
+        "checksum": "2211B6BEA8F31710EFC9FBB31B6F605D23F3D1C0",
+        "mediaFileVersion": "8.2.25.16"
+    },
+    "CRM2016LanguagePackServicePack2Update25Vit": {
+        "URL": "https://download.microsoft.com/download/5/d/0/5d0a2d05-57fb-4721-8460-69858224b4e7/CRM2016-Mui-KB4595462-VIT-Amd64.exe",
+        "checksum": "256C04A850ECD2FE78DC64DB75FC9721FB73A4A8",
+        "mediaFileVersion": "8.2.25.16"
     }
 }
