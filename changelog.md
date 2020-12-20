@@ -1,5 +1,11 @@
 # Dynamics365Configuration module change log
 
+## Not released
+
+* `Install-Dynamics365Update` command update fixes
+
+  * issue #42: no exception when installing the update that is already installed
+
 ## 2.3.0
 
 * New Dynamics 365 updates (290 new downloadables in total):
