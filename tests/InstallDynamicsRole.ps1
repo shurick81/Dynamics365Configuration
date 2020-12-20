@@ -77,7 +77,7 @@ try {
             -CreateWebSite `
             -WebSitePort 5555 `
             -WebSiteUrl https://$env:COMPUTERNAME.contoso.local `
-            -ReportingUrl http://$dbHostName/ReportServer_RSInstance01 `
+            -ReportingUrl http://$dbHostName/ReportServer_SSRS `
             -LogFilePullIntervalInSeconds 15 `
             -LogFilePullToOutput
     } -ArgumentList $dbHostName;
@@ -147,6 +147,19 @@ If ( $msCRMRegistryValues ) {
     Write-Host "Test OK";
 } else {
     Write-Host "HKLM:\SOFTWARE\Microsoft\MSCRM registry key is not found";
+    Exit 1;
+}
+
+try {
+    Invoke-Command "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+        Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
+        Install-Dynamics365Update -MediaDir C:\Install\Dynamics\Dynamics365Server90Update23Enu `
+            -LogFilePath c:\tmp\Dynamics365ServerUpdate9023InstallLog.txt `
+            -LogFilePullIntervalInSeconds 15 `
+            -LogFilePullToOutput
+    }
+} catch {
+    Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
 

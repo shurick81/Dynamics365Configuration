@@ -28,10 +28,14 @@ function Install-Dynamics365Update {
         Write-Output $errorMessage;
         Throw $errorMessage;
     }
-    if ( $fileVersion -le $installedVersion ) {
+    if ( $fileVersion -lt $installedVersion ) {
         $errorMessage = "Version of this update is lower than version of installed software";
         Write-Output $errorMessage;
         Throw $errorMessage;
+    }
+    if ( $fileVersion -eq $installedVersion ) {
+        Write-Output "This version is already installed";
+        return;
     }
     if([String]::IsNullOrEmpty($logFilePath) -eq $True) {
         $timeStamp = ( Get-Date -Format u ).Replace(" ","-").Replace(":","-");
