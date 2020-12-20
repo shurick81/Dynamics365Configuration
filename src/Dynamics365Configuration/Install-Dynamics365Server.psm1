@@ -574,9 +574,9 @@
                         if( (Test-Path $logFilePath) -eq $True) {
                             $errorLines = Get-Content $logFilePath | Select-String -Pattern "Error" -SimpleMatch;
                             if($null -ne $errorLines) {
-                                "Errors from install log: $logFilePath";
+                                Write-Output "Errors from install log: $logFilePath";
                                 foreach($errorLine in $errorLines) {
-                                    $errorLine;
+                                    Write-Output $errorLine;
                                 }
                             }
                         }

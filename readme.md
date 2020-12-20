@@ -238,7 +238,7 @@ Install-Dynamics365Prerequisite -Prerequisite SQLNCli2012SP4 -DynamicsPrerequisi
 
 ## Install-Dynamics365Server
 
-Installs Dynamics 365 Server with new or existing organization.
+Installs Dynamics 365 Server with new or existing configuration database.
 
 ### Syntax
 
