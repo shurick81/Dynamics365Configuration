@@ -2,9 +2,13 @@
 
 ## Not released
 
-* `Install-Dynamics365Update` command update fixes
+* `Install-Dynamics365Update` command fixes
 
   * issue #42: no exception when installing the update that is already installed
+
+* `Install-Dynamics365ReportingExtensionsUpdate` command fixes
+
+  * issue #43: not running RS extensions update if it already installed
 
 ## 2.3.0
 

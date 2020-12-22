@@ -13,38 +13,44 @@ function Install-Dynamics365ReportingExtensionsUpdate {
         $LogFilePullToOutput = $False
     )
     $setupFilePath = "$mediaDir\CrmUpdateWrapper.exe";
-    $fileVersion = ( Get-Command $setupFilePath ).FileVersionInfo.FileVersionRaw;
-    $fileVersionFull = "$($fileVersion.Major).$($fileVersion.Minor).$($fileVersion.Build.ToString("0000")).$($fileVersion.Revision.ToString("0000"))";
-    Write-Output "$(Get-Date) Version of software to be installed: $fileVersionFull";
+    $fileVersion = [version]( Get-Command $setupFilePath ).FileVersionInfo.FileVersion;
+    Write-Output "Version of software to be installed: $($fileVersion.ToString())";
+    $msCRMRegistryValues = Get-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\MSCRM -Name CRM_SrsDataConnector_Serviceability_Version -ErrorAction Ignore;
+    if ( !$msCRMRegistryValues ) {
+        $errorMessage = "Dynamics 365 Server for Customer Engagement Reporting Extensions are not installed on this machine";
+        Write-Output $errorMessage;
+        Throw $errorMessage;
+    }
+    $installedVersion = Get-Dynamics365ReportingExtensionsVersion;
+    Write-Output "Currently installed: $($installedVersion.ToString())";
+    if ( $fileVersion.Major -ne $installedVersion.Major ) {
+        $errorMessage = "Major version of this update does not correspond to major version of installed software";
+        Write-Output $errorMessage;
+        Throw $errorMessage;
+    }
+    if ( $fileVersion -lt $installedVersion ) {
+        $errorMessage = "Version of this update is lower than version of installed software";
+        Write-Output $errorMessage;
+        Throw $errorMessage;
+    }
+    if ( $fileVersion -eq $installedVersion ) {
+        Write-Output "This version is already installed";
+        return;
+    }
+    if ([String]::IsNullOrEmpty($logFilePath) -eq $True) {
+        $timeStamp = ( Get-Date -Format u ).Replace(" ", "-").Replace(":", "-");
+        $logFilePath = "$env:Temp\DynamicsReportingExtensionsUpdateInstallationLog_$timeStamp.txt";
+    }
+
+    Write-Output "$(Get-Date) Version of software to be installed: $fileVersion";
 
     Write-Output "Checking the msp file name"
     $reportingExtensionsUpdateMspFile = Get-Item "$mediaDir\Srs_KB???????_amd64_????.msp";
     if ( $reportingExtensionsUpdateMspFile ) {
         Write-Output "The update seems to correspond to Reporting Extensions";
-        Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | ForEach-Object {
-            $pSChildName = $_.PSChildName;
-            $Dynamics365Resources | Get-Member -MemberType NoteProperty | Where-Object { ( $_.Name -like "Dynamics365Server90RTM*" ) -or ( $_.Name -like "CRM2016RTM*" ) } | ForEach-Object {
-                if ( "{$( $Dynamics365Resources.( $_.Name ).reportingExtensionsIdentifyingNumber )}" -eq $pSChildName ) {
-                    $baseResource = $_.Name;
-                    $languageCode = $Dynamics365Resources.$baseResource.LanguageCode;
-                    Write-Output "Found corresponding base resource in the catalog: $baseResource";
-                    if ( $reportingExtensionsUpdateMspFile.BaseName.Substring(20,4) -ne $languageCode ) {
-                        $errorMessage = "Language of the update does not correspond to the language of the installed base product";
-                        Write-Output $errorMessage;
-                        Throw $errorMessage;
-                    }
-                    $currentProductInstalled = Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
-                    Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-                    if ( $currentProductInstalled.DisplayVersion -gt $fileVersionFull ) {
-                        $errorMessage = "Installed version of the product is higher than the version of the file resource specified";
-                        Write-Output $errorMessage;
-                        Throw $errorMessage;
-                    }
-                }
-            }
-        }
-        if ( !$baseResource ) {
-            $errorMessage = "Base product for this update is not installed";
+        $installedLanguageCode = ( Get-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\MSCRM -Name CRM_SrsDataConnector_LanguageID ).CRM_SrsDataConnector_LanguageID;
+        if ( $reportingExtensionsUpdateMspFile.BaseName.Substring(20,4) -ne $installedLanguageCode ) {
+            $errorMessage = "Language of the update does not correspond to the language of the installed base product";
             Write-Output $errorMessage;
             Throw $errorMessage;
         }
@@ -93,15 +99,11 @@ function Install-Dynamics365ReportingExtensionsUpdate {
             Write-Output ( Receive-Job $job );
             Remove-Job $job;
         }
-        if ([String]::IsNullOrEmpty($logFilePath) -eq $True) {
-            $timeStamp = ( Get-Date -Format u ).Replace(" ", "-").Replace(":", "-");
-            $logFilePath = "$env:Temp\DynamicsReportingExtensionsUpdateInstallationLog_$timeStamp.txt";
-        }
         Invoke-Command -ScriptBlock $localInstallationScriptBlock `
             -ArgumentList $setupFilePath, $logFilePath, $logFilePullIntervalInSeconds, $logFilePullToOutput;
-        $currentProductInstalled = Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
-        Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-        if ( $currentProductInstalled.DisplayVersion -ne $fileVersionFull ) {
+        $installedVersion = Get-Dynamics365ReportingExtensionsVersion;
+        Write-Output "The following version of the product is currently installed: $installedVersion"
+        if ( $installedVersion -ne $fileVersion ) {
             $errorMessage = "Installed version of the product is not the same as the version of the file resource specified";
             Write-Output $errorMessage;
             Throw $errorMessage;

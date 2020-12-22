@@ -550,18 +550,13 @@ try {
             -LogFilePullToOutput
     } -ArgumentList $mediaDir;
 } catch {
-    Write-Host "Failed in invoking of Install-Dynamics365Update";
+    Write-Host "Failed in invoking of Install-Dynamics365ReportingExtensionsUpdate";
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
-    Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
-}
-Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.0.1" ) {
-    Write-Host "Test OK";
-} else {
-    Write-Host "Expected update is not installed, test is not OK";
+$installedVersion = Get-Dynamics365ReportingServicesVersion;
+if ( $installedVersion.ToString(3) -ne "8.0.1" ) {
+    Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
 }
 
@@ -631,18 +626,13 @@ try {
             -LogFilePullToOutput
     } -ArgumentList $mediaDir;
 } catch {
-    Write-Host "Failed in invoking of Install-Dynamics365Update";
+    Write-Host "Failed in invoking of Install-Dynamics365ReportingExtensionsUpdate";
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
-    Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
-}
-Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.1.0" ) {
-    Write-Host "Test OK";
-} else {
-    Write-Host "Expected update is not installed, test is not OK";
+$installedVersion = Get-Dynamics365ReportingServicesVersion;
+if ( $installedVersion.ToString(3) -ne "8.1.0" ) {
+    Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
 }
 
@@ -712,18 +702,13 @@ try {
             -LogFilePullToOutput
     } -ArgumentList $mediaDir;
 } catch {
-    Write-Host "Failed in invoking of Install-Dynamics365Update";
+    Write-Host "Failed in invoking of Install-Dynamics365ReportingExtensionsUpdate";
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
-    Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
-}
-Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.1.1" ) {
-    Write-Host "Test OK";
-} else {
-    Write-Host "Expected update is not installed, test is not OK";
+$installedVersion = Get-Dynamics365ReportingServicesVersion;
+if ( $installedVersion.ToString(3) -ne "8.1.1" ) {
+    Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
 }
 
@@ -793,18 +778,13 @@ try {
             -LogFilePullToOutput
     } -ArgumentList $mediaDir;
 } catch {
-    Write-Host "Failed in invoking of Install-Dynamics365Update";
+    Write-Host "Failed in invoking of Install-Dynamics365ReportingExtensionsUpdate";
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
-    Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
-}
-Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.0" ) {
-    Write-Host "Test OK";
-} else {
-    Write-Host "Expected update is not installed, test is not OK";
+$installedVersion = Get-Dynamics365ReportingServicesVersion;
+if ( $installedVersion.ToString(3) -ne "8.2.0" ) {
+    Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
 }
 
@@ -874,18 +854,13 @@ try {
             -LogFilePullToOutput
     } -ArgumentList $mediaDir;
 } catch {
-    Write-Host "Failed in invoking of Install-Dynamics365Update";
+    Write-Host "Failed in invoking of Install-Dynamics365ReportingExtensionsUpdate";
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
-    Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
-}
-Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.1" ) {
-    Write-Host "Test OK";
-} else {
-    Write-Host "Expected update is not installed, test is not OK";
+$installedVersion = Get-Dynamics365ReportingServicesVersion;
+if ( $installedVersion.ToString(3) -ne "8.2.1" ) {
+    Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
 }
 
@@ -955,18 +930,13 @@ try {
             -LogFilePullToOutput
     } -ArgumentList $mediaDir;
 } catch {
-    Write-Host "Failed in invoking of Install-Dynamics365Update";
+    Write-Host "Failed in invoking of Install-Dynamics365ReportingExtensionsUpdate";
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
-    Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
-}
-Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.2" ) {
-    Write-Host "Test OK";
-} else {
-    Write-Host "Expected update is not installed, test is not OK";
+$installedVersion = Get-Dynamics365ReportingServicesVersion;
+if ( $installedVersion.ToString(3) -ne "8.2.2" ) {
+    Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
 }
 
@@ -1036,18 +1006,13 @@ try {
             -LogFilePullToOutput
     } -ArgumentList $mediaDir;
 } catch {
-    Write-Host "Failed in invoking of Install-Dynamics365Update";
+    Write-Host "Failed in invoking of Install-Dynamics365ReportingExtensionsUpdate";
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
-    Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
-}
-Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.3" ) {
-    Write-Host "Test OK";
-} else {
-    Write-Host "Expected update is not installed, test is not OK";
+$installedVersion = Get-Dynamics365ReportingServicesVersion;
+if ( $installedVersion.ToString(3) -ne "8.2.3" ) {
+    Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
 }
 
@@ -1117,18 +1082,13 @@ try {
             -LogFilePullToOutput
     } -ArgumentList $mediaDir;
 } catch {
-    Write-Host "Failed in invoking of Install-Dynamics365Update";
+    Write-Host "Failed in invoking of Install-Dynamics365ReportingExtensionsUpdate";
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
-    Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
-}
-Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.4" ) {
-    Write-Host "Test OK";
-} else {
-    Write-Host "Expected update is not installed, test is not OK";
+$installedVersion = Get-Dynamics365ReportingServicesVersion;
+if ( $installedVersion.ToString(3) -ne "8.2.4" ) {
+    Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
 }
 
@@ -1198,18 +1158,13 @@ try {
             -LogFilePullToOutput
     } -ArgumentList $mediaDir;
 } catch {
-    Write-Host "Failed in invoking of Install-Dynamics365Update";
+    Write-Host "Failed in invoking of Install-Dynamics365ReportingExtensionsUpdate";
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
-    Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
-}
-Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.5" ) {
-    Write-Host "Test OK";
-} else {
-    Write-Host "Expected update is not installed, test is not OK";
+$installedVersion = Get-Dynamics365ReportingServicesVersion;
+if ( $installedVersion.ToString(3) -ne "8.2.5" ) {
+    Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
 }
 
@@ -1279,18 +1234,13 @@ try {
             -LogFilePullToOutput
     } -ArgumentList $mediaDir;
 } catch {
-    Write-Host "Failed in invoking of Install-Dynamics365Update";
+    Write-Host "Failed in invoking of Install-Dynamics365ReportingExtensionsUpdate";
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
-    Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
-}
-Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.6" ) {
-    Write-Host "Test OK";
-} else {
-    Write-Host "Expected update is not installed, test is not OK";
+$installedVersion = Get-Dynamics365ReportingServicesVersion;
+if ( $installedVersion.ToString(3) -ne "8.2.6" ) {
+    Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
 }
 
@@ -1360,18 +1310,13 @@ try {
             -LogFilePullToOutput
     } -ArgumentList $mediaDir;
 } catch {
-    Write-Host "Failed in invoking of Install-Dynamics365Update";
+    Write-Host "Failed in invoking of Install-Dynamics365ReportingExtensionsUpdate";
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
-    Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
-}
-Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.7" ) {
-    Write-Host "Test OK";
-} else {
-    Write-Host "Expected update is not installed, test is not OK";
+$installedVersion = Get-Dynamics365ReportingServicesVersion;
+if ( $installedVersion.ToString(3) -ne "8.2.7" ) {
+    Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
 }
 
@@ -1441,18 +1386,13 @@ try {
             -LogFilePullToOutput
     } -ArgumentList $mediaDir;
 } catch {
-    Write-Host "Failed in invoking of Install-Dynamics365Update";
+    Write-Host "Failed in invoking of Install-Dynamics365ReportingExtensionsUpdate";
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
-    Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
-}
-Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.8" ) {
-    Write-Host "Test OK";
-} else {
-    Write-Host "Expected update is not installed, test is not OK";
+$installedVersion = Get-Dynamics365ReportingServicesVersion;
+if ( $installedVersion.ToString(3) -ne "8.2.8" ) {
+    Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
 }
 
@@ -1522,18 +1462,13 @@ try {
             -LogFilePullToOutput
     } -ArgumentList $mediaDir;
 } catch {
-    Write-Host "Failed in invoking of Install-Dynamics365Update";
+    Write-Host "Failed in invoking of Install-Dynamics365ReportingExtensionsUpdate";
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
-    Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
-}
-Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.9" ) {
-    Write-Host "Test OK";
-} else {
-    Write-Host "Expected update is not installed, test is not OK";
+$installedVersion = Get-Dynamics365ReportingServicesVersion;
+if ( $installedVersion.ToString(3) -ne "8.2.9" ) {
+    Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
 }
 
@@ -1603,18 +1538,13 @@ try {
             -LogFilePullToOutput
     } -ArgumentList $mediaDir;
 } catch {
-    Write-Host "Failed in invoking of Install-Dynamics365Update";
+    Write-Host "Failed in invoking of Install-Dynamics365ReportingExtensionsUpdate";
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
-    Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
-}
-Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.10" ) {
-    Write-Host "Test OK";
-} else {
-    Write-Host "Expected update is not installed, test is not OK";
+$installedVersion = Get-Dynamics365ReportingServicesVersion;
+if ( $installedVersion.ToString(3) -ne "8.2.10" ) {
+    Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
 }
 
@@ -1684,18 +1614,13 @@ try {
             -LogFilePullToOutput
     } -ArgumentList $mediaDir;
 } catch {
-    Write-Host "Failed in invoking of Install-Dynamics365Update";
+    Write-Host "Failed in invoking of Install-Dynamics365ReportingExtensionsUpdate";
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
-    Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
-}
-Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.11" ) {
-    Write-Host "Test OK";
-} else {
-    Write-Host "Expected update is not installed, test is not OK";
+$installedVersion = Get-Dynamics365ReportingServicesVersion;
+if ( $installedVersion.ToString(3) -ne "8.2.11" ) {
+    Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
 }
 
@@ -1765,18 +1690,13 @@ try {
             -LogFilePullToOutput
     } -ArgumentList $mediaDir;
 } catch {
-    Write-Host "Failed in invoking of Install-Dynamics365Update";
+    Write-Host "Failed in invoking of Install-Dynamics365ReportingExtensionsUpdate";
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
-    Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
-}
-Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.12" ) {
-    Write-Host "Test OK";
-} else {
-    Write-Host "Expected update is not installed, test is not OK";
+$installedVersion = Get-Dynamics365ReportingServicesVersion;
+if ( $installedVersion.ToString(3) -ne "8.2.12" ) {
+    Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
 }
 
@@ -1846,18 +1766,13 @@ try {
             -LogFilePullToOutput
     } -ArgumentList $mediaDir;
 } catch {
-    Write-Host "Failed in invoking of Install-Dynamics365Update";
+    Write-Host "Failed in invoking of Install-Dynamics365ReportingExtensionsUpdate";
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
-    Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
-}
-Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.13" ) {
-    Write-Host "Test OK";
-} else {
-    Write-Host "Expected update is not installed, test is not OK";
+$installedVersion = Get-Dynamics365ReportingServicesVersion;
+if ( $installedVersion.ToString(3) -ne "8.2.13" ) {
+    Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
 }
 
@@ -1927,18 +1842,13 @@ try {
             -LogFilePullToOutput
     } -ArgumentList $mediaDir;
 } catch {
-    Write-Host "Failed in invoking of Install-Dynamics365Update";
+    Write-Host "Failed in invoking of Install-Dynamics365ReportingExtensionsUpdate";
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
-    Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
-}
-Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.14" ) {
-    Write-Host "Test OK";
-} else {
-    Write-Host "Expected update is not installed, test is not OK";
+$installedVersion = Get-Dynamics365ReportingServicesVersion;
+if ( $installedVersion.ToString(3) -ne "8.2.14" ) {
+    Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
 }
 
@@ -2008,18 +1918,13 @@ try {
             -LogFilePullToOutput
     } -ArgumentList $mediaDir;
 } catch {
-    Write-Host "Failed in invoking of Install-Dynamics365Update";
+    Write-Host "Failed in invoking of Install-Dynamics365ReportingExtensionsUpdate";
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
-    Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
-}
-Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.15" ) {
-    Write-Host "Test OK";
-} else {
-    Write-Host "Expected update is not installed, test is not OK";
+$installedVersion = Get-Dynamics365ReportingServicesVersion;
+if ( $installedVersion.ToString(3) -ne "8.2.15" ) {
+    Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
 }
 
@@ -2089,18 +1994,13 @@ try {
             -LogFilePullToOutput
     } -ArgumentList $mediaDir;
 } catch {
-    Write-Host "Failed in invoking of Install-Dynamics365Update";
+    Write-Host "Failed in invoking of Install-Dynamics365ReportingExtensionsUpdate";
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
-    Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
-}
-Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.16" ) {
-    Write-Host "Test OK";
-} else {
-    Write-Host "Expected update is not installed, test is not OK";
+$installedVersion = Get-Dynamics365ReportingServicesVersion;
+if ( $installedVersion.ToString(3) -ne "8.2.16" ) {
+    Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
 }
 
@@ -2170,18 +2070,13 @@ try {
             -LogFilePullToOutput
     } -ArgumentList $mediaDir;
 } catch {
-    Write-Host "Failed in invoking of Install-Dynamics365Update";
+    Write-Host "Failed in invoking of Install-Dynamics365ReportingExtensionsUpdate";
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
-    Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
-}
-Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.17" ) {
-    Write-Host "Test OK";
-} else {
-    Write-Host "Expected update is not installed, test is not OK";
+$installedVersion = Get-Dynamics365ReportingServicesVersion;
+if ( $installedVersion.ToString(3) -ne "8.2.17" ) {
+    Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
 }
 
@@ -2251,18 +2146,13 @@ try {
             -LogFilePullToOutput
     } -ArgumentList $mediaDir;
 } catch {
-    Write-Host "Failed in invoking of Install-Dynamics365Update";
+    Write-Host "Failed in invoking of Install-Dynamics365ReportingExtensionsUpdate";
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
-    Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
-}
-Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.18" ) {
-    Write-Host "Test OK";
-} else {
-    Write-Host "Expected update is not installed, test is not OK";
+$installedVersion = Get-Dynamics365ReportingServicesVersion;
+if ( $installedVersion.ToString(3) -ne "8.2.18" ) {
+    Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
 }
 
@@ -2332,18 +2222,13 @@ try {
             -LogFilePullToOutput
     } -ArgumentList $mediaDir;
 } catch {
-    Write-Host "Failed in invoking of Install-Dynamics365Update";
+    Write-Host "Failed in invoking of Install-Dynamics365ReportingExtensionsUpdate";
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
-    Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
-}
-Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.19" ) {
-    Write-Host "Test OK";
-} else {
-    Write-Host "Expected update is not installed, test is not OK";
+$installedVersion = Get-Dynamics365ReportingServicesVersion;
+if ( $installedVersion.ToString(3) -ne "8.2.19" ) {
+    Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
 }
 
@@ -2413,18 +2298,13 @@ try {
             -LogFilePullToOutput
     } -ArgumentList $mediaDir;
 } catch {
-    Write-Host "Failed in invoking of Install-Dynamics365Update";
+    Write-Host "Failed in invoking of Install-Dynamics365ReportingExtensionsUpdate";
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
-    Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
-}
-Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.21" ) {
-    Write-Host "Test OK";
-} else {
-    Write-Host "Expected update is not installed, test is not OK";
+$installedVersion = Get-Dynamics365ReportingServicesVersion;
+if ( $installedVersion.ToString(3) -ne "8.2.21" ) {
+    Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
 }
 
@@ -2494,18 +2374,13 @@ try {
             -LogFilePullToOutput
     } -ArgumentList $mediaDir;
 } catch {
-    Write-Host "Failed in invoking of Install-Dynamics365Update";
+    Write-Host "Failed in invoking of Install-Dynamics365ReportingExtensionsUpdate";
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
-    Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
-}
-Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.22" ) {
-    Write-Host "Test OK";
-} else {
-    Write-Host "Expected update is not installed, test is not OK";
+$installedVersion = Get-Dynamics365ReportingServicesVersion;
+if ( $installedVersion.ToString(3) -ne "8.2.22" ) {
+    Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
 }
 
@@ -2575,18 +2450,13 @@ try {
             -LogFilePullToOutput
     } -ArgumentList $mediaDir;
 } catch {
-    Write-Host "Failed in invoking of Install-Dynamics365Update";
+    Write-Host "Failed in invoking of Install-Dynamics365ReportingExtensionsUpdate";
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
-    Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
-}
-Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.23" ) {
-    Write-Host "Test OK";
-} else {
-    Write-Host "Expected update is not installed, test is not OK";
+$installedVersion = Get-Dynamics365ReportingServicesVersion;
+if ( $installedVersion.ToString(3) -ne "8.2.23" ) {
+    Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
 }
 
@@ -2656,18 +2526,13 @@ try {
             -LogFilePullToOutput
     } -ArgumentList $mediaDir;
 } catch {
-    Write-Host "Failed in invoking of Install-Dynamics365Update";
+    Write-Host "Failed in invoking of Install-Dynamics365ReportingExtensionsUpdate";
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
-    Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
-}
-Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.24" ) {
-    Write-Host "Test OK";
-} else {
-    Write-Host "Expected update is not installed, test is not OK";
+$installedVersion = Get-Dynamics365ReportingServicesVersion;
+if ( $installedVersion.ToString(3) -ne "8.2.24" ) {
+    Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
 }
 
@@ -2737,18 +2602,13 @@ try {
             -LogFilePullToOutput
     } -ArgumentList $mediaDir;
 } catch {
-    Write-Host "Failed in invoking of Install-Dynamics365Update";
+    Write-Host "Failed in invoking of Install-Dynamics365ReportingExtensionsUpdate";
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
-    Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
-}
-Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "8.2.25" ) {
-    Write-Host "Test OK";
-} else {
-    Write-Host "Expected update is not installed, test is not OK";
+$installedVersion = Get-Dynamics365ReportingServicesVersion;
+if ( $installedVersion.ToString(3) -ne "8.2.25" ) {
+    Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
 }
 

@@ -237,14 +237,9 @@ try {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$currentProductInstalled = Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
-    Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "MSCRM SRS Data Connector" }
-}
-Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "9.0.23" ) {
-    Write-Host "Test OK";
-} else {
-    Write-Host "Expected update is not installed, test is not OK";
+$installedVersion = Get-Dynamics365ReportingServicesVersion;
+if ( $installedVersion.ToString(3) -ne "9.0.23" ) {
+    Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
 }
 

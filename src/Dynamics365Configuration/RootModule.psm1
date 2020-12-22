@@ -2,6 +2,7 @@ Import-Module $PSScriptRoot\Dynamics365Resources.psm1
 Import-Module $PSScriptRoot\Expand-Dynamics365Resource.psm1
 Import-Module $PSScriptRoot\Save-Dynamics365Resource.psm1 -DisableNameChecking
 Import-Module $PSScriptRoot\Get-Dynamics365ServerVersion.psm1
+Import-Module $PSScriptRoot\Get-Dynamics365ReportingExtensionsVersion.psm1
 Import-Module $PSScriptRoot\Get-Dynamics365ServerRole.psm1
 Import-Module $PSScriptRoot\Get-Dynamics365ServerLanguage.psm1
 Import-Module $PSScriptRoot\Install-Dynamics365Prerequisite.psm1
@@ -16,6 +17,7 @@ Export-ModuleMember -Variable Dynamics365Resources
 Export-ModuleMember -Function Expand-Dynamics365Resource
 Export-ModuleMember -Function Save-Dynamics365Resource
 Export-ModuleMember -Function Get-Dynamics365ServerVersion
+Export-ModuleMember -Function Get-Dynamics365ReportingExtensionsVersion
 Export-ModuleMember -Function Get-Dynamics365ServerRole
 Export-ModuleMember -Function Get-Dynamics365ServerLanguage
 Export-ModuleMember -Function Install-Dynamics365Prerequisite

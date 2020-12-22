@@ -74,6 +74,7 @@ FunctionsToExport = @(
     'Expand-Dynamics365Resource',
     'Save-Dynamics365Resource',
     'Get-Dynamics365ServerVersion',
+    'Get-Dynamics365ReportingExtensionsVersion',
     'Get-Dynamics365ServerRole',
     'Get-Dynamics365ServerLanguage',
     'Install-Dynamics365Prerequisite',
