@@ -39,7 +39,7 @@ function Install-Dynamics365ReportingExtensionsUpdate {
     }
     if ([String]::IsNullOrEmpty($logFilePath) -eq $True) {
         $timeStamp = ( Get-Date -Format u ).Replace(" ", "-").Replace(":", "-");
-        $logFilePath = "$env:Temp\DynamicsReportingExtensionsUpdateInstallationLog_$timeStamp.txt";
+        $logFilePath = "$env:APPDATA\Microsoft\MSCRM\Logs\DynamicsReportingExtensionsUpdateInstallationLog_$timeStamp.txt";
     }
 
     Write-Output "$(Get-Date) Version of software to be installed: $fileVersion";

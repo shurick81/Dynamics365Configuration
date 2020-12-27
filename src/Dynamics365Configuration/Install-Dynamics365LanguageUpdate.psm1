@@ -55,7 +55,7 @@ function Install-Dynamics365LanguageUpdate {
     }
     if ([String]::IsNullOrEmpty($logFilePath) -eq $True) {
         $timeStamp = ( Get-Date -Format u ).Replace(" ", "-").Replace(":", "-");
-        $logFilePath = "$env:Temp\DynamicsLanguagePackUpdateInstallationLog_$timeStamp.txt";
+        $logFilePath = "$env:APPDATA\Microsoft\MSCRM\Logs\DynamicsLanguagePackUpdateInstallationLog_$timeStamp.txt";
     }
     Write-Output "$(Get-Date) Starting $setupFilePath";
     $installCrmScript = {

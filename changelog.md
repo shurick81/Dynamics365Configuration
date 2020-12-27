@@ -2,6 +2,8 @@
 
 ## Not released
 
+* Default log location is changed to `%AppData%\Microsoft\MSCRM\Logs` for  `Install-Dynamics365Server`, `Install-Dynamics365ReportingExtensions`, `Install-Dynamics365Update`, `Install-Dynamics365ReportingExtensionsUpdate` and `Install-Dynamics365LanguageUpdate` commands
+
 * `Install-Dynamics365Server` command fixes
 
   * issue with AutoGroupManagementOff not working if either of groups specified in parameters
