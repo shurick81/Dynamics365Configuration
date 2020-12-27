@@ -39,14 +39,14 @@ try
             $MonitoringServiceAccountCredential
         )
         Import-DscResource -ModuleName PSDesiredStateConfiguration
-        Import-DscResource -ModuleName xActiveDirectory -ModuleVersion 2.21.0.0
+        Import-DscResource -ModuleName ActiveDirectoryDsc -ModuleVersion 6.0.1
 
         $domainName = "contoso.local";
 
         Node $AllNodes.NodeName
         {
 
-            xADUser SqlRSAccountCredentialUser
+            ADUser SqlRSAccountCredentialUser
             {
                 DomainName              = $domainName
                 UserName                = $SqlRSAccountCredential.GetNetworkCredential().UserName
@@ -54,7 +54,7 @@ try
                 PasswordNeverExpires    = $true
             }
             
-            xADUser CRMInstallAccountUser
+            ADUser CRMInstallAccountUser
             {
                 DomainName              = $domainName
                 UserName                = $CRMInstallAccountCredential.GetNetworkCredential().UserName
@@ -62,7 +62,7 @@ try
                 PasswordNeverExpires    = $true
             }
             
-            xADUser CRMServiceAccountUser
+            ADUser CRMServiceAccountUser
             {
                 DomainName              = $domainName
                 UserName                = $CRMServiceAccountCredential.GetNetworkCredential().UserName
@@ -70,7 +70,7 @@ try
                 PasswordNeverExpires    = $true
             }
 
-            xADUser DeploymentServiceAccountUser
+            ADUser DeploymentServiceAccountUser
             {
                 DomainName              = $domainName
                 UserName                = $DeploymentServiceAccountCredential.GetNetworkCredential().UserName
@@ -78,7 +78,7 @@ try
                 PasswordNeverExpires    = $true
             }
 
-            xADUser SandboxServiceAccountUser
+            ADUser SandboxServiceAccountUser
             {
                 DomainName              = $domainName
                 UserName                = $SandboxServiceAccountCredential.GetNetworkCredential().UserName
@@ -86,7 +86,7 @@ try
                 PasswordNeverExpires    = $true
             }
 
-            xADUser VSSWriterServiceAccountUser
+            ADUser VSSWriterServiceAccountUser
             {
                 DomainName              = $domainName
                 UserName                = $VSSWriterServiceAccountCredential.GetNetworkCredential().UserName
@@ -94,7 +94,7 @@ try
                 PasswordNeverExpires    = $true
             }
 
-            xADUser AsyncServiceAccountUser
+            ADUser AsyncServiceAccountUser
             {
                 DomainName              = $domainName
                 UserName                = $AsyncServiceAccountCredential.GetNetworkCredential().UserName
@@ -102,7 +102,7 @@ try
                 PasswordNeverExpires    = $true
             }
 
-            xADUser MonitoringServiceAccountUser
+            ADUser MonitoringServiceAccountUser
             {
                 DomainName              = $domainName
                 UserName                = $MonitoringServiceAccountCredential.GetNetworkCredential().UserName
@@ -110,60 +110,270 @@ try
                 PasswordNeverExpires    = $true
             }
 
-            xADOrganizationalUnit CRMGroupsOU
+            ADGroup CRMAdminGroup
             {
-                Name    = "CRM groups"
-                Path    = "DC=contoso,DC=local"
-            }
-
-            xADGroup CRMPrivUserGroup
-            {
-                GroupName           = "CRM01PrivUserGroup"
-                MembersToInclude    = $CRMInstallAccountCredential.GetNetworkCredential().UserName, "vagrant"
-                GroupScope          = "Universal"
-                Path                = 'OU=CRM groups,DC=contoso,DC=local'
-                DependsOn           = "[xADUser]CRMInstallAccountUser"
+                GroupName           = "CRM Administrators 00"
+                MembersToInclude    = $CRMInstallAccountCredential.GetNetworkCredential().UserName
+                DependsOn           = "[ADUser]CRMInstallAccountUser"
             }
             
-            xADObjectPermissionEntry OUPermissions
+            #Organization unit with groups pre-provisioned
+            ADOrganizationalUnit CRMGroupsOU00
+            {
+                Name = "CRM groups 00"
+                Path = "DC=$($domainName.Replace( ".", ",DC=" ) )"
+            }
+
+            ADGroup CRMPrivUserGroup00
+            {
+                GroupName           = "CRM01PrivUserGroup00"
+                MembersToInclude    = $SqlRSAccountCredential.GetNetworkCredential().UserName, $AsyncServiceAccountCredential.GetNetworkCredential().UserName, $DeploymentServiceAccountCredential.GetNetworkCredential().UserName, $CRMServiceAccountCredential.GetNetworkCredential().UserName, $VSSWriterServiceAccountCredential.GetNetworkCredential().UserName
+                GroupScope          = "Universal"
+                Path                = "OU=CRM groups 00,DC=$($domainName.Replace( ".", ",DC=" ) )"
+                DependsOn           = "[ADOrganizationalUnit]CRMGroupsOU00", "[ADUser]SqlRSAccountCredentialUser", "[ADUser]AsyncServiceAccountUser", "[ADUser]DeploymentServiceAccountUser", "[ADUser]CRMServiceAccountUser", "[ADUser]VSSWriterServiceAccountUser"
+            }
+
+            ADObjectPermissionEntry CRMPrivUserGroupAccessers00
+            {
+                Ensure                             = 'Present'
+                Path                               = "CN=CRM01PrivUserGroup00,OU=CRM groups 00,DC=$($domainName.Replace( ".", ",DC=" ) )"
+                IdentityReference                  = $DeploymentServiceAccountCredential.UserName
+                ActiveDirectoryRights              = 'GenericAll'
+                AccessControlType                  = 'Allow'
+                ObjectType                         = '00000000-0000-0000-0000-000000000000'
+                ActiveDirectorySecurityInheritance = 'All'
+                InheritedObjectType                = '00000000-0000-0000-0000-000000000000'
+                DependsOn                          = "[ADGroup]CRMPrivUserGroup00", "[ADUser]DeploymentServiceAccountUser"
+            }
+
+            ADGroup CRMSQLAccessGroup00
+            {
+                GroupName           = "CRM01SQLAccessGroup00"
+                MembersToInclude    = $AsyncServiceAccountCredential.GetNetworkCredential().UserName, $DeploymentServiceAccountCredential.GetNetworkCredential().UserName, $MonitoringServiceAccountCredential.GetNetworkCredential().UserName, $CRMServiceAccountCredential.GetNetworkCredential().UserName, $VSSWriterServiceAccountCredential.GetNetworkCredential().UserName
+                GroupScope          = "Universal"
+                Path                = "OU=CRM groups 00,DC=$($domainName.Replace( ".", ",DC=" ) )"
+                DependsOn           = "[ADOrganizationalUnit]CRMGroupsOU00", "[ADUser]AsyncServiceAccountUser", "[ADUser]DeploymentServiceAccountUser", "[ADUser]MonitoringServiceAccountUser", "[ADUser]CRMServiceAccountUser", "[ADUser]VSSWriterServiceAccountUser"
+            }
+
+            ADObjectPermissionEntry CRMSQLAccessGroupAccessers00
+            {
+                Ensure                             = 'Present'
+                Path                               = "CN=CRM01SQLAccessGroup00,OU=CRM groups 00,DC=$($domainName.Replace( ".", ",DC=" ) )"
+                IdentityReference                  = $DeploymentServiceAccountCredential.UserName
+                ActiveDirectoryRights              = 'GenericAll'
+                AccessControlType                  = 'Allow'
+                ObjectType                         = '00000000-0000-0000-0000-000000000000'
+                ActiveDirectorySecurityInheritance = 'All'
+                InheritedObjectType                = '00000000-0000-0000-0000-000000000000'
+                DependsOn                          = "[ADGroup]CRMSQLAccessGroup00", "[ADUser]DeploymentServiceAccountUser"
+            }
+
+            ADGroup CRMUserGroup00
+            {
+                GroupName        = "CRM01UserGroup00"
+                Path             = "OU=CRM groups 00,DC=$($domainName.Replace( ".", ",DC=" ) )"
+                DependsOn        = "[ADOrganizationalUnit]CRMGroupsOU00"
+            }
+
+            ADObjectPermissionEntry CRMUserGroupAccessers00
+            {
+                Ensure                             = 'Present'
+                Path                               = "CN=CRM01UserGroup00,OU=CRM groups 00,DC=$($domainName.Replace( ".", ",DC=" ) )"
+                IdentityReference                  = $DeploymentServiceAccountCredential.UserName
+                ActiveDirectoryRights              = 'GenericAll'
+                AccessControlType                  = 'Allow'
+                ObjectType                         = '00000000-0000-0000-0000-000000000000'
+                ActiveDirectorySecurityInheritance = 'All'
+                InheritedObjectType                = '00000000-0000-0000-0000-000000000000'
+                DependsOn                          = "[ADGroup]CRMUserGroup00", "[ADUser]DeploymentServiceAccountUser"
+            }
+
+            ADGroup CRMReportingGroup00
+            {
+                GroupName           = "CRM01ReportingGroup00"
+                GroupScope          = "Universal"
+                MembersToInclude    = $CRMInstallAccountCredential.GetNetworkCredential().UserName
+                Path                = "OU=CRM groups 00,DC=$($domainName.Replace( ".", ",DC=" ) )"
+                DependsOn           = "[ADOrganizationalUnit]CRMGroupsOU00"
+            }
+
+            ADObjectPermissionEntry CRMReportingGroupAccessers00
+            {
+                Ensure                             = 'Present'
+                Path                               = "CN=CRM01ReportingGroup00,OU=CRM groups 00,DC=$($domainName.Replace( ".", ",DC=" ) )"
+                IdentityReference                  = $DeploymentServiceAccountCredential.UserName
+                ActiveDirectoryRights              = 'GenericAll'
+                AccessControlType                  = 'Allow'
+                ObjectType                         = '00000000-0000-0000-0000-000000000000'
+                ActiveDirectorySecurityInheritance = 'All'
+                InheritedObjectType                = '00000000-0000-0000-0000-000000000000'
+                DependsOn                          = "[ADGroup]CRMReportingGroup00", "[ADUser]DeploymentServiceAccountUser"
+            }
+
+            ADGroup CRMPrivReportingGroup00
+            {
+                GroupName           = "CRM01PrivReportingGroup00"
+                GroupScope          = "Universal"
+                MembersToInclude    = $SqlRSAccountCredential.GetNetworkCredential().UserName
+                Path                = "OU=CRM groups 00,DC=$($domainName.Replace( ".", ",DC=" ) )"
+                DependsOn           = "[ADOrganizationalUnit]CRMGroupsOU00", "[ADUser]SqlRSAccountCredentialUser"
+            }
+
+            ADObjectPermissionEntry CRMPrivReportingGroupAccessers00
+            {
+                Ensure                             = 'Present'
+                Path                               = "CN=CRM01PrivReportingGroup00,OU=CRM groups 00,DC=$($domainName.Replace( ".", ",DC=" ) )"
+                IdentityReference                  = $DeploymentServiceAccountCredential.UserName
+                ActiveDirectoryRights              = 'GenericAll'
+                AccessControlType                  = 'Allow'
+                ObjectType                         = '00000000-0000-0000-0000-000000000000'
+                ActiveDirectorySecurityInheritance = 'All'
+                InheritedObjectType                = '00000000-0000-0000-0000-000000000000'
+                DependsOn                          = "[ADGroup]CRMPrivReportingGroup00", "[ADUser]DeploymentServiceAccountUser"
+            }
+
+            #Organization unit with no groups but full permissions
+            ADOrganizationalUnit CRMGroupsOU01
+            {
+                Name = "CRM groups 01"
+                Path = "DC=$($domainName.Replace( ".", ",DC=" ) )"
+            }
+
+            ADObjectPermissionEntry OUPermissions
+            {
+                Ensure                             = 'Present'
+                Path                               = "OU=CRM groups 01,DC=$($domainName.Replace( ".", ",DC=" ) )"
+                IdentityReference                  = "$($domainName.Split( "." )[0].ToUpper())\CRM Administrators 00"
+                ActiveDirectoryRights              = 'GenericAll'
+                AccessControlType                  = 'Allow'
+                ObjectType                         = '00000000-0000-0000-0000-000000000000'
+                ActiveDirectorySecurityInheritance = 'All'
+                InheritedObjectType                = '00000000-0000-0000-0000-000000000000'
+                DependsOn                          = "[ADOrganizationalUnit]CRMGroupsOU01", "[ADGroup]CRMAdminGroup"
+            }
+
+            #Organization unit with pre-created groups without members, but with full permissions
+            ADOrganizationalUnit CRMGroupsOU02
+            {
+                Name = "CRM groups 02"
+                Path = "DC=$($domainName.Replace( ".", ",DC=" ) )"
+            }
+
+            ADObjectPermissionEntry OUPermissions02
             {
                 Ensure                              = 'Present'
-                Path                                = 'OU=CRM groups,DC=contoso,DC=local'
-                IdentityReference                   = 'contoso\CRM01PrivUserGroup'
+                Path                                = "OU=CRM groups 02,DC=$($domainName.Replace( ".", ",DC=" ) )"
+                IdentityReference                   = "$($domainName.Split( "." )[0].ToUpper())\CRM Administrators 00"
                 ActiveDirectoryRights               = 'GenericAll'
                 AccessControlType                   = 'Allow'
                 ObjectType                          = '00000000-0000-0000-0000-000000000000'
                 ActiveDirectorySecurityInheritance  = 'All'
                 InheritedObjectType                 = '00000000-0000-0000-0000-000000000000'
-                DependsOn                           = "[xADGroup]CRMPrivUserGroup"
+                DependsOn                           = "[ADOrganizationalUnit]CRMGroupsOU02", "[ADGroup]CRMAdminGroup"
             }
-        
-            xADGroup CRMSQLAccessGroup
+
+            ADGroup CRMPrivUserGroup02
             {
-                GroupName   = "CRM01SQLAccessGroup"
+                GroupName   = "CRM01PrivUserGroup02"
                 GroupScope  = "Universal"
-                Path        = 'OU=CRM groups,DC=contoso,DC=local'
+                Path        = "OU=CRM groups 02,DC=$($domainName.Replace( ".", ",DC=" ) )"
+                DependsOn   = "[ADOrganizationalUnit]CRMGroupsOU00", "[ADUser]CRMInstallAccountUser"
             }
 
-            xADGroup CRMUserGroup
+            ADObjectPermissionEntry CRMPrivUserGroupAccessers02
             {
-                GroupName   = "CRM01UserGroup"
-                Path        = 'OU=CRM groups,DC=contoso,DC=local'
+                Ensure                             = 'Present'
+                Path                               = "CN=CRM01PrivUserGroup02,OU=CRM groups 02,DC=$($domainName.Replace( ".", ",DC=" ) )"
+                IdentityReference                  = $DeploymentServiceAccountCredential.UserName
+                ActiveDirectoryRights              = 'GenericAll'
+                AccessControlType                  = 'Allow'
+                ObjectType                         = '00000000-0000-0000-0000-000000000000'
+                ActiveDirectorySecurityInheritance = 'All'
+                InheritedObjectType                = '00000000-0000-0000-0000-000000000000'
+                DependsOn                          = "[ADGroup]CRMPrivUserGroup02", "[ADUser]DeploymentServiceAccountUser"
             }
 
-            xADGroup CRMReportingGroup
+            ADGroup CRMSQLAccessGroup02
             {
-                GroupName   = "CRM01ReportingGroup"
+                GroupName   = "CRM01SQLAccessGroup02"
                 GroupScope  = "Universal"
-                Path        = 'OU=CRM groups,DC=contoso,DC=local'
+                Path        = "OU=CRM groups 02,DC=$($domainName.Replace( ".", ",DC=" ) )"
+                DependsOn   = "[ADOrganizationalUnit]CRMGroupsOU02"
             }
 
-            xADGroup CRMPrivReportingGroup
+            ADObjectPermissionEntry CRMSQLAccessGroupAccessers02
             {
-                GroupName           = "CRM01PrivReportingGroup"
-                MembersToInclude    = $SqlRSAccountCredential.GetNetworkCredential().UserName
-                GroupScope          = "Universal"
-                Path                = 'OU=CRM groups,DC=contoso,DC=local'
+                Ensure                             = 'Present'
+                Path                               = "CN=CRM01SQLAccessGroup02,OU=CRM groups 02,DC=$($domainName.Replace( ".", ",DC=" ) )"
+                IdentityReference                  = $DeploymentServiceAccountCredential.UserName
+                ActiveDirectoryRights              = 'GenericAll'
+                AccessControlType                  = 'Allow'
+                ObjectType                         = '00000000-0000-0000-0000-000000000000'
+                ActiveDirectorySecurityInheritance = 'All'
+                InheritedObjectType                = '00000000-0000-0000-0000-000000000000'
+                DependsOn                          = "[ADGroup]CRMSQLAccessGroup02", "[ADUser]DeploymentServiceAccountUser"
+            }
+
+            ADGroup CRMUserGroup02
+            {
+                GroupName   = "CRM01UserGroup02"
+                Path        = "OU=CRM groups 02,DC=$($domainName.Replace( ".", ",DC=" ) )"
+                DependsOn   = "[ADOrganizationalUnit]CRMGroupsOU02"
+            }
+
+            ADObjectPermissionEntry CRMUserGroupAccessers02
+            {
+                Ensure                             = 'Present'
+                Path                               = "CN=CRM01UserGroup02,OU=CRM groups 02,DC=$($domainName.Replace( ".", ",DC=" ) )"
+                IdentityReference                  = $DeploymentServiceAccountCredential.UserName
+                ActiveDirectoryRights              = 'GenericAll'
+                AccessControlType                  = 'Allow'
+                ObjectType                         = '00000000-0000-0000-0000-000000000000'
+                ActiveDirectorySecurityInheritance = 'All'
+                InheritedObjectType                = '00000000-0000-0000-0000-000000000000'
+                DependsOn                          = "[ADGroup]CRMUserGroup02", "[ADUser]DeploymentServiceAccountUser"
+            }
+
+            ADGroup CRMReportingGroup02
+            {
+                GroupName   = "CRM01ReportingGroup02"
+                GroupScope  = "Universal"
+                Path        = "OU=CRM groups 02,DC=$($domainName.Replace( ".", ",DC=" ) )"
+                DependsOn   = "[ADOrganizationalUnit]CRMGroupsOU02"
+            }
+
+            ADObjectPermissionEntry CRMReportingGroupAccessers02
+            {
+                Ensure                             = 'Present'
+                Path                               = "CN=CRM01ReportingGroup02,OU=CRM groups 02,DC=$($domainName.Replace( ".", ",DC=" ) )"
+                IdentityReference                  = $DeploymentServiceAccountCredential.UserName
+                ActiveDirectoryRights              = 'GenericAll'
+                AccessControlType                  = 'Allow'
+                ObjectType                         = '00000000-0000-0000-0000-000000000000'
+                ActiveDirectorySecurityInheritance = 'All'
+                InheritedObjectType                = '00000000-0000-0000-0000-000000000000'
+                DependsOn                          = "[ADGroup]CRMReportingGroup02", "[ADUser]DeploymentServiceAccountUser"
+            }
+
+            ADGroup CRMPrivReportingGroup02
+            {
+                GroupName   = "CRM01PrivReportingGroup02"
+                GroupScope  = "Universal"
+                Path        = "OU=CRM groups 02,DC=$($domainName.Replace( ".", ",DC=" ) )"
+                DependsOn   = "[ADOrganizationalUnit]CRMGroupsOU02"
+            }
+
+            ADObjectPermissionEntry CRMPrivReportingGroupAccessers02
+            {
+                Ensure                             = 'Present'
+                Path                               = "CN=CRM01PrivReportingGroup02,OU=CRM groups 02,DC=$($domainName.Replace( ".", ",DC=" ) )"
+                IdentityReference                  = $DeploymentServiceAccountCredential.UserName
+                ActiveDirectoryRights              = 'GenericAll'
+                AccessControlType                  = 'Allow'
+                ObjectType                         = '00000000-0000-0000-0000-000000000000'
+                ActiveDirectorySecurityInheritance = 'All'
+                InheritedObjectType                = '00000000-0000-0000-0000-000000000000'
+                DependsOn                          = "[ADGroup]CRMPrivReportingGroup02", "[ADUser]DeploymentServiceAccountUser"
             }
 
         }

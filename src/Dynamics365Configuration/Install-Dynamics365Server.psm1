@@ -1,4 +1,4 @@
-﻿function Install-Dynamics365Server {
+function Install-Dynamics365Server {
     [CmdletBinding(DefaultParameterSetName = 'Groups')]
     param (
         [Parameter(ParameterSetName = 'OU', Mandatory=$true)]
@@ -295,7 +295,7 @@
                                     $OUElement.InnerText = $OU;
                                 $serverElement.AppendChild( $OUElement ) | Out-Null;
                             }
-                            if ( $privUserGroup -or $SQLAccessGroup -or $userGroup -or $reportingGroup -or $privReportingGroup ) {
+                            if ( $privUserGroup -or $SQLAccessGroup -or $userGroup -or $reportingGroup -or $privReportingGroup -or $AutoGroupManagementOff ) {
                                 $groupsElement = $xml.CreateElement( "Groups" );
                                     $groupsElement.SetAttribute( "autogroupmanagementoff", $AutoGroupManagementOff ) | Out-Null;
                                     if ( $privUserGroup ) {

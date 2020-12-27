@@ -68,6 +68,7 @@ try {
             -MediaDir C:\Install\Dynamics\Dynamics365Server90RTMEnu `
             -ServerRoles FrontEnd `
             -SqlServer $dbHostName\SQLInstance01 `
+            -AutoGroupManagementOff `
             -LogFilePath c:\tmp\Dynamics365ServerInstallLog.txt `
             -LogFilePullIntervalInSeconds 15 `
             -LogFilePullToOutput

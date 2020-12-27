@@ -13,13 +13,13 @@ try
         Node $AllNodes.NodeName
         {
 
-            PSModule "PSModule_xActiveDirectory"
+            PSModule "PSModule_ActiveDirectoryDsc"
             {
                 Ensure              = "Present"
-                Name                = "xActiveDirectory"
+                Name                = "ActiveDirectoryDsc"
                 Repository          = "PSGallery"
                 InstallationPolicy  = "Trusted"
-                RequiredVersion     = "2.21.0.0"
+                RequiredVersion     = "6.0.1"
             }
 
             PSModule "PSModule_xDnsServer"

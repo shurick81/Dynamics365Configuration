@@ -15,18 +15,23 @@ try
             $DomainSafeModeAdministratorPasswordCredential
         )
         Import-DscResource -ModuleName PSDesiredStateConfiguration
-        Import-DscResource -ModuleName xActiveDirectory -ModuleVersion 2.21.0.0
+        Import-DscResource -ModuleName ActiveDirectoryDsc -ModuleVersion 6.0.1
 
         $domainName = "contoso.local";
 
         Node $AllNodes.NodeName
         {
 
-            xADDomain ADDomain
+            ADDomain ADDomain
             {
                 DomainName                      = $domainName
                 SafemodeAdministratorPassword   = $domainSafeModeAdministratorPasswordCredential
-                DomainAdministratorCredential   = $shortDomainAdminCredential
+                Credential                      = $shortDomainAdminCredential
+            }
+
+            WaitForADDomain WaitForADDomain
+            {
+                DomainName  = $domainName
             }
 
         }

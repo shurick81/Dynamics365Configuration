@@ -7,20 +7,20 @@ try
         param(
         )
         Import-DscResource -ModuleName PSDesiredStateConfiguration
-        Import-DscResource -ModuleName xActiveDirectory -ModuleVersion 2.21.0.0
+        Import-DscResource -ModuleName ActiveDirectoryDsc -ModuleVersion 6.0.1
 
         $domainName = "contoso.local";
 
         Node $AllNodes.NodeName
         {
 
-            xADGroup AdminGroup
+            ADGroup AdminGroup
             {
                 GroupName           = "Administrators"
-                MembersToInclude    = "CRM01PrivUserGroup", "_ssrs"
+                MembersToInclude    = "CRM Administrators 00", "_ssrs"
             }
 
-            xADGroup PerformanceUserGroup
+            ADGroup PerformanceUserGroup
             {
                 GroupName           = "Performance Log Users"
                 MembersToInclude    = "_crmasync", "_crmsrv"

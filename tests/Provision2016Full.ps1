@@ -304,11 +304,11 @@ try {
             -MediaDir C:\Install\Dynamics\CRM2016RTMDan `
             -CreateDatabase `
             -SqlServer $dbHostName\SQLInstance01 `
-            -PrivUserGroup "CN=CRM01PrivUserGroup,OU=CRM groups,DC=contoso,DC=local" `
-            -SQLAccessGroup "CN=CRM01SQLAccessGroup,OU=CRM groups,DC=contoso,DC=local" `
-            -UserGroup "CN=CRM01UserGroup,OU=CRM groups,DC=contoso,DC=local" `
-            -ReportingGroup "CN=CRM01ReportingGroup,OU=CRM groups,DC=contoso,DC=local" `
-            -PrivReportingGroup "CN=CRM01PrivReportingGroup,OU=CRM groups,DC=contoso,DC=local" `
+            -PrivUserGroup "CN=CRM01PrivUserGroup02,OU=CRM groups 02,DC=contoso,DC=local" `
+            -SQLAccessGroup "CN=CRM01SQLAccessGroup02,OU=CRM groups 02,DC=contoso,DC=local" `
+            -UserGroup "CN=CRM01UserGroup02,OU=CRM groups 02,DC=contoso,DC=local" `
+            -ReportingGroup "CN=CRM01ReportingGroup02,OU=CRM groups 02,DC=contoso,DC=local" `
+            -PrivReportingGroup "CN=CRM01PrivReportingGroup02,OU=CRM groups 02,DC=contoso,DC=local" `
             -CrmServiceAccount $CRMServiceAccountCredential `
             -DeploymentServiceAccount $DeploymentServiceAccountCredential `
             -SandboxServiceAccount $SandboxServiceAccountCredential `

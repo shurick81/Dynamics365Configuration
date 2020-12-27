@@ -2,6 +2,10 @@
 
 ## Not released
 
+* `Install-Dynamics365Server` command fixes
+
+  * issue with AutoGroupManagementOff not working if either of groups specified in parameters
+
 * `Install-Dynamics365Update` command fixes
 
   * issue #42: no exception when installing the update that is already installed
