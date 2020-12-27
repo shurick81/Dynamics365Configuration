@@ -1,4 +1,4 @@
-function Install-Dynamics365Server {
+﻿function Install-Dynamics365Server {
     [CmdletBinding(DefaultParameterSetName = 'Groups')]
     param (
         [Parameter(ParameterSetName = 'OU', Mandatory=$true)]
@@ -55,7 +55,6 @@ function Install-Dynamics365Server {
         [Parameter(ParameterSetName = 'Groups', Mandatory=$false)]
         [switch]
         $AutoGroupManagementOff,
-        [Parameter(ParameterSetName = 'OU', Mandatory=$false)]
         [Parameter(ParameterSetName = 'Groups', Mandatory=$false)]
         [pscredential]
         $CrmServiceAccount,

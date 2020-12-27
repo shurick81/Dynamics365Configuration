@@ -5,6 +5,7 @@
 * `Install-Dynamics365Server` command fixes
 
   * issue with AutoGroupManagementOff not working if either of groups specified in parameters
+  * AutoGroupManagementOff must not be acceptable with OU parameter
 
 * `Install-Dynamics365Update` command fixes
 
