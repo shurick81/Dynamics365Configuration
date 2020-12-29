@@ -20,7 +20,7 @@ try
             {
                 GroupName           = "Administrators"
                 Credential          = $DomainAdminCredential
-                MembersToInclude    = "contoso\CRM Administrators 00", "contoso\_crmasync", "contoso\_crmsrv", "contoso\_ssrs"
+                MembersToInclude    = "contoso\CRM Administrators 00", "contoso\_crmasync", "contoso\_crmsrv", "contoso\_ssrs", "contoso\_crmvsswrit"
             }
 
             #Faulty DCSResources throws "Server names cannot contain a space character"
