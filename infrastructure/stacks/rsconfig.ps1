@@ -116,4 +116,5 @@ if ( $env:VMDEVOPSSTARTER_NODSCTEST -ne "TRUE" )
 } else {
     Write-Host "$(Get-Date) Skipping tests"
 }
+Grant-RsCatalogItemRole -ReportServerUri http://$env:COMPUTERNAME/ReportServer_SSRS -Identity CONTOSO\_crmdplsrv -RoleName "Content Manager" -Path "/";
 Exit 0;

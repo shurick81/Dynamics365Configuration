@@ -49,6 +49,24 @@ try
                 RequiredVersion     = "2.1.0.0"
             }
 
+            PSModule "PSModule_SecurityPolicyDsc"
+            {
+                Ensure              = "Present"
+                Name                = "SecurityPolicyDsc"
+                Repository          = "PSGallery"
+                InstallationPolicy  = "Trusted"
+                RequiredVersion     = "2.10.0.0"
+            }
+    
+            PSModule "PSModule_ReportingServicesTools"
+            {
+                Ensure              = "Present"
+                Name                = "ReportingServicesTools"
+                Repository          = "PSGallery"
+                InstallationPolicy  = "Trusted"
+                RequiredVersion     = "0.0.5.7"
+            }
+
         }
     }
 }

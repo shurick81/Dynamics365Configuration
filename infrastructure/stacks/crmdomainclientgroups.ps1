@@ -12,6 +12,7 @@ try
         )
 
         Import-DscResource -ModuleName PSDesiredStateConfiguration
+        Import-DscResource -ModuleName SecurityPolicyDsc -ModuleVersion 2.10.0.0
 
         Node $AllNodes.NodeName
         {        
@@ -20,16 +21,21 @@ try
             {
                 GroupName           = "Administrators"
                 Credential          = $DomainAdminCredential
-                MembersToInclude    = "contoso\CRM Administrators 00", "contoso\_crmasync", "contoso\_crmsrv", "contoso\_ssrs", "contoso\_crmvsswrit"
+                MembersToInclude    = "contoso\CRM Administrators 00"
             }
 
-            #Faulty DCSResources throws "Server names cannot contain a space character"
-            #Group PerformanceUserGroup
-            #{
-            #    GroupName           = "Performance Log Users"
-            #    Credential          = $DomainAdminCredential
-            #    MembersToInclude    = "contoso\_crmasync", "contoso\_crmsrv"
-            #}
+            Group PerformanceUserGroup
+            {
+                GroupName           = "Performance Log Users"
+                Credential          = $DomainAdminCredential
+                MembersToInclude    = "contoso\_crmasync", "contoso\_crmsrv"
+            }
+
+            UserRightsAssignment LogonAsAService
+            {
+                Policy      = "Log_on_as_a_service"
+                Identity    = "contoso\_crmvsswrit", "contoso\_ssrs"
+            }
 
         }
     }
