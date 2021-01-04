@@ -144,7 +144,7 @@ try {
             -WebSiteUrl https://$env:COMPUTERNAME.contoso.local `
             -Organization "Contoso Ltd." `
             -OrganizationUniqueName Contoso `
-            -ReportingUrl http://$dbHostName/ReportServer_RSInstance01 `
+            -ReportingUrl http://$dbHostName/ReportServer_SSRS `
             -LogFilePath c:\tmp\Dynamics365ServerInstallLog.txt `
             -LogFilePullIntervalInSeconds 15 `
             -LogFilePullToOutput
@@ -197,7 +197,7 @@ try {
         Install-Dynamics365ReportingExtensions `
             -MediaDir $mediaDir `
             -ConfigDBServer $env:COMPUTERNAME\SQLInstance01 `
-            -InstanceName RSInstance01 `
+            -InstanceName SSRS `
             -LogFilePath c:\tmp\Dynamics365ServerReportingExtensionsInstallLog.txt `
             -LogFilePullIntervalInSeconds 15 `
             -LogFilePullToOutput
@@ -252,7 +252,7 @@ if ( -not ( Get-PSSnapin -Name Microsoft.Crm.PowerShell -ErrorAction SilentlyCon
     $RemoveSnapInWhenDone = $True
 }
 Write-Host "$(Get-Date) Starting New-CrmOrganization";
-$importJobId = New-CrmOrganization -Name ORGLANG1044 -BaseLanguageCode 1044 -Credential $CRMInstallAccountCredential -DwsServerUrl "http://$env:COMPUTERNAME`:5555/XrmDeployment/2011/deployment.svc" -DisplayName "Organization for testing 1044 language" -SqlServerName $dbHostName\SQLInstance01 -SrsUrl http://$dbHostName/ReportServer_RSInstance01;
+$importJobId = New-CrmOrganization -Name ORGLANG1044 -BaseLanguageCode 1044 -Credential $CRMInstallAccountCredential -DwsServerUrl "http://$env:COMPUTERNAME`:5555/XrmDeployment/2011/deployment.svc" -DisplayName "Organization for testing 1044 language" -SqlServerName $dbHostName\SQLInstance01 -SrsUrl http://$dbHostName/ReportServer_SSRS;
 do {
     $operationStatus = Get-CrmOperationStatus -OperationId $importJobId -Credential $CRMInstallAccountCredential -DwsServerUrl "http://$env:COMPUTERNAME`:5555/XrmDeployment/2011/deployment.svc";
     Write-Host "$(Get-Date) operationStatus.State is $($operationStatus.State). Waiting until CRM installation job is done";

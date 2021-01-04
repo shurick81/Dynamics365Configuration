@@ -98,7 +98,7 @@ try {
             -WebSiteUrl https://$env:COMPUTERNAME.contoso.local `
             -Organization "Contoso Ltd." `
             -OrganizationUniqueName Contoso `
-            -ReportingUrl http://$dbHostName/ReportServer_RSInstance01 `
+            -ReportingUrl http://$dbHostName/ReportServer_SSRS `
             -LogFilePath c:\tmp\Dynamics365ServerInstallLog.txt `
             -LogFilePullIntervalInSeconds 15 `
             -LogFilePullToOutput
@@ -144,7 +144,8 @@ try {
         Install-Dynamics365ReportingExtensions `
             -MediaDir $mediaDir `
             -ConfigDBServer $env:COMPUTERNAME\SQLInstance01 `
-            -InstanceName RSInstance01 `
+            -AutoGroupManagementOff `
+            -InstanceName SSRS `
             -LogFilePath c:\tmp\Dynamics365ServerReportingExtensionsInstallLog.txt `
             -LogFilePullIntervalInSeconds 15 `
             -LogFilePullToOutput

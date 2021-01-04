@@ -55,7 +55,7 @@ try {
         -BaseCurrencySymbol `$ `
         -BaseCurrencyPrecision 2 `
         -OrganizationCollation Latin1_General_CI_AI `
-        -ReportingUrl http://$dbHostName/ReportServer_RSInstance01
+        -ReportingUrl http://$dbHostName/ReportServer_SSRS
 } catch {
     Write-Host "Failed in invoking of Install-Dynamics365Server";
     Write-Host $_.Exception.Message -ForegroundColor Red;
@@ -86,7 +86,8 @@ if ( ([version]$testResponse).ToString(3) -eq "8.0.0" )
 
 try {
     Install-Dynamics365ReportingExtensions `
-        -MediaDir C:\Install\Dynamics\CRM2016RTMEnu\SrsDataConnector
+        -MediaDir C:\Install\Dynamics\CRM2016RTMEnu\SrsDataConnector `
+        -AutoGroupManagementOff
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;

@@ -91,7 +91,7 @@ try {
             -CreateWebSite `
             -WebSitePort 5555 `
             -WebSiteUrl https://$env:COMPUTERNAME.contoso.local `
-            -ReportingUrl http://$dbHostName/ReportServer_RSInstance01 `
+            -ReportingUrl http://$dbHostName/ReportServer_SSRS `
             -LogFilePullIntervalInSeconds 15 `
             -LogFilePullToOutput
     } -ArgumentList $dbHostName;
@@ -164,6 +164,7 @@ try {
             -MediaDir $mediaDir `
             -ConfigDBServer $env:COMPUTERNAME\SQLInstance01 `
             -AutoGroupManagementOff `
+            -InstanceName SSRS `
             -LogFilePath c:\tmp\Dynamics365ServerReportingExtensionsInstallLog.txt `
             -LogFilePullIntervalInSeconds 15 `
             -LogFilePullToOutput
@@ -246,7 +247,7 @@ try {
             -CreateWebSite `
             -WebSitePort 5555 `
             -WebSiteUrl https://$env:COMPUTERNAME.contoso.local `
-            -ReportingUrl http://$dbHostName/ReportServer_RSInstance01 `
+            -ReportingUrl http://$dbHostName/ReportServer_SSRS `
             -LogFilePullIntervalInSeconds 15 `
             -LogFilePullToOutput
     } -ArgumentList $dbHostName;
@@ -286,7 +287,8 @@ try {
         Install-Dynamics365ReportingExtensions `
             -MediaDir $mediaDir `
             -ConfigDBServer $env:COMPUTERNAME\SQLInstance01 `
-            -InstanceName RSInstance01 `
+            -AutoGroupManagementOff `
+            -InstanceName SSRS `
             -LogFilePath c:\tmp\Dynamics365ServerReportingExtensionsInstallLog.txt `
             -LogFilePullIntervalInSeconds 15 `
             -LogFilePullToOutput

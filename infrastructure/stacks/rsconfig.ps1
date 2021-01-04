@@ -18,61 +18,16 @@ try
 
         Node $AllNodes.NodeName
         {
-            #$pfxPassword = "asd94y3475n";
-            #$securedPassword = ConvertTo-SecureString $pfxPassword -AsPlainText -Force
-            #$pfxCredential = New-Object System.Management.Automation.PSCredential( "fake", $securedPassword )
-            #
-            #$hostName = "db01.contoso.local"
-            #$pfxPath = "c:\certs\$hostName.pfx";
-            #$cerPath = "c:\certs\$hostName.cer";
-            #$pfx = New-Object -TypeName "System.Security.Cryptography.X509Certificates.X509Certificate2";
-            #$pfx.Import($pfxPath,$pfxPassword,[System.Security.Cryptography.X509Certificates.X509KeyStorageFlags]::PersistKeySet);
-            #
-            #PfxImport rshost
-            #{
-            #    Thumbprint  = $pfx.thumbprint
-            #    Path        = $pfxPath
-            #    Location    = 'LocalMachine'
-            #    Store       = 'My'
-            #    Credential  = $pfxCredential
-            #}
-            #
-            #CertificateExport rshost
-            #{
-            #    Type        = 'CERT'
-            #    Thumbprint  = $pfx.thumbprint
-            #    Path        = $cerPath
-            #    DependsOn   = "[PfxImport]rshost"
-            #}
-            #
-            #CertificateImport rshost
-            #{
-            #    Thumbprint  = $pfx.thumbprint
-            #    Location    = 'LocalMachine'
-            #    Store       = 'Root'
-            #    Path        = $cerPath
-            #    DependsOn   = "[CertificateExport]rshost"
-            #}
-
-            #SQLServiceAccount SqlRSServiceAccount
-            #{
-            #    InstanceName        = 'SQLInstance01'
-            #    ServerName          = $NodeName
-            #    ServiceType         = "ReportingServices"
-            #    ServiceAccount      = $SqlRSAccountCredential
-            #    RestartService      = $true
-            #}
 
             SqlRS ReportingServicesConfig
             {
-                InstanceName                 = 'RSInstance01'
-                DatabaseServerName           = $NodeName
-                DatabaseInstanceName         = 'SQLInstance01'
-                #ReportServerVirtualDirectory = 'MyReportServer'
-                ReportServerReservedUrl      = @( 'http://+:80' )
-                #ReportsVirtualDirectory      = 'MyReports'
-                #ReportsReservedUrl           = @( 'http://+:80', 'https://+:443' )
-                #UseSsl                       = $true
+                InstanceName                    = 'SSRS'
+                DatabaseServerName              = $NodeName
+                DatabaseInstanceName            = 'SQLInstance01'
+                ReportServerVirtualDirectory    = "ReportServer_SSRS"
+                ReportsVirtualDirectory         = "Reports_SSRS"
+                ReportServerReservedUrl         = @( 'http://+:80' )
+                ReportsReservedUrl              = @( 'http://+:80' )
             }
 
             xFireWall AllowHTTP

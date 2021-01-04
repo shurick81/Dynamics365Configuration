@@ -164,7 +164,7 @@ platforms:
         - [ '.' , 'c:/test-projects/Dynamics365Configuration/tests' ]
       provision: true
       vagrantfiles:
-        - vagrant-provisioning/adsqldbrs.rb
+        - vagrant-provisioning/adsqldbrs-legacy.rb
     transport:
       name: winrm
   - name: win2012r2-ad-sql2016dbrs-dynamicsprereqs
@@ -193,7 +193,7 @@ platforms:
         - [ '.' , 'c:/test-projects/Dynamics365Configuration/tests' ]
       provision: true
       vagrantfiles:
-        - vagrant-provisioning/adsqldbrs.rb
+        - vagrant-provisioning/adsqldbrs-legacy.rb
     transport:
       name: winrm
   - name: win2016-sql2016dbrs-dynamicsprereqs
@@ -224,7 +224,7 @@ platforms:
         - ["private_network", { ip: "192.168.51.130", gateway: "192.168.51.1" } ]
       provision: true
       vagrantfiles:
-        - vagrant-provisioning/sqldbrs.rb
+        - vagrant-provisioning/sqldbrs-legacy.rb
     transport:
       name: winrm
   - name: win2012r2-sql2016dbrs-dynamicsprereqs
@@ -253,7 +253,7 @@ platforms:
         - [ '.' , 'c:/test-projects/Dynamics365Configuration/tests' ]
       provision: true
       vagrantfiles:
-        - vagrant-provisioning/sqldbrs.rb
+        - vagrant-provisioning/sqldbrs-legacy.rb
     transport:
       name: winrm
   - name: win2019-dynamicsprereqs
