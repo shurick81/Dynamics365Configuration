@@ -163,7 +163,7 @@ try {
         Install-Dynamics365ReportingExtensions `
             -MediaDir $mediaDir `
             -ConfigDBServer $env:COMPUTERNAME\SQLInstance01 `
-            -InstanceName RSInstance01 `
+            -AutoGroupManagementOff `
             -LogFilePath c:\tmp\Dynamics365ServerReportingExtensionsInstallLog.txt `
             -LogFilePullIntervalInSeconds 15 `
             -LogFilePullToOutput
