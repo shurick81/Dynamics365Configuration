@@ -501,12 +501,18 @@ function Install-Dynamics365Server {
                         Write-Output "$(Get-Date) Started installation job, log will be saved in $logFilePath";
                         $lastLinesCount = 0;
                         $startTime = Get-Date;
+                        $logReadIterationsLeft = 2;
                         Start-Sleep $logFilePullIntervalInSeconds;
                         do {
                             $elapsedTime = $( Get-Date ) - $startTime;
                             $elapsedString = "{0:HH:mm:ss}" -f ( [datetime]$elapsedTime.Ticks );
                             Write-Output "$(Get-Date) Elapsed $elapsedString. Waiting until CRM installation job is done, sleeping $logFilePullIntervalInSeconds sec";
                             Start-Sleep $logFilePullIntervalInSeconds;
+                            if ( $job.State -eq "Completed" ) {
+                                Write-Output "$(Get-Date) Log read iterations left: $logReadIterationsLeft"
+                                $logReadIterationsLeft--;
+                                Start-Sleep 30;
+                            }
                             if(($logFilePullToOutput -eq $True) -and ((Test-Path $logFilePath) -eq $True)) {
 
                                 $linesCount    = (Get-Content $logFilePath | Measure-Object -Line).Lines;
@@ -525,7 +531,7 @@ function Install-Dynamics365Server {
 
                                 $lastLinesCount = $linesCount;
                             }
-                        } until ( $job.State -eq "Completed" )
+                        } until ( ( $job.State -eq "Completed" ) -and ( $logReadIterationsLeft -le 0 ) )
 
                         $elapsedTime = $( Get-Date ) - $startTime;
                         $elapsedString = "{0:HH:mm:ss}" -f ( [datetime]$elapsedTime.Ticks );

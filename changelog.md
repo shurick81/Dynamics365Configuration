@@ -7,14 +7,20 @@
 * `Install-Dynamics365Server` command fixes
 
   * issue with AutoGroupManagementOff not working if either of groups specified in parameters
+  * issue #45: last log file lines missing in the command output
 
 * `Install-Dynamics365Update` command fixes
 
   * issue #42: no exception when installing the update that is already installed
+  * issue #45: last log file lines missing in the command output
 
 * `Install-Dynamics365ReportingExtensionsUpdate` command fixes
 
   * issue #43: not running RS extensions update if it already installed
+
+* `Install-Dynamics365ReportingExtensions` command fixes
+
+  * issue #45: last log file lines missing in the command output
 
 ## 2.3.0
 
