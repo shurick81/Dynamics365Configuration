@@ -1,4 +1,4 @@
-function Install-Dynamics365Server {
+﻿function Install-Dynamics365Server {
     [CmdletBinding(DefaultParameterSetName = 'Groups')]
     param (
         [Parameter(ParameterSetName = 'OU', Mandatory=$true)]
@@ -32,6 +32,8 @@ function Install-Dynamics365Server {
             "DeploymentWebService",
             "VSSWriter"
         )]
+        [Parameter(ParameterSetName = 'OU', Mandatory=$false)]
+        [Parameter(ParameterSetName = 'Groups', Mandatory=$false)]
         [string[]]
         $ServerRoles,
         [Parameter(ParameterSetName = 'OU', Mandatory=$true)]
