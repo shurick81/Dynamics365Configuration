@@ -1,6 +1,6 @@
 # Dynamics365Configuration module change log
 
-## Not released
+## 2.4.0
 
 * Default log location is changed to `%AppData%\Microsoft\MSCRM\Logs` for  `Install-Dynamics365Server`, `Install-Dynamics365ReportingExtensions`, `Install-Dynamics365Update`, `Install-Dynamics365ReportingExtensionsUpdate` and `Install-Dynamics365LanguageUpdate` commands
 

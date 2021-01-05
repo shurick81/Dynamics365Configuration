@@ -12,7 +12,7 @@
 RootModule = 'RootModule.psm1'
 
 # Version number of this module.
-ModuleVersion = '2.3.0'
+ModuleVersion = '2.4.0'
 
 # Supported PSEditions
 # CompatiblePSEditions = @()
@@ -27,7 +27,7 @@ Author = 'Aleksandr Sapozhkov'
 # CompanyName = 'Unknown'
 
 # Copyright statement for this module
-Copyright = '(c) 2020 Aleksandr Sapozhkov. All rights reserved.'
+Copyright = '(c) 2021 Aleksandr Sapozhkov. All rights reserved.'
 
 # Description of the functionality provided by this module
 Description = 'A module to ease infrastructure as code tasks for Dynamics 365.'
