@@ -45,19 +45,6 @@ if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server90Update24Enu ) {
 }
 
 try {
-    Save-Dynamics365Resource -Resource Dynamics365Server90ReportingExtensionsUpdate23Enu -TargetDirectory C:\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate23Enu
-} catch {
-    Write-Host $_.Exception.Message -ForegroundColor Red;
-    Exit 1;
-}
-if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate23Enu ) {
-    Write-Host "Test OK";
-} else {
-    Write-Host "Expected files are not found in C:\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate23Enu, test is not OK";
-    Exit 1;
-}
-
-try {
     Write-Host "Invoking command on $env:COMPUTERNAME.$domainName with dbHostName=$dbHostName parameter";
     Invoke-Command "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
         param( $dbHostName )
