@@ -1,5 +1,15 @@
 # Dynamics365Configuration module change log
 
+## Not released
+
+* New Dynamics 365 updates (145 new downloadables in total):
+
+  * Dynamics365Server90Update24\<Language\>
+  * Dynamics365Server90ReportingExtensionsUpdate24\<Language\>
+  * CRM2016ServicePack2Update26\<Language\>
+  * CRM2016ReportingExtensionsServicePack2Update26\<Language\>
+  * CRM2016LanguagePackServicePack2Update26\<Language\>
+
 ## 2.4.0
 
 * Default log location is changed to `%AppData%\Microsoft\MSCRM\Logs` for  `Install-Dynamics365Server`, `Install-Dynamics365ReportingExtensions`, `Install-Dynamics365Update`, `Install-Dynamics365ReportingExtensionsUpdate` and `Install-Dynamics365LanguageUpdate` commands

@@ -23,7 +23,7 @@ if ( Get-ChildItem C:\Install\Dynamics\CRM2016RTMEnu ) {
 }
 
 try {
-    Save-Dynamics365Resource -Resource CRM2016ServicePack2Update23Enu -TargetDirectory C:\Install\Dynamics\CRM2016ServicePack2Update23Enu
+    Save-Dynamics365Resource -Resource CRM2016ServicePack2Update26Enu -TargetDirectory C:\Install\Dynamics\CRM2016ServicePack2Update26Enu
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
@@ -101,7 +101,7 @@ if ( $installedProduct ) {
 }
 
 try {
-    Install-Dynamics365Update -MediaDir C:\Install\Dynamics\CRM2016ServicePack2Update23Enu
+    Install-Dynamics365Update -MediaDir C:\Install\Dynamics\CRM2016ServicePack2Update26Enu
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
