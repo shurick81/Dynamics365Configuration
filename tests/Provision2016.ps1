@@ -328,7 +328,7 @@ try {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$installedVersion = Get-Dynamics365ReportingServicesVersion;
+$installedVersion = Get-Dynamics365ReportingExtensionsVersion;
 if ( $installedVersion.ToString(3) -ne "8.1.0" ) {
     Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
@@ -412,7 +412,7 @@ try {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$installedVersion = Get-Dynamics365ReportingServicesVersion;
+$installedVersion = Get-Dynamics365ReportingExtensionsVersion;
 if ( $installedVersion.ToString(3) -ne "8.2.25" ) {
     Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;

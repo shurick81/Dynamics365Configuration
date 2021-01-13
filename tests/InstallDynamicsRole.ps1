@@ -206,7 +206,7 @@ try {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$installedVersion = Get-Dynamics365ReportingServicesVersion;
+$installedVersion = Get-Dynamics365ReportingExtensionsVersion;
 if ( $installedVersion.ToString(3) -ne "9.0.23" ) {
     Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;

@@ -479,7 +479,7 @@ try {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$installedVersion = Get-Dynamics365ReportingServicesVersion;
+$installedVersion = Get-Dynamics365ReportingExtensionsVersion;
 if ( $installedVersion.ToString(3) -ne "9.0.3" ) {
     Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
@@ -548,7 +548,7 @@ try {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$installedVersion = Get-Dynamics365ReportingServicesVersion;
+$installedVersion = Get-Dynamics365ReportingExtensionsVersion;
 if ( $installedVersion.ToString(3) -ne "9.0.4" ) {
     Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
@@ -616,7 +616,7 @@ try {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$installedVersion = Get-Dynamics365ReportingServicesVersion;
+$installedVersion = Get-Dynamics365ReportingExtensionsVersion;
 if ( $installedVersion.ToString(3) -ne "9.0.5" ) {
     Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
@@ -685,7 +685,7 @@ try {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$installedVersion = Get-Dynamics365ReportingServicesVersion;
+$installedVersion = Get-Dynamics365ReportingExtensionsVersion;
 if ( $installedVersion.ToString(3) -ne "9.0.6" ) {
     Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
@@ -754,7 +754,7 @@ try {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$installedVersion = Get-Dynamics365ReportingServicesVersion;
+$installedVersion = Get-Dynamics365ReportingExtensionsVersion;
 if ( $installedVersion.ToString(3) -ne "9.0.7" ) {
     Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
@@ -823,7 +823,7 @@ try {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$installedVersion = Get-Dynamics365ReportingServicesVersion;
+$installedVersion = Get-Dynamics365ReportingExtensionsVersion;
 if ( $installedVersion.ToString(3) -ne "9.0.8" ) {
     Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
@@ -892,7 +892,7 @@ try {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$installedVersion = Get-Dynamics365ReportingServicesVersion;
+$installedVersion = Get-Dynamics365ReportingExtensionsVersion;
 if ( $installedVersion.ToString(3) -ne "9.0.9" ) {
     Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
@@ -961,7 +961,7 @@ try {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$installedVersion = Get-Dynamics365ReportingServicesVersion;
+$installedVersion = Get-Dynamics365ReportingExtensionsVersion;
 if ( $installedVersion.ToString(3) -ne "9.0.10" ) {
     Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
@@ -1030,7 +1030,7 @@ try {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$installedVersion = Get-Dynamics365ReportingServicesVersion;
+$installedVersion = Get-Dynamics365ReportingExtensionsVersion;
 if ( $installedVersion.ToString(3) -ne "9.0.11" ) {
     Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
@@ -1099,7 +1099,7 @@ try {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$installedVersion = Get-Dynamics365ReportingServicesVersion;
+$installedVersion = Get-Dynamics365ReportingExtensionsVersion;
 if ( $installedVersion.ToString(3) -ne "9.0.12" ) {
     Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
@@ -1168,7 +1168,7 @@ try {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$installedVersion = Get-Dynamics365ReportingServicesVersion;
+$installedVersion = Get-Dynamics365ReportingExtensionsVersion;
 if ( $installedVersion.ToString(3) -ne "9.0.13" ) {
     Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
@@ -1237,7 +1237,7 @@ try {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$installedVersion = Get-Dynamics365ReportingServicesVersion;
+$installedVersion = Get-Dynamics365ReportingExtensionsVersion;
 if ( $installedVersion.ToString(3) -ne "9.0.14" ) {
     Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
@@ -1306,7 +1306,7 @@ try {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$installedVersion = Get-Dynamics365ReportingServicesVersion;
+$installedVersion = Get-Dynamics365ReportingExtensionsVersion;
 if ( $installedVersion.ToString(3) -ne "9.0.15" ) {
     Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
@@ -1375,7 +1375,7 @@ try {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$installedVersion = Get-Dynamics365ReportingServicesVersion;
+$installedVersion = Get-Dynamics365ReportingExtensionsVersion;
 if ( $installedVersion.ToString(3) -ne "9.0.16" ) {
     Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
@@ -1444,7 +1444,7 @@ try {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$installedVersion = Get-Dynamics365ReportingServicesVersion;
+$installedVersion = Get-Dynamics365ReportingExtensionsVersion;
 if ( $installedVersion.ToString(3) -ne "9.0.17" ) {
     Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
@@ -1513,7 +1513,7 @@ try {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$installedVersion = Get-Dynamics365ReportingServicesVersion;
+$installedVersion = Get-Dynamics365ReportingExtensionsVersion;
 if ( $installedVersion.ToString(3) -ne "9.0.18" ) {
     Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
@@ -1582,7 +1582,7 @@ try {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$installedVersion = Get-Dynamics365ReportingServicesVersion;
+$installedVersion = Get-Dynamics365ReportingExtensionsVersion;
 if ( $installedVersion.ToString(3) -ne "9.0.19" ) {
     Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
@@ -1651,7 +1651,7 @@ try {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$installedVersion = Get-Dynamics365ReportingServicesVersion;
+$installedVersion = Get-Dynamics365ReportingExtensionsVersion;
 if ( $installedVersion.ToString(3) -ne "9.0.20" ) {
     Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
@@ -1720,7 +1720,7 @@ try {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$installedVersion = Get-Dynamics365ReportingServicesVersion;
+$installedVersion = Get-Dynamics365ReportingExtensionsVersion;
 if ( $installedVersion.ToString(3) -ne "9.0.21" ) {
     Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
@@ -1789,7 +1789,7 @@ try {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$installedVersion = Get-Dynamics365ReportingServicesVersion;
+$installedVersion = Get-Dynamics365ReportingExtensionsVersion;
 if ( $installedVersion.ToString(3) -ne "9.0.22" ) {
     Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
@@ -1858,7 +1858,7 @@ try {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$installedVersion = Get-Dynamics365ReportingServicesVersion;
+$installedVersion = Get-Dynamics365ReportingExtensionsVersion;
 if ( $installedVersion.ToString(3) -ne "9.0.23" ) {
     Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
