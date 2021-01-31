@@ -1,5 +1,9 @@
 # Dynamics365Configuration module change log
 
+## Not released
+
+* Bug #46 fixed: non-ascii characters encoding in `Install-Dynamics365Server` and `Install-Dynamics365ReportingExtensions`
+
 ## 2.5.0
 
 * New Dynamics 365 updates (145 new downloadables in total):
