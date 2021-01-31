@@ -79,7 +79,8 @@
             $tempFileName = [guid]::NewGuid().Guid;
             $tempFilePath = "$env:Temp\$tempFileName.xml";
             Write-Output "$(Get-Date) Saving configuration temporary to $tempFilePath";
-            Set-Content -Path $tempFilePath -Value $xmlConfig;
+            Set-Content -Path $tempFilePath -Value $xmlConfig -Encoding utf8;
+            Get-Content $tempFilePath | Write-Debug;
             Write-Output "$(Get-Date) Starting $setupFilePath";
             $installCrmScript = {
                 param( $setupFilePath, $tempFilePath, $logFilePath );
