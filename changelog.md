@@ -1,6 +1,6 @@
 # Dynamics365Configuration module change log
 
-## Not released
+## 2.6.0
 
 * `Install-Dynamics365Prerequisite` command improvement: making `VisualCPlusPlus2010Runtime` and `MSODBCSQL` optional because apparently they are not required.
 
