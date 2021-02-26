@@ -2,6 +2,10 @@
 
 ## Not released
 
+* `Install-Dynamics365Prerequisite` command improvement: making `VisualCPlusPlus2010Runtime` and `MSODBCSQL` optional because apparently they are not required.
+
+## 2.6.0
+
 * Bug #46 fixed: non-ascii characters encoding in `Install-Dynamics365Server` and `Install-Dynamics365ReportingExtensions`
 
 ## 2.5.0

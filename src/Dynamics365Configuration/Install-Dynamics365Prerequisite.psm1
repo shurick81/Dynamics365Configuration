@@ -171,16 +171,12 @@
         Write-Output "prerequisite is not specified";
         Write-Output "Install-Dynamics365Prerequisite -Prerequisite VisualCPlusPlusRuntime -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath";
         Install-Dynamics365Prerequisite -Prerequisite VisualCPlusPlusRuntime -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath;
-        Write-Output "Install-Dynamics365Prerequisite -Prerequisite VisualCPlusPlus2010Runtime -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath";
-        Install-Dynamics365Prerequisite -Prerequisite VisualCPlusPlus2010Runtime -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath;
         Write-Output "Install-Dynamics365Prerequisite -Prerequisite SQLNCli2012SP4 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath";
         Install-Dynamics365Prerequisite -Prerequisite SQLNCli2012SP4 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath;
         Write-Output "Install-Dynamics365Prerequisite -Prerequisite SQLSysClrTypes2016 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath";
         Install-Dynamics365Prerequisite -Prerequisite SQLSysClrTypes2016 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath;
         Write-Output "Install-Dynamics365Prerequisite -Prerequisite SharedManagementObjects2016 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath";
         Install-Dynamics365Prerequisite -Prerequisite SharedManagementObjects2016 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath;
-        Write-Output "Install-Dynamics365Prerequisite -Prerequisite MSODBCSQL -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath";
-        Install-Dynamics365Prerequisite -Prerequisite MSODBCSQL -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath;
         Write-Output "Install-Dynamics365Prerequisite -Prerequisite SQLNCli2008R2 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath";
         Install-Dynamics365Prerequisite -Prerequisite SQLNCli2008R2 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath;
         Write-Output "Install-Dynamics365Prerequisite -Prerequisite SQLSysClrTypes2012 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath";
