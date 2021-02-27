@@ -171,6 +171,8 @@
         Write-Output "prerequisite is not specified";
         Write-Output "Install-Dynamics365Prerequisite -Prerequisite VisualCPlusPlusRuntime -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath";
         Install-Dynamics365Prerequisite -Prerequisite VisualCPlusPlusRuntime -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath;
+        Write-Output "Install-Dynamics365Prerequisite -Prerequisite VisualCPlusPlus2010Runtime -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath";
+        Install-Dynamics365Prerequisite -Prerequisite VisualCPlusPlus2010Runtime -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath;
         Write-Output "Install-Dynamics365Prerequisite -Prerequisite SQLNCli2012SP4 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath";
         Install-Dynamics365Prerequisite -Prerequisite SQLNCli2012SP4 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath;
         Write-Output "Install-Dynamics365Prerequisite -Prerequisite SQLSysClrTypes2016 -DynamicsPrerequisiteFilePath $DynamicsPrerequisiteFilePath";
