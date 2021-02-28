@@ -1,9 +1,5 @@
 # Dynamics365Configuration module change log
 
-## Not released
-
-* `Install-Dynamics365Prerequisite` command improvement: making `MSODBCSQL` optional because apparently it is not required.
-
 ## 2.6.0
 
 * Bug #46 fixed: non-ascii characters encoding in `Install-Dynamics365Server` and `Install-Dynamics365ReportingExtensions`
