@@ -288,6 +288,8 @@ try {
     Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
         param( $mediaDir )
         Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
+        Write-Output "Install-Dynamics365Prerequisite -Prerequisite VisualCPlusPlusRuntime";
+        Install-Dynamics365Prerequisite -Prerequisite VisualCPlusPlusRuntime;
         Install-Dynamics365ReportingExtensions `
             -MediaDir $mediaDir `
             -ConfigDBServer $env:COMPUTERNAME\SQLInstance01 `
