@@ -1,5 +1,17 @@
 # Dynamics365Configuration module change log
 
+## Not released
+
+* New Dynamics 365 updates (195 new downloadables in total):
+
+  * Dynamics365Server90Update25\<Language\>
+  * Dynamics365Server90ReportingExtensionsUpdate25\<Language\>
+  * Dynamics365Server90Update26\<Language\>
+  * Dynamics365Server90ReportingExtensionsUpdate26\<Language\>
+  * CRM2016ServicePack2Update27\<Language\>
+  * CRM2016ReportingExtensionsServicePack2Update27\<Language\>
+  * CRM2016LanguagePackServicePack2Update27\<Language\>
+
 ## 2.6.0
 
 * Bug #46 fixed: non-ascii characters encoding in `Install-Dynamics365Server` and `Install-Dynamics365ReportingExtensions`
