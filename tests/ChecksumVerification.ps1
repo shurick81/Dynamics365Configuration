@@ -2,6 +2,7 @@ $resources = $Dynamics365Resources | Get-Member -MemberType NoteProperty;
 $resourceCount = $resources.Count;
 $resourceCounter = 1;
 Write-Host "Starting resource enumeration";
+$downloadedBytes = 0;
 $resources | % {
     $resourceName = $_.Name;
     Write-Host "Verifying $resourceName, $resourceCounter of $resourceCount";
@@ -24,6 +25,10 @@ $resources | % {
         } catch {
             Write-Host $_.Exception.Message -ForegroundColor Red;
         }
+        if ( Get-Item $filePath ) {
+            $downloadedBytes += ( Get-Item $filePath ).Length;
+        }
+        Write-Host "Total downloaded bytes: $downloadedBytes"
         $ProgressPreference = $currentProgressPreference;
         if ( Test-Path $filePath ) {
             Write-Host "$( Get-Date ) Calculating hash of $filePath";

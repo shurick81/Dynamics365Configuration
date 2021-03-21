@@ -2,6 +2,7 @@ $resources = $Dynamics365Resources | Get-Member -MemberType NoteProperty;
 $resourceCount = $resources.Count;
 $resourceCounter = 1;
 Write-Host "Starting resource enumeration";
+$downloadedBytes = 0;
 $resources | % {
     $resourceName = $_.Name;
     Write-Progress -Activity "Verifying $resourceName" -PercentComplete ( $resourceCounter / ( $resourceCount + 1 ) * 100 );
@@ -18,6 +19,10 @@ $resources | % {
         $currentProgressPreference = $ProgressPreference;
         $ProgressPreference = 'SilentlyContinue';
         Invoke-WebRequest -Uri $resourceUrl -OutFile $filePath;
+        if ( Get-Item $filePath ) {
+            $downloadedBytes += ( Get-Item $filePath ).Length;
+        }
+        Write-Host "Total downloaded bytes: $downloadedBytes"
         $ProgressPreference = $currentProgressPreference;
         $fileHash = ( Get-FileHash $filePath -Algorithm SHA1 ).Hash;
         Start-Sleep 20;

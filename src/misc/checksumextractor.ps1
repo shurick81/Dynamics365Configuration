@@ -1,4 +1,5 @@
 $resultDictionary = $Dynamics365Resources;
+$downloadedBytes = 0;
 $Dynamics365Resources | Get-Member -MemberType NoteProperty | % {
     if ( !$Dynamics365Resources.( $_.Name ).Checksum ) {
         $previousHash = $Dynamics365Resources.( $_.Name ).Checksum;
@@ -15,6 +16,10 @@ $Dynamics365Resources | Get-Member -MemberType NoteProperty | % {
             $currentProgressPreference = $ProgressPreference;
             $ProgressPreference = 'SilentlyContinue';
             Invoke-WebRequest -Uri $resourceUrl -OutFile $filePath;
+            if ( Get-Item $filePath ) {
+                $downloadedBytes += ( Get-Item $filePath ).Length;
+            }
+            Write-Host "Total downloaded bytes: $downloadedBytes"
             $ProgressPreference = $currentProgressPreference;
             Write-Host "$(Get-Date) Calculating hash for $filePath";
             $fileHash = ( Get-FileHash $filePath -Algorithm SHA1 ).Hash;
