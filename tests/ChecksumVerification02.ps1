@@ -4,7 +4,7 @@ $resourceCounter = 1;
 Write-Host "Starting resource enumeration";
 $downloadedBytes = 0;
 $resources | % {
-    if ( [int]( ( $resourceCounter - 1) / $resourceCount * 10 - 0.5 ) -eq 2 ) {
+    if ( [int]( ( $resourceCounter - 1) / $resourceCount * 20 - 0.5 ) -eq 2 ) {
         $resourceName = $_.Name;
         Write-Host "Verifying $resourceName, $resourceCounter of $resourceCount";
         $resourceUrl = $Dynamics365Resources.$resourceName.URL;
