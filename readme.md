@@ -2,6 +2,8 @@
 
 A module to ease infrastructure as code tasks for Dynamics 365 Customer Engagement (on-premises). It allows to use PowerShell commands in order to download and install Dynamics 365 on premise.
 
+![Dynamics365Configuration Concept](/doc/Concept.png)
+
 ## Commands overview
 
 * `Get-Dynamics365ServerLanguage`, returns primary Dynamics 365 Customer Engagement language installed on the machine.
