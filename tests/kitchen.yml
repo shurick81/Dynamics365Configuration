@@ -196,6 +196,37 @@ platforms:
         - vagrant-provisioning/adsqldbrs-legacy.rb
     transport:
       name: winrm
+  - name: win2016-sql2017dbrs-dynamicsprereqs
+    driver:
+      name: vagrant
+      box: win2016-sql2017dbrs
+      linked_clone: true
+      communicator: winrm
+      winrm:
+        username: vagrant
+        password: Fractalsol365
+        transport: plaintext
+        basic_auth_only: true
+        config.winrm.timeout: 240
+        retry_limit: 20
+      gui: false
+      platformw: windows
+      customize:
+        clipboard-mode: bidirectional
+        memory: 6144
+        cpus: 2
+        audio: none
+        vram: 32
+      synced_folders:
+        - [ './../src' , 'c:/test-projects/Dynamics365Configuration/src' ]
+        - [ '.' , 'c:/test-projects/Dynamics365Configuration/tests' ]
+      network:
+        - ["private_network", { ip: "192.168.51.130", gateway: "192.168.51.1" } ]
+      provision: true
+      vagrantfiles:
+        - vagrant-provisioning/sqldbrs.rb
+    transport:
+      name: winrm
   - name: win2016-sql2016dbrs-dynamicsprereqs
     driver:
       name: vagrant
@@ -251,6 +282,8 @@ platforms:
       synced_folders:
         - [ './../src' , 'c:/test-projects/Dynamics365Configuration/src' ]
         - [ '.' , 'c:/test-projects/Dynamics365Configuration/tests' ]
+      network:
+        - ["private_network", { ip: "192.168.51.130", gateway: "192.168.51.1" } ]
       provision: true
       vagrantfiles:
         - vagrant-provisioning/sqldbrs-legacy.rb
@@ -416,15 +449,6 @@ suites:
     - win2019-basic
     - win2016-basic
     - win2012r2-basic
-- name: SaveAllResources
-  provisioner:
-    name: shell
-    command: 'Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1; c:/test-projects/Dynamics365Configuration/tests\\SaveAll.ps1'
-    powershell_shell: true
-  includes:
-    - win2019-soe
-    - win2016-soe
-    - win2012r2-soe
 - name: RoleInstallation
   provisioner:
     name: shell
@@ -434,6 +458,7 @@ suites:
     - win2019-ad-sql2016dbrs-dynamicsprereqs
     - win2016-ad-sql2016dbrs-dynamicsprereqs
     - win2019-sql2016dbrs-dynamicsprereqs
+    - win2016-sql2017dbrs-dynamicsprereqs
     - win2016-sql2016dbrs-dynamicsprereqs
     - win2019-dynamicsprereqs
     - win2016-dynamicsprereqs
@@ -466,6 +491,7 @@ suites:
     - win2019-ad-sql2016dbrs-dynamicsprereqs
     - win2016-ad-sql2016dbrs-dynamicsprereqs
     - win2019-sql2016dbrs-dynamicsprereqs
+    - win2016-sql2017dbrs-dynamicsprereqs
     - win2016-sql2016dbrs-dynamicsprereqs
     - win2019-dynamicsprereqs
     - win2016-dynamicsprereqs
@@ -490,6 +516,7 @@ suites:
     - win2019-ad-sql2016dbrs-dynamicsprereqs
     - win2016-ad-sql2016dbrs-dynamicsprereqs
     - win2019-sql2016dbrs-dynamicsprereqs
+    - win2016-sql2017dbrs-dynamicsprereqs
     - win2016-sql2016dbrs-dynamicsprereqs
     - win2019-dynamicsprereqs
     - win2016-dynamicsprereqs
@@ -505,5 +532,3 @@ suites:
     - win2012r2-sql2016dbrs-dynamicsprereqs
     - win2016-dynamicsprereqs
     - win2012r2-dynamicsprereqs
-  #run_list:
-  #- recipe[tests::saveall]
