@@ -106,7 +106,9 @@ try {
         "Dynamics365Server90Update25Enu",
         "Dynamics365Server90ReportingExtensionsUpdate25Enu",
         "Dynamics365Server90Update26Enu",
-        "Dynamics365Server90ReportingExtensionsUpdate26Enu"
+        "Dynamics365Server90ReportingExtensionsUpdate26Enu",
+        "Dynamics365Server90Update27Enu",
+        "Dynamics365Server90ReportingExtensionsUpdate27Enu"
     ) | % { Save-Dynamics365Resource -Resource $_ -TargetDirectory C:\Install\Dynamics\$_ }
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
@@ -206,7 +208,9 @@ try {
     "Dynamics365Server90Update25Enu",
     "Dynamics365Server90ReportingExtensionsUpdate25Enu",
     "Dynamics365Server90Update26Enu",
-    "Dynamics365Server90ReportingExtensionsUpdate26Enu"
+    "Dynamics365Server90ReportingExtensionsUpdate26Enu",
+    "Dynamics365Server90Update27Enu",
+    "Dynamics365Server90ReportingExtensionsUpdate27Enu"
 ) | % {
     if ( Get-ChildItem C:\Install\Dynamics\$_ ) {
         Write-Host "Test OK";
@@ -2081,6 +2085,75 @@ try {
 }
 $installedVersion = Get-Dynamics365ReportingExtensionsVersion;
 if ( $installedVersion.ToString(3) -ne "9.0.26" ) {
+    Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
+    Exit 1;
+}
+
+try {
+    Invoke-Command "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+        Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
+        Install-Dynamics365Update -MediaDir C:\Install\Dynamics\Dynamics365Server90Update27Enu `
+            -LogFilePath c:\tmp\Dynamics365ServerUpdate927InstallLog.txt `
+            -LogFilePullIntervalInSeconds 15 `
+            -LogFilePullToOutput
+    }
+} catch {
+    Write-Host $_.Exception.Message -ForegroundColor Red;
+    Exit 1;
+}
+$testScriptBlock = {
+    try {
+        Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
+        if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
+            $crmServer = Get-CrmServer $env:COMPUTERNAME;
+            $crmServer.Version;
+        } else {
+            "Could not load Microsoft.Crm.PowerShell PSSnapin";
+        }
+    } catch {
+        $_.Exception.Message;
+        Exit 1;
+    }
+}
+$testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
+if ( ([version]$testResponse).ToString(3) -eq "9.0.27" )
+{
+    Write-Host "Test OK";
+} else {
+    Write-Host "Software installed version is '$testResponse'. Test is not OK"
+    Exit 1;
+}
+if( Test-Path "c:\tmp\Dynamics365ServerUpdate927InstallLog.txt" )
+{
+    Write-Output "File c:\tmp\Dynamics365ServerUpdate927InstallLog.txt is found, test OK"
+} else {
+    Write-Output "File c:\tmp\Dynamics365ServerUpdate927InstallLog.txt is not found"
+    Exit 1;
+}
+
+try {
+    if ( $dbHostName -eq $env:COMPUTERNAME ) {
+        $mediaDir = "C:\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate27Enu";
+    } else {
+        $mediaDir = "\\$env:COMPUTERNAME\c$\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate27Enu";
+    }
+    Write-Output "dbHostName is $dbHostName"
+    Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+        param( $mediaDir )
+        Import-Module C:\test-projects\Dynamics365Configuration\src\Dynamics365Configuration\Dynamics365Configuration.psd1
+        Write-Output "mediaDir is $mediaDir"
+        Install-Dynamics365ReportingExtensionsUpdate -MediaDir $mediaDir `
+            -LogFilePath c:\tmp\Dynamics365ServerReportingExtensionsUpdate9027InstallLog.txt `
+            -LogFilePullIntervalInSeconds 15 `
+            -LogFilePullToOutput
+    } -ArgumentList $mediaDir;
+} catch {
+    Write-Host "Failed in invoking of Install-Dynamics365ReportingExtensionsUpdate";
+    Write-Host $_.Exception.Message -ForegroundColor Red;
+    Exit 1;
+}
+$installedVersion = Get-Dynamics365ReportingExtensionsVersion;
+if ( $installedVersion.ToString(3) -ne "9.0.27" ) {
     Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
 }
