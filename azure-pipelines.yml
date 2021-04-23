@@ -247,6 +247,20 @@ jobs:
     displayName: ChecksumVerification
     errorActionPreference: continue
 - job:
+  displayName: Running prerequisite installation tests on a self hosted agent
+  pool: Default
+  steps:
+  - powershell: cd ci; ./booknode.ps1
+    displayName: Booking the hypervisor node
+    errorActionPreference: continue
+  - powershell: cd tests; kitchen test InstallAllPrerequisitesLocal-win2016-basic;
+    displayName: kitchen test InstallAllPrerequisitesLocal-win2016-basic
+    errorActionPreference: continue
+  - powershell: cd ci;./releasenode.ps1
+    #condition: always()
+    displayName: Releasing the hypervisor node booking
+    errorActionPreference: continue
+- job:
   displayName: Running role installation tests on a self hosted agent
   pool: Default
   timeoutInMinutes: 1440
@@ -260,9 +274,6 @@ jobs:
   - powershell: cd tests; kitchen destroy;
     displayName: Cleaning up the kitchen
     errorActionPreference: continue
-#  - powershell: cd tests; kitchen test InstallAllPrerequisitesLocal-win2019-basic;
-#    displayName: kitchen test InstallAllPrerequisitesLocal-win2019-basic
-#    errorActionPreference: continue
   - powershell: cd infrastructure/images; ./preparevmimages.ps1 win2016-sql2016dbrs,win2016-ad,win2019-soe,win2016-soe
     displayName: Building images
     errorActionPreference: continue
@@ -308,9 +319,6 @@ jobs:
   - powershell: cd tests; kitchen destroy;
     displayName: Cleaning up the kitchen
     errorActionPreference: continue
-#  - powershell: cd tests; kitchen test InstallAllPrerequisitesLocal-win2019-basic;
-#    displayName: kitchen test InstallAllPrerequisitesLocal-win2019-basic
-#    errorActionPreference: continue
   - powershell: cd infrastructure/images; ./preparevmimages.ps1 win2016-sql2016dbrs,win2016-ad,win2019-soe
     displayName: Building images
     errorActionPreference: continue
@@ -347,9 +355,6 @@ jobs:
   - powershell: cd tests; kitchen destroy;
     displayName: Cleaning up the kitchen
     errorActionPreference: continue
-#  - powershell: cd tests; kitchen test InstallAllPrerequisitesLocal-win2019-basic;
-#    displayName: kitchen test InstallAllPrerequisitesLocal-win2019-basic
-#    errorActionPreference: continue
   - powershell: cd infrastructure/images; ./preparevmimages.ps1 win2016-sql2016dbrs,win2016-ad,win2016-soe
     displayName: Building images
     errorActionPreference: continue
@@ -386,9 +391,6 @@ jobs:
   - powershell: cd tests; kitchen destroy;
     displayName: Cleaning up the kitchen
     errorActionPreference: continue
-#  - powershell: cd tests; kitchen test InstallAllPrerequisitesLocal-win2019-basic;
-#    displayName: kitchen test InstallAllPrerequisitesLocal-win2019-basic
-#    errorActionPreference: continue
   - powershell: cd infrastructure/images; ./preparevmimages.ps1 win2016-sql2016dbrs,win2016-ad
     displayName: Building images
     errorActionPreference: continue
@@ -419,9 +421,6 @@ jobs:
   - powershell: cd infrastructure/stacks/kitchenci-ad-sql2016dbrs; vagrant suspend;
     displayName: Suspending the stack
     errorActionPreference: continue
-#  - powershell: cd tests; kitchen test InstallAllPrerequisitesLocal-win2019-basic;
-#    displayName: kitchen test InstallAllPrerequisitesLocal-win2019-basic
-#    errorActionPreference: continue
   - powershell: cd infrastructure/images; ./preparevmimages.ps1 win2012r2-ad-sql2016dbrs
     displayName: Building images
     errorActionPreference: continue
