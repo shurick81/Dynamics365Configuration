@@ -1,5 +1,9 @@
 # Dynamics365Configuration module change log
 
+## Unreleased
+
+* VisualCPlusPlus2010Runtime resource file hash updated (by MS)
+
 ## 2.8.0
 
 * New Dynamics 365 updates (145 new downloadables in total):

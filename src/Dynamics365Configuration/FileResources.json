@@ -207,7 +207,7 @@
     "VisualCPlusPlus2010Runtime": {
         "URL": "https://download.microsoft.com/download/A/8/0/A80747C3-41BD-45DF-B505-E9710D2744E0/vcredist_x64.exe",
         "identifyingNumber": "1D8E6291-B0D5-35EC-8441-6616F567A0F7",
-        "checksum": "027D0C2749EC5EB21B031F46AEE14C905206F482"
+        "checksum": "0CF299A78C0A3D50B1A9CAFE5559B3050419A9BC"
     },
     "SQLNCli2012SP4": {
         "URL": "https://download.microsoft.com/download/F/3/C/F3C64941-22A0-47E9-BC9B-1A19B4CA3E88/ENU/x64/sqlncli.msi",
