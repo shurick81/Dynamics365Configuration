@@ -263,9 +263,6 @@ jobs:
 #  - powershell: cd tests; kitchen test InstallAllPrerequisitesLocal-win2019-basic;
 #    displayName: kitchen test InstallAllPrerequisitesLocal-win2019-basic
 #    errorActionPreference: continue
-#  - powershell: cd tests; kitchen test ValidUrls-win2012r2-basic;
-#    displayName: kitchen test ValidUrls-win2012r2-basic
-#    errorActionPreference: continue
   - powershell: cd infrastructure/images; ./preparevmimages.ps1 win2016-sql2016dbrs,win2016-ad,win2019-soe,win2016-soe
     displayName: Building images
     errorActionPreference: continue
@@ -314,9 +311,6 @@ jobs:
 #  - powershell: cd tests; kitchen test InstallAllPrerequisitesLocal-win2019-basic;
 #    displayName: kitchen test InstallAllPrerequisitesLocal-win2019-basic
 #    errorActionPreference: continue
-#  - powershell: cd tests; kitchen test ValidUrls-win2012r2-basic;
-#    displayName: kitchen test ValidUrls-win2012r2-basic
-#    errorActionPreference: continue
   - powershell: cd infrastructure/images; ./preparevmimages.ps1 win2016-sql2016dbrs,win2016-ad,win2019-soe
     displayName: Building images
     errorActionPreference: continue
@@ -355,9 +349,6 @@ jobs:
     errorActionPreference: continue
 #  - powershell: cd tests; kitchen test InstallAllPrerequisitesLocal-win2019-basic;
 #    displayName: kitchen test InstallAllPrerequisitesLocal-win2019-basic
-#    errorActionPreference: continue
-#  - powershell: cd tests; kitchen test ValidUrls-win2012r2-basic;
-#    displayName: kitchen test ValidUrls-win2012r2-basic
 #    errorActionPreference: continue
   - powershell: cd infrastructure/images; ./preparevmimages.ps1 win2016-sql2016dbrs,win2016-ad,win2016-soe
     displayName: Building images
@@ -398,9 +389,6 @@ jobs:
 #  - powershell: cd tests; kitchen test InstallAllPrerequisitesLocal-win2019-basic;
 #    displayName: kitchen test InstallAllPrerequisitesLocal-win2019-basic
 #    errorActionPreference: continue
-#  - powershell: cd tests; kitchen test ValidUrls-win2012r2-basic;
-#    displayName: kitchen test ValidUrls-win2012r2-basic
-#    errorActionPreference: continue
   - powershell: cd infrastructure/images; ./preparevmimages.ps1 win2016-sql2016dbrs,win2016-ad
     displayName: Building images
     errorActionPreference: continue
@@ -433,9 +421,6 @@ jobs:
     errorActionPreference: continue
 #  - powershell: cd tests; kitchen test InstallAllPrerequisitesLocal-win2019-basic;
 #    displayName: kitchen test InstallAllPrerequisitesLocal-win2019-basic
-#    errorActionPreference: continue
-#  - powershell: cd tests; kitchen test ValidUrls-win2012r2-basic;
-#    displayName: kitchen test ValidUrls-win2012r2-basic
 #    errorActionPreference: continue
   - powershell: cd infrastructure/images; ./preparevmimages.ps1 win2012r2-ad-sql2016dbrs
     displayName: Building images
