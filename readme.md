@@ -194,7 +194,7 @@ Install-Dynamics365Prerequisite
 
 #### -Prerequisite
 
-Specifies if only particular prerequisite must be installed. If $null is specified, all prerequisites are installed. For Dynamics 365 Server 9.0 required prerequisites are [SQLNCli2012SP4,SQLSysClrTypes2016,SharedManagementObjects2016,VisualCPlusPlusRuntime,MSODBCSQL]. For CRM 2016 required prerequisites are [SQLNCli2008R2,SQLSysClrTypes2012,SharedManagementObjects2012,ReportViewer2012,VisualCPlusPlusRuntime,VisualCPlusPlus2010Runtime]. For reporting extensions, the only prerequisite is `VisualCPlusPlusRuntime`
+Specifies if only particular prerequisite must be installed. If $null is specified, all prerequisites are installed. For Dynamics 365 Server 9.0 required prerequisites are [SQLNCli2012SP4,SQLSysClrTypes2016,SharedManagementObjects2016,VisualCPlusPlusRuntime,VisualCPlusPlus2010Runtime,MSODBCSQL]. For CRM 2016 required prerequisites are [SQLNCli2008R2,SQLSysClrTypes2012,SharedManagementObjects2012,ReportViewer2012,VisualCPlusPlusRuntime,VisualCPlusPlus2010Runtime]. For reporting extensions, the only prerequisite is `VisualCPlusPlusRuntime`
 
 #### -DynamicsPrerequisiteFilePath
 
