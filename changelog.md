@@ -1,6 +1,6 @@
 # Dynamics365Configuration module change log
 
-## Unreleased
+## 2.9.0
 
 * VisualCPlusPlus2010Runtime resource file hash updated (by MS)
 
