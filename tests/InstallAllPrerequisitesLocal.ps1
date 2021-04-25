@@ -57,13 +57,13 @@ try {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$installedProduct = Get-WmiObject Win32_Product | ? { $_.IdentifyingNumber -eq "{96EB5054-C775-4BEF-B7B9-AA96A295EDCD}" }
+$installedProduct = Get-WmiObject Win32_Product | ? { $_.IdentifyingNumber -eq "{A5B947FD-875D-448C-AB7C-A737CA9FEA4C}" }
 if ( !$installedProduct )
 {
     Write-Host "Matching products not found";
     Exit 1;
 } else {
-    Write-Host "Product 96EB5054-C775-4BEF-B7B9-AA96A295EDCD found"
+    Write-Host "Product A5B947FD-875D-448C-AB7C-A737CA9FEA4C found"
 }
 
 @(
