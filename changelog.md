@@ -1,5 +1,9 @@
 # Dynamics365Configuration module change log
 
+## Not released
+
+* SQLSysClrTypes2012 and SharedManagementObjects2012 resource file hash updated (by MS)
+
 ## 2.9.0
 
 * VisualCPlusPlus2010Runtime resource file hash updated (by MS)

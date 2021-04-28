@@ -6942,12 +6942,12 @@
     "SQLSysClrTypes2012": {
         "URL": "http://download.microsoft.com/download/F/E/D/FEDB200F-DE2A-46D8-B661-D019DFE9D470/ENU/x64/SQLSysClrTypes.msi",
         "identifyingNumber": "F1949145-EB64-4DE7-9D81-E6D27937146C",
-        "checksum": "7CE5C2888C150F7F3F31DDE4DD4831E6B4A50E97"
+        "checksum": "34FF550302EF65F396EF6BD42A9B08096D7514EE"
     },
     "SharedManagementObjects2012": {
         "URL": "http://download.microsoft.com/download/F/E/D/FEDB200F-DE2A-46D8-B661-D019DFE9D470/ENU/x64/SharedManagementObjects.msi",
         "identifyingNumber": "FA0A244E-F3C2-4589-B42A-3D522DE79A42",
-        "checksum": "8438BAEA185239D9ADC121A659DD316CB1C55AA1"
+        "checksum": "21A66AD8832B39C4710BD1E381B2E80E4895F8D1"
     },
     "ReportViewer2012": {
         "URL": "https://download.microsoft.com/download/F/B/7/FB728406-A1EE-4AB5-9C56-74EB8BDDF2FF/ReportViewer.msi",
