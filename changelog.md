@@ -1,6 +1,6 @@
 # Dynamics365Configuration module change log
 
-## Not released
+## 2.10.0
 
 * SQLSysClrTypes2012 and SharedManagementObjects2012 resource file hash updated (by MS)
 
