@@ -1,5 +1,12 @@
 # Dynamics365Configuration module change log
 
+## Not released
+
+* New Dynamics 365 updates (50 new downloadables in total):
+
+  * Dynamics365Server90Update28\<Language\>
+  * Dynamics365Server90ReportingExtensionsUpdate28\<Language\>
+
 ## 2.10.0
 
 * SQLSysClrTypes2012 and SharedManagementObjects2012 resource file hash updated (by MS)
