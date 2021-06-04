@@ -65,7 +65,6 @@ function Install-Dynamics365LanguageUpdate {
     }
     $job = Start-Job -ScriptBlock $installCrmScript -ArgumentList $setupFilePath, $logFilePath;
     Write-Output "$(Get-Date) Started installation job, log will be saved in $logFilePath";
-    $lastLinesCount = 0;
     $startTime = Get-Date;
     Start-Sleep $logFilePullIntervalInSeconds;
     do {
@@ -73,27 +72,21 @@ function Install-Dynamics365LanguageUpdate {
         $elapsedString = "{0:HH:mm:ss}" -f ( [datetime]$elapsedTime.Ticks );
         Write-Output "$(Get-Date) Elapsed $elapsedString. Waiting until CRM language pack update installation job is done, sleeping $logFilePullIntervalInSeconds sec";
         Start-Sleep $logFilePullIntervalInSeconds;
-        if (($logFilePullToOutput -eq $True) -and ((Test-Path $logFilePath) -eq $True)) {
-
-            $linesCount = (Get-Content $logFilePath | Measure-Object -Line).Lines;
-            $newLinesCount = $linesCount - $lastLinesCount;
-
-            if ($newLinesCount -gt 0) {
-                Write-Output "$(Get-Date) - new logs: $newLinesCount lines";
-                $lines = Get-Content $logFilePath | Select-Object -First $newLinesCount -Skip $lastLinesCount;
-
-                foreach ($line in $lines) {
-                    Write-Output $line;
+        if ( $logFilePullToOutput ) {
+            if ( Test-Path $logFilePath ) {
+                $logFileContents = Get-Content $logFilePath -ReadCount 0;
+                $linesCount = $logFileContents.Length;
+                $newLinesCount = $linesCount - $lastLinesCount;
+                if($newLinesCount -gt 0) {
+                    Write-Output "$(Get-Date) - new logs: $newLinesCount lines";
+                    $logFileContents | Select-Object -First $newLinesCount -Skip $lastLinesCount | Write-Output;
+                } else {
+                    Write-Output "$(Get-Date) - no new logs";
                 }
+                $lastLinesCount = $linesCount;
             }
-            else {
-                Write-Output "$(Get-Date) - no new logs";
-            }
-
-            $lastLinesCount = $linesCount;
         }
     } until ( $job.State -eq "Completed" )
-
     $elapsedTime = $( Get-Date ) - $startTime;
     $elapsedString = "{0:HH:mm:ss}" -f ( [datetime]$elapsedTime.Ticks );
     Write-Output "$(Get-Date) Elapsed $elapsedString. Job is complete, output:";

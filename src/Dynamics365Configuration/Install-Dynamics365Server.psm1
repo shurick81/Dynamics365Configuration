@@ -1,4 +1,4 @@
-﻿function Install-Dynamics365Server {
+function Install-Dynamics365Server {
     [CmdletBinding(DefaultParameterSetName = 'Groups')]
     param (
         [Parameter(ParameterSetName = 'OU', Mandatory=$true)]
@@ -504,38 +504,27 @@
                         Write-Output "$(Get-Date) Started installation job, log will be saved in $logFilePath";
                         $lastLinesCount = 0;
                         $startTime = Get-Date;
-                        $logReadIterationsLeft = 2;
                         Start-Sleep $logFilePullIntervalInSeconds;
                         do {
                             $elapsedTime = $( Get-Date ) - $startTime;
                             $elapsedString = "{0:HH:mm:ss}" -f ( [datetime]$elapsedTime.Ticks );
                             Write-Output "$(Get-Date) Elapsed $elapsedString. Waiting until CRM installation job is done, sleeping $logFilePullIntervalInSeconds sec";
                             Start-Sleep $logFilePullIntervalInSeconds;
-                            if ( $job.State -eq "Completed" ) {
-                                Write-Output "$(Get-Date) Log read iterations left: $logReadIterationsLeft"
-                                $logReadIterationsLeft--;
-                                Start-Sleep 30;
-                            }
-                            if(($logFilePullToOutput -eq $True) -and ((Test-Path $logFilePath) -eq $True)) {
-
-                                $linesCount    = (Get-Content $logFilePath | Measure-Object -Line).Lines;
-                                $newLinesCount = $linesCount - $lastLinesCount;
-
-                                if($newLinesCount -gt 0) {
-                                    Write-Output "$(Get-Date) - new logs: $newLinesCount lines";
-                                    $lines = Get-Content $logFilePath | Select-Object -First $newLinesCount -Skip $lastLinesCount;
-
-                                    foreach($line in $lines) {
-                                        Write-Output $line;
+                            if ( $logFilePullToOutput ) {
+                                if ( Test-Path $logFilePath ) {
+                                    $logFileContents = Get-Content $logFilePath -ReadCount 0;
+                                    $linesCount = $logFileContents.Length;
+                                    $newLinesCount = $linesCount - $lastLinesCount;
+                                    if($newLinesCount -gt 0) {
+                                        Write-Output "$(Get-Date) - new logs: $newLinesCount lines";
+                                        $logFileContents | Select-Object -First $newLinesCount -Skip $lastLinesCount | Write-Output;
+                                    } else {
+                                        Write-Output "$(Get-Date) - no new logs";
                                     }
-                                } else {
-                                    Write-Output "$(Get-Date) - no new logs";
+                                    $lastLinesCount = $linesCount;
                                 }
-
-                                $lastLinesCount = $linesCount;
                             }
-                        } until ( ( $job.State -eq "Completed" ) -and ( $logReadIterationsLeft -le 0 ) )
-
+                        } until ( $job.State -eq "Completed" )
                         $elapsedTime = $( Get-Date ) - $startTime;
                         $elapsedString = "{0:HH:mm:ss}" -f ( [datetime]$elapsedTime.Ticks );
                         Write-Output "$(Get-Date) Elapsed $elapsedString. Job is complete, output:";
