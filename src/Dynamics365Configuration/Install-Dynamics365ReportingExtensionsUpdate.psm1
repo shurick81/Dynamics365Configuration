@@ -54,47 +54,42 @@ function Install-Dynamics365ReportingExtensionsUpdate {
             Write-Output $errorMessage;
             Throw $errorMessage;
         }
-        $localInstallationScriptBlock = {
-            param( $setupFilePath, $logFilePath, $logFilePullIntervalInSeconds, $logFilePullToOutput)
-            Write-Output "$(Get-Date) Starting $setupFilePath";
-            $installCrmScript = {
-                param( $setupFilePath, $logFilePath );
-                Write-Output "Start-Process '$setupFilePath' -ArgumentList '/q /log $logFilePath /norestart' -Wait;";
-                Start-Process "$setupFilePath" -ArgumentList "/q /log $logFilePath /norestart" -Wait;
-            }
-            $job = Start-Job -ScriptBlock $installCrmScript -ArgumentList $setupFilePath, $logFilePath;
-            Write-Output "$(Get-Date) Started installation job, log will be saved in $logFilePath";
-            $lastLinesCount = 0;
-            $startTime = Get-Date;
-            Start-Sleep $logFilePullIntervalInSeconds;
-            do {
-                $elapsedTime = $( Get-Date ) - $startTime;
-                $elapsedString = "{0:HH:mm:ss}" -f ( [datetime]$elapsedTime.Ticks );
-                Write-Output "$(Get-Date) Elapsed $elapsedString. Waiting until CRM reporting extensions update installation job is done, sleeping $logFilePullIntervalInSeconds sec";
-                Start-Sleep $logFilePullIntervalInSeconds;
-                if ( $logFilePullToOutput ) {
-                    if ( Test-Path $logFilePath ) {
-                        $logFileContents = Get-Content $logFilePath -ReadCount 0;
-                        $linesCount = $logFileContents.Length;
-                        $newLinesCount = $linesCount - $lastLinesCount;
-                        if($newLinesCount -gt 0) {
-                            Write-Output "$(Get-Date) - new logs: $newLinesCount lines";
-                            $logFileContents | Select-Object -First $newLinesCount -Skip $lastLinesCount | Write-Output;
-                        } else {
-                            Write-Output "$(Get-Date) - no new logs";
-                        }
-                        $lastLinesCount = $linesCount;
-                    }
-                }
-            } until ( $job.State -eq "Completed" )
+        Write-Output "$(Get-Date) Starting $setupFilePath";
+        $installCrmScript = {
+            param( $setupFilePath, $logFilePath );
+            Write-Output "Start-Process '$setupFilePath' -ArgumentList '/q /log $logFilePath /norestart' -Wait;";
+            Start-Process "$setupFilePath" -ArgumentList "/q /log $logFilePath /norestart" -Wait;
+        }
+        $job = Start-Job -ScriptBlock $installCrmScript -ArgumentList $setupFilePath, $logFilePath;
+        Write-Output "$(Get-Date) Started installation job, log will be saved in $logFilePath";
+        $lastLinesCount = 0;
+        $startTime = Get-Date;
+        Start-Sleep $logFilePullIntervalInSeconds;
+        do {
             $elapsedTime = $( Get-Date ) - $startTime;
             $elapsedString = "{0:HH:mm:ss}" -f ( [datetime]$elapsedTime.Ticks );
-            Write-Output "$(Get-Date) Elapsed $elapsedString. Job is complete, output:";
-            Write-Output ( Receive-Job $job );
-            Remove-Job $job;
-        }
-        Invoke-Command -ScriptBlock $localInstallationScriptBlock `
-            -ArgumentList $setupFilePath, $logFilePath, $logFilePullIntervalInSeconds, $logFilePullToOutput;
+            Write-Output "$(Get-Date) Elapsed $elapsedString. Waiting until CRM reporting extensions update installation job is done, sleeping $logFilePullIntervalInSeconds sec";
+            Start-Sleep $logFilePullIntervalInSeconds;
+            if ( $logFilePullToOutput ) {
+                if ( Test-Path $logFilePath ) {
+                    $logFileContents = Get-Content $logFilePath -ReadCount 0;
+                    $linesCount = $logFileContents.Length;
+                    $newLinesCount = $linesCount - $lastLinesCount;
+                    if($newLinesCount -gt 0) {
+                        Write-Output "$(Get-Date) - new logs: $newLinesCount lines";
+                        $logFileContents | Select-Object -First $newLinesCount -Skip $lastLinesCount | Write-Output;
+                    } else {
+                        Write-Output "$(Get-Date) - no new logs";
+                    }
+                    $lastLinesCount = $linesCount;
+                }
+            }
+        } until ( $job.State -eq "Completed" )
+        $elapsedTime = $( Get-Date ) - $startTime;
+        $elapsedString = "{0:HH:mm:ss}" -f ( [datetime]$elapsedTime.Ticks );
+        Write-Output "$(Get-Date) Elapsed $elapsedString. Job is complete, output:";
+        Write-Output ( Receive-Job $job );
+        Remove-Job $job;
         $installedVersion = Get-Dynamics365ReportingExtensionsVersion;
         Write-Output "The following version of the product is currently installed: $installedVersion"
         if ( $installedVersion -ne $fileVersion ) {

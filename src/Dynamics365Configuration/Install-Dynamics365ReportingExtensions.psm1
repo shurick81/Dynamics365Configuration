@@ -73,59 +73,55 @@ function Install-Dynamics365ReportingExtensions {
         $xml.WriteTo( $xmlWriter );
         $xmlWriter.Flush();
         $stringWriter.Flush();
+        $xmlConfig = $stringWriter.ToString();
 
-        $localInstallationScriptBlock = {
-            param( $setupFilePath, $xmlConfig, $logFilePath, $logFilePullIntervalInSeconds, $logFilePullToOutput)
-            $tempFileName = [guid]::NewGuid().Guid;
-            $tempFilePath = "$env:Temp\$tempFileName.xml";
-            Write-Output "$(Get-Date) Saving configuration temporary to $tempFilePath";
-            Set-Content -Path $tempFilePath -Value $xmlConfig -Encoding utf8;
-            Get-Content $tempFilePath | Write-Debug;
-            Write-Output "$(Get-Date) Starting $setupFilePath";
-            $installCrmScript = {
-                param( $setupFilePath, $tempFilePath, $logFilePath );
-                Write-Output "Start-Process '$setupFilePath' -ArgumentList '/Q /config $tempFilePath /L $logFilePath' -Wait;";
-                Start-Process "$setupFilePath" -ArgumentList "/Q /config $tempFilePath /L $logFilePath" -Wait;
-            }
-            $job = Start-Job -ScriptBlock $installCrmScript -ArgumentList $setupFilePath, $tempFilePath, $logFilePath;
-            Write-Output "$(Get-Date) Started installation job, log will be saved in $logFilePath";
-            $lastLinesCount = 0;
-            $startTime = Get-Date;
-            Start-Sleep $logFilePullIntervalInSeconds;
-            do {
-                $elapsedTime = $( Get-Date ) - $startTime;
-                $elapsedString = "{0:HH:mm:ss}" -f ( [datetime]$elapsedTime.Ticks );
-                Write-Output "$(Get-Date) Elapsed $elapsedString. Waiting until CRM reporting extensions job is done, sleeping $logFilePullIntervalInSeconds sec";
-                Start-Sleep $logFilePullIntervalInSeconds;
-                if ( $logFilePullToOutput ) {
-                    if ( Test-Path $logFilePath ) {
-                        $logFileContents = Get-Content $logFilePath -ReadCount 0;
-                        $linesCount = $logFileContents.Length;
-                        $newLinesCount = $linesCount - $lastLinesCount;
-                        if($newLinesCount -gt 0) {
-                            Write-Output "$(Get-Date) - new logs: $newLinesCount lines";
-                            $logFileContents | Select-Object -First $newLinesCount -Skip $lastLinesCount | Write-Output;
-                        } else {
-                            Write-Output "$(Get-Date) - no new logs";
-                        }
-                        $lastLinesCount = $linesCount;
-                    }
-                }
-            } until ( $job.State -eq "Completed" )
-            $elapsedTime = $( Get-Date ) - $startTime;
-            $elapsedString = "{0:HH:mm:ss}" -f ( [datetime]$elapsedTime.Ticks );
-            Write-Output "$(Get-Date) Elapsed $elapsedString. Job is complete, output:";
-            Write-Output ( Receive-Job $job );
-            Remove-Job $job;
-            Start-Sleep 10;
-            Remove-Item $tempFilePath;
-        }
         if([String]::IsNullOrEmpty($logFilePath) -eq $True) {
             $timeStamp = ( Get-Date -Format u ).Replace(" ","-").Replace(":","-");
             $logFilePath = "$env:APPDATA\Microsoft\MSCRM\Logs\DynamicsReportingExtensionsInstallationLog_$timeStamp.txt";
         }
-        Invoke-Command -ScriptBlock $localInstallationScriptBlock `
-            -ArgumentList $setupFilePath, $stringWriter.ToString(), $logFilePath, $logFilePullIntervalInSeconds, $logFilePullToOutput;
+        $tempFileName = [guid]::NewGuid().Guid;
+        $tempFilePath = "$env:Temp\$tempFileName.xml";
+        Write-Output "$(Get-Date) Saving configuration temporary to $tempFilePath";
+        Set-Content -Path $tempFilePath -Value $xmlConfig -Encoding utf8;
+        Get-Content $tempFilePath | Write-Debug;
+        Write-Output "$(Get-Date) Starting $setupFilePath";
+        $installCrmScript = {
+            param( $setupFilePath, $tempFilePath, $logFilePath );
+            Write-Output "Start-Process '$setupFilePath' -ArgumentList '/Q /config $tempFilePath /L $logFilePath' -Wait;";
+            Start-Process "$setupFilePath" -ArgumentList "/Q /config $tempFilePath /L $logFilePath" -Wait;
+        }
+        $job = Start-Job -ScriptBlock $installCrmScript -ArgumentList $setupFilePath, $tempFilePath, $logFilePath;
+        Write-Output "$(Get-Date) Started installation job, log will be saved in $logFilePath";
+        $lastLinesCount = 0;
+        $startTime = Get-Date;
+        Start-Sleep $logFilePullIntervalInSeconds;
+        do {
+            $elapsedTime = $( Get-Date ) - $startTime;
+            $elapsedString = "{0:HH:mm:ss}" -f ( [datetime]$elapsedTime.Ticks );
+            Write-Output "$(Get-Date) Elapsed $elapsedString. Waiting until CRM reporting extensions job is done, sleeping $logFilePullIntervalInSeconds sec";
+            Start-Sleep $logFilePullIntervalInSeconds;
+            if ( $logFilePullToOutput ) {
+                if ( Test-Path $logFilePath ) {
+                    $logFileContents = Get-Content $logFilePath -ReadCount 0;
+                    $linesCount = $logFileContents.Length;
+                    $newLinesCount = $linesCount - $lastLinesCount;
+                    if($newLinesCount -gt 0) {
+                        Write-Output "$(Get-Date) - new logs: $newLinesCount lines";
+                        $logFileContents | Select-Object -First $newLinesCount -Skip $lastLinesCount | Write-Output;
+                    } else {
+                        Write-Output "$(Get-Date) - no new logs";
+                    }
+                    $lastLinesCount = $linesCount;
+                }
+            }
+        } until ( $job.State -eq "Completed" )
+        $elapsedTime = $( Get-Date ) - $startTime;
+        $elapsedString = "{0:HH:mm:ss}" -f ( [datetime]$elapsedTime.Ticks );
+        Write-Output "$(Get-Date) Elapsed $elapsedString. Job is complete, output:";
+        Write-Output ( Receive-Job $job );
+        Remove-Job $job;
+        Start-Sleep 10;
+        Remove-Item $tempFilePath;
         Write-Output "The following products were installed:"
         Get-WmiObject Win32_Product -ComputerName $env:COMPUTERNAME | ForEach-Object {
             if ( !$expectedProductIdentifyingNumber -or ( $_.IdentifyingNumber -eq "{$expectedProductIdentifyingNumber}" ) ) {
