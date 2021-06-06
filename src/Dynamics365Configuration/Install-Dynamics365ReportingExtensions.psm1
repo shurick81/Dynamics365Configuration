@@ -122,6 +122,15 @@ function Install-Dynamics365ReportingExtensions {
         Remove-Job $job;
         Start-Sleep 10;
         Remove-Item $tempFilePath;
+        if( (Test-Path $logFilePath) -eq $True) {
+            $errorLines = Get-Content $logFilePath | Select-String -Pattern "Error|" -SimpleMatch;
+            if ( $errorLines ) {
+                Write-Output "Errors from install log:";
+                $errorLines | Foreach-Object {
+                    Write-Output $_.Line;
+                }
+            }
+        }
         Write-Output "The following products were installed:"
         Get-WmiObject Win32_Product -ComputerName $env:COMPUTERNAME | ForEach-Object {
             if ( !$expectedProductIdentifyingNumber -or ( $_.IdentifyingNumber -eq "{$expectedProductIdentifyingNumber}" ) ) {
@@ -136,20 +145,6 @@ function Install-Dynamics365ReportingExtensions {
             if ( $isInstalled ) {
                 Write-Output "Installation is finished and verified successfully";
             } else {
-                $getErrorLogScriptBlock = {
-                    param( $logFilePath )
-                    if( (Test-Path $logFilePath) -eq $True) {
-                        $errorLines = Get-Content $logFilePath | Select-String -Pattern "Error" -SimpleMatch;
-                        if($null -ne $errorLines) {
-                            Write-Output "Errors from install log: $logFilePath";
-                            foreach($errorLine in $errorLines) {
-                                Write-Output $errorLine;
-                            }
-                        }
-                    }
-                }
-                Invoke-Command -ScriptBlock $getErrorLogScriptBlock `
-                    -ArgumentList $logFilePath
                 $errorMessage = "Installation job finished but the product $expectedProductIdentifyingNumber is still not installed";
 
                 Write-Output $errorMessage;

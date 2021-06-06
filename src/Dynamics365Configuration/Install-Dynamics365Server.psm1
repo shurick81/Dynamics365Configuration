@@ -535,6 +535,15 @@ function Install-Dynamics365Server {
                     Remove-Job $job;
                     Start-Sleep 10;
                     Remove-Item $tempFilePath;
+                    if( (Test-Path $logFilePath) -eq $True) {
+                        $errorLines = Get-Content $logFilePath | Select-String -Pattern "Error|" -SimpleMatch;
+                        if ( $errorLines ) {
+                            Write-Output "Errors from install log:";
+                            $errorLines | Foreach-Object {
+                                Write-Output $_.Line;
+                            }
+                        }
+                    }
                     $msCRMRegistryValues = Get-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\MSCRM -ErrorAction Ignore;
                     If ( $msCRMRegistryValues ) {
                         $isInstalled = $true;
@@ -562,15 +571,6 @@ function Install-Dynamics365Server {
                         }
                         Write-Output "Installation is finished and verified successfully";
                     } else {
-                        if( (Test-Path $logFilePath) -eq $True) {
-                            $errorLines = Get-Content $logFilePath | Select-String -Pattern "Error" -SimpleMatch;
-                            if($null -ne $errorLines) {
-                                Write-Output "Errors from install log: $logFilePath";
-                                foreach($errorLine in $errorLines) {
-                                    Write-Output $errorLine;
-                                }
-                            }
-                        }
                         $errorMessage = "Installation job finished but the product is still not installed";
                         Write-Output $errorMessage;
                         Throw $errorMessage;

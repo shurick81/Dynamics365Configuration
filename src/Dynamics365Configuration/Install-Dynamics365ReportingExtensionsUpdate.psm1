@@ -90,6 +90,15 @@ function Install-Dynamics365ReportingExtensionsUpdate {
         Write-Output "$(Get-Date) Elapsed $elapsedString. Job is complete, output:";
         Write-Output ( Receive-Job $job );
         Remove-Job $job;
+        if( (Test-Path $logFilePath) -eq $True) {
+            $errorLines = Get-Content $logFilePath | Select-String -Pattern "Error|" -SimpleMatch;
+            if ( $errorLines ) {
+                Write-Output "Errors from install log:";
+                $errorLines | Foreach-Object {
+                    Write-Output $_.Line;
+                }
+            }
+        }
         $installedVersion = Get-Dynamics365ReportingExtensionsVersion;
         Write-Output "The following version of the product is currently installed: $installedVersion"
         if ( $installedVersion -ne $fileVersion ) {

@@ -78,19 +78,18 @@ function Install-Dynamics365Update {
     Write-Output "$(Get-Date) Elapsed $elapsedString. Job is complete, output:";
     Write-Output ( Receive-Job $job );
     Remove-Job $job;
-
+    if( (Test-Path $logFilePath) -eq $True) {
+        $errorLines = Get-Content $logFilePath | Select-String -Pattern "Error|" -SimpleMatch;
+        if ( $errorLines ) {
+            Write-Output "Errors from install log:";
+            $errorLines | Foreach-Object {
+                Write-Output $_.Line;
+            }
+        }
+    }
     $installedVersion = Get-Dynamics365ServerVersion;
     Write-Output "Currently installed: $($installedVersion.ToString())";
     if ( $fileVersion -ne $installedVersion ) {
-        if( (Test-Path $logFilePath) -eq $True) {
-            $errorLines = Get-Content $logFilePath | Select-String -Pattern "Error" -SimpleMatch;
-            if($null -ne $errorLines) {
-                Write-Output "Errors from install log: $logFilePath";
-                foreach($errorLine in $errorLines) {
-                    Write-Output $errorLine;
-                }
-            }
-        }
         $errorMessage = "Version of installed software is not the same as installed update";
         Write-Output $errorMessage;
         Throw $errorMessage;

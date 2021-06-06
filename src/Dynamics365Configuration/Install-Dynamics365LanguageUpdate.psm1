@@ -92,6 +92,15 @@ function Install-Dynamics365LanguageUpdate {
     Write-Output "$(Get-Date) Elapsed $elapsedString. Job is complete, output:";
     Write-Output ( Receive-Job $job );
     Remove-Job $job;
+    if( (Test-Path $logFilePath) -eq $True) {
+        $errorLines = Get-Content $logFilePath | Select-String -Pattern "Error|" -SimpleMatch;
+        if ( $errorLines ) {
+            Write-Output "Errors from install log:";
+            $errorLines | Foreach-Object {
+                Write-Output $_.Line;
+            }
+        }
+    }
     $currentProductInstalled = Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "{$( $Dynamics365Resources.( $baseResourceName ).identifyingNumber )}" }
     Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )";
     if ( $currentProductInstalled.DisplayVersion -ne $fileVersionFull ) {
