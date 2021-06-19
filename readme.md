@@ -249,6 +249,7 @@ Install-Dynamics365Server
     -MediaDir <string>
     -SqlServer <string>
     -OU <string>
+    [-Patch <string>]
     [-LicenseKey <string>]
     [-InstallDir <string>]
     [-CreateDatabase <switch>]
@@ -283,6 +284,7 @@ Install-Dynamics365Server
 Install-Dynamics365Server
     -MediaDir <string>
     -SqlServer <string>
+    [-Patch <string>]
     [-LicenseKey <string>]
     [-InstallDir <string>]
     [-CreateDatabase <switch>]
@@ -326,6 +328,10 @@ Have a look at Microsoft Dynamics 365 Server documentation: https://technet.micr
 #### MediaDir
 
 Specifies the location of the Dynamics 365 RTM installation files.
+
+#### Patch
+
+Path to the patch file to apply when installing CRM. See `<Patch>` XML node description in https://technet.microsoft.com/en-us/library/hh699830.aspx.
 
 #### LicenseKey
 
@@ -477,7 +483,7 @@ Use this option to get a detailed feedback on the installation process.
 
 ### Examples
 
-Installing a single server with a an organization
+Installing a single server with an organization
 
 ```PowerShell
 $securedPassword = ConvertTo-SecureString "c0mp1Expa~~" -AsPlainText -Force
@@ -494,6 +500,7 @@ Invoke-Command "$env:COMPUTERNAME.contoso.local" -Credential $CRMInstallAccountC
         -MediaDir C:\Install\Dynamics\Dynamics365Server90RTMEnu `
         -CreateDatabase `
         -SqlServer $env:COMPUTERNAME\SQLInstance01 `
+        -Patch C:\Install\Dynamics\Dynamics365Server90Update28Enu\Server_KB4614160_amd64_1033.msp `
         -OU "OU=CRM groups,DC=contoso,DC=local" `
         -CrmServiceAccount $CRMServiceAccountCredential `
         -DeploymentServiceAccount $DeploymentServiceAccountCredential `
@@ -577,6 +584,7 @@ Installs Dynamics 365 Reporting Extensions.
 Install-Dynamics365ReportingExtensions
     -MediaDir <string>
     [-InstanceName <string>]
+    [-Patch <string>]
     [-ConfigDBServer <string>]
     [-AutoGroupManagementOff <switch>]
     [-MUOptin <switch>]
@@ -594,6 +602,10 @@ Specifies the location of the Dynamics 365 RTM installation files. Remote instal
 #### InstanceName
 
 Reporting Services instance to use. For more details, see `<instancename>` XML node description in http://157.56.148.23/en-us/library/hh699826.aspx and http://technet.microsoft.com/en-us/library/hh699826(v=crm.6).aspx.
+
+#### Patch
+
+Path of the patch file (usually msp). For more details, see `<Patch>` XML node description in http://157.56.148.23/en-us/library/hh699826.aspx and http://technet.microsoft.com/en-us/library/hh699826(v=crm.6).aspx.
 
 #### ConfigDBServer
 
@@ -640,13 +652,14 @@ Invoke-Command "DB01.contoso.local" -Credential $CRMInstallAccountCredential -Au
         -MediaDir C:\Install\Dynamics\Dynamics365Server90RTMEnu\SrsDataConnector `
         -ConfigDBServer $env:COMPUTERNAME\SQLInstance01 `
         -InstanceName SQLInstance01 `
+        -Patch C:\Install\Dynamics\Dynamics365Server90Update28Enu\Server_KB4614160_amd64_1033.msp `
         -LogFilePath c:\tmp\Dynamics365ServerInstallLog.txt `
         -LogFilePullIntervalInSeconds 15 `
         -LogFilePullToOutput
 }
 ```
 
-Installs Reporting Extensions on the remote SQL machine, with detailed output.
+Installs Reporting Extensions on the remote SQL machine, with detailed output, also installing a patch.
 
 ## Install-Dynamics365Language
 

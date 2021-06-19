@@ -1,4 +1,4 @@
-function Install-Dynamics365Update {
+﻿function Install-Dynamics365Update {
     param (
         [parameter(Position=0,
         Mandatory=$true)]
@@ -52,12 +52,12 @@ function Install-Dynamics365Update {
     Write-Output "$(Get-Date) Started installation job, log will be saved in $logFilePath";
     $lastLinesCount = 0;
     $startTime = Get-Date;
-    Start-Sleep $logFilePullIntervalInSeconds;
     do {
         $elapsedTime = $( Get-Date ) - $startTime;
         $elapsedString = "{0:HH:mm:ss}" -f ( [datetime]$elapsedTime.Ticks );
         Write-Output "$(Get-Date) Elapsed $elapsedString. Waiting until CRM update installation job is done, sleeping $logFilePullIntervalInSeconds sec";
         Start-Sleep $logFilePullIntervalInSeconds;
+        $jobState = $job.State;
         if ( $logFilePullToOutput ) {
             if ( Test-Path $logFilePath ) {
                 $logFileContents = Get-Content $logFilePath;
@@ -72,7 +72,7 @@ function Install-Dynamics365Update {
                 $lastLinesCount = $linesCount;
             }
         }
-    } until ( $job.State -eq "Completed" )
+    } until ( $jobState -eq "Completed" )
     $elapsedTime = $( Get-Date ) - $startTime;
     $elapsedString = "{0:HH:mm:ss}" -f ( [datetime]$elapsedTime.Ticks );
     Write-Output "$(Get-Date) Elapsed $elapsedString. Job is complete, output:";

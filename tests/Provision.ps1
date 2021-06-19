@@ -2,13 +2,6 @@ $dbHostName = $env:VMDEVOPSSTARTER_DBHOST;
 if ( !$dbHostName ) { $dbHostName = $env:COMPUTERNAME }
 $securedPassword = ConvertTo-SecureString "c0mp1Expa~~" -AsPlainText -Force
 $CRMInstallAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmadmin", $securedPassword );
-$CRMServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmsrv", $securedPassword );
-$DeploymentServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmdplsrv", $securedPassword );
-$SandboxServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmsandbox", $securedPassword );
-$VSSWriterServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmvsswrit", $securedPassword );
-$AsyncServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmasync", $securedPassword );
-$MonitoringServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmmon", $securedPassword );
-
 $domainName = (Get-WmiObject Win32_ComputerSystem).Domain;
 
 try {
@@ -38,28 +31,28 @@ if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server90LanguagePackSve ) {
 }
 
 try {
-    Save-Dynamics365Resource -Resource Dynamics365Server90Update26Enu -TargetDirectory C:\Install\Dynamics\Dynamics365Server90Update26Enu
+    Save-Dynamics365Resource -Resource Dynamics365Server90Update28Enu -TargetDirectory C:\Install\Dynamics\Dynamics365Server90Update28Enu
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server90Update26Enu ) {
+if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server90Update28Enu ) {
     Write-Host "Test OK";
 } else {
-    Write-Host "Expected files are not found in C:\Install\Dynamics\Dynamics365Server90Update26Enu, test is not OK";
+    Write-Host "Expected files are not found in C:\Install\Dynamics\Dynamics365Server90Update28Enu, test is not OK";
     Exit 1;
 }
 
 try {
-    Save-Dynamics365Resource -Resource Dynamics365Server90ReportingExtensionsUpdate26Enu -TargetDirectory C:\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate26Enu
+    Save-Dynamics365Resource -Resource Dynamics365Server90ReportingExtensionsUpdate28Enu -TargetDirectory C:\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate28Enu
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate26Enu ) {
+if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate28Enu ) {
     Write-Host "Test OK";
 } else {
-    Write-Host "Expected files are not found in C:\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate26Enu, test is not OK";
+    Write-Host "Expected files are not found in C:\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate28Enu, test is not OK";
     Exit 1;
 }
 
@@ -81,6 +74,7 @@ try {
             -MediaDir C:\Install\Dynamics\Dynamics365Server90RTMEnu `
             -CreateDatabase `
             -SqlServer $dbHostName\SQLInstance01 `
+            -Patch C:\Install\Dynamics\Dynamics365Server90Update28Enu\Server_KB4614160_amd64_1033.msp `
             -PrivUserGroup "CN=CRM01PrivUserGroup00,OU=CRM groups 00,DC=contoso,DC=local" `
             -SQLAccessGroup "CN=CRM01SQLAccessGroup00,OU=CRM groups 00,DC=contoso,DC=local" `
             -UserGroup "CN=CRM01UserGroup00,OU=CRM groups 00,DC=contoso,DC=local" `
@@ -123,48 +117,28 @@ $testScriptBlock = {
     }
 }
 $testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP;
-if ( ([version]$testResponse).ToString(3) -eq "9.0.2" )
+if ( ([version]$testResponse).ToString(3) -eq "9.0.37" )
 {
     Write-Host "Test OK";
 } else {
     Write-Host "Software installed version is '$testResponse'. Test is not OK"
     Exit 1;
 }
-
-try {
-    if ( $dbHostName -eq $env:COMPUTERNAME ) {
-        $mediaDir = "C:\Install\Dynamics\Dynamics365Server90RTMEnu\SrsDataConnector";
-    } else {
-        $mediaDir = "\\$env:COMPUTERNAME\c$\Install\Dynamics\Dynamics365Server90RTMEnu\SrsDataConnector";
+$msCRMRegistryValues = Get-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\MSCRM -ErrorAction Ignore;
+If ( $msCRMRegistryValues ) {
+    $installedVersion = Get-Dynamics365ServerVersion;
+    if ( $installedVersion -ne [version]"9.0.28.0001" ) {
+        Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
+        Exit 1;
     }
-    Write-Host "Invoking command on $dbHostName.$domainName";
-    Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
-        param( $mediaDir )
-        Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
-        Write-Output "Install-Dynamics365Prerequisite -Prerequisite VisualCPlusPlusRuntime";
-        Install-Dynamics365Prerequisite -Prerequisite VisualCPlusPlusRuntime;
-        Install-Dynamics365ReportingExtensions `
-            -MediaDir $mediaDir `
-            -ConfigDBServer $env:COMPUTERNAME\SQLInstance01 `
-            -AutoGroupManagementOff `
-            -InstanceName SSRS `
-            -LogFilePath c:\tmp\Dynamics365ServerReportingExtensionsInstallLog.txt `
-            -LogFilePullIntervalInSeconds 15 `
-            -LogFilePullToOutput
-    } -ArgumentList $mediaDir;
-} catch {
-    Write-Host $_.Exception.Message -ForegroundColor Red;
-    Exit 1;
-}
-if ( $dbHostName -eq $env:COMPUTERNAME ) {
-    $installedProduct = Get-WmiObject Win32_Product | ? { $_.IdentifyingNumber -eq "{0C524D71-1409-0090-BFEE-D90853535253}" }
-} else {
-    $installedProduct = Get-WmiObject Win32_Product -ComputerName $dbHostName -Credential $CRMInstallAccountCredential | ? { $_.IdentifyingNumber -eq "{0C524D71-1409-0090-BFEE-D90853535253}" }
-}
-if ( $installedProduct ) {
+    $installedLanguage = Get-Dynamics365ServerLanguage;
+    if ( $installedLanguage -ne 1033 ) {
+        Write-Host "Incorrect language is installed: $installedLanguage";
+        Exit 1;
+    }
     Write-Host "Test OK";
 } else {
-    Write-Host "Expected software is not installed, test is not OK";
+    Write-Host "HKLM:\SOFTWARE\Microsoft\MSCRM registry key is not found";
     Exit 1;
 }
 
@@ -183,70 +157,46 @@ if ( $installedProduct ) {
 }
 
 try {
-    Invoke-Command "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+    if ( $dbHostName -eq $env:COMPUTERNAME ) {
+        $mediaDir = "C:\Install\Dynamics\Dynamics365Server90RTMEnu\SrsDataConnector";
+        $patchPath = "C:\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate28Enu\Srs_KB4614160_amd64_1033.msp";
+    } else {
+        $mediaDir = "\\$env:COMPUTERNAME\c$\Install\Dynamics\Dynamics365Server90RTMEnu\SrsDataConnector";
+        $patchPath = "\\$env:COMPUTERNAME\c$\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate28Enu\Srs_KB4614160_amd64_1033.msp";
+    }
+    Write-Host "Invoking command on $dbHostName.$domainName";
+    Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+        param( $mediaDir, $patchPath )
         Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
-        Install-Dynamics365Update -MediaDir C:\Install\Dynamics\Dynamics365Server90Update26Enu `
-            -LogFilePath c:\tmp\Dynamics365ServerUpdate926InstallLog.txt `
+        Write-Output "Install-Dynamics365Prerequisite -Prerequisite VisualCPlusPlusRuntime";
+        Install-Dynamics365Prerequisite -Prerequisite VisualCPlusPlusRuntime;
+        Install-Dynamics365ReportingExtensions `
+            -MediaDir $mediaDir `
+            -Patch $patchPath `
+            -ConfigDBServer $env:COMPUTERNAME\SQLInstance01 `
+            -AutoGroupManagementOff `
+            -InstanceName SSRS `
+            -LogFilePath c:\tmp\Dynamics365ServerReportingExtensionsInstallLog.txt `
             -LogFilePullIntervalInSeconds 15 `
             -LogFilePullToOutput
-    }
+    } -ArgumentList $mediaDir, $patchPath;
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$testScriptBlock = {
-    try {
-        Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
-        if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
-            $crmServer = Get-CrmServer $env:COMPUTERNAME;
-            $crmServer.Version;
-        } else {
-            "Could not load Microsoft.Crm.PowerShell PSSnapin";
-        }
-    } catch {
-        $_.Exception.Message;
-        Exit 1;
-    }
+if ( $dbHostName -eq $env:COMPUTERNAME ) {
+    $installedProduct = Get-WmiObject Win32_Product | ? { $_.IdentifyingNumber -eq "{0C524D71-1409-0090-BFEE-D90853535253}" }
+} else {
+    $installedProduct = Get-WmiObject Win32_Product -ComputerName $dbHostName -Credential $CRMInstallAccountCredential | ? { $_.IdentifyingNumber -eq "{0C524D71-1409-0090-BFEE-D90853535253}" }
 }
-$testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
-if ( ([version]$testResponse).ToString(3) -eq "9.0.26" )
-{
+if ( $installedProduct ) {
     Write-Host "Test OK";
 } else {
-    Write-Host "Software installed version is '$testResponse'. Test is not OK"
-    Exit 1;
-}
-if( Test-Path "c:\tmp\Dynamics365ServerUpdate926InstallLog.txt" )
-{
-    Write-Output "File c:\tmp\Dynamics365ServerUpdate926InstallLog.txt is found, test OK"
-} else {
-    Write-Output "File c:\tmp\Dynamics365ServerUpdate926InstallLog.txt is not found"
-    Exit 1;
-}
-
-try {
-    if ( $dbHostName -eq $env:COMPUTERNAME ) {
-        $mediaDir = "C:\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate26Enu";
-    } else {
-        $mediaDir = "\\$env:COMPUTERNAME\c$\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate26Enu";
-    }
-    Write-Output "dbHostName is $dbHostName"
-    Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
-        param( $mediaDir )
-        Import-Module C:\test-projects\Dynamics365Configuration\src\Dynamics365Configuration\Dynamics365Configuration.psd1
-        Write-Output "mediaDir is $mediaDir"
-        Install-Dynamics365ReportingExtensionsUpdate -MediaDir $mediaDir `
-            -LogFilePath c:\tmp\Dynamics365ServerReportingExtensionsUpdate9026InstallLog.txt `
-            -LogFilePullIntervalInSeconds 15 `
-            -LogFilePullToOutput
-    } -ArgumentList $mediaDir;
-} catch {
-    Write-Host "Failed in invoking of Install-Dynamics365Update";
-    Write-Host $_.Exception.Message -ForegroundColor Red;
+    Write-Host "Expected software is not installed, test is not OK";
     Exit 1;
 }
 $installedVersion = Get-Dynamics365ReportingExtensionsVersion;
-if ( $installedVersion.ToString(3) -ne "9.0.26" ) {
+if ( $installedVersion.ToString(3) -ne "9.0.28" ) {
     Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
     Exit 1;
 }

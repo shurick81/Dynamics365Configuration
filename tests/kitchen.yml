@@ -245,7 +245,7 @@ platforms:
       customize:
         clipboard-mode: bidirectional
         memory: 6144
-        cpus: 2
+        cpus: 4
         audio: none
         vram: 32
       synced_folders:
@@ -462,18 +462,18 @@ suites:
     - win2016-sql2016dbrs-dynamicsprereqs
     - win2019-dynamicsprereqs
     - win2016-dynamicsprereqs
-- name: RoleAddition
+- name: RoleInstallation2016
   provisioner:
     name: shell
-    command: 'Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1; c:/test-projects/Dynamics365Configuration/tests\\InstallDynamicsRole.ps1; c:/test-projects/Dynamics365Configuration/tests\\AddDynamicsRole.ps1'
+    command: 'Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1; c:/test-projects/Dynamics365Configuration/tests\\InstallDynamicsRole2016.ps1'
     powershell_shell: true
   includes:
-    - win2019-ad-sql2016dbrs-dynamicsprereqs
     - win2016-ad-sql2016dbrs-dynamicsprereqs
-    - win2019-sql2016dbrs-dynamicsprereqs
+    - win2012r2-ad-sql2016dbrs-dynamicsprereqs
     - win2016-sql2016dbrs-dynamicsprereqs
-    - win2019-dynamicsprereqs
+    - win2012r2-sql2016dbrs-dynamicsprereqs
     - win2016-dynamicsprereqs
+    - win2012r2-dynamicsprereqs
 - name: RoleJoining
   provisioner:
     name: shell

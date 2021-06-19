@@ -45,6 +45,19 @@ if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server90Update28Enu ) {
 }
 
 try {
+    Save-Dynamics365Resource -Resource Dynamics365Server90ReportingExtensionsUpdate19Enu -TargetDirectory C:\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate19Enu
+} catch {
+    Write-Host $_.Exception.Message -ForegroundColor Red;
+    Exit 1;
+}
+if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate19Enu ) {
+    Write-Host "Test OK";
+} else {
+    Write-Host "Expected files are not found in C:\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate19Enu, test is not OK";
+    Exit 1;
+}
+
+try {
     Save-Dynamics365Resource -Resource Dynamics365Server90ReportingExtensionsUpdate28Enu -TargetDirectory C:\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate28Enu
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
@@ -118,20 +131,6 @@ If ( $msCRMRegistryValues ) {
 }
 
 try {
-    Install-Dynamics365Language -MediaDir C:\Install\Dynamics\Dynamics365Server90LanguagePackSve;
-} catch {
-    Write-Host $_.Exception.Message -ForegroundColor Red;
-    Exit 1;
-}
-$installedProduct = Get-WmiObject Win32_Product | ? { $_.IdentifyingNumber -eq "{0C524DC1-141D-0090-8121-88490F4D5549}" }
-if ( $installedProduct ) {
-    Write-Host "Test OK";
-} else {
-    Write-Host "Expected software is not installed, test is not OK";
-    Exit 1;
-}
-
-try {
     Invoke-Command "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
         Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
         Install-Dynamics365Update -MediaDir C:\Install\Dynamics\Dynamics365Server90Update28Enu `
@@ -150,10 +149,26 @@ if ( $installedVersion.ToString(3) -ne "9.0.28" ) {
 }
 
 try {
+    Install-Dynamics365Language -MediaDir C:\Install\Dynamics\Dynamics365Server90LanguagePackSve;
+} catch {
+    Write-Host $_.Exception.Message -ForegroundColor Red;
+    Exit 1;
+}
+$installedProduct = Get-WmiObject Win32_Product | ? { $_.IdentifyingNumber -eq "{0C524DC1-141D-0090-8121-88490F4D5549}" }
+if ( $installedProduct ) {
+    Write-Host "Test OK";
+} else {
+    Write-Host "Expected software is not installed, test is not OK";
+    Exit 1;
+}
+
+try {
     if ( $dbHostName -eq $env:COMPUTERNAME ) {
         $mediaDir = "C:\Install\Dynamics\Dynamics365Server90RTMEnu\SrsDataConnector";
+        $patchPath = "C:\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate28Enu\Srs_KB3154952_amd64_1033.msp";
     } else {
         $mediaDir = "\\$env:COMPUTERNAME\c$\Install\Dynamics\Dynamics365Server90RTMEnu\SrsDataConnector";
+        $patchPath = "\\$env:COMPUTERNAME\c$\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate28Enu\Srs_KB3154952_amd64_1033.msp";
     }
     Write-Host "Invoking command on $dbHostName.$domainName";
     Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
@@ -166,10 +181,11 @@ try {
             -ConfigDBServer $env:COMPUTERNAME\SQLInstance01 `
             -AutoGroupManagementOff `
             -InstanceName SSRS `
+            -Patch $patchPath `
             -LogFilePath c:\tmp\Dynamics365ServerReportingExtensionsInstallLog.txt `
             -LogFilePullIntervalInSeconds 15 `
             -LogFilePullToOutput
-    } -ArgumentList $mediaDir;
+    } -ArgumentList $mediaDir, $patchPath;
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
@@ -215,6 +231,58 @@ if ( $installedVersion.ToString(3) -ne "9.0.28" ) {
 
 # Testing idempotence
 try {
+    Save-Dynamics365Resource -Resource Dynamics365Server90RTMEnu -TargetDirectory C:\Install\Dynamics\Dynamics365Server90RTMEnu
+} catch {
+    Write-Host $_.Exception.Message -ForegroundColor Red;
+    Exit 1;
+}
+if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server90RTMEnu ) {
+    Write-Host "Test OK";
+} else {
+    Write-Host "Expected files are not found in C:\Install\Dynamics\Dynamics365Server90RTMEnu, test is not OK";
+    Exit 1;
+}
+
+try {
+    Save-Dynamics365Resource -Resource Dynamics365Server90LanguagePackSve -TargetDirectory C:\Install\Dynamics\Dynamics365Server90LanguagePackSve
+} catch {
+    Write-Host $_.Exception.Message -ForegroundColor Red;
+    Exit 1;
+}
+if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server90LanguagePackSve ) {
+    Write-Host "Test OK";
+} else {
+    Write-Host "Expected files are not found in C:\Install\Dynamics\Dynamics365Server90LanguagePackSve, test is not OK";
+    Exit 1;
+}
+
+try {
+    Save-Dynamics365Resource -Resource Dynamics365Server90Update28Enu -TargetDirectory C:\Install\Dynamics\Dynamics365Server90Update28Enu
+} catch {
+    Write-Host $_.Exception.Message -ForegroundColor Red;
+    Exit 1;
+}
+if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server90Update28Enu ) {
+    Write-Host "Test OK";
+} else {
+    Write-Host "Expected files are not found in C:\Install\Dynamics\Dynamics365Server90Update28Enu, test is not OK";
+    Exit 1;
+}
+
+try {
+    Save-Dynamics365Resource -Resource Dynamics365Server90ReportingExtensionsUpdate28Enu -TargetDirectory C:\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate28Enu
+} catch {
+    Write-Host $_.Exception.Message -ForegroundColor Red;
+    Exit 1;
+}
+if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate28Enu ) {
+    Write-Host "Test OK";
+} else {
+    Write-Host "Expected files are not found in C:\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate28Enu, test is not OK";
+    Exit 1;
+}
+
+try {
     Write-Host "Invoking command on $env:COMPUTERNAME.$domainName with dbHostName=$dbHostName parameter";
     Invoke-Command "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
         param( $dbHostName )
@@ -257,12 +325,7 @@ try {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-try {
-    Install-Dynamics365Language -MediaDir C:\Install\Dynamics\Dynamics365Server90LanguagePackSve;
-} catch {
-    Write-Host $_.Exception.Message -ForegroundColor Red;
-    Exit 1;
-}
+
 try {
     Invoke-Command "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
         Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
@@ -275,6 +338,14 @@ try {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
+
+try {
+    Install-Dynamics365Language -MediaDir C:\Install\Dynamics\Dynamics365Server90LanguagePackSve;
+} catch {
+    Write-Host $_.Exception.Message -ForegroundColor Red;
+    Exit 1;
+}
+
 try {
     if ( $dbHostName -eq $env:COMPUTERNAME ) {
         $mediaDir = "C:\Install\Dynamics\Dynamics365Server90RTMEnu\SrsDataConnector";
@@ -318,6 +389,32 @@ try {
     } -ArgumentList $mediaDir;
 } catch {
     Write-Host "Failed in invoking of Install-Dynamics365ReportingExtensionsUpdate";
+    Write-Host $_.Exception.Message -ForegroundColor Red;
+    Exit 1;
+}
+
+try {
+    Write-Host "Invoking command on $env:COMPUTERNAME.$domainName with dbHostName=$dbHostName parameter";
+    Invoke-Command "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+        param( $dbHostName )
+        Write-Host "Invoked, starting execution";
+        Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
+        $securedPassword = ConvertTo-SecureString "c0mp1Expa~~" -AsPlainText -Force
+        $CRMServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmsrv", $securedPassword );
+        $MonitoringServiceAccountCredential = New-Object System.Management.Automation.PSCredential( "contoso\_crmmon", $securedPassword );
+        Write-Host "Joining Dynamics config db on $dbHostName";
+        Install-Dynamics365Server `
+            -MediaDir C:\Install\Dynamics\Dynamics365Server90RTMEnu `
+            -ServerRoles FrontEnd `
+            -SqlServer $dbHostName\SQLInstance01 `
+            -CrmServiceAccount $CRMServiceAccountCredential `
+            -MonitoringServiceAccount $MonitoringServiceAccountCredential `
+            -LogFilePath c:\tmp\Dynamics365ServerInstallLog.txt `
+            -LogFilePullIntervalInSeconds 15 `
+            -LogFilePullToOutput
+    } -ArgumentList $dbHostName;
+} catch {
+    Write-Host "Failed in invoking of Install-Dynamics365Server";
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }

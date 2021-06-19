@@ -292,8 +292,8 @@ jobs:
   - powershell: cd infrastructure/stacks/kitchenci-ad-sql2016dbrs; ..\localdeploy.ps1;
     displayName: Spinning up service VMs
     errorActionPreference: continue
-  - powershell: cd tests; kitchen test RoleAddition-win2019-dynamicsprereqs;
-    displayName: kitchen test RoleAddition-win2019-dynamicsprereqs
+  - powershell: cd tests; kitchen test RoleInstallation-win2019-dynamicsprereqs;
+    displayName: kitchen test RoleInstallation-win2019-dynamicsprereqs
     errorActionPreference: continue
   - powershell: cd tests; kitchen test RoleJoining-win2016-dynamicsprereqs;
     displayName: kitchen test RoleJoining-win2016-dynamicsprereqs

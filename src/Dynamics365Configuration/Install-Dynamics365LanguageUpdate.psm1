@@ -66,12 +66,12 @@ function Install-Dynamics365LanguageUpdate {
     $job = Start-Job -ScriptBlock $installCrmScript -ArgumentList $setupFilePath, $logFilePath;
     Write-Output "$(Get-Date) Started installation job, log will be saved in $logFilePath";
     $startTime = Get-Date;
-    Start-Sleep $logFilePullIntervalInSeconds;
     do {
         $elapsedTime = $( Get-Date ) - $startTime;
         $elapsedString = "{0:HH:mm:ss}" -f ( [datetime]$elapsedTime.Ticks );
         Write-Output "$(Get-Date) Elapsed $elapsedString. Waiting until CRM language pack update installation job is done, sleeping $logFilePullIntervalInSeconds sec";
         Start-Sleep $logFilePullIntervalInSeconds;
+        $jobState = $job.State;
         if ( $logFilePullToOutput ) {
             if ( Test-Path $logFilePath ) {
                 $logFileContents = Get-Content $logFilePath -ReadCount 0;
@@ -86,7 +86,7 @@ function Install-Dynamics365LanguageUpdate {
                 $lastLinesCount = $linesCount;
             }
         }
-    } until ( $job.State -eq "Completed" )
+    } until ( $jobState -eq "Completed" )
     $elapsedTime = $( Get-Date ) - $startTime;
     $elapsedString = "{0:HH:mm:ss}" -f ( [datetime]$elapsedTime.Ticks );
     Write-Output "$(Get-Date) Elapsed $elapsedString. Job is complete, output:";

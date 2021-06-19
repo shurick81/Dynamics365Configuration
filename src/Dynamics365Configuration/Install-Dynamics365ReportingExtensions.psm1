@@ -1,8 +1,10 @@
-function Install-Dynamics365ReportingExtensions {
+﻿function Install-Dynamics365ReportingExtensions {
     param (
         [Parameter(Mandatory=$true)]
         [string]
         $MediaDir,
+        [string]
+        $Patch,
         [string]
         $InstanceName,
         [string]
@@ -59,7 +61,12 @@ function Install-Dynamics365ReportingExtensions {
                     $srsDataConnectorElement.AppendChild( $instanceNameElement ) | Out-Null;
                 }
                 $patchElement = $xml.CreateElement( "Patch" );
-                    $patchElement.SetAttribute( "Update", $false ) | Out-Null;
+                    if ( $Patch -ne $null ) {
+                        $patchElement.SetAttribute( "Update", $true ) | Out-Null;
+                        $patchElement.InnerText = $Patch;
+                    } else {
+                        $patchElement.SetAttribute( "Update", $false ) | Out-Null;
+                    }
                 $srsDataConnectorElement.AppendChild( $patchElement ) | Out-Null;
                 $MUOptinElement = $xml.CreateElement( "muoptin" );
                     $MUOptinElement.SetAttribute( "optin", $MUOptin.ToString().ToLower() ) | Out-Null;
@@ -83,7 +90,7 @@ function Install-Dynamics365ReportingExtensions {
         $tempFilePath = "$env:Temp\$tempFileName.xml";
         Write-Output "$(Get-Date) Saving configuration temporary to $tempFilePath";
         Set-Content -Path $tempFilePath -Value $xmlConfig -Encoding utf8;
-        Get-Content $tempFilePath | Write-Debug;
+        Get-Content $tempFilePath;
         Write-Output "$(Get-Date) Starting $setupFilePath";
         $installCrmScript = {
             param( $setupFilePath, $tempFilePath, $logFilePath );
@@ -94,12 +101,12 @@ function Install-Dynamics365ReportingExtensions {
         Write-Output "$(Get-Date) Started installation job, log will be saved in $logFilePath";
         $lastLinesCount = 0;
         $startTime = Get-Date;
-        Start-Sleep $logFilePullIntervalInSeconds;
         do {
             $elapsedTime = $( Get-Date ) - $startTime;
             $elapsedString = "{0:HH:mm:ss}" -f ( [datetime]$elapsedTime.Ticks );
             Write-Output "$(Get-Date) Elapsed $elapsedString. Waiting until CRM reporting extensions job is done, sleeping $logFilePullIntervalInSeconds sec";
             Start-Sleep $logFilePullIntervalInSeconds;
+            $jobState = $job.State;
             if ( $logFilePullToOutput ) {
                 if ( Test-Path $logFilePath ) {
                     $logFileContents = Get-Content $logFilePath -ReadCount 0;
@@ -114,7 +121,7 @@ function Install-Dynamics365ReportingExtensions {
                     $lastLinesCount = $linesCount;
                 }
             }
-        } until ( $job.State -eq "Completed" )
+        } until ( $jobState -eq "Completed" )
         $elapsedTime = $( Get-Date ) - $startTime;
         $elapsedString = "{0:HH:mm:ss}" -f ( [datetime]$elapsedTime.Ticks );
         Write-Output "$(Get-Date) Elapsed $elapsedString. Job is complete, output:";

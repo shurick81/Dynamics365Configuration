@@ -84,20 +84,6 @@ If ( $msCRMRegistryValues ) {
 }
 
 try {
-    Install-Dynamics365Language -MediaDir C:\Install\Dynamics\Dynamics365Server90LanguagePackSve;
-} catch {
-    Write-Host $_.Exception.Message -ForegroundColor Red;
-    Exit 1;
-}
-$installedProduct = Get-WmiObject Win32_Product | ? { $_.IdentifyingNumber -eq "{0C524DC1-141D-0090-8121-88490F4D5549}" }
-if ( $installedProduct ) {
-    Write-Host "Test OK";
-} else {
-    Write-Host "Expected software is not installed, test is not OK";
-    Exit 1;
-}
-
-try {
     Invoke-Command "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
         Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
         Install-Dynamics365Update -MediaDir C:\Install\Dynamics\Dynamics365Server90Update28Enu `
@@ -119,6 +105,20 @@ If ( $msCRMRegistryValues ) {
     Write-Host "Test OK";
 } else {
     Write-Host "HKLM:\SOFTWARE\Microsoft\MSCRM registry key is not found";
+    Exit 1;
+}
+
+try {
+    Install-Dynamics365Language -MediaDir C:\Install\Dynamics\Dynamics365Server90LanguagePackSve;
+} catch {
+    Write-Host $_.Exception.Message -ForegroundColor Red;
+    Exit 1;
+}
+$installedProduct = Get-WmiObject Win32_Product | ? { $_.IdentifyingNumber -eq "{0C524DC1-141D-0090-8121-88490F4D5549}" }
+if ( $installedProduct ) {
+    Write-Host "Test OK";
+} else {
+    Write-Host "Expected software is not installed, test is not OK";
     Exit 1;
 }
 

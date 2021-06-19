@@ -1,5 +1,12 @@
 # Dynamics365Configuration module change log
 
+## Not released
+
+* `Patch` parameter in `Install-Dynamics365Server` and `Install-Dynamics365ReportingExtensions` commands
+* Improved accuracy in extracting logs from log files
+* More structured sequence in automated testing
+* Minor refactoring in installation commands implementation
+
 ## 2.11.0
 
 * New Dynamics 365 updates (50 new downloadables in total):

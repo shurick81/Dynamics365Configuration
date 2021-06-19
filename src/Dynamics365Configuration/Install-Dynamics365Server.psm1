@@ -1,4 +1,4 @@
-function Install-Dynamics365Server {
+﻿function Install-Dynamics365Server {
     [CmdletBinding(DefaultParameterSetName = 'Groups')]
     param (
         [Parameter(ParameterSetName = 'OU', Mandatory=$true)]
@@ -9,6 +9,10 @@ function Install-Dynamics365Server {
         [Parameter(ParameterSetName = 'Groups', Mandatory=$true)]
         [string]
         $SqlServer,
+        [Parameter(ParameterSetName = 'OU', Mandatory=$false)]
+        [Parameter(ParameterSetName = 'Groups', Mandatory=$false)]
+        [string]
+        $Patch,
         [Parameter(ParameterSetName = 'OU', Mandatory=$false)]
         [Parameter(ParameterSetName = 'Groups', Mandatory=$false)]
         [string]
@@ -269,14 +273,19 @@ function Install-Dynamics365Server {
                     $xml = [xml]"";
                     $crmSetupElement = $xml.CreateElement( "CRMSetup" );
                         $serverElement = $xml.CreateElement( "Server" );
-                            #Patch is a required element for setup
                             if ( $installType ) {
                                 $installTypeElement = $xml.CreateElement( "InstallType" );
                                     $installTypeElement.InnerText = $installType;
                                 $serverElement.AppendChild( $installTypeElement ) | Out-Null;
                             }
+                            #Patch is a required element for setup
                             $patchElement = $xml.CreateElement( "Patch" );
-                                $patchElement.SetAttribute( "Update", $false ) | Out-Null;
+                                if ( $Patch -ne $null ) {
+                                    $patchElement.SetAttribute( "Update", $true ) | Out-Null;
+                                    $patchElement.InnerText = $Patch;
+                                } else {
+                                    $patchElement.SetAttribute( "Update", $false ) | Out-Null;
+                                }
                             $serverElement.AppendChild( $patchElement ) | Out-Null;
                             $licenseKeyElement = $xml.CreateElement( "LicenseKey" );
                                 $licenseKeyElement.InnerText = $licenseKey;
@@ -506,12 +515,12 @@ function Install-Dynamics365Server {
                     Write-Output "$(Get-Date) Started installation job, log will be saved in $logFilePath";
                     $lastLinesCount = 0;
                     $startTime = Get-Date;
-                    Start-Sleep $logFilePullIntervalInSeconds;
                     do {
                         $elapsedTime = $( Get-Date ) - $startTime;
                         $elapsedString = "{0:HH:mm:ss}" -f ( [datetime]$elapsedTime.Ticks );
                         Write-Output "$(Get-Date) Elapsed $elapsedString. Waiting until CRM installation job is done, sleeping $logFilePullIntervalInSeconds sec";
                         Start-Sleep $logFilePullIntervalInSeconds;
+                        $jobState = $job.State;
                         if ( $logFilePullToOutput ) {
                             if ( Test-Path $logFilePath ) {
                                 $logFileContents = Get-Content $logFilePath -ReadCount 0;
@@ -526,7 +535,7 @@ function Install-Dynamics365Server {
                                 $lastLinesCount = $linesCount;
                             }
                         }
-                    } until ( $job.State -eq "Completed" )
+                    } until ( $jobState -eq "Completed" )
                     $elapsedTime = $( Get-Date ) - $startTime;
                     $elapsedString = "{0:HH:mm:ss}" -f ( [datetime]$elapsedTime.Ticks );
                     Write-Output "$(Get-Date) Elapsed $elapsedString. Job is complete, output:";
@@ -545,11 +554,11 @@ function Install-Dynamics365Server {
                         }
                     }
                     $msCRMRegistryValues = Get-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\MSCRM -ErrorAction Ignore;
-                    If ( $msCRMRegistryValues ) {
+                    if ( $msCRMRegistryValues ) {
                         $isInstalled = $true;
                         $installedLanguage = Get-Dynamics365ServerLanguage;
                         if ( $installedLanguage -ne $fileLanguageCode ) {
-                            $errorMessage = "Another language is already installed: $installedLanguage";
+                            $errorMessage = "Another language is installed: $installedLanguage";
                             Write-Output $errorMessage;
                             Throw $errorMessage;
                         }
