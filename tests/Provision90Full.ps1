@@ -61,6 +61,27 @@ function Test-InstallDynamics365Update {
     
 }
 
+function Test-InstallDynamics365LanguageUpdate {
+    param (
+        $ResourceName
+    )
+    try {
+        Install-Dynamics365LanguageUpdate -MediaDir C:\Install\Dynamics\$ResourceName
+    } catch {
+        Write-Host $_.Exception.Message -ForegroundColor Red;
+        Exit 1;
+    }
+    $currentProductInstalled = Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "{0C524DC1-1409-0080-8121-88490F4D5549}" }
+    Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
+    if ( [version]$currentProductInstalled.DisplayVersion -eq [version]$Dynamics365Resources.$ResourceName.mediaFileVersion ) {
+        Write-Host "Test OK";
+    } else {
+        Write-Host "Expected update is not installed, test is not OK";
+        Exit 1;
+    }
+    
+}
+
 function Test-InstallDynamics365ReportingExtensionsUpdate {
     param (
         $ResourceName
@@ -192,7 +213,10 @@ try {
         "Dynamics365Server90Update27Enu",
         "Dynamics365Server90ReportingExtensionsUpdate27Enu",
         "Dynamics365Server90Update28Enu",
-        "Dynamics365Server90ReportingExtensionsUpdate28Enu"
+        "Dynamics365Server90ReportingExtensionsUpdate28Enu",
+        "Dynamics365Server91Update01Enu",
+        "Dynamics365Server91LanguagePackUpdate01Rus",
+        "Dynamics365Server91ReportingExtensionsUpdate01Enu"
     ) | % { Save-Dynamics365Resource -Resource $_ -TargetDirectory C:\Install\Dynamics\$_ }
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
@@ -296,7 +320,10 @@ try {
     "Dynamics365Server90Update27Enu",
     "Dynamics365Server90ReportingExtensionsUpdate27Enu",
     "Dynamics365Server90Update28Enu",
-    "Dynamics365Server90ReportingExtensionsUpdate28Enu"
+    "Dynamics365Server90ReportingExtensionsUpdate28Enu",
+    "Dynamics365Server91Update01Enu",
+    "Dynamics365Server91LanguagePackUpdate01Rus",
+    "Dynamics365Server91ReportingExtensionsUpdate01Enu"
 ) | % {
     if ( Get-ChildItem C:\Install\Dynamics\$_ ) {
         Write-Host "Test OK";
@@ -572,5 +599,8 @@ Test-InstallDynamics365Update Dynamics365Server90Update27Enu;
 Test-InstallDynamics365ReportingExtensionsUpdate Dynamics365Server90ReportingExtensionsUpdate27Enu;
 Test-InstallDynamics365Update Dynamics365Server90Update28Enu;
 Test-InstallDynamics365ReportingExtensionsUpdate Dynamics365Server90ReportingExtensionsUpdate28Enu;
+Test-InstallDynamics365Update Dynamics365Server91Update01Enu;
+Test-InstallDynamics365LanguageUpdate Dynamics365Server91LanguagePackUpdate01Rus;
+Test-InstallDynamics365ReportingExtensionsUpdate Dynamics365Server91ReportingExtensionsUpdate01Enu;
 
 Exit 0;

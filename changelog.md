@@ -6,6 +6,12 @@
 * Improved accuracy in extracting logs from log files
 * More structured sequence in automated testing
 * Minor refactoring in installation commands implementation
+* New Dynamics 365 updates (95 new downloadables in total):
+
+  * Dynamics365Server91Update01\<Language\>
+  * Dynamics365Server91ReportingExtensionsUpdate01\<Language\>
+  * Dynamics365Server91LanguagePackUpdate01\<Language\>
+
 
 ## 2.11.0
 
