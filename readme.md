@@ -882,6 +882,8 @@ The following file resources can be referenced in the module:
 | RS Extensions Update 0.26 | Dynamics365Server90ReportingExtensionsUpdate26\<Language\> | 25 |  |
 | Server Update 0.27 | Dynamics365Server90Update27\<Language\> | 25 |  |
 | RS Extensions Update 0.27 | Dynamics365Server90ReportingExtensionsUpdate27\<Language\> | 25 |  |
+| Server Update 0.28 | Dynamics365Server90Update28\<Language\> | 25 |  |
+| RS Extensions Update 0.28 | Dynamics365Server90ReportingExtensionsUpdate28\<Language\> | 25 |  |
 | **Dynamics 8** |  |  |  |
 | RTM | CRM2016RTM\<Language\> | 25 |  |
 | Language pack | CRM2016LanguagePack<Language> | 45 |  |
