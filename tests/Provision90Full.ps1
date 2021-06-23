@@ -71,7 +71,7 @@ function Test-InstallDynamics365LanguageUpdate {
         Write-Host $_.Exception.Message -ForegroundColor Red;
         Exit 1;
     }
-    $currentProductInstalled = Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "{0C524DC1-1409-0080-8121-88490F4D5549}" }
+    $currentProductInstalled = Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "{0C524DC1-1419-0090-8121-88490F4D5549}" }
     Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
     if ( [version]$currentProductInstalled.DisplayVersion -eq [version]$Dynamics365Resources.$ResourceName.mediaFileVersion ) {
         Write-Host "Test OK";
