@@ -19,7 +19,7 @@
                 [ "modifyvm", "{{.Name}}", "--memory", "4096" ],
                 [ "modifyvm", "{{.Name}}", "--cpus", "4" ]
             ],
-            "disk_size": 102400,
+            "disk_size": 163840,
             "communicator": "winrm",
             "winrm_username": "packer",
             "winrm_password": "Fractalsol365",
@@ -38,7 +38,7 @@
             "headless": true,
             "http_directory": "http",
             "shutdown_command": "a:/sysprep.bat",
-            "disk_size": 102400,
+            "disk_size": 163840,
             "switch_name": "Default Switch",
             "communicator": "winrm",
             "winrm_username": "packer",
