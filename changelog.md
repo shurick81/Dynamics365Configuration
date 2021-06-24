@@ -1,6 +1,6 @@
 # Dynamics365Configuration module change log
 
-## Not released
+## 2.12.0
 
 * `Patch` parameter in `Install-Dynamics365Server` and `Install-Dynamics365ReportingExtensions` commands
 * Improved accuracy in extracting logs from log files
