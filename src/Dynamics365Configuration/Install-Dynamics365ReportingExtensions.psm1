@@ -25,10 +25,10 @@
     $setupFilePath = "$mediaDir\SetupSrsDataConnector.exe";
     $fileVersion = ( Get-Command $setupFilePath ).FileVersionInfo.FileVersionRaw.ToString();
     Write-Output "Version of software to be installed: $fileVersion";
-    $languageCode = ( Get-Item $mediaDir\LangPacks\* ).Name;
-    Write-Output "Language code of software to be installed: $languageCode";
+    $fileLanguageCode = ( Get-Item $mediaDir\LangPacks\* ).Name;
+    Write-Output "Language code of software to be installed: $fileLanguageCode";
     $Dynamics365Resources | Get-Member -MemberType NoteProperty | Where-Object { $Dynamics365Resources.( $_.Name ).ReportingExtensionsIdentifyingNumber } | ForEach-Object {
-        if ( ( $Dynamics365Resources.( $_.Name ).MediaFileVersion -eq $fileVersion ) -and ( $Dynamics365Resources.( $_.Name ).LanguageCode -eq $languageCode ) ) { $foundFileResource = $_.Name }
+        if ( ( $Dynamics365Resources.( $_.Name ).MediaFileVersion -eq $fileVersion ) -and ( $Dynamics365Resources.( $_.Name ).LanguageCode -eq $fileLanguageCode ) ) { $foundFileResource = $_.Name }
     }
     $installedProducts = Get-WmiObject Win32_Product -ComputerName $env:COMPUTERNAME | ForEach-Object { $_.IdentifyingNumber }
     if ( $foundFileResource )
@@ -46,6 +46,21 @@
     }
     # Starting installation only when not installed or if id is not found in catalog.
     if ( !$expectedProductIdentifyingNumber -or !$isInstalled ) {
+        if ( $Patch ) {
+            $resourcePathItem = Get-Item $Patch;
+            if ( !$resourcePathItem ) { throw "Specified file or directory '$Patch' could not be found" }
+            if ( $resourcePathItem.PSIsContainer ) {
+                $patchFiles = Get-Item $Patch\Srs_KB*_amd64_$fileLanguageCode.msp
+                if ( $patchFiles ) {
+                    $patchFilePath = $patchFiles[0].FullName;
+                    Write-Output "Found patch file $patchFilePath"
+                } else {
+                    throw "File could not be found: $Patch\Srs_KB*_amd64_$fileLanguageCode.msp"
+                }
+            } else {
+                $patchFilePath = $Patch;
+            }
+        }
         $xml = [xml]"";
         $crmSetupElement = $xml.CreateElement( "CRMSetup" );
             $srsDataConnectorElement = $xml.CreateElement( "srsdataconnector" );
@@ -63,7 +78,7 @@
                 $patchElement = $xml.CreateElement( "Patch" );
                     if ( $Patch -ne $null ) {
                         $patchElement.SetAttribute( "Update", $true ) | Out-Null;
-                        $patchElement.InnerText = $Patch;
+                        $patchElement.InnerText = $patchFilePath;
                     } else {
                         $patchElement.SetAttribute( "Update", $false ) | Out-Null;
                     }

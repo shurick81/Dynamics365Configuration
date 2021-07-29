@@ -270,6 +270,21 @@
                     $isInstalled = $false;
                 }
                 if ( !$isInstalled ) {
+                    if ( $Patch ) {
+                        $resourcePathItem = Get-Item $Patch;
+                        if ( !$resourcePathItem ) { throw "Specified file or directory '$Patch' could not be found" }
+                        if ( $resourcePathItem.PSIsContainer ) {
+                            $patchFiles = Get-Item $Patch\Server_KB*_amd64_$fileLanguageCode.msp
+                            if ( $patchFiles ) {
+                                $patchFilePath = $patchFiles[0].FullName;
+                                Write-Output "Found patch file $patchFilePath"
+                            } else {
+                                throw "File could not be found: $Patch\Server_KB*_amd64_$fileLanguageCode.msp"
+                            }
+                        } else {
+                            $patchFilePath = $Patch;
+                        }
+                    }
                     $xml = [xml]"";
                     $crmSetupElement = $xml.CreateElement( "CRMSetup" );
                         $serverElement = $xml.CreateElement( "Server" );
@@ -282,7 +297,7 @@
                             $patchElement = $xml.CreateElement( "Patch" );
                                 if ( $Patch -ne $null ) {
                                     $patchElement.SetAttribute( "Update", $true ) | Out-Null;
-                                    $patchElement.InnerText = $Patch;
+                                    $patchElement.InnerText = $patchFilePath;
                                 } else {
                                     $patchElement.SetAttribute( "Update", $false ) | Out-Null;
                                 }

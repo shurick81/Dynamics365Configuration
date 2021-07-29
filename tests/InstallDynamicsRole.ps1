@@ -32,6 +32,19 @@ if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server90LanguagePackSve ) {
 }
 
 try {
+    Save-Dynamics365Resource -Resource Dynamics365Server90Update28Enu -TargetDirectory C:\Install\Dynamics\Dynamics365Server90Update28Enu
+} catch {
+    Write-Host $_.Exception.Message -ForegroundColor Red;
+    Exit 1;
+}
+if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server90Update28Enu ) {
+    Write-Host "Test OK";
+} else {
+    Write-Host "Expected files are not found in C:\Install\Dynamics\Dynamics365Server90Update28Enu, test is not OK";
+    Exit 1;
+}
+
+try {
     Save-Dynamics365Resource -Resource Dynamics365Server91Update01Enu -TargetDirectory C:\Install\Dynamics\Dynamics365Server91Update01Enu
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
@@ -58,15 +71,15 @@ if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server91LanguagePackUpdate01Sv
 }
 
 try {
-    Save-Dynamics365Resource -Resource Dynamics365Server90ReportingExtensionsUpdate19Enu -TargetDirectory C:\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate19Enu
+    Save-Dynamics365Resource -Resource Dynamics365Server90ReportingExtensionsUpdate28Enu -TargetDirectory C:\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate28Enu
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate19Enu ) {
+if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate28Enu ) {
     Write-Host "Test OK";
 } else {
-    Write-Host "Expected files are not found in C:\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate19Enu, test is not OK";
+    Write-Host "Expected files are not found in C:\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate28Enu, test is not OK";
     Exit 1;
 }
 
@@ -101,6 +114,7 @@ try {
             -CreateDatabase `
             -ServerRoles BackEnd, DeploymentAdministration `
             -SqlServer $dbHostName\SQLInstance01 `
+            -Patch C:\Install\Dynamics\Dynamics365Server90Update28Enu `
             -PrivUserGroup "CN=CRM01PrivUserGroup00,OU=CRM groups 00,DC=contoso,DC=local" `
             -SQLAccessGroup "CN=CRM01SQLAccessGroup00,OU=CRM groups 00,DC=contoso,DC=local" `
             -UserGroup "CN=CRM01UserGroup00,OU=CRM groups 00,DC=contoso,DC=local" `
@@ -128,8 +142,13 @@ try {
 $msCRMRegistryValues = Get-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\MSCRM -ErrorAction Ignore;
 If ( $msCRMRegistryValues ) {
     $installedVersion = Get-Dynamics365ServerVersion;
-    if ( $installedVersion -ne [version]"9.0.2.3034" ) {
-        Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
+    if ( $installedVersion ) {
+        if ( $installedVersion.ToString(3) -ne "9.0.28" ) {
+            Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
+            Exit 1;
+        }
+    } else {
+        Write-Host "Version is not determined";
         Exit 1;
     }
     $installedLanguage = Get-Dynamics365ServerLanguage;
@@ -156,8 +175,13 @@ try {
     Exit 1;
 }
 $installedVersion = Get-Dynamics365ServerVersion;
-if ( $installedVersion.ToString(3) -ne "9.1.1" ) {
-    Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
+if ( $installedVersion ) {
+    if ( $installedVersion.ToString(3) -ne "9.1.1" ) {
+        Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
+        Exit 1;
+    }
+} else {
+    Write-Host "Version is not determined";
     Exit 1;
 }
 
@@ -193,12 +217,14 @@ if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "9.1.1" 
 try {
     if ( $dbHostName -eq $env:COMPUTERNAME ) {
         $mediaDir = "C:\Install\Dynamics\Dynamics365Server90RTMEnu\SrsDataConnector";
+        $patchPath = "C:\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate28Enu";
     } else {
         $mediaDir = "\\$env:COMPUTERNAME\c$\Install\Dynamics\Dynamics365Server90RTMEnu\SrsDataConnector";
+        $patchPath = "\\$env:COMPUTERNAME\c$\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate28Enu";
     }
     Write-Host "Invoking command on $dbHostName.$domainName";
     Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
-        param( $mediaDir )
+        param( $mediaDir, $patchPath )
         Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
         Write-Output "Install-Dynamics365Prerequisite -Prerequisite VisualCPlusPlusRuntime";
         Install-Dynamics365Prerequisite -Prerequisite VisualCPlusPlusRuntime;
@@ -207,14 +233,16 @@ try {
             -ConfigDBServer $env:COMPUTERNAME\SQLInstance01 `
             -AutoGroupManagementOff `
             -InstanceName SSRS `
+            -Patch $patchPath `
             -LogFilePath c:\tmp\Dynamics365ServerReportingExtensionsInstallLog.txt `
             -LogFilePullIntervalInSeconds 15 `
             -LogFilePullToOutput
-    } -ArgumentList $mediaDir;
+    } -ArgumentList $mediaDir, $patchPath;
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
+Write-Host "testing RS installation"
 if ( $dbHostName -eq $env:COMPUTERNAME ) {
     $installedProduct = Get-WmiObject Win32_Product | ? { $_.IdentifyingNumber -eq "{0C524D71-1409-0090-BFEE-D90853535253}" }
 } else {
@@ -224,6 +252,24 @@ if ( $installedProduct ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected software is not installed, test is not OK";
+    Exit 1;
+}
+if ( $dbHostName -eq $env:COMPUTERNAME ) {
+    $installedVersion = Get-Dynamics365ReportingExtensionsVersion;
+} else {
+    $installedVersion = Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+        Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
+        Get-Dynamics365ReportingExtensionsVersion;
+    }
+}
+$installedVersion.ToString(3);
+if ( $installedVersion ) {
+    if ( $installedVersion.ToString(3) -ne "9.0.28" ) {
+        Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
+        Exit 1;
+    }
+} else {
+    Write-Host "Version is not determined";
     Exit 1;
 }
 
@@ -248,9 +294,21 @@ try {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$installedVersion = Get-Dynamics365ReportingExtensionsVersion;
-if ( $installedVersion.ToString(3) -ne "9.1.1" ) {
-    Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
+if ( $dbHostName -eq $env:COMPUTERNAME ) {
+    $installedVersion = Get-Dynamics365ReportingExtensionsVersion;
+} else {
+    $installedVersion = Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+        Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
+        Get-Dynamics365ReportingExtensionsVersion;
+    }
+}
+if ( $installedVersion ) {
+    if ( $installedVersion.ToString(3) -ne "9.1.1" ) {
+        Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
+        Exit 1;
+    }
+} else {
+    Write-Host "Version is not determined";
     Exit 1;
 }
 
@@ -282,6 +340,19 @@ if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server90LanguagePackSve ) {
 }
 
 try {
+    Save-Dynamics365Resource -Resource Dynamics365Server90Update28Enu -TargetDirectory C:\Install\Dynamics\Dynamics365Server90Update28Enu
+} catch {
+    Write-Host $_.Exception.Message -ForegroundColor Red;
+    Exit 1;
+}
+if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server90Update28Enu ) {
+    Write-Host "Test OK";
+} else {
+    Write-Host "Expected files are not found in C:\Install\Dynamics\Dynamics365Server90Update28Enu, test is not OK";
+    Exit 1;
+}
+
+try {
     Save-Dynamics365Resource -Resource Dynamics365Server91Update01Enu -TargetDirectory C:\Install\Dynamics\Dynamics365Server91Update01Enu
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
@@ -291,6 +362,32 @@ if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server91Update01Enu ) {
     Write-Host "Test OK";
 } else {
     Write-Host "Expected files are not found in C:\Install\Dynamics\Dynamics365Server91Update01Enu, test is not OK";
+    Exit 1;
+}
+
+try {
+    Save-Dynamics365Resource -Resource Dynamics365Server91LanguagePackUpdate01Sve -TargetDirectory C:\Install\Dynamics\Dynamics365Server91LanguagePackUpdate01Sve
+} catch {
+    Write-Host $_.Exception.Message -ForegroundColor Red;
+    Exit 1;
+}
+if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server91LanguagePackUpdate01Sve ) {
+    Write-Host "Test OK";
+} else {
+    Write-Host "Expected files are not found in C:\Install\Dynamics\Dynamics365Server91LanguagePackUpdate01Sve, test is not OK";
+    Exit 1;
+}
+
+try {
+    Save-Dynamics365Resource -Resource Dynamics365Server90ReportingExtensionsUpdate28Enu -TargetDirectory C:\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate28Enu
+} catch {
+    Write-Host $_.Exception.Message -ForegroundColor Red;
+    Exit 1;
+}
+if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate28Enu ) {
+    Write-Host "Test OK";
+} else {
+    Write-Host "Expected files are not found in C:\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate28Enu, test is not OK";
     Exit 1;
 }
 
@@ -326,6 +423,7 @@ try {
             -CreateDatabase `
             -ServerRoles BackEnd, DeploymentAdministration `
             -SqlServer $dbHostName\SQLInstance01 `
+            -Patch C:\Install\Dynamics\Dynamics365Server90Update28Enu `
             -PrivUserGroup "CN=CRM01PrivUserGroup00,OU=CRM groups 00,DC=contoso,DC=local" `
             -SQLAccessGroup "CN=CRM01SQLAccessGroup00,OU=CRM groups 00,DC=contoso,DC=local" `
             -UserGroup "CN=CRM01UserGroup00,OU=CRM groups 00,DC=contoso,DC=local" `
@@ -374,12 +472,14 @@ try {
 try {
     if ( $dbHostName -eq $env:COMPUTERNAME ) {
         $mediaDir = "C:\Install\Dynamics\Dynamics365Server90RTMEnu\SrsDataConnector";
+        $patchPath = "C:\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate28Enu";
     } else {
         $mediaDir = "\\$env:COMPUTERNAME\c$\Install\Dynamics\Dynamics365Server90RTMEnu\SrsDataConnector";
+        $patchPath = "\\$env:COMPUTERNAME\c$\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpdate28Enu";
     }
     Write-Host "Invoking command on $dbHostName.$domainName";
     Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
-        param( $mediaDir )
+        param( $mediaDir, $patchPath )
         Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
         Write-Output "Install-Dynamics365Prerequisite -Prerequisite VisualCPlusPlusRuntime";
         Install-Dynamics365Prerequisite -Prerequisite VisualCPlusPlusRuntime;
@@ -388,10 +488,11 @@ try {
             -ConfigDBServer $env:COMPUTERNAME\SQLInstance01 `
             -AutoGroupManagementOff `
             -InstanceName SSRS `
+            -Patch $patchPath `
             -LogFilePath c:\tmp\Dynamics365ServerReportingExtensionsInstallLog.txt `
             -LogFilePullIntervalInSeconds 15 `
             -LogFilePullToOutput
-    } -ArgumentList $mediaDir;
+    } -ArgumentList $mediaDir, $patchPath;
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;

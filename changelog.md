@@ -1,5 +1,9 @@
 # Dynamics365Configuration module change log
 
+## Not Released
+
+* `Patch` parameter of `Install-Dynamics365Server` and `Install-Dynamics365ReportingExtensions` does not require specific full path of the .msp file. It is acceptable to provide the folder path instead.
+
 ## 2.12.0
 
 * `Patch` parameter in `Install-Dynamics365Server` and `Install-Dynamics365ReportingExtensions` commands
