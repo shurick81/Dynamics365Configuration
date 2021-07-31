@@ -48,17 +48,21 @@ function Test-InstallDynamics365Update {
         $testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP;
         if ( !$testResponse ) {
             $attemptsLeft--;
-            Write-Host "Could not run test, attempts left: $attemptsLeft"
+            Write-Host "Could not run test, attempts left: $attemptsLeft";
         }
     } while ( !$testResponse -and $attemptsLeft -gt 0 )
-    if ( [version]$testResponse -eq [version]$Dynamics365Resources.$ResourceName.mediaFileVersion )
-    {
-        Write-Host "Test OK";
+    if ( $testResponse ) {
+        if ( [version]$testResponse -eq [version]$Dynamics365Resources.$ResourceName.mediaFileVersion )
+        {
+            Write-Host "Test OK";
+        } else {
+            Write-Host "Software installed version is '$testResponse'. Test is not OK";
+            Exit 1;
+        }
     } else {
-        Write-Host "Software installed version is '$testResponse'. Test is not OK"
+        Write-Host "Version is not determined";
         Exit 1;
-    }
-    
+    }    
 }
 
 function Test-InstallDynamics365LanguageUpdate {
@@ -73,13 +77,17 @@ function Test-InstallDynamics365LanguageUpdate {
     }
     $currentProductInstalled = Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Uninstall\* | Where-Object { $_.PSChildName -eq "{0C524DC1-1419-0090-8121-88490F4D5549}" }
     Write-Output "The following version of the product is currently installed: $( $currentProductInstalled.DisplayVersion )"
-    if ( [version]$currentProductInstalled.DisplayVersion -eq [version]$Dynamics365Resources.$ResourceName.mediaFileVersion ) {
-        Write-Host "Test OK";
+    if ( $currentProductInstalled ) {
+        if ( [version]$currentProductInstalled.DisplayVersion -eq [version]$Dynamics365Resources.$ResourceName.mediaFileVersion ) {
+            Write-Host "Test OK";
+        } else {
+            Write-Host "Expected update is not installed, test is not OK";
+            Exit 1;
+        }
     } else {
-        Write-Host "Expected update is not installed, test is not OK";
+        Write-Host "Version is not determined";
         Exit 1;
     }
-    
 }
 
 function Test-InstallDynamics365ReportingExtensionsUpdate {
@@ -107,9 +115,21 @@ function Test-InstallDynamics365ReportingExtensionsUpdate {
         Write-Host $_.Exception.Message -ForegroundColor Red;
         Exit 1;
     }
-    $installedVersion = Get-Dynamics365ReportingExtensionsVersion;
-    if ( $installedVersion -ne [version]$Dynamics365Resources.$ResourceName.mediaFileVersion ) {
-        Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
+    if ( $dbHostName -eq $env:COMPUTERNAME ) {
+        $installedVersion = Get-Dynamics365ReportingExtensionsVersion;
+    } else {
+        $installedVersion = Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+            Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
+            Get-Dynamics365ReportingExtensionsVersion;
+        }
+    }
+    if ( $installedVersion ) {
+        if ( $installedVersion -ne [version]$Dynamics365Resources.$ResourceName.mediaFileVersion ) {
+            Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
+            Exit 1;
+        }
+    } else {
+        Write-Host "Version is not determined";
         Exit 1;
     }
 }
@@ -395,13 +415,18 @@ $testScriptBlock = {
     }
 }
 $testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP;
-if ( ([version]$testResponse).ToString(3) -eq "9.0.2" )
-{
-    Write-Host "Test OK";
+if ( $testResponse ) {
+    if ( [version]$testResponse.ToString(3) -eq "9.0.2" )
+    {
+        Write-Host "Test OK";
+    } else {
+        Write-Host "Software installed version is '$testResponse'. Test is not OK";
+        Exit 1;
+    }
 } else {
-    Write-Host "Software installed version is '$testResponse'. Test is not OK"
+    Write-Host "Version is not determined";
     Exit 1;
-}
+}    
 
 try {
     @(

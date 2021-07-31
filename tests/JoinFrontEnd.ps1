@@ -68,8 +68,13 @@ try {
 $msCRMRegistryValues = Get-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\MSCRM -ErrorAction Ignore;
 If ( $msCRMRegistryValues ) {
     $installedVersion = Get-Dynamics365ServerVersion;
-    if ( $installedVersion -ne [version]"9.0.2.3034" ) {
-        Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
+    if ( $installedVersion ) {
+        if ( $installedVersion -ne [version]"9.0.2.3034" ) {
+            Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
+            Exit 1;
+        }
+    } else {
+        Write-Host "Version is not determined";
         Exit 1;
     }
     $installedLanguage = Get-Dynamics365ServerLanguage;
@@ -98,8 +103,13 @@ try {
 $msCRMRegistryValues = Get-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\MSCRM -ErrorAction Ignore;
 If ( $msCRMRegistryValues ) {
     $installedVersion = Get-Dynamics365ServerVersion;
-    if ( $installedVersion.ToString(3) -ne "9.1.1" ) {
-        Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
+    if ( $installedVersion ) {
+        if ( $installedVersion.ToString(3) -ne "9.1.1" ) {
+            Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
+            Exit 1;
+        }
+    } else {
+        Write-Host "Version is not determined";
         Exit 1;
     }
     Write-Host "Test OK";

@@ -135,12 +135,16 @@ $testScriptBlock = {
         Exit 1;
     }
 }
-$testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP;
-if ( ([version]$testResponse).ToString(3) -eq "8.0.0" )
-{
-    Write-Host "Test OK";
+$installedVersion = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP;
+if ( $installedVersion ) {
+    if ( $installedVersion.ToString(3) -eq "8.0.0" ) {
+        Write-Host "Test OK";
+    } else {
+        Write-Host "Software installed version is '$installedVersion'. Test is not OK"
+        Exit 1;
+    }
 } else {
-    Write-Host "Software installed version is '$testResponse'. Test is not OK"
+    Write-Host "Version is not determined";
     Exit 1;
 }
 if( Test-Path "c:\tmp\Dynamics365ServerInstallLog.txt" )
@@ -153,8 +157,13 @@ if( Test-Path "c:\tmp\Dynamics365ServerInstallLog.txt" )
 $msCRMRegistryValues = Get-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\MSCRM -ErrorAction Ignore;
 If ( $msCRMRegistryValues ) {
     $installedVersion = Get-Dynamics365ServerVersion;
-    if ( $installedVersion -ne [version]"8.0.0.1088" ) {
-        Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
+    if ( $installedVersion ) {
+        if ( $installedVersion -ne [version]"8.0.0.1088" ) {
+            Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
+            Exit 1;
+        }    
+    } else {
+        Write-Host "Version is not determined";
         Exit 1;
     }
     $installedLanguage = Get-Dynamics365ServerLanguage;
@@ -192,12 +201,16 @@ $testScriptBlock = {
         Exit 1;
     }
 }
-$testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
-if ( ([version]$testResponse).ToString(3) -eq "8.1.0" )
-{
-    Write-Host "Test OK";
+$installedVersion = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
+if ( $installedVersion ) {
+    if ( $installedVersion.ToString(3) -eq "8.1.0" ) {
+        Write-Host "Test OK";
+    } else {
+        Write-Host "Software installed version is '$installedVersion'. Test is not OK"
+        Exit 1;
+    }
 } else {
-    Write-Host "Software installed version is '$testResponse'. Test is not OK"
+    Write-Host "Version is not determined";
     Exit 1;
 }
 if( Test-Path "c:\tmp\Dynamics365ServerUpdate810InstallLog.txt" )
@@ -234,12 +247,16 @@ $testScriptBlock = {
         Exit 1;
     }
 }
-$testResponse = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
-if ( ([version]$testResponse).ToString(3) -eq "8.2.28" )
-{
-    Write-Host "Test OK";
+$installedVersion = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP
+if ( $installedVersion ) {
+    if ( $installedVersion.ToString(3) -eq "8.2.28" ) {
+        Write-Host "Test OK";
+    } else {
+        Write-Host "Software installed version is '$installedVersion'. Test is not OK"
+        Exit 1;
+    }
 } else {
-    Write-Host "Software installed version is '$testResponse'. Test is not OK"
+    Write-Host "Version is not determined";
     Exit 1;
 }
 if( Test-Path "c:\tmp\Dynamics365ServerUpdate8228InstallLog.txt" )
@@ -354,9 +371,21 @@ try {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-$installedVersion = Get-Dynamics365ReportingExtensionsVersion;
-if ( $installedVersion.ToString(3) -ne "8.2.28" ) {
-    Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
+if ( $dbHostName -eq $env:COMPUTERNAME ) {
+    $installedVersion = Get-Dynamics365ReportingExtensionsVersion;
+} else {
+    $installedVersion = Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+        Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
+        Get-Dynamics365ReportingExtensionsVersion;
+    }
+}
+if ( $installedVersion ) {
+    if ( $installedVersion.ToString(3) -ne "8.2.28" ) {
+        Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
+        Exit 1;
+    }
+} else {
+    Write-Host "Version is not determined";
     Exit 1;
 }
 
