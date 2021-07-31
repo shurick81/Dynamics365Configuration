@@ -9,18 +9,18 @@ try
         Import-DscResource -ModuleName xPSDesiredStateConfiguration -Name xRemoteFile -ModuleVersion 8.4.0.0
         Import-DscResource -ModuleName xWindowsUpdate -ModuleVersion 2.7.0.0
 
-        xRemoteFile NET84
+        xRemoteFile NET48
         {
             Uri             = "http://download.windowsupdate.com/c/msdownload/update/software/ftpk/2020/01/windows10.0-kb4486129-x64_0b61d9a03db731562e0a0b49383342a4d8cbe36a.msu"
             DestinationPath = "C:\Install\NET\windows10.0-kb4486129-x64_0b61d9a03db731562e0a0b49383342a4d8cbe36a.msu"
             MatchSource     = $false
         }
  
-        xHotfix NET84
+        xHotfix NET48
         {
             Path        = "C:\Install\NET\windows10.0-kb4486129-x64_0b61d9a03db731562e0a0b49383342a4d8cbe36a.msu"
             Id          = 'KB4486129'
-            DependsOn   = "[xRemoteFile]NET84"
+            DependsOn   = "[xRemoteFile]NET48"
         }
     }
 }
