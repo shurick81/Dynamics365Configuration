@@ -147,10 +147,6 @@ If ( $msCRMRegistryValues ) {
             Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
             Exit 1;
         }    
-    }
-        }    
-    }
-        }    
     } else {
         Write-Host "Version is not determined";
         Exit 1;
