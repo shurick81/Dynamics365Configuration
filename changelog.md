@@ -3,6 +3,12 @@
 ## Not Released
 
 * `Patch` parameter of `Install-Dynamics365Server` and `Install-Dynamics365ReportingExtensions` does not require specific full path of the .msp file. It is acceptable to provide the folder path instead.
+* New Dynamics 365 updates (100 new downloadables in total):
+
+  * Dynamics365Server91Update02\<Language\>
+  * Dynamics365Server91ReportingExtensionsUpdate02\<Language\>
+  * Dynamics365Server90Update30\<Language\>
+  * Dynamics365Server91ReportingExtensionsUpdate02\<Language\>
 
 ## 2.12.0
 
