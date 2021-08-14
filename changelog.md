@@ -1,5 +1,14 @@
 # Dynamics365Configuration module change log
 
+## Not Released
+
+* New Dynamics 365 updates (98 new downloadables in total):
+
+  * Dynamics365Server91Update03\<Language\> (Heb language is missing)
+  * Dynamics365Server91ReportingExtensionsUpdate03\<Language\> (Heb language is missing)
+  * Dynamics365Server90Update31\<Language\>
+  * Dynamics365Server91ReportingExtensionsUpdate31\<Language\>
+
 ## 2.13.0
 
 * `Patch` parameter of `Install-Dynamics365Server` and `Install-Dynamics365ReportingExtensions` does not require specific full path of the .msp file. It is acceptable to provide the folder path instead.
@@ -8,7 +17,7 @@
   * Dynamics365Server91Update02\<Language\>
   * Dynamics365Server91ReportingExtensionsUpdate02\<Language\>
   * Dynamics365Server90Update30\<Language\>
-  * Dynamics365Server91ReportingExtensionsUpdate02\<Language\>
+  * Dynamics365Server91ReportingExtensionsUpdate30\<Language\>
 
 ## 2.12.0
 
