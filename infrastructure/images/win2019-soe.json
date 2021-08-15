@@ -2,8 +2,8 @@
     "builders": [
         {
             "type": "virtualbox-iso",
-            "iso_checksum": "md5:48cd91270581d1be10c3ff3ad6c41cce",
-            "iso_url": "https://software-download.microsoft.com/download/sg/17763.253.190108-0006.rs5_release_svc_refresh_SERVER_EVAL_x64FRE_en-us.iso",
+            "iso_checksum": "md5:70fec2cb1d6759108820130c2b5496da",
+            "iso_url": "https://software-download.microsoft.com/download/pr/17763.737.190906-2324.rs5_release_svc_refresh_SERVER_EVAL_x64FRE_en-us_1.iso",
             "floppy_files": [
                 "win2019/Autounattend.xml",
                 "winrm.ps1",
@@ -27,8 +27,8 @@
         },
         {
             "type": "hyperv-iso",
-            "iso_checksum": "md5:48cd91270581d1be10c3ff3ad6c41cce",
-            "iso_url": "https://software-download.microsoft.com/download/sg/17763.253.190108-0006.rs5_release_svc_refresh_SERVER_EVAL_x64FRE_en-us.iso",
+            "iso_checksum": "md5:70fec2cb1d6759108820130c2b5496da",
+            "iso_url": "https://software-download.microsoft.com/download/pr/17763.737.190906-2324.rs5_release_svc_refresh_SERVER_EVAL_x64FRE_en-us_1.iso",
             "floppy_files": [
                 "win2019/Autounattend.xml",
                 "winrm.ps1",
