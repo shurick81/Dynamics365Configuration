@@ -45,15 +45,15 @@ if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server90Update31Enu ) {
 }
 
 try {
-    Save-Dynamics365Resource -Resource Dynamics365Server91Update03Enu -TargetDirectory C:\Install\Dynamics\Dynamics365Server91Update03Enu
+    Save-Dynamics365Resource -Resource Dynamics365Server91Update04Enu -TargetDirectory C:\Install\Dynamics\Dynamics365Server91Update04Enu
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server91Update03Enu ) {
+if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server91Update04Enu ) {
     Write-Host "Test OK";
 } else {
-    Write-Host "Expected files are not found in C:\Install\Dynamics\Dynamics365Server91Update03Enu, test is not OK";
+    Write-Host "Expected files are not found in C:\Install\Dynamics\Dynamics365Server91Update04Enu, test is not OK";
     Exit 1;
 }
 
@@ -84,15 +84,15 @@ if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpd
 }
 
 try {
-    Save-Dynamics365Resource -Resource Dynamics365Server91ReportingExtensionsUpdate03Enu -TargetDirectory C:\Install\Dynamics\Dynamics365Server91ReportingExtensionsUpdate03Enu
+    Save-Dynamics365Resource -Resource Dynamics365Server91ReportingExtensionsUpdate04Enu -TargetDirectory C:\Install\Dynamics\Dynamics365Server91ReportingExtensionsUpdate04Enu
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server91ReportingExtensionsUpdate03Enu ) {
+if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server91ReportingExtensionsUpdate04Enu ) {
     Write-Host "Test OK";
 } else {
-    Write-Host "Expected files are not found in C:\Install\Dynamics\Dynamics365Server91ReportingExtensionsUpdate03Enu, test is not OK";
+    Write-Host "Expected files are not found in C:\Install\Dynamics\Dynamics365Server91ReportingExtensionsUpdate04Enu, test is not OK";
     Exit 1;
 }
 
@@ -143,7 +143,7 @@ $msCRMRegistryValues = Get-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\MSCRM -Er
 If ( $msCRMRegistryValues ) {
     $installedVersion = Get-Dynamics365ServerVersion;
     if ( $installedVersion ) {
-        if ( $installedVersion.ToString(3) -ne "9.0.31" ) {
+        if ( $installedVersion.ToString(3) -ne "9.0.32" ) {
             Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
             Exit 1;
         }
@@ -165,8 +165,8 @@ If ( $msCRMRegistryValues ) {
 try {
     Invoke-Command "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
         Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
-        Install-Dynamics365Update -MediaDir C:\Install\Dynamics\Dynamics365Server91Update03Enu `
-            -LogFilePath c:\tmp\Dynamics365ServerUpdate9103InstallLog.txt `
+        Install-Dynamics365Update -MediaDir C:\Install\Dynamics\Dynamics365Server91Update04Enu `
+            -LogFilePath c:\tmp\Dynamics365ServerUpdate9104InstallLog.txt `
             -LogFilePullIntervalInSeconds 15 `
             -LogFilePullToOutput
     }
@@ -176,7 +176,7 @@ try {
 }
 $installedVersion = Get-Dynamics365ServerVersion;
 if ( $installedVersion ) {
-    if ( $installedVersion.ToString(3) -ne "9.1.3" ) {
+    if ( $installedVersion.ToString(3) -ne "9.1.4" ) {
         Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
         Exit 1;
     }
@@ -264,7 +264,7 @@ if ( $dbHostName -eq $env:COMPUTERNAME ) {
 }
 $installedVersion.ToString(3);
 if ( $installedVersion ) {
-    if ( $installedVersion.ToString(3) -ne "9.0.31" ) {
+    if ( $installedVersion.ToString(3) -ne "9.0.32" ) {
         Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
         Exit 1;
     }
@@ -275,9 +275,9 @@ if ( $installedVersion ) {
 
 try {
     if ( $dbHostName -eq $env:COMPUTERNAME ) {
-        $mediaDir = "C:\Install\Dynamics\Dynamics365Server91ReportingExtensionsUpdate03Enu";
+        $mediaDir = "C:\Install\Dynamics\Dynamics365Server91ReportingExtensionsUpdate04Enu";
     } else {
-        $mediaDir = "\\$env:COMPUTERNAME\c$\Install\Dynamics\Dynamics365Server91ReportingExtensionsUpdate03Enu";
+        $mediaDir = "\\$env:COMPUTERNAME\c$\Install\Dynamics\Dynamics365Server91ReportingExtensionsUpdate04Enu";
     }
     Write-Output "dbHostName is $dbHostName"
     Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
@@ -285,7 +285,7 @@ try {
         Import-Module C:\test-projects\Dynamics365Configuration\src\Dynamics365Configuration\Dynamics365Configuration.psd1
         Write-Output "mediaDir is $mediaDir"
         Install-Dynamics365ReportingExtensionsUpdate -MediaDir $mediaDir `
-            -LogFilePath c:\tmp\Dynamics365ServerReportingExtensionsUpdate9103InstallLog.txt `
+            -LogFilePath c:\tmp\Dynamics365ServerReportingExtensionsUpdate9104InstallLog.txt `
             -LogFilePullIntervalInSeconds 15 `
             -LogFilePullToOutput
     } -ArgumentList $mediaDir;
@@ -303,7 +303,7 @@ if ( $dbHostName -eq $env:COMPUTERNAME ) {
     }
 }
 if ( $installedVersion ) {
-    if ( $installedVersion.ToString(3) -ne "9.1.3" ) {
+    if ( $installedVersion.ToString(3) -ne "9.1.4" ) {
         Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
         Exit 1;
     }
@@ -353,15 +353,15 @@ if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server90Update31Enu ) {
 }
 
 try {
-    Save-Dynamics365Resource -Resource Dynamics365Server91Update03Enu -TargetDirectory C:\Install\Dynamics\Dynamics365Server91Update03Enu
+    Save-Dynamics365Resource -Resource Dynamics365Server91Update04Enu -TargetDirectory C:\Install\Dynamics\Dynamics365Server91Update04Enu
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server91Update03Enu ) {
+if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server91Update04Enu ) {
     Write-Host "Test OK";
 } else {
-    Write-Host "Expected files are not found in C:\Install\Dynamics\Dynamics365Server91Update03Enu, test is not OK";
+    Write-Host "Expected files are not found in C:\Install\Dynamics\Dynamics365Server91Update04Enu, test is not OK";
     Exit 1;
 }
 
@@ -392,15 +392,15 @@ if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server90ReportingExtensionsUpd
 }
 
 try {
-    Save-Dynamics365Resource -Resource Dynamics365Server91ReportingExtensionsUpdate03Enu -TargetDirectory C:\Install\Dynamics\Dynamics365Server91ReportingExtensionsUpdate03Enu
+    Save-Dynamics365Resource -Resource Dynamics365Server91ReportingExtensionsUpdate04Enu -TargetDirectory C:\Install\Dynamics\Dynamics365Server91ReportingExtensionsUpdate04Enu
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server91ReportingExtensionsUpdate03Enu ) {
+if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server91ReportingExtensionsUpdate04Enu ) {
     Write-Host "Test OK";
 } else {
-    Write-Host "Expected files are not found in C:\Install\Dynamics\Dynamics365Server91ReportingExtensionsUpdate03Enu, test is not OK";
+    Write-Host "Expected files are not found in C:\Install\Dynamics\Dynamics365Server91ReportingExtensionsUpdate04Enu, test is not OK";
     Exit 1;
 }
 
@@ -452,8 +452,8 @@ try {
 try {
     Invoke-Command "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
         Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
-        Install-Dynamics365Update -MediaDir C:\Install\Dynamics\Dynamics365Server91Update03Enu `
-            -LogFilePath c:\tmp\Dynamics365ServerUpdate9103InstallLog.txt `
+        Install-Dynamics365Update -MediaDir C:\Install\Dynamics\Dynamics365Server91Update04Enu `
+            -LogFilePath c:\tmp\Dynamics365ServerUpdate9104InstallLog.txt `
             -LogFilePullIntervalInSeconds 15 `
             -LogFilePullToOutput
     }
@@ -499,9 +499,9 @@ try {
 }
 try {
     if ( $dbHostName -eq $env:COMPUTERNAME ) {
-        $mediaDir = "C:\Install\Dynamics\Dynamics365Server91ReportingExtensionsUpdate03Enu";
+        $mediaDir = "C:\Install\Dynamics\Dynamics365Server91ReportingExtensionsUpdate04Enu";
     } else {
-        $mediaDir = "\\$env:COMPUTERNAME\c$\Install\Dynamics\Dynamics365Server91ReportingExtensionsUpdate03Enu";
+        $mediaDir = "\\$env:COMPUTERNAME\c$\Install\Dynamics\Dynamics365Server91ReportingExtensionsUpdate04Enu";
     }
     Write-Output "dbHostName is $dbHostName"
     Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
@@ -509,7 +509,7 @@ try {
         Import-Module C:\test-projects\Dynamics365Configuration\src\Dynamics365Configuration\Dynamics365Configuration.psd1
         Write-Output "mediaDir is $mediaDir"
         Install-Dynamics365ReportingExtensionsUpdate -MediaDir $mediaDir `
-            -LogFilePath c:\tmp\Dynamics365ServerReportingExtensionsUpdate9103InstallLog.txt `
+            -LogFilePath c:\tmp\Dynamics365ServerReportingExtensionsUpdate9104InstallLog.txt `
             -LogFilePullIntervalInSeconds 15 `
             -LogFilePullToOutput
     } -ArgumentList $mediaDir;

@@ -1,5 +1,14 @@
 # Dynamics365Configuration module change log
 
+## Not Released
+
+* New Dynamics 365 updates (96 new downloadables in total):
+
+  * Dynamics365Server91Update04\<Language\> (Cht and Fin languages are missing)
+  * Dynamics365Server91ReportingExtensionsUpdate04\<Language\> (Cht and Fin languages are missing)
+  * Dynamics365Server90Update32\<Language\>
+  * Dynamics365Server91ReportingExtensionsUpdate32\<Language\>
+
 ## 2.14.0
 
 * New Dynamics 365 updates (98 new downloadables in total):
