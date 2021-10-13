@@ -7,10 +7,12 @@
 
 ## Updates
 
+* Microsoft Dynamics 365 (on premises) Update 1.5
 * Microsoft Dynamics 365 (on premises) Update 1.4
 * Microsoft Dynamics 365 (on premises) Update 1.3
 * Microsoft Dynamics 365 (on premises) Update 1.2
 * Dynamics 365 Server Service Pack 1, version 9.1
+* Microsoft Dynamics 365 Server, v9.0 (on-premises) Update 0.33
 * Microsoft Dynamics 365 Server, v9.0 (on-premises) Update 0.32
 * Microsoft Dynamics 365 Server, v9.0 (on-premises) Update 0.31
 * Microsoft Dynamics 365 Server, v9.0 (on-premises) Update 0.30
