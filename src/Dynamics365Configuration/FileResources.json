@@ -7734,6 +7734,256 @@
         "checksum": "F1655209CAF8526CD76F918CF75C42FDB77ABAFD",
         "mediaFileVersion": "9.0.32.3"
     },
+    "Dynamics365Server90Update33Sau": {
+        "URL": "https://download.microsoft.com/download/8/8/1/88157019-7a64-413a-accf-f4896b0f766c/CRM9.0-Server-KB4618797-SAU-Amd64.exe",
+        "checksum": "1C8BE8F687D3A5C4F5AD7B45A6DAF15BCF3E3C66",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90Update33Chk": {
+        "URL": "https://download.microsoft.com/download/4/a/3/4a32875d-0f17-49f9-b4b5-baec505e0bab/CRM9.0-Server-KB4618797-CHK-Amd64.exe",
+        "checksum": "9CC2FC142A7DC603C55A0D69E2678F3B5751BB52",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90Update33Chs": {
+        "URL": "https://download.microsoft.com/download/e/f/3/ef3d5e3b-a29a-4f1b-b95d-2110bd9a466d/CRM9.0-Server-KB4618797-CHS-Amd64.exe",
+        "checksum": "45B7C3D1225374FEBC3C276D4EEC44A0FD20EFB8",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90Update33Cht": {
+        "URL": "https://download.microsoft.com/download/b/1/6/b16f0372-1a9b-4439-9251-fbab8e748ae6/CRM9.0-Server-KB4618797-CHT-Amd64.exe",
+        "checksum": "5572AF8EA25E5EC2A8A48FE4451EA7CF0EC9E4D5",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90Update33Csy": {
+        "URL": "https://download.microsoft.com/download/b/c/1/bc1dda96-9ecb-4f54-9687-64af2170da84/CRM9.0-Server-KB4618797-CSY-Amd64.exe",
+        "checksum": "3A0B8C1868BAA62EDCD4F6A3439760549AB4BD7E",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90Update33Dan": {
+        "URL": "https://download.microsoft.com/download/8/4/d/84dae723-38e7-4072-8602-db695256e186/CRM9.0-Server-KB4618797-DAN-Amd64.exe",
+        "checksum": "5DFF3F8223E677DA367D7631528F5894F34ADC04",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90Update33Nld": {
+        "URL": "https://download.microsoft.com/download/2/c/9/2c9e89aa-9b09-4f84-8079-34dab7173e2e/CRM9.0-Server-KB4618797-NLD-Amd64.exe",
+        "checksum": "2EDEA27E410BF2DEF1D911E9FCB103FE52D70503",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90Update33Enu": {
+        "URL": "https://download.microsoft.com/download/c/7/1/c71b56a0-59e7-4356-b04b-33c13962d00f/CRM9.0-Server-KB4618797-ENU-Amd64.exe",
+        "checksum": "1059DC662E3B12E950B5CE1330089AF8A77095F0",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90Update33Fin": {
+        "URL": "https://download.microsoft.com/download/5/b/e/5bebaa5f-2b8c-436c-8d39-5fe8f4342a34/CRM9.0-Server-KB4618797-FIN-Amd64.exe",
+        "checksum": "5A44DD09163EE8AA1B15C15341BF61CA8E537ADA",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90Update33Fra": {
+        "URL": "https://download.microsoft.com/download/2/c/1/2c12b03d-f7a1-4188-b537-72bfe142a7bd/CRM9.0-Server-KB4618797-FRA-Amd64.exe",
+        "checksum": "F4E024688FECD36A20892DE2FE3CAD360D1352F3",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90Update33Deu": {
+        "URL": "https://download.microsoft.com/download/5/1/a/51a0c79e-c616-4983-b305-e2346b84343c/CRM9.0-Server-KB4618797-DEU-Amd64.exe",
+        "checksum": "0EAEC5A85B5415448D68C7E953AEBE5672FDDE0E",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90Update33Ell": {
+        "URL": "https://download.microsoft.com/download/6/2/c/62c40a5d-d3db-4eb5-b184-f4ce6485bf9e/CRM9.0-Server-KB4618797-ELL-Amd64.exe",
+        "checksum": "7395DAB0A4378AA27702054AF279116C0497187F",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90Update33Heb": {
+        "URL": "https://download.microsoft.com/download/f/3/5/f3588f74-565f-4862-8129-4064119994fb/CRM9.0-Server-KB4618797-HEB-Amd64.exe",
+        "checksum": "37F2CE8C293DE531323B17619C961199D79F7E59",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90Update33Hun": {
+        "URL": "https://download.microsoft.com/download/8/6/0/860a676a-1054-4654-890a-141d600a3bb6/CRM9.0-Server-KB4618797-HUN-Amd64.exe",
+        "checksum": "41C271194153D5437DD0BAC9E88D59B2B0AFB821",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90Update33Ita": {
+        "URL": "https://download.microsoft.com/download/5/5/a/55ad6190-9b7e-46ce-bf28-72d342e8aca0/CRM9.0-Server-KB4618797-ITA-Amd64.exe",
+        "checksum": "258F6CBF4D12CD5E332544AB1D8A82690377B36C",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90Update33Jpn": {
+        "URL": "https://download.microsoft.com/download/8/b/d/8bd5c7d3-940f-4b1b-9513-e1e68847152e/CRM9.0-Server-KB4618797-JPN-Amd64.exe",
+        "checksum": "F67A08DB5D51D08A976D65E7F85C4CB9A326FE3F",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90Update33Kor": {
+        "URL": "https://download.microsoft.com/download/0/9/e/09e2d7bc-5044-49d4-90bb-3cca3b3a4801/CRM9.0-Server-KB4618797-KOR-Amd64.exe",
+        "checksum": "0AA603DC83E329F99A181D3E872161F15153A813",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90Update33Nor": {
+        "URL": "https://download.microsoft.com/download/5/e/a/5ea9799d-a0b7-47bf-a202-62293ae99c3a/CRM9.0-Server-KB4618797-NOR-Amd64.exe",
+        "checksum": "E2DF4E2392F2738D55F84F68A7FB5486F16D952B",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90Update33Plk": {
+        "URL": "https://download.microsoft.com/download/4/f/5/4f5eb981-adcd-403c-81d9-0e307b584488/CRM9.0-Server-KB4618797-PLK-Amd64.exe",
+        "checksum": "BAB5CFEABD1A16AA3EFCE8DBDDAA6D8143C69E43",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90Update33Ptb": {
+        "URL": "https://download.microsoft.com/download/b/4/4/b44c6f76-a87b-4b42-abdd-e60206d06191/CRM9.0-Server-KB4618797-PTB-Amd64.exe",
+        "checksum": "833F2E1635A73F1CF3E9CCF4C923AE7DE4A10F4B",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90Update33Ptg": {
+        "URL": "https://download.microsoft.com/download/e/9/f/e9fde9ce-d3fe-4528-b349-47282ed36aa7/CRM9.0-Server-KB4618797-PTG-Amd64.exe",
+        "checksum": "FC089A6CF1ABAF835579A063F017B604402098D9",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90Update33Rus": {
+        "URL": "https://download.microsoft.com/download/1/b/5/1b57fd2a-c2f3-4583-afb3-41be361dd965/CRM9.0-Server-KB4618797-RUS-Amd64.exe",
+        "checksum": "835005A54905EFEFB95A74D8C210629D4AAD0DA4",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90Update33Esn": {
+        "URL": "https://download.microsoft.com/download/d/e/f/def08030-1692-419a-80dc-8ed2c9c0ed74/CRM9.0-Server-KB4618797-ESN-Amd64.exe",
+        "checksum": "02E9454927950F069CE7B06E4B76873EC4CF238F",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90Update33Sve": {
+        "URL": "https://download.microsoft.com/download/8/d/0/8d04fce6-caa5-4b58-9fd4-ab71f1f6dbe7/CRM9.0-Server-KB4618797-SVE-Amd64.exe",
+        "checksum": "3038B5FA07ACCBF3B3D1545F3C90293736C6DF2E",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90Update33Trk": {
+        "URL": "https://download.microsoft.com/download/5/e/c/5ec9bab7-d2e4-4cdd-bd8a-c944b7508a1a/CRM9.0-Server-KB4618797-TRK-Amd64.exe",
+        "checksum": "9BACBCFA3325C9877D42794DC26073B2815BCD5D",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate33Sau": {
+        "URL": "https://download.microsoft.com/download/8/8/1/88157019-7a64-413a-accf-f4896b0f766c/CRM9.0-Srs-KB4618797-SAU-Amd64.exe",
+        "checksum": "7EAC1400986932F38C761426F2CA64486715E823",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate33Chk": {
+        "URL": "https://download.microsoft.com/download/4/a/3/4a32875d-0f17-49f9-b4b5-baec505e0bab/CRM9.0-Srs-KB4618797-CHK-Amd64.exe",
+        "checksum": "A4FC4C52BD5C12FB2E7EBD0A746DEFF031830E95",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate33Chs": {
+        "URL": "https://download.microsoft.com/download/e/f/3/ef3d5e3b-a29a-4f1b-b95d-2110bd9a466d/CRM9.0-Srs-KB4618797-CHS-Amd64.exe",
+        "checksum": "474969FE691EB3B407287B618D8240524BCE31F4",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate33Cht": {
+        "URL": "https://download.microsoft.com/download/b/1/6/b16f0372-1a9b-4439-9251-fbab8e748ae6/CRM9.0-Srs-KB4618797-CHT-Amd64.exe",
+        "checksum": "373DA5DC9375F8415B23893CB3F3B957BD6801A0",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate33Csy": {
+        "URL": "https://download.microsoft.com/download/b/c/1/bc1dda96-9ecb-4f54-9687-64af2170da84/CRM9.0-Srs-KB4618797-CSY-Amd64.exe",
+        "checksum": "77AD0648F6E09051C30A281087564D9A4A016ACC",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate33Dan": {
+        "URL": "https://download.microsoft.com/download/8/4/d/84dae723-38e7-4072-8602-db695256e186/CRM9.0-Srs-KB4618797-DAN-Amd64.exe",
+        "checksum": "0924ED60430C3A7E5CDD3A1DFEB58D7A57B936B2",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate33Nld": {
+        "URL": "https://download.microsoft.com/download/2/c/9/2c9e89aa-9b09-4f84-8079-34dab7173e2e/CRM9.0-Srs-KB4618797-NLD-Amd64.exe",
+        "checksum": "AEBF99D6819980273A35CFBCEDF145F10EB18AF1",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate33Enu": {
+        "URL": "https://download.microsoft.com/download/c/7/1/c71b56a0-59e7-4356-b04b-33c13962d00f/CRM9.0-Srs-KB4618797-ENU-Amd64.exe",
+        "checksum": "16C2DE6A7B04A21CA8B5BA11630DD25427D97983",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate33Fin": {
+        "URL": "https://download.microsoft.com/download/5/b/e/5bebaa5f-2b8c-436c-8d39-5fe8f4342a34/CRM9.0-Srs-KB4618797-FIN-Amd64.exe",
+        "checksum": "A4B880070458430332960232E1F43DC25CE058F2",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate33Fra": {
+        "URL": "https://download.microsoft.com/download/2/c/1/2c12b03d-f7a1-4188-b537-72bfe142a7bd/CRM9.0-Srs-KB4618797-FRA-Amd64.exe",
+        "checksum": "6E269C74B8F1AE29D2B2C96E999FFD24C9A875EE",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate33Deu": {
+        "URL": "https://download.microsoft.com/download/5/1/a/51a0c79e-c616-4983-b305-e2346b84343c/CRM9.0-Srs-KB4618797-DEU-Amd64.exe",
+        "checksum": "FAA96D656C1F3F85C41A3551207263EEB15C1C61",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate33Ell": {
+        "URL": "https://download.microsoft.com/download/6/2/c/62c40a5d-d3db-4eb5-b184-f4ce6485bf9e/CRM9.0-Srs-KB4618797-ELL-Amd64.exe",
+        "checksum": "C2D7F74CE9A7F8309D736C67E39B1AEE03F8E053",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate33Heb": {
+        "URL": "https://download.microsoft.com/download/f/3/5/f3588f74-565f-4862-8129-4064119994fb/CRM9.0-Srs-KB4618797-HEB-Amd64.exe",
+        "checksum": "EE8F96F35996157743B62BCA722E20628FBE7436",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate33Hun": {
+        "URL": "https://download.microsoft.com/download/8/6/0/860a676a-1054-4654-890a-141d600a3bb6/CRM9.0-Srs-KB4618797-HUN-Amd64.exe",
+        "checksum": "5F819C2A1ABC496DB36F804800CC37097234F907",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate33Ita": {
+        "URL": "https://download.microsoft.com/download/5/5/a/55ad6190-9b7e-46ce-bf28-72d342e8aca0/CRM9.0-Srs-KB4618797-ITA-Amd64.exe",
+        "checksum": "E8305E59D9CEA7C0D20D06974081788BDCC37A70",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate33Jpn": {
+        "URL": "https://download.microsoft.com/download/8/b/d/8bd5c7d3-940f-4b1b-9513-e1e68847152e/CRM9.0-Srs-KB4618797-JPN-Amd64.exe",
+        "checksum": "A9DD358FF801DEC7D67CFCBD064F7EF5416C2B84",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate33Kor": {
+        "URL": "https://download.microsoft.com/download/0/9/e/09e2d7bc-5044-49d4-90bb-3cca3b3a4801/CRM9.0-Srs-KB4618797-KOR-Amd64.exe",
+        "checksum": "3C28E5686E3555649221A01C4E46BBED657E1CF0",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate33Nor": {
+        "URL": "https://download.microsoft.com/download/5/e/a/5ea9799d-a0b7-47bf-a202-62293ae99c3a/CRM9.0-Srs-KB4618797-NOR-Amd64.exe",
+        "checksum": "B8C84597859DF2DA5DFAB2E8A802E7CF9444E92D",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate33Plk": {
+        "URL": "https://download.microsoft.com/download/4/f/5/4f5eb981-adcd-403c-81d9-0e307b584488/CRM9.0-Srs-KB4618797-PLK-Amd64.exe",
+        "checksum": "0FFC212D3CFCC5FBE03EEC841CFA3C3F43DCB660",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate33Ptb": {
+        "URL": "https://download.microsoft.com/download/b/4/4/b44c6f76-a87b-4b42-abdd-e60206d06191/CRM9.0-Srs-KB4618797-PTB-Amd64.exe",
+        "checksum": "3B618C36454E6C730F37DF868398FC4C99DB2434",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate33Ptg": {
+        "URL": "https://download.microsoft.com/download/e/9/f/e9fde9ce-d3fe-4528-b349-47282ed36aa7/CRM9.0-Srs-KB4618797-PTG-Amd64.exe",
+        "checksum": "1B0E042B308A005DED7D522AEC0A9E37017EDA51",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate33Rus": {
+        "URL": "https://download.microsoft.com/download/1/b/5/1b57fd2a-c2f3-4583-afb3-41be361dd965/CRM9.0-Srs-KB4618797-RUS-Amd64.exe",
+        "checksum": "1F993142E0D4799C01D4686DFECA64B2E10D4A83",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate33Esn": {
+        "URL": "https://download.microsoft.com/download/d/e/f/def08030-1692-419a-80dc-8ed2c9c0ed74/CRM9.0-Srs-KB4618797-ESN-Amd64.exe",
+        "checksum": "F6950741C4F2EDE3258C3BD625F0956AEC885EAD",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate33Sve": {
+        "URL": "https://download.microsoft.com/download/8/d/0/8d04fce6-caa5-4b58-9fd4-ab71f1f6dbe7/CRM9.0-Srs-KB4618797-SVE-Amd64.exe",
+        "checksum": "52F6035A6670E9D8ACF18D0A559472CC69A2A783",
+        "mediaFileVersion": "9.0.33.8"
+    },
+    "Dynamics365Server90ReportingExtensionsUpdate33Trk": {
+        "URL": "https://download.microsoft.com/download/5/e/c/5ec9bab7-d2e4-4cdd-bd8a-c944b7508a1a/CRM9.0-Srs-KB4618797-TRK-Amd64.exe",
+        "checksum": "7EB3A5FECCC49641415B3B79FC65F07CCEEA63CE",
+        "mediaFileVersion": "9.0.33.8"
+    },
     "Dynamics365Server91Update01Sau": {
         "URL": "https://download.microsoft.com/download/1/7/3/173ddf9a-5217-485c-ad2f-c7ccfecee981/CRM9.1-Server-KB4615457-SAU-Amd64.exe",
         "checksum": "20F09AF1FC3F75E1A5FF5A10C56DB4E0BF9B4F34",
@@ -8928,6 +9178,256 @@
         "URL": "https://download.microsoft.com/download/3/9/2/392348e6-577a-4570-a6de-a464abc19251/CRM9.1-Srs-KB4618810-TRK-Amd64.exe",
         "checksum": "2879D23C79E6EBBB3390232DCCA073848174829A",
         "mediaFileVersion": "9.1.4.31"
+    },
+    "Dynamics365Server91Update05Sau": {
+        "URL": "https://download.microsoft.com/download/4/2/b/42b9367c-2515-426e-9262-a44b3027544b/CRM9.1-Server-KB4618811-SAU-Amd64.exe",
+        "checksum": "39CEB08CAB4F12C50C2DF181F9A590610999AFB6",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91Update05Chk": {
+        "URL": "https://download.microsoft.com/download/d/3/a/d3ab25fa-1877-4cc9-a911-bcdf7e5ef6d8/CRM9.1-Server-KB4618811-CHK-Amd64.exe",
+        "checksum": "F94EBDE4646D34838B88B486FE3754545E6CCC54",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91Update05Chs": {
+        "URL": "https://download.microsoft.com/download/a/e/8/ae8b21e3-44ac-4605-a0cf-9c12c24ed7c3/CRM9.1-Server-KB4618811-CHS-Amd64.exe",
+        "checksum": "C47994FA08583286401027862FE36A01F0271C9E",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91Update05Cht": {
+        "URL": "https://download.microsoft.com/download/2/9/e/29e25dde-d61b-4050-b625-b116b33722ac/CRM9.1-Server-KB4618811-CHT-Amd64.exe",
+        "checksum": "FD7440CE2A492B584C2D9F56427916ED7FE606AD",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91Update05Csy": {
+        "URL": "https://download.microsoft.com/download/a/d/2/ad27e5ab-7a72-4ad8-8f9f-eb63c94dea24/CRM9.1-Server-KB4618811-CSY-Amd64.exe",
+        "checksum": "B20618D9B3B90A86031D6615AA371FCF1E0D5099",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91Update05Dan": {
+        "URL": "https://download.microsoft.com/download/f/9/0/f903503e-34ca-4f3e-a722-cf3f9928ee78/CRM9.1-Server-KB4618811-DAN-Amd64.exe",
+        "checksum": "BF480E2076610DA32F85BC4A1DB77DFEE8778E59",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91Update05Nld": {
+        "URL": "https://download.microsoft.com/download/a/1/8/a189e9bc-94c0-4bae-9af7-67d0270490c3/CRM9.1-Server-KB4618811-NLD-Amd64.exe",
+        "checksum": "7B058557351F50DC295FAC88FCF5158BF4118F31",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91Update05Enu": {
+        "URL": "https://download.microsoft.com/download/a/6/7/a674115d-094c-490d-b912-4b8820205689/CRM9.1-Server-KB4618811-ENU-Amd64.exe",
+        "checksum": "9BD67FFAA64D161D4113B2C5D7C179341A27FC30",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91Update05Fin": {
+        "URL": "https://download.microsoft.com/download/3/5/8/35873751-768c-4e1f-b4b2-3f2ef43deb11/CRM9.1-Server-KB4618811-FIN-Amd64.exe",
+        "checksum": "1FB65F034BF193976A281A2AB5B9132561276009",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91Update05Fra": {
+        "URL": "https://download.microsoft.com/download/f/a/e/faee151c-388b-4529-8c7b-7075f9e05020/CRM9.1-Server-KB4618811-FRA-Amd64.exe",
+        "checksum": "22B7B49C29B871F8879FE31C923BD9377F3F2D89",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91Update05Deu": {
+        "URL": "https://download.microsoft.com/download/c/6/f/c6fe16e8-f30b-4ae2-925b-13d2a79eaf05/CRM9.1-Server-KB4618811-DEU-Amd64.exe",
+        "checksum": "B587502B1416FA6A9E3533236F6FD56BFC7937B0",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91Update05Ell": {
+        "URL": "https://download.microsoft.com/download/2/4/d/24d55943-0cfa-415b-8a26-24cef34b188f/CRM9.1-Server-KB4618811-ELL-Amd64.exe",
+        "checksum": "D5FBE09FBB59BC0BC4901CD556CD4DBBE99214C1",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91Update05Heb": {
+        "URL": "https://download.microsoft.com/download/3/4/7/347e2a6e-f8be-4b84-b0c7-b309966422aa/CRM9.1-Server-KB4618811-HEB-Amd64.exe",
+        "checksum": "7A774ED7373AC4222A261B75C1B8914645E2514E",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91Update05Hun": {
+        "URL": "https://download.microsoft.com/download/1/3/2/132d24ca-f3d2-4407-85b2-fbd2f5049f4e/CRM9.1-Server-KB4618811-HUN-Amd64.exe",
+        "checksum": "D9D1711FECFA893F03175EEC22D6E2AC71877B23",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91Update05Ita": {
+        "URL": "https://download.microsoft.com/download/0/8/c/08c930fd-4590-4f40-8d93-332f568a85c1/CRM9.1-Server-KB4618811-ITA-Amd64.exe",
+        "checksum": "D597ADFAB6CD4115D384ED12D328D5088E4423FC",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91Update05Jpn": {
+        "URL": "https://download.microsoft.com/download/0/2/b/02b685ae-e8d8-40e2-9d4c-1b1056b11b0f/CRM9.1-Server-KB4618811-JPN-Amd64.exe",
+        "checksum": "71D6352BA5F7739049D857502A9E764843DB3CD4",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91Update05Kor": {
+        "URL": "https://download.microsoft.com/download/0/c/3/0c38b81c-ef0a-4440-a488-f0a2014c24eb/CRM9.1-Server-KB4618811-KOR-Amd64.exe",
+        "checksum": "E9FBC48C53B150FFE1268D0BFF4368CD9D564F18",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91Update05Nor": {
+        "URL": "https://download.microsoft.com/download/4/8/5/4853207c-f1fd-42bd-92f8-b8a917362bd3/CRM9.1-Server-KB4618811-NOR-Amd64.exe",
+        "checksum": "564F5D2F260D202C880D9FBD23D48CA243B43B82",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91Update05Plk": {
+        "URL": "https://download.microsoft.com/download/9/7/0/97035caa-9528-4d89-bb12-2cae42f85807/CRM9.1-Server-KB4618811-PLK-Amd64.exe",
+        "checksum": "B5B222E8D745FB37795ED92FD1F7C9465B0E7E09",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91Update05Ptb": {
+        "URL": "https://download.microsoft.com/download/b/5/5/b55c59b1-390f-45cc-bf4b-93c8a881970e/CRM9.1-Server-KB4618811-PTB-Amd64.exe",
+        "checksum": "BA370608D65AB684CEF90E5448F920029D118AB5",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91Update05Ptg": {
+        "URL": "https://download.microsoft.com/download/5/1/1/511b4301-d7b9-4fca-8afb-435eca347272/CRM9.1-Server-KB4618811-PTG-Amd64.exe",
+        "checksum": "35F7A0FD2CCCD5764C1234B685058C07267F4D6D",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91Update05Rus": {
+        "URL": "https://download.microsoft.com/download/c/9/5/c95e5f7d-e61d-433c-8b93-0a42321acff2/CRM9.1-Server-KB4618811-RUS-Amd64.exe",
+        "checksum": "1FF8D6B867A248EB949ED7EB8E018D5D4736E1DB",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91Update05Esn": {
+        "URL": "https://download.microsoft.com/download/5/4/b/54be5f75-093b-4c13-9a0c-db8dccb93f66/CRM9.1-Server-KB4618811-ESN-Amd64.exe",
+        "checksum": "7DD83DAD25B8532CF87794B28A96825EFCEA9588",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91Update05Sve": {
+        "URL": "https://download.microsoft.com/download/5/a/6/5a6e90c7-41af-4111-b9e9-630d402d84cc/CRM9.1-Server-KB4618811-SVE-Amd64.exe",
+        "checksum": "3ED2C935F58217D7A56AF26031DD4BAAA94F4BF3",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91Update05Trk": {
+        "URL": "https://download.microsoft.com/download/5/4/1/541316e4-af3b-4e6e-82ab-7932bf220f46/CRM9.1-Server-KB4618811-TRK-Amd64.exe",
+        "checksum": "2E68CEA69851EB52F3A1C0DC3F1B84E5AFA30F9D",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91ReportingExtensionsUpdate05Sau": {
+        "URL": "https://download.microsoft.com/download/4/2/b/42b9367c-2515-426e-9262-a44b3027544b/CRM9.1-Srs-KB4618811-SAU-Amd64.exe",
+        "checksum": "3CDA70219E95F4C27E23166D0C9E9F2CEEDDDD50",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91ReportingExtensionsUpdate05Chk": {
+        "URL": "https://download.microsoft.com/download/d/3/a/d3ab25fa-1877-4cc9-a911-bcdf7e5ef6d8/CRM9.1-Srs-KB4618811-CHK-Amd64.exe",
+        "checksum": "C3B361BA6367AA91C27E95F7009A04CF34D8A954",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91ReportingExtensionsUpdate05Chs": {
+        "URL": "https://download.microsoft.com/download/a/e/8/ae8b21e3-44ac-4605-a0cf-9c12c24ed7c3/CRM9.1-Srs-KB4618811-CHS-Amd64.exe",
+        "checksum": "D0A0BBBD7E0BE9E66C9093EC0A8CC62A1195D1CD",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91ReportingExtensionsUpdate05Cht": {
+        "URL": "https://download.microsoft.com/download/2/9/e/29e25dde-d61b-4050-b625-b116b33722ac/CRM9.1-Srs-KB4618811-CHT-Amd64.exe",
+        "checksum": "B8BE4B36F87DBBF6DCAD38F040B4B3020C2F3C72",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91ReportingExtensionsUpdate05Csy": {
+        "URL": "https://download.microsoft.com/download/a/d/2/ad27e5ab-7a72-4ad8-8f9f-eb63c94dea24/CRM9.1-Srs-KB4618811-CSY-Amd64.exe",
+        "checksum": "3B7BBC2C391693BBF5514717B1636186249920D8",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91ReportingExtensionsUpdate05Dan": {
+        "URL": "https://download.microsoft.com/download/f/9/0/f903503e-34ca-4f3e-a722-cf3f9928ee78/CRM9.1-Srs-KB4618811-DAN-Amd64.exe",
+        "checksum": "736369DF81F8AF0584F1EA5C0DF2704047C90C7C",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91ReportingExtensionsUpdate05Nld": {
+        "URL": "https://download.microsoft.com/download/a/1/8/a189e9bc-94c0-4bae-9af7-67d0270490c3/CRM9.1-Srs-KB4618811-NLD-Amd64.exe",
+        "checksum": "8599C2CFCD20EF9E254108C3114BA8303EAF5F21",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91ReportingExtensionsUpdate05Enu": {
+        "URL": "https://download.microsoft.com/download/a/6/7/a674115d-094c-490d-b912-4b8820205689/CRM9.1-Srs-KB4618811-ENU-Amd64.exe",
+        "checksum": "06CE9733739782C0BDA94803D0CCB1E168887900",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91ReportingExtensionsUpdate05Fin": {
+        "URL": "https://download.microsoft.com/download/3/5/8/35873751-768c-4e1f-b4b2-3f2ef43deb11/CRM9.1-Srs-KB4618811-FIN-Amd64.exe",
+        "checksum": "ACB86209C276A16BEC87692A2C92383A0024B81A",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91ReportingExtensionsUpdate05Fra": {
+        "URL": "https://download.microsoft.com/download/f/a/e/faee151c-388b-4529-8c7b-7075f9e05020/CRM9.1-Srs-KB4618811-FRA-Amd64.exe",
+        "checksum": "3569F63A579E7409766C8D01C75E1DA2362125D9",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91ReportingExtensionsUpdate05Deu": {
+        "URL": "https://download.microsoft.com/download/c/6/f/c6fe16e8-f30b-4ae2-925b-13d2a79eaf05/CRM9.1-Srs-KB4618811-DEU-Amd64.exe",
+        "checksum": "0FB53B545A47EABBC9A145CCD2C7CCC5F8DB3879",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91ReportingExtensionsUpdate05Ell": {
+        "URL": "https://download.microsoft.com/download/2/4/d/24d55943-0cfa-415b-8a26-24cef34b188f/CRM9.1-Srs-KB4618811-ELL-Amd64.exe",
+        "checksum": "6CAE08269A6400797BA69E56B9783906FABDB9EE",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91ReportingExtensionsUpdate05Heb": {
+        "URL": "https://download.microsoft.com/download/3/4/7/347e2a6e-f8be-4b84-b0c7-b309966422aa/CRM9.1-Srs-KB4618811-HEB-Amd64.exe",
+        "checksum": "8B5EAAAE52A934B3DC0FFE7892847A6EE69151EE",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91ReportingExtensionsUpdate05Hun": {
+        "URL": "https://download.microsoft.com/download/1/3/2/132d24ca-f3d2-4407-85b2-fbd2f5049f4e/CRM9.1-Srs-KB4618811-HUN-Amd64.exe",
+        "checksum": "F339C2229DE41D115379D5ACBA407CDB1D73F879",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91ReportingExtensionsUpdate05Ita": {
+        "URL": "https://download.microsoft.com/download/0/8/c/08c930fd-4590-4f40-8d93-332f568a85c1/CRM9.1-Srs-KB4618811-ITA-Amd64.exe",
+        "checksum": "D2D5B0DC5DC4F97F5C478EF4BA8DE7DD555FBC9C",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91ReportingExtensionsUpdate05Jpn": {
+        "URL": "https://download.microsoft.com/download/0/2/b/02b685ae-e8d8-40e2-9d4c-1b1056b11b0f/CRM9.1-Srs-KB4618811-JPN-Amd64.exe",
+        "checksum": "FD75840472E805FDDD3BDD62ED14D6D43AB7D058",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91ReportingExtensionsUpdate05Kor": {
+        "URL": "https://download.microsoft.com/download/0/c/3/0c38b81c-ef0a-4440-a488-f0a2014c24eb/CRM9.1-Srs-KB4618811-KOR-Amd64.exe",
+        "checksum": "46B913CC20737AADDBB9F1D004D1D491E081C0C1",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91ReportingExtensionsUpdate05Nor": {
+        "URL": "https://download.microsoft.com/download/4/8/5/4853207c-f1fd-42bd-92f8-b8a917362bd3/CRM9.1-Srs-KB4618811-NOR-Amd64.exe",
+        "checksum": "09D005E0C49722B07BF7C56F48DE6A300DB19D3B",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91ReportingExtensionsUpdate05Plk": {
+        "URL": "https://download.microsoft.com/download/9/7/0/97035caa-9528-4d89-bb12-2cae42f85807/CRM9.1-Srs-KB4618811-PLK-Amd64.exe",
+        "checksum": "BD73E3B03869C48CAA73B97443D7F30BF58A5F56",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91ReportingExtensionsUpdate05Ptb": {
+        "URL": "https://download.microsoft.com/download/b/5/5/b55c59b1-390f-45cc-bf4b-93c8a881970e/CRM9.1-Srs-KB4618811-PTB-Amd64.exe",
+        "checksum": "B8DEB588226EED2C73A42ECD6D1CF48541343868",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91ReportingExtensionsUpdate05Ptg": {
+        "URL": "https://download.microsoft.com/download/5/1/1/511b4301-d7b9-4fca-8afb-435eca347272/CRM9.1-Srs-KB4618811-PTG-Amd64.exe",
+        "checksum": "52C8A25D1A0897C32053CB60D34A6ADB3E65FE23",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91ReportingExtensionsUpdate05Rus": {
+        "URL": "https://download.microsoft.com/download/c/9/5/c95e5f7d-e61d-433c-8b93-0a42321acff2/CRM9.1-Srs-KB4618811-RUS-Amd64.exe",
+        "checksum": "E3F1CFE449479F7DAC8DC3A4F31DAE4781024B8D",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91ReportingExtensionsUpdate05Esn": {
+        "URL": "https://download.microsoft.com/download/5/4/b/54be5f75-093b-4c13-9a0c-db8dccb93f66/CRM9.1-Srs-KB4618811-ESN-Amd64.exe",
+        "checksum": "7531DE9BC0686BEE540EBD4AEA837E2FC5A7C4AB",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91ReportingExtensionsUpdate05Sve": {
+        "URL": "https://download.microsoft.com/download/5/a/6/5a6e90c7-41af-4111-b9e9-630d402d84cc/CRM9.1-Srs-KB4618811-SVE-Amd64.exe",
+        "checksum": "426706991B78E8ED070EC61B6E35BED8D487CAA9",
+        "mediaFileVersion": "9.1.5.25"
+    },
+    "Dynamics365Server91ReportingExtensionsUpdate05Trk": {
+        "URL": "https://download.microsoft.com/download/5/4/1/541316e4-af3b-4e6e-82ab-7932bf220f46/CRM9.1-Srs-KB4618811-TRK-Amd64.exe",
+        "checksum": "78919BBF952F33D10D179714AC63D5ED7A70EFF0",
+        "mediaFileVersion": "9.1.5.25"
     },
     "CRM2016RTMSau": {
         "URL": "https://download.microsoft.com/download/F/1/C/F1C1F116-E4E6-49DD-9C81-A60BD8C678A8/CRM2016-Server-SAU-amd64.exe",
