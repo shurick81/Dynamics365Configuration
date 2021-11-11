@@ -7,7 +7,7 @@
   * Dynamics365Server91Update05\<Language\>
   * Dynamics365Server91ReportingExtensionsUpdate05\<Language\>
   * Dynamics365Server90Update33\<Language\>
-  * Dynamics365Server91ReportingExtensionsUpdate33\<Language\>
+  * Dynamics365Server90ReportingExtensionsUpdate33\<Language\>
 
 ## 2.15.0
 
@@ -16,7 +16,7 @@
   * Dynamics365Server91Update04\<Language\> (Cht and Fin languages are missing)
   * Dynamics365Server91ReportingExtensionsUpdate04\<Language\> (Cht and Fin languages are missing)
   * Dynamics365Server90Update32\<Language\>
-  * Dynamics365Server91ReportingExtensionsUpdate32\<Language\>
+  * Dynamics365Server90ReportingExtensionsUpdate32\<Language\>
 
 ## 2.14.0
 
@@ -25,7 +25,7 @@
   * Dynamics365Server91Update03\<Language\> (Heb language is missing)
   * Dynamics365Server91ReportingExtensionsUpdate03\<Language\> (Heb language is missing)
   * Dynamics365Server90Update31\<Language\>
-  * Dynamics365Server91ReportingExtensionsUpdate31\<Language\>
+  * Dynamics365Server90ReportingExtensionsUpdate31\<Language\>
 
 ## 2.13.0
 
@@ -35,7 +35,7 @@
   * Dynamics365Server91Update02\<Language\>
   * Dynamics365Server91ReportingExtensionsUpdate02\<Language\>
   * Dynamics365Server90Update30\<Language\>
-  * Dynamics365Server91ReportingExtensionsUpdate30\<Language\>
+  * Dynamics365Server90ReportingExtensionsUpdate30\<Language\>
 
 ## 2.12.0
 
