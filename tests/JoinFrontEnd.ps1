@@ -32,15 +32,15 @@ if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server90LanguagePackSve ) {
 }
 
 try {
-    Save-Dynamics365Resource -Resource Dynamics365Server91Update05Enu -TargetDirectory C:\Install\Dynamics\Dynamics365Server91Update05Enu
+    Save-Dynamics365Resource -Resource Dynamics365Server91Update06Enu -TargetDirectory C:\Install\Dynamics\Dynamics365Server91Update06Enu
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server91Update05Enu ) {
+if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server91Update06Enu ) {
     Write-Host "Test OK";
 } else {
-    Write-Host "Expected files are not found in C:\Install\Dynamics\Dynamics365Server91Update05Enu, test is not OK";
+    Write-Host "Expected files are not found in C:\Install\Dynamics\Dynamics365Server91Update06Enu, test is not OK";
     Exit 1;
 }
 
@@ -91,8 +91,8 @@ If ( $msCRMRegistryValues ) {
 try {
     Invoke-Command "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
         Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
-        Install-Dynamics365Update -MediaDir C:\Install\Dynamics\Dynamics365Server91Update05Enu `
-            -LogFilePath c:\tmp\Dynamics365ServerUpdate9105InstallLog.txt `
+        Install-Dynamics365Update -MediaDir C:\Install\Dynamics\Dynamics365Server91Update06Enu `
+            -LogFilePath c:\tmp\Dynamics365ServerUpdate9106InstallLog.txt `
             -LogFilePullIntervalInSeconds 15 `
             -LogFilePullToOutput
     }
@@ -104,7 +104,7 @@ $msCRMRegistryValues = Get-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\MSCRM -Er
 If ( $msCRMRegistryValues ) {
     $installedVersion = Get-Dynamics365ServerVersion;
     if ( $installedVersion ) {
-        if ( $installedVersion.ToString(3) -ne "9.1.5" ) {
+        if ( $installedVersion.ToString(3) -ne "9.1.6" ) {
             Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
             Exit 1;
         }
