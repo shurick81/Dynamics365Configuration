@@ -32,15 +32,15 @@ if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server90LanguagePackSve ) {
 }
 
 try {
-    Save-Dynamics365Resource -Resource Dynamics365Server91Update06Enu -TargetDirectory C:\Install\Dynamics\Dynamics365Server91Update06Enu
+    Save-Dynamics365Resource -Resource Dynamics365Server91Update07Enu -TargetDirectory C:\Install\Dynamics\Dynamics365Server91Update07Enu
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server91Update06Enu ) {
+if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server91Update07Enu ) {
     Write-Host "Test OK";
 } else {
-    Write-Host "Expected files are not found in C:\Install\Dynamics\Dynamics365Server91Update06Enu, test is not OK";
+    Write-Host "Expected files are not found in C:\Install\Dynamics\Dynamics365Server91Update07Enu, test is not OK";
     Exit 1;
 }
 
@@ -91,8 +91,8 @@ If ( $msCRMRegistryValues ) {
 try {
     Invoke-Command "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
         Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
-        Install-Dynamics365Update -MediaDir C:\Install\Dynamics\Dynamics365Server91Update06Enu `
-            -LogFilePath c:\tmp\Dynamics365ServerUpdate9106InstallLog.txt `
+        Install-Dynamics365Update -MediaDir C:\Install\Dynamics\Dynamics365Server91Update07Enu `
+            -LogFilePath c:\tmp\Dynamics365ServerUpdate9107InstallLog.txt `
             -LogFilePullIntervalInSeconds 15 `
             -LogFilePullToOutput
     }

@@ -1,5 +1,14 @@
 # Dynamics365Configuration module change log
 
+## Not Released
+
+* New Dynamics 365 updates (98 new downloadables in total):
+
+  * Dynamics365Server91Update07\<Language\> (Sau language is missing)
+  * Dynamics365Server91ReportingExtensionsUpdate07\<Language\> (Sau language is missing)
+  * Dynamics365Server90Update35\<Language\>
+  * Dynamics365Server90ReportingExtensionsUpdate35\<Language\>
+
 ## 2.17.0
 
 * New Dynamics 365 updates (98 new downloadables in total):
