@@ -131,7 +131,7 @@ $testScriptBlock = {
 }
 $installedVersion = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP;
 if ( $installedVersion ) {
-    if ( $installedVersion.ToString(3) -ne "9.1.6" ) {
+    if ( $installedVersion.ToString(3) -ne "9.1.7" ) {
         Write-Host "Software installed version is '$testResponse'. Test is not OK"
         Exit 1;
     }
@@ -143,7 +143,7 @@ $msCRMRegistryValues = Get-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\MSCRM -Er
 If ( $msCRMRegistryValues ) {
     $installedVersion = Get-Dynamics365ServerVersion;
     if ( $installedVersion ) {
-        if ( $installedVersion -ne [version]"9.1.6.3" ) {
+        if ( $installedVersion -ne [version]"9.1.7.5" ) {
             Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
             Exit 1;
         }    
@@ -239,7 +239,7 @@ if ( $dbHostName -eq $env:COMPUTERNAME ) {
     }
 }
 if ( $installedVersion ) {
-    if ( $installedVersion.ToString(3) -ne "9.1.6" ) {
+    if ( $installedVersion.ToString(3) -ne "9.1.7" ) {
         Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
         Exit 1;
     }

@@ -104,7 +104,7 @@ $msCRMRegistryValues = Get-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\MSCRM -Er
 If ( $msCRMRegistryValues ) {
     $installedVersion = Get-Dynamics365ServerVersion;
     if ( $installedVersion ) {
-        if ( $installedVersion.ToString(3) -ne "9.1.6" ) {
+        if ( $installedVersion.ToString(3) -ne "9.1.7" ) {
             Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
             Exit 1;
         }
