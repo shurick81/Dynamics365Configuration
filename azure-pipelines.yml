@@ -47,103 +47,103 @@ jobs:
 #    displayName: ChecksumVerification
 #    errorActionPreference: continue
 - job:
-  displayName: Running ChecksumVerification on MS agent 00
+  displayName: Running ChecksumVerification on MS agent 0
   pool:
     name: Hosted
     vmImage: win1803
   timeoutInMinutes: 600
   steps:
-  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; ./tests/ChecksumVerification00.ps1
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 0; ./tests/ChecksumVerificationFragmented.ps1
     displayName: ChecksumVerification
     errorActionPreference: continue
 - job:
-  displayName: Running ChecksumVerification on MS agent 01
+  displayName: Running ChecksumVerification on MS agent 1
   pool:
     name: Hosted
     vmImage: win1803
   timeoutInMinutes: 600
   steps:
-  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; ./tests/ChecksumVerification01.ps1
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 1; ./tests/ChecksumVerificationFragmented.ps1
     displayName: ChecksumVerification
     errorActionPreference: continue
 - job:
-  displayName: Running ChecksumVerification on MS agent 02
+  displayName: Running ChecksumVerification on MS agent 2
   pool:
     name: Hosted
     vmImage: win1803
   timeoutInMinutes: 600
   steps:
-  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; ./tests/ChecksumVerification02.ps1
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 2; ./tests/ChecksumVerificationFragmented.ps1
     displayName: ChecksumVerification
     errorActionPreference: continue
 - job:
-  displayName: Running ChecksumVerification on MS agent 03
+  displayName: Running ChecksumVerification on MS agent 3
   pool:
     name: Hosted
     vmImage: win1803
   timeoutInMinutes: 600
   steps:
-  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; ./tests/ChecksumVerification03.ps1
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 3; ./tests/ChecksumVerificationFragmented.ps1
     displayName: ChecksumVerification
     errorActionPreference: continue
 - job:
-  displayName: Running ChecksumVerification on MS agent 04
+  displayName: Running ChecksumVerification on MS agent 4
   pool:
     name: Hosted
     vmImage: win1803
   timeoutInMinutes: 600
   steps:
-  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; ./tests/ChecksumVerification04.ps1
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 4; ./tests/ChecksumVerificationFragmented.ps1
     displayName: ChecksumVerification
     errorActionPreference: continue
 - job:
-  displayName: Running ChecksumVerification on MS agent 05
+  displayName: Running ChecksumVerification on MS agent 5
   pool:
     name: Hosted
     vmImage: win1803
   timeoutInMinutes: 600
   steps:
-  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; ./tests/ChecksumVerification05.ps1
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 5; ./tests/ChecksumVerificationFragmented.ps1
     displayName: ChecksumVerification
     errorActionPreference: continue
 - job:
-  displayName: Running ChecksumVerification on MS agent 06
+  displayName: Running ChecksumVerification on MS agent 6 
   pool:
     name: Hosted
     vmImage: win1803
   timeoutInMinutes: 600
   steps:
-  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; ./tests/ChecksumVerification06.ps1
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 6; ./tests/ChecksumVerificationFragmented.ps1
     displayName: ChecksumVerification
     errorActionPreference: continue
 - job:
-  displayName: Running ChecksumVerification on MS agent 07
+  displayName: Running ChecksumVerification on MS agent 7 
   pool:
     name: Hosted
     vmImage: win1803
   timeoutInMinutes: 600
   steps:
-  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; ./tests/ChecksumVerification07.ps1
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 7; ./tests/ChecksumVerificationFragmented.ps1
     displayName: ChecksumVerification
     errorActionPreference: continue
 - job:
-  displayName: Running ChecksumVerification on MS agent 08
+  displayName: Running ChecksumVerification on MS agent 8 
   pool:
     name: Hosted
     vmImage: win1803
   timeoutInMinutes: 600
   steps:
-  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; ./tests/ChecksumVerification08.ps1
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 8; ./tests/ChecksumVerificationFragmented.ps1
     displayName: ChecksumVerification
     errorActionPreference: continue
 - job:
-  displayName: Running ChecksumVerification on MS agent 09
+  displayName: Running ChecksumVerification on MS agent 9 
   pool:
     name: Hosted
     vmImage: win1803
   timeoutInMinutes: 600
   steps:
-  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; ./tests/ChecksumVerification09.ps1
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 9; ./tests/ChecksumVerificationFragmented.ps1
     displayName: ChecksumVerification
     errorActionPreference: continue
 - job:
@@ -153,7 +153,7 @@ jobs:
     vmImage: win1803
   timeoutInMinutes: 600
   steps:
-  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; ./tests/ChecksumVerification10.ps1
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 10; ./tests/ChecksumVerificationFragmented.ps1
     displayName: ChecksumVerification
     errorActionPreference: continue
 - job:
@@ -163,7 +163,7 @@ jobs:
     vmImage: win1803
   timeoutInMinutes: 600
   steps:
-  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; ./tests/ChecksumVerification11.ps1
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 11; ./tests/ChecksumVerificationFragmented.ps1
     displayName: ChecksumVerification
     errorActionPreference: continue
 - job:
@@ -173,7 +173,7 @@ jobs:
     vmImage: win1803
   timeoutInMinutes: 600
   steps:
-  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; ./tests/ChecksumVerification12.ps1
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 12; ./tests/ChecksumVerificationFragmented.ps1
     displayName: ChecksumVerification
     errorActionPreference: continue
 - job:
@@ -183,7 +183,7 @@ jobs:
     vmImage: win1803
   timeoutInMinutes: 600
   steps:
-  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; ./tests/ChecksumVerification13.ps1
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 13; ./tests/ChecksumVerificationFragmented.ps1
     displayName: ChecksumVerification
     errorActionPreference: continue
 - job:
@@ -193,7 +193,7 @@ jobs:
     vmImage: win1803
   timeoutInMinutes: 600
   steps:
-  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; ./tests/ChecksumVerification14.ps1
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 14; ./tests/ChecksumVerificationFragmented.ps1
     displayName: ChecksumVerification
     errorActionPreference: continue
 - job:
@@ -203,7 +203,7 @@ jobs:
     vmImage: win1803
   timeoutInMinutes: 600
   steps:
-  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; ./tests/ChecksumVerification15.ps1
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 15; ./tests/ChecksumVerificationFragmented.ps1
     displayName: ChecksumVerification
     errorActionPreference: continue
 - job:
@@ -213,7 +213,7 @@ jobs:
     vmImage: win1803
   timeoutInMinutes: 600
   steps:
-  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; ./tests/ChecksumVerification16.ps1
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 16; ./tests/ChecksumVerificationFragmented.ps1
     displayName: ChecksumVerification
     errorActionPreference: continue
 - job:
@@ -223,7 +223,7 @@ jobs:
     vmImage: win1803
   timeoutInMinutes: 600
   steps:
-  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; ./tests/ChecksumVerification17.ps1
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 17; ./tests/ChecksumVerificationFragmented.ps1
     displayName: ChecksumVerification
     errorActionPreference: continue
 - job:
@@ -233,7 +233,7 @@ jobs:
     vmImage: win1803
   timeoutInMinutes: 600
   steps:
-  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; ./tests/ChecksumVerification18.ps1
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 18; ./tests/ChecksumVerificationFragmented.ps1
     displayName: ChecksumVerification
     errorActionPreference: continue
 - job:
@@ -243,7 +243,807 @@ jobs:
     vmImage: win1803
   timeoutInMinutes: 600
   steps:
-  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; ./tests/ChecksumVerification19.ps1
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 19; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 20
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 20; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 21
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 21; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 22
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 22; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 23
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 23; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 24
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 24; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 25
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 25; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 26
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 26; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 27
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 27; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 28
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 28; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 29
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 29; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 30
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 30; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 31
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 31; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 32
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 32; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 33
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 33; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 34
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 34; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 35
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 35; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 36
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 36; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 37
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 37; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 38
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 38; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 39
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 39; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 40
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 40; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 41
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 41; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 42
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 42; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 43
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 43; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 44
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 44; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 45
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 45; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 46
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 46; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 47
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 47; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 48
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 48; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 49
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 49; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 50
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 50; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 51
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 51; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 52
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 52; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 53
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 53; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 54
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 54; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 55
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 55; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 56
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 56; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 57
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 57; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 58
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 58; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 59
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 59; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 60
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 60; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 61
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 61; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 62
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 62; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 63
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 63; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 64
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 64; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 65
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 65; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 66
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 66; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 67
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 67; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 68
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 68; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 69
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 69; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 70
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 70; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 71
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 71; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 72
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 72; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 73
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 73; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 74
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 74; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 75
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 75; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 76
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 76; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 77
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 77; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 78
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 78; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 79
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 79; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 80
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 80; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 81
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 81; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 82
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 82; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 83
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 83; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 84
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 84; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 85
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 85; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 86
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 86; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 87
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 87; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 88
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 88; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 89
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 89; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 90
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 90; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 91
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 91; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 92
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 92; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 93
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 93; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 94
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 94; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 95
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 95; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 96
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 96; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 97
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 97; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 98
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 98; ./tests/ChecksumVerificationFragmented.ps1
+    displayName: ChecksumVerification
+    errorActionPreference: continue
+- job:
+  displayName: Running ChecksumVerification on MS agent 99
+  pool:
+    name: Hosted
+    vmImage: win1803
+  timeoutInMinutes: 600
+  steps:
+  - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; $numberOfFragments = 100; $targetFragment = 99; ./tests/ChecksumVerificationFragmented.ps1
     displayName: ChecksumVerification
     errorActionPreference: continue
 - job:
