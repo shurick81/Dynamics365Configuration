@@ -1008,7 +1008,7 @@ The following file resources can be referenced in the module:
 | RS Extensions Update 2.28 | CRM2016ReportingExtensionsServicePack2Update28\<Language\> | 25 |  |
 | MUI Update 2.28 | CRM2016LanguagePackServicePack2Update28\<Language\> | 45 |  |
 | Prerequisites |  | 10 |  |
-| **Total** |  | 5069 |  |
+| **Total** |  | 5071 |  |
 
 ## Languages of RTM versions, for both v8 and v9
 
