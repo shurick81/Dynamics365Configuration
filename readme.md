@@ -899,6 +899,8 @@ The following file resources can be referenced in the module:
 | RS Extensions Update 0.34 | Dynamics365Server90ReportingExtensionsUpdate34\<Language\> | 25 |  |
 | Server Update 0.35 | Dynamics365Server90Update35\<Language\> | 25 |  |
 | RS Extensions Update 0.35 | Dynamics365Server90ReportingExtensionsUpdate35\<Language\> | 25 |  |
+| Server Update 0.37 | Dynamics365Server90Update37\<Language\> | 25 |  |
+| RS Extensions Update 0.37 | Dynamics365Server90ReportingExtensionsUpdate37\<Language\> | 25 |  |
 | Server Update 1.2 | Dynamics365Server91Update02\<Language\> | 25 |  |
 | RS Extensions Update 1.2 | Dynamics365Server91ReportingExtensionsUpdate02\<Language\> | 25 |  |
 | Server Update 1.3 | Dynamics365Server91Update03\<Language\> | 24 | Heb language is missing |
@@ -911,6 +913,8 @@ The following file resources can be referenced in the module:
 | RS Extensions Update 1.6 | Dynamics365Server91ReportingExtensionsUpdate06\<Language\> | 24 | Plk language is missing |
 | Server Update 1.7 | Dynamics365Server91Update07\<Language\> | 24 | Sau language is missing |
 | RS Extensions Update 1.7 | Dynamics365Server91ReportingExtensionsUpdate07\<Language\> | 24 | Sau language is missing |
+| Server Update 1.9 | Dynamics365Server91Update09\<Language\> | 25 |  |
+| RS Extensions Update 1.9 | Dynamics365Server91ReportingExtensionsUpdate09\<Language\> | 25 |  |
 | **Dynamics 8** |  |  |  |
 | RTM | CRM2016RTM\<Language\> | 25 |  |
 | Language pack | CRM2016LanguagePack<Language> | 45 |  |
@@ -1008,7 +1012,7 @@ The following file resources can be referenced in the module:
 | RS Extensions Update 2.28 | CRM2016ReportingExtensionsServicePack2Update28\<Language\> | 25 |  |
 | MUI Update 2.28 | CRM2016LanguagePackServicePack2Update28\<Language\> | 45 |  |
 | Prerequisites |  | 10 |  |
-| **Total** |  | 5071 |  |
+| **Total** |  | 5171 |  |
 
 ## Languages of RTM versions, for both v8 and v9
 
