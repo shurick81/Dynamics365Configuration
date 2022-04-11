@@ -10814,11 +10814,6 @@
         "URL": "https://download.microsoft.com/download/f/b/a/fba493bf-34ab-4c14-b521-6c9c04546507/CRM9.1-Srs-KB5012731-DAN-amd64.exe",
         "mediaFileVersion": "9.1.9.8"
     },
-    "Dynamics365Server9ReportingExtensionsUpdate00Nld": {
-        "checksum": "D7E6A5661E49A34A9E906C7993EBF546DC1079DA",
-        "URL": "https://download.microsoft.com/download/e/c/1/ec100ff1-ed01-47d0-94ba-c4330efc242f/CRM9.1-Server-KB5012731-NLD-amd64.exe",
-        "mediaFileVersion": "9.1.9.8"
-    },
     "Dynamics365Server91ReportingExtensionsUpdate09Nld": {
         "checksum": "C392377607FC910B08BE28C7A84416E4958D1BA7",
         "URL": "https://download.microsoft.com/download/e/c/1/ec100ff1-ed01-47d0-94ba-c4330efc242f/CRM9.1-Srs-KB5012731-NLD-amd64.exe",
