@@ -106,7 +106,7 @@ if ( Get-ChildItem C:\Install\Dynamics\$reportingExtensionsUpdateResource2 ) {
 try {
     Write-Host "Invoking command on $env:COMPUTERNAME.$domainName with dbHostName=$dbHostName parameter";
     Invoke-Command "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
-        param( $dbHostName )
+        param( $dbHostName, $serverUpdateResource )
         Write-Host "Invoked, starting execution";
         Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
         $securedPassword = ConvertTo-SecureString "c0mp1Expa~~" -AsPlainText -Force
@@ -140,7 +140,7 @@ try {
             -ReportingUrl http://$dbHostName/ReportServer_SSRS `
             -LogFilePullIntervalInSeconds 15 `
             -LogFilePullToOutput;
-    } -ArgumentList $dbHostName;
+    } -ArgumentList $dbHostName, $serverUpdateResource;
 } catch {
     Write-Host "Failed in invoking of Install-Dynamics365Server";
     Write-Host $_.Exception.Message -ForegroundColor Red;
@@ -171,12 +171,13 @@ If ( $msCRMRegistryValues ) {
 
 try {
     Invoke-Command "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+        param( $serverUpdateResource2 )
         Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
         Install-Dynamics365Update -MediaDir C:\Install\Dynamics\$serverUpdateResource2 `
             -LogFilePath c:\tmp\Dynamics365ServerUpdateInstallLog.txt `
             -LogFilePullIntervalInSeconds 15 `
             -LogFilePullToOutput
-    }
+    } -ArgumentList $serverUpdateResource2
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
@@ -414,7 +415,7 @@ if ( Get-ChildItem C:\Install\Dynamics\$reportingExtensionsUpdateResource2 ) {
 try {
     Write-Host "Invoking command on $env:COMPUTERNAME.$domainName with dbHostName=$dbHostName parameter";
     Invoke-Command "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
-        param( $dbHostName )
+        param( $dbHostName, $serverUpdateResource )
         Write-Host "Invoked, starting execution";
         Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
         $securedPassword = ConvertTo-SecureString "c0mp1Expa~~" -AsPlainText -Force
@@ -449,7 +450,7 @@ try {
             -ReportingUrl http://$dbHostName/ReportServer_SSRS `
             -LogFilePullIntervalInSeconds 15 `
             -LogFilePullToOutput
-    } -ArgumentList $dbHostName;
+    } -ArgumentList $dbHostName, $serverUpdateResource;
 } catch {
     Write-Host "Failed in invoking of Install-Dynamics365Server";
     Write-Host $_.Exception.Message -ForegroundColor Red;
@@ -460,10 +461,11 @@ try {
     Invoke-Command "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
         Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
         Install-Dynamics365Update -MediaDir C:\Install\Dynamics\$serverUpdateResource2 `
+            param( $serverUpdateResource2 )
             -LogFilePath c:\tmp\Dynamics365ServerUpdateInstallLog.txt `
             -LogFilePullIntervalInSeconds 15 `
             -LogFilePullToOutput
-    }
+    } -ArgumentList $serverUpdateResource2
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;

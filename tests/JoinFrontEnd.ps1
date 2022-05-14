@@ -1,5 +1,4 @@
 $serverUpdateResource = "Dynamics365Server91Update10Enu"
-$reportingExtensionsUpdateResource = "Dynamics365Server91ReportingExtensionsUpdate10Enu"
 $updatedVersion = "9.1.10"
 
 $dbHostName = $env:VMDEVOPSSTARTER_DBHOST;
@@ -96,10 +95,11 @@ try {
     Invoke-Command "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
         Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
         Install-Dynamics365Update -MediaDir C:\Install\Dynamics\$serverUpdateResource `
+            param( $serverUpdateResource )
             -LogFilePath c:\tmp\Dynamics365ServerUpdateInstallLog.txt `
             -LogFilePullIntervalInSeconds 15 `
             -LogFilePullToOutput
-    }
+    } -ArgumentList $serverUpdateResource
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;

@@ -2,6 +2,7 @@ $serverUpdateResource = "Dynamics365Server91Update10Enu"
 $reportingExtensionsUpdateResource = "Dynamics365Server91ReportingExtensionsUpdate10Enu"
 $updatedVersion = "9.1.10"
 $updatedVersionFull = "9.1.10.102"
+$KbId = "KB5014430"
 
 $dbHostName = $env:VMDEVOPSSTARTER_DBHOST;
 if ( !$dbHostName ) { $dbHostName = $env:COMPUTERNAME }
@@ -77,7 +78,7 @@ if ( Get-ChildItem C:\Install\Dynamics\$reportingExtensionsUpdateResource ) {
 try {
     Write-Host "Invoking command on $env:COMPUTERNAME.$domainName with dbHostName=$dbHostName parameter";
     Invoke-Command "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
-        param( $dbHostName )
+        param( $dbHostName, $serverUpdateResource, $KbId )
         Write-Host "Invoked, starting execution";
         Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
         $securedPassword = ConvertTo-SecureString "c0mp1Expa~~" -AsPlainText -Force
@@ -92,7 +93,7 @@ try {
             -MediaDir C:\Install\Dynamics\Dynamics365Server90RTMEnu `
             -CreateDatabase `
             -SqlServer $dbHostName\SQLInstance01 `
-            -Patch C:\Install\Dynamics\$serverUpdateResource\Server_KB5012731_amd64_1033.msp `
+            -Patch C:\Install\Dynamics\$serverUpdateResource\Server_$($KbId)_amd64_1033.msp `
             -PrivUserGroup "CN=CRM01PrivUserGroup00,OU=CRM groups 00,DC=contoso,DC=local" `
             -SQLAccessGroup "CN=CRM01SQLAccessGroup00,OU=CRM groups 00,DC=contoso,DC=local" `
             -UserGroup "CN=CRM01UserGroup00,OU=CRM groups 00,DC=contoso,DC=local" `
@@ -114,7 +115,7 @@ try {
             -LogFilePath c:\tmp\Dynamics365ServerInstallLog.txt `
             -LogFilePullIntervalInSeconds 15 `
             -LogFilePullToOutput
-    } -ArgumentList $dbHostName;
+    } -ArgumentList $dbHostName, $serverUpdateResource, $KbId;
 } catch {
     Write-Host "Failed in invoking of Install-Dynamics365Server";
     Write-Host $_.Exception.Message -ForegroundColor Red;
