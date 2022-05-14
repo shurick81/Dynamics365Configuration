@@ -14,15 +14,13 @@ jobs:
 - job:
   displayName: Importing the module
   pool:
-    name: Hosted
-    vmImage: windows-latest
+    vmImage: windows-2019
   steps:
   - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1;
     displayName: Import-Module
 - job:
   displayName: Script Analyzing
   pool:
-    name: Hosted
     vmImage: windows-latest
   steps:
   - powershell: Install-Module -Name PSScriptAnalyzer -Force;
