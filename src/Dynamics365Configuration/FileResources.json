@@ -8609,7 +8609,6 @@
         "URL": "https://download.microsoft.com/download/7/5/3/7535046d-1cfc-4f6f-8874-1dd8890af722/CRM9.0-Server-KB4618802-TRK-Amd64.exe",
         "mediaFileVersion": "9.0.37.2"
     },
-    ,
     "Dynamics365Server90Update38Sau": {
         "URL": "https://download.microsoft.com/download/8/8/7/8875f625-3b7d-4b9d-9a28-b9c8e972b3fb/CRM9.0-Server-KB5014429-SAU-Amd64.exe",
         "checksum": "2758A8E35A7F5B48E66E22A595675E604119DAE2",
