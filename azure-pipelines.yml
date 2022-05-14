@@ -27,8 +27,8 @@ jobs:
   steps:
   - powershell: Install-Module -Name PSScriptAnalyzer -Force;
     displayName: Install-Module
-  - powershell: Invoke-ScriptAnalyzer -Path ./src/Dynamics365Configuration -Recurse -ExcludeRule PSUseApprovedVerbs, PSUseDeclaredVarsMoreThanAssignments, PSAvoidUsingWMICmdlet;
-    displayName: Invoke-ScriptAnalyzer
+  - powershell: cd tests; ./runScriptAnalyzer.ps1
+    displayName: runScriptAnalyzer
 - job:
   displayName: Running URLDuplicatesQuick test on MS agent
   pool:
