@@ -295,7 +295,7 @@
                             }
                             #Patch is a required element for setup
                             $patchElement = $xml.CreateElement( "Patch" );
-                                if ( $Patch -ne $null ) {
+                                if ( $null -ne $Patch ) {
                                     $patchElement.SetAttribute( "Update", $true ) | Out-Null;
                                     $patchElement.InnerText = $patchFilePath;
                                 } else {
