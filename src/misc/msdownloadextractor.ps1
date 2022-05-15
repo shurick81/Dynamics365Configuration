@@ -20,54 +20,83 @@ $sections.Elements('table').Elements('tbody').Elements('tr').Elements('td').Elem
                     $downloadConfirmationPageUrl = $downloadWelcomePageUrl.Replace( "en-us", $selectedLocale ).Replace( "/download/details.aspx?id=", "/download/confirmation.aspx?id=" );
                     $htmlDom = ConvertFrom-Html -URI $downloadConfirmationPageUrl;
                     $htmlDom.SelectNodes('//div[@class="multifile-failover-view1"]').Elements('a') | % { $_.GetAttributeValue( "href",'' ) } | % {
-                        $discoveredUrl = $_;
-                        Write-Host "Discovered URL: $discoveredUrl";
-                        if ( !( $Dynamics365Resources | Get-Member -MemberType NoteProperty | ? { $Dynamics365Resources.( $_.Name ).Url -eq $discoveredUrl } ) ) {
-                            Write-Host "$discoveredUrl is not found in the Dynamics365Resources";
-                            $discoveredUrl -match '[^/\\&\?]+\.\w{3,4}(?=([\?&].*$|$))' | Out-Null;
-                            $fileName = $matches[0];
-                            Write-Host "File name is $fileName";
-                            if ( $env:TEMP ) {
-                                $tempFileName = "$env:TEMP\$fileName";
-                            } else {
-                                $tempFileName = "/tmp/$fileName";
-                            }
+                        $resourceUrl = $_;
+                        Write-Host "Discovered URL: $resourceUrl";
+                        if ( !( $Dynamics365Resources | Get-Member -MemberType NoteProperty | ? { $Dynamics365Resources.( $_.Name ).Url -eq $resourceUrl } ) ) {
+                            Write-Host "$resourceUrl is not found in the Dynamics365Resources";
+                            $resourceUrl -match '[^/\\&\?]+\.\w{3,4}(?=([\?&].*$|$))' | Out-Null;
+                            $resourceFileName = $matches[0];
+
+                            $tempDirName = [guid]::NewGuid().Guid;
+                            $tempDirPath = "$env:Temp\$tempDirName";
+                            $filePath = "$tempDirPath\$resourceFileName";
+                            New-Item $tempDirPath -ItemType Directory -Force | Out-Null;
+
                             $resourceName = $null;
-                            if ( $fileName -like "CRM9.?-Server-KB*-*-amd64.exe" ) {
+                            if ( $resourceFileName -like "CRM9.?-Server-KB*-*-amd64.exe" ) {
+                                Write-Host "$(Get-Date) Downloading $resourceUrl to $filePath";
                                 $currentProgressPreference = $ProgressPreference;
                                 $ProgressPreference = 'SilentlyContinue';
-                                Invoke-WebRequest -Uri $discoveredUrl -OutFile $tempFileName;
+                                Invoke-WebRequest -Uri $resourceUrl -OutFile $filePath;
                                 $ProgressPreference = $currentProgressPreference;
-                                $fileVersion = [version]( Get-Command $tempFileName ).FileVersionInfo.FileVersion;
-                                $fileVersionRaw = ( Get-Command $tempFileName ).FileVersionInfo.FileVersionRaw;
+                                $fileVersion = [version]( Get-Command $filePath ).FileVersionInfo.FileVersion;
+                                $fileVersionRaw = ( Get-Command $filePath ).FileVersionInfo.FileVersionRaw;
                                 $minorVersion = $fileVersion.Minor;
                                 $buildVersionString = [string]$fileVersion.Build;
                                 $buildVersionStringPadded = $buildVersionString.PadLeft(2,'0');
-                                $language = $fileName.Substring(24,3);
+                                $language = $resourceFileName.Substring(24,3);
                                 $languageTitled = (Get-Culture).TextInfo.ToTitleCase($language.ToLower());
                                 $resourceName = "Dynamics365Server9$minorVersion`Update$buildVersionStringPadded$languageTitled";
                                 $resourceName;
                             }
-                            if ( $fileName -like "CRM9.?-Srs-KB*-*-amd64.exe" ) {
+                            if ( $resourceFileName -like "CRM9.?-Srs-KB*-*-amd64.exe" ) {
+                                Write-Host "$(Get-Date) Downloading $resourceUrl to $filePath";
                                 $currentProgressPreference = $ProgressPreference;
                                 $ProgressPreference = 'SilentlyContinue';
-                                Invoke-WebRequest -Uri $discoveredUrl -OutFile $tempFileName;
+                                Invoke-WebRequest -Uri $resourceUrl -OutFile $filePath;
                                 $ProgressPreference = $currentProgressPreference;
-                                $fileVersion = [version]( Get-Command $tempFileName ).FileVersionInfo.FileVersion;
-                                $fileVersionRaw = ( Get-Command $tempFileName ).FileVersionInfo.FileVersionRaw;
+                                $fileVersion = [version]( Get-Command $filePath ).FileVersionInfo.FileVersion;
+                                $fileVersionRaw = ( Get-Command $filePath ).FileVersionInfo.FileVersionRaw;
                                 $minorVersion = $fileVersion.Minor;
                                 $buildVersionString = [string]$fileVersion.Build;
                                 $buildVersionStringPadded = $buildVersionString.PadLeft(2,'0');
-                                $language = $fileName.Substring(21,3);
+                                $language = $resourceFileName.Substring(21,3);
                                 $languageTitled = (Get-Culture).TextInfo.ToTitleCase($language.ToLower());
                                 $resourceName = "Dynamics365Server9$minorVersion`ReportingExtensionsUpdate$buildVersionStringPadded$languageTitled";
                                 $resourceName;
                             }
                             if ( $resourceName ) {
-                                $fileHash = ( Get-FileHash $tempFileName -Algorithm SHA1 ).Hash;
-                                $downloadable = New-Object -TypeName PSCustomObject -Property @{URL = $discoveredUrl; checksum = $fileHash; mediaFileVersion = $fileVersion.ToString()}
+                                $previousHash = ( Get-FileHash $filePath -Algorithm SHA1 ).Hash;
+                                Remove-Item $tempDirPath -Recurse -Force;
+                                do {
+                                    $fileHash = "";
+                                    $tempDirName = [guid]::NewGuid().Guid;
+                                    $tempDirPath = "$env:Temp\$tempDirName";
+                                    $filePath = "$tempDirPath\$resourceFileName";
+                                    New-Item $tempDirPath -ItemType Directory -Force | Out-Null;
+                                    Write-Host "$(Get-Date) Downloading $resourceUrl to $filePath";
+                                    $currentProgressPreference = $ProgressPreference;
+                                    $ProgressPreference = 'SilentlyContinue';
+                                    Invoke-WebRequest -Uri $resourceUrl -OutFile $filePath;
+                                    if ( Get-Item $filePath ) {
+                                        $downloadedBytes += ( Get-Item $filePath ).Length;
+                                    }
+                                    Write-Host "Total downloaded bytes: $downloadedBytes"
+                                    $ProgressPreference = $currentProgressPreference;
+                                    Write-Host "$(Get-Date) Calculating hash for $filePath";
+                                    $fileHash = ( Get-FileHash $filePath -Algorithm SHA1 ).Hash;
+                                    Remove-Item $tempDirPath -Recurse -Force;
+                                    $lastMatches = $fileHash -and ( ( $fileHash -eq $previousHash ) -or ( $fileHash -eq $Dynamics365Resources.$resourceName.Checksum ) );
+                                    if ( !$lastMatches ) {
+                                        Write-Host "Does not match with either previous or reference checksum: $( $_.Name ) checksum is $fileHash";
+                                        Write-Host "Repeating download";
+                                        Sleep 1;
+                                        $previousHash = $fileHash;
+                                    }
+                                } until ( $lastMatches )
+
+                                $downloadable = New-Object -TypeName PSCustomObject -Property @{URL = $resourceUrl; checksum = $fileHash; mediaFileVersion = $fileVersion.ToString()}
                                 $resultDictionary | Add-Member -Name $resourceName -Type NoteProperty -Value $downloadable;
-                                Remove-Item $tempFileName;
                                 $resultDictionary | ConvertTo-Json | Set-Content -Path ./src/misc/FileResources.json
                             } else {
                                 Write-Host "File name does not match the patterns";
