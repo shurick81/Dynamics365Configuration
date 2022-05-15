@@ -7,7 +7,7 @@ function Save-Dynamics365Resource
         [Parameter(Position=0)]
         [ArgumentCompleter(
             {
-                $Dynamics365Resources | Get-Member -MemberType NoteProperty | % { $_.Name }
+                $Dynamics365Resources | Get-Member -MemberType NoteProperty | ForEach-Object { $_.Name }
             }
         )]
         [ValidateScript(

@@ -1,3 +1,9 @@
+$serverUpdateResource = "Dynamics365Server91Update10Enu"
+$reportingExtensionsUpdateResource = "Dynamics365Server91ReportingExtensionsUpdate10Enu"
+$updatedVersion = "9.1.10"
+$updatedVersionFull = "9.1.10.102"
+$KbId = "KB5014430"
+
 $dbHostName = $env:VMDEVOPSSTARTER_DBHOST;
 if ( !$dbHostName ) { $dbHostName = $env:COMPUTERNAME }
 $securedPassword = ConvertTo-SecureString "c0mp1Expa~~" -AsPlainText -Force
@@ -31,15 +37,15 @@ if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server90LanguagePackSve ) {
 }
 
 try {
-    Save-Dynamics365Resource -Resource Dynamics365Server91Update09Enu -TargetDirectory C:\Install\Dynamics\Dynamics365Server91Update09Enu
+    Save-Dynamics365Resource -Resource $serverUpdateResource -TargetDirectory C:\Install\Dynamics\$serverUpdateResource
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server91Update09Enu ) {
+if ( Get-ChildItem C:\Install\Dynamics\$serverUpdateResource ) {
     Write-Host "Test OK";
 } else {
-    Write-Host "Expected files are not found in C:\Install\Dynamics\Dynamics365Server91Update09Enu, test is not OK";
+    Write-Host "Expected files are not found in C:\Install\Dynamics\$serverUpdateResource, test is not OK";
     Exit 1;
 }
 
@@ -57,22 +63,22 @@ if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server91LanguagePackUpdate01Sv
 }
 
 try {
-    Save-Dynamics365Resource -Resource Dynamics365Server91ReportingExtensionsUpdate09Enu -TargetDirectory C:\Install\Dynamics\Dynamics365Server91ReportingExtensionsUpdate09Enu
+    Save-Dynamics365Resource -Resource $reportingExtensionsUpdateResource -TargetDirectory C:\Install\Dynamics\$reportingExtensionsUpdateResource
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
     Exit 1;
 }
-if ( Get-ChildItem C:\Install\Dynamics\Dynamics365Server91ReportingExtensionsUpdate09Enu ) {
+if ( Get-ChildItem C:\Install\Dynamics\$reportingExtensionsUpdateResource ) {
     Write-Host "Test OK";
 } else {
-    Write-Host "Expected files are not found in C:\Install\Dynamics\Dynamics365Server91ReportingExtensionsUpdate09Enu, test is not OK";
+    Write-Host "Expected files are not found in C:\Install\Dynamics\$reportingExtensionsUpdateResource, test is not OK";
     Exit 1;
 }
 
 try {
     Write-Host "Invoking command on $env:COMPUTERNAME.$domainName with dbHostName=$dbHostName parameter";
     Invoke-Command "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
-        param( $dbHostName )
+        param( $dbHostName, $serverUpdateResource, $KbId )
         Write-Host "Invoked, starting execution";
         Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
         $securedPassword = ConvertTo-SecureString "c0mp1Expa~~" -AsPlainText -Force
@@ -87,7 +93,7 @@ try {
             -MediaDir C:\Install\Dynamics\Dynamics365Server90RTMEnu `
             -CreateDatabase `
             -SqlServer $dbHostName\SQLInstance01 `
-            -Patch C:\Install\Dynamics\Dynamics365Server91Update09Enu\Server_KB5012731_amd64_1033.msp `
+            -Patch C:\Install\Dynamics\$serverUpdateResource\Server_$($KbId)_amd64_1033.msp `
             -PrivUserGroup "CN=CRM01PrivUserGroup00,OU=CRM groups 00,DC=contoso,DC=local" `
             -SQLAccessGroup "CN=CRM01SQLAccessGroup00,OU=CRM groups 00,DC=contoso,DC=local" `
             -UserGroup "CN=CRM01UserGroup00,OU=CRM groups 00,DC=contoso,DC=local" `
@@ -109,7 +115,7 @@ try {
             -LogFilePath c:\tmp\Dynamics365ServerInstallLog.txt `
             -LogFilePullIntervalInSeconds 15 `
             -LogFilePullToOutput
-    } -ArgumentList $dbHostName;
+    } -ArgumentList $dbHostName, $serverUpdateResource, $KbId;
 } catch {
     Write-Host "Failed in invoking of Install-Dynamics365Server";
     Write-Host $_.Exception.Message -ForegroundColor Red;
@@ -131,7 +137,7 @@ $testScriptBlock = {
 }
 $installedVersion = Invoke-Command -ScriptBlock $testScriptBlock "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP;
 if ( $installedVersion ) {
-    if ( $installedVersion.ToString(3) -ne "9.1.9" ) {
+    if ( $installedVersion.ToString(3) -ne $updatedVersion ) {
         Write-Host "Software installed version is '$testResponse'. Test is not OK"
         Exit 1;
     }
@@ -143,7 +149,7 @@ $msCRMRegistryValues = Get-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\MSCRM -Er
 If ( $msCRMRegistryValues ) {
     $installedVersion = Get-Dynamics365ServerVersion;
     if ( $installedVersion ) {
-        if ( $installedVersion -ne [version]"9.1.9.8" ) {
+        if ( $installedVersion -ne [version]$updatedVersionFull ) {
             Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
             Exit 1;
         }    
@@ -194,10 +200,10 @@ if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "9.1.1" 
 try {
     if ( $dbHostName -eq $env:COMPUTERNAME ) {
         $mediaDir = "C:\Install\Dynamics\Dynamics365Server90RTMEnu\SrsDataConnector";
-        $patchPath = "C:\Install\Dynamics\Dynamics365Server91ReportingExtensionsUpdate09Enu\Srs_KB5012731_amd64_1033.msp";
+        $patchPath = "C:\Install\Dynamics\$reportingExtensionsUpdateResource\Srs_KB5012731_amd64_1033.msp";
     } else {
         $mediaDir = "\\$env:COMPUTERNAME\c$\Install\Dynamics\Dynamics365Server90RTMEnu\SrsDataConnector";
-        $patchPath = "\\$env:COMPUTERNAME\c$\Install\Dynamics\Dynamics365Server91ReportingExtensionsUpdate09Enu\Srs_KB5012731_amd64_1033.msp";
+        $patchPath = "\\$env:COMPUTERNAME\c$\Install\Dynamics\$reportingExtensionsUpdateResource\Srs_KB5012731_amd64_1033.msp";
     }
     Write-Host "Invoking command on $dbHostName.$domainName";
     Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
@@ -239,7 +245,7 @@ if ( $dbHostName -eq $env:COMPUTERNAME ) {
     }
 }
 if ( $installedVersion ) {
-    if ( $installedVersion.ToString(3) -ne "9.1.9" ) {
+    if ( $installedVersion.ToString(3) -ne $updatedVersion ) {
         Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
         Exit 1;
     }
