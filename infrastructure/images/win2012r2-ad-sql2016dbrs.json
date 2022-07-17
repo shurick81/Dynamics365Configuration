@@ -94,6 +94,7 @@
             "only": ["virtualbox-iso", "hyperv-iso"],
             "pause_before": "10m"
         },
+        { "type": "powershell", "script": "win-legacy-default-protocols.ps1" },
         {
             "type": "powershell",
             "script": "win2012r2-wmf5.ps1",
