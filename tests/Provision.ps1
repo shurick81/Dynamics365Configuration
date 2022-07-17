@@ -200,10 +200,10 @@ if ( ([version]$currentProductInstalled.DisplayVersion).ToString(3) -eq "9.1.1" 
 try {
     if ( $dbHostName -eq $env:COMPUTERNAME ) {
         $mediaDir = "C:\Install\Dynamics\Dynamics365Server90RTMEnu\SrsDataConnector";
-        $patchPath = "C:\Install\Dynamics\$reportingExtensionsUpdateResource\Srs_KB5012731_amd64_1033.msp";
+        $patchPath = "C:\Install\Dynamics\$reportingExtensionsUpdateResource\Srs_$KbId`_amd64_1033.msp";
     } else {
         $mediaDir = "\\$env:COMPUTERNAME\c$\Install\Dynamics\Dynamics365Server90RTMEnu\SrsDataConnector";
-        $patchPath = "\\$env:COMPUTERNAME\c$\Install\Dynamics\$reportingExtensionsUpdateResource\Srs_KB5012731_amd64_1033.msp";
+        $patchPath = "\\$env:COMPUTERNAME\c$\Install\Dynamics\$reportingExtensionsUpdateResource\Srs_$KbId`_amd64_1033.msp";
     }
     Write-Host "Invoking command on $dbHostName.$domainName";
     Invoke-Command "$dbHostName.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
