@@ -459,9 +459,9 @@ try {
 
 try {
     Invoke-Command "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+        param( $serverUpdateResource2 )
         Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
         Install-Dynamics365Update -MediaDir C:\Install\Dynamics\$serverUpdateResource2 `
-            param( $serverUpdateResource2 )
             -LogFilePath c:\tmp\Dynamics365ServerUpdateInstallLog.txt `
             -LogFilePullIntervalInSeconds 15 `
             -LogFilePullToOutput

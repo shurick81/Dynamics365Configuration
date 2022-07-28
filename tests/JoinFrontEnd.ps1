@@ -93,9 +93,9 @@ If ( $msCRMRegistryValues ) {
 
 try {
     Invoke-Command "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
+        param( $serverUpdateResource )
         Import-Module c:/test-projects/Dynamics365Configuration/src/Dynamics365Configuration/Dynamics365Configuration.psd1;
         Install-Dynamics365Update -MediaDir C:\Install\Dynamics\$serverUpdateResource `
-            param( $serverUpdateResource )
             -LogFilePath c:\tmp\Dynamics365ServerUpdateInstallLog.txt `
             -LogFilePullIntervalInSeconds 15 `
             -LogFilePullToOutput
@@ -105,7 +105,7 @@ try {
     Exit 1;
 }
 $msCRMRegistryValues = Get-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\MSCRM -ErrorAction Ignore;
-If ( $msCRMRegistryValues ) {
+if ( $msCRMRegistryValues ) {
     $installedVersion = Get-Dynamics365ServerVersion;
     if ( $installedVersion ) {
         if ( $installedVersion.ToString(3) -ne $updatedVersion ) {
