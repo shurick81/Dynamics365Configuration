@@ -10,7 +10,7 @@ New-Item $KeyFolder -ItemType Directory -Force | Out-Null;
 $SQLVersion = ( Get-WmiObject -Namespace "Root\Microsoft\SqlServer\ReportServer\$($NameSpaceRS)" -Class "__Namespace" ).Name;
 $SSRSClass = Get-WmiObject -Namespace "Root\Microsoft\SqlServer\ReportServer\$($NameSpaceRS)\$($SQLVersion)\Admin" -Query "SELECT * FROM MSReportServer_ConfigurationSetting WHERE InstanceName='$($InstanceName)'";
 $Key = $SSRSClass.BackupEncryptionKey($KeyPassword)
-If ( $Key.HRESULT -ne 0 ) {
+if ( $Key.HRESULT -ne 0 ) {
     $Key.ExtendedErrors -join "`r`n" | Write-Error;
 } Else {
     $Stream = [System.IO.File]::Create( $KeyFileName, $Key.KeyFile.Length );

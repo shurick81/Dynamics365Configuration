@@ -128,7 +128,7 @@ try {
 }
 
 $msCRMRegistryValues = Get-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\MSCRM -ErrorAction Ignore;
-If ( $msCRMRegistryValues ) {
+if ( $msCRMRegistryValues ) {
     $installedVersion = Get-Dynamics365ServerVersion;
     if ( $installedVersion -ne [version]"8.0.0.1088" ) {
         Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
@@ -156,7 +156,7 @@ try {
     Exit 1;
 }
 $msCRMRegistryValues = Get-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\MSCRM -ErrorAction Ignore;
-If ( $msCRMRegistryValues ) {
+if ( $msCRMRegistryValues ) {
     $installedVersion = Get-Dynamics365ServerVersion;
     if ( $installedVersion -ne [version]"8.1.0.359" ) {
         Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
@@ -193,7 +193,7 @@ try {
     Exit 1;
 }
 $msCRMRegistryValues = Get-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\MSCRM -ErrorAction Ignore;
-If ( $msCRMRegistryValues ) {
+if ( $msCRMRegistryValues ) {
     $installedVersion = Get-Dynamics365ServerVersion;
     if ( $installedVersion -ne [version]"8.2.28.11" ) {
         Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
@@ -461,7 +461,7 @@ try {
 }
 
 $msCRMRegistryValues = Get-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\MSCRM -ErrorAction Ignore;
-If ( $msCRMRegistryValues ) {
+if ( $msCRMRegistryValues ) {
     $installedVersion = Get-Dynamics365ServerVersion;
     if ( $installedVersion -ne [version]"8.2.28.11" ) {
         Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
@@ -490,7 +490,7 @@ If ( $msCRMRegistryValues ) {
 #    Exit 1;
 #}
 #$msCRMRegistryValues = Get-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\MSCRM -ErrorAction Ignore;
-#If ( $msCRMRegistryValues ) {
+#if ( $msCRMRegistryValues ) {
 #    $installedVersion = Get-Dynamics365ServerVersion;
 #    if ( $installedVersion -ne [version]"8.2.28.11" ) {
 #        Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
@@ -527,7 +527,7 @@ try {
     Exit 1;
 }
 $msCRMRegistryValues = Get-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\MSCRM -ErrorAction Ignore;
-If ( $msCRMRegistryValues ) {
+if ( $msCRMRegistryValues ) {
     $installedVersion = Get-Dynamics365ServerVersion;
     if ( $installedVersion -ne [version]"8.2.28.11" ) {
         Write-Host "Incorrect version is installed: $($installedVersion.ToString())";

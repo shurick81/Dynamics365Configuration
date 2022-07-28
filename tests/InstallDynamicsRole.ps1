@@ -147,7 +147,7 @@ try {
     Exit 1;
 }
 $msCRMRegistryValues = Get-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\MSCRM -ErrorAction Ignore;
-If ( $msCRMRegistryValues ) {
+if ( $msCRMRegistryValues ) {
     $installedVersion = Get-Dynamics365ServerVersion;
     if ( $installedVersion ) {
         if ( $installedVersion.ToString(3) -ne $updatedVersion ) {

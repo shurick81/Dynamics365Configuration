@@ -239,7 +239,7 @@
                 $fileLanguageCode = [int]$languagePacks.Name;
                 Write-Output "Language code of software to be installed: $fileLanguageCode";
                 $msCRMRegistryValues = Get-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\MSCRM -ErrorAction Ignore;
-                If ( $msCRMRegistryValues ) {
+                if ( $msCRMRegistryValues ) {
                     $isInstalled = $true;
                     Write-Output "Some version of Dynamics is already installed on this machine"
                     $installedVersion = Get-Dynamics365ServerVersion;
