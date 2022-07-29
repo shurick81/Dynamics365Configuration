@@ -268,7 +268,9 @@ try {
         "Dynamics365Server91Update09Enu",
         "Dynamics365Server91ReportingExtensionsUpdate09Enu",
         "Dynamics365Server91Update10Enu",
-        "Dynamics365Server91ReportingExtensionsUpdate10Enu"
+        "Dynamics365Server91ReportingExtensionsUpdate10Enu",
+        "Dynamics365Server91Update11Enu",
+        "Dynamics365Server91ReportingExtensionsUpdate11Enu"
     ) | % { Save-Dynamics365Resource -Resource $_ -TargetDirectory C:\Install\Dynamics\$_ }
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
@@ -407,7 +409,9 @@ try {
     "Dynamics365Server91Update09Enu",
     "Dynamics365Server91ReportingExtensionsUpdate09Enu",
     "Dynamics365Server91Update10Enu",
-    "Dynamics365Server91ReportingExtensionsUpdate10Enu"
+    "Dynamics365Server91ReportingExtensionsUpdate10Enu",
+    "Dynamics365Server91Update11Enu",
+    "Dynamics365Server91ReportingExtensionsUpdate11Enu"
 ) | % {
     if ( Get-ChildItem C:\Install\Dynamics\$_ ) {
         Write-Host "Test OK";
@@ -723,5 +727,7 @@ Test-InstallDynamics365Update Dynamics365Server91Update09Enu;
 Test-InstallDynamics365ReportingExtensionsUpdate Dynamics365Server91ReportingExtensionsUpdate09Enu;
 Test-InstallDynamics365Update Dynamics365Server91Update10Enu;
 Test-InstallDynamics365ReportingExtensionsUpdate Dynamics365Server91ReportingExtensionsUpdate10Enu;
+Test-InstallDynamics365Update Dynamics365Server91Update11Enu;
+Test-InstallDynamics365ReportingExtensionsUpdate Dynamics365Server91ReportingExtensionsUpdate11Enu;
 
 Exit 0;

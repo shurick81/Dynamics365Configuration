@@ -2,10 +2,12 @@
 
 ## Not released
 
-* New Dynamics 365 updates (100 new downloadables in total):
+* New Dynamics 365 updates (150 new downloadables in total):
 
   * Dynamics365Server91Update10\<Language\>
   * Dynamics365Server91ReportingExtensionsUpdate10\<Language\>
+  * Dynamics365Server91Update11\<Language\>
+  * Dynamics365Server91ReportingExtensionsUpdate11\<Language\>
   * Dynamics365Server90Update38\<Language\>
   * Dynamics365Server90ReportingExtensionsUpdate38\<Language\>
 

@@ -919,6 +919,8 @@ The following file resources can be referenced in the module:
 | RS Extensions Update 1.9 | Dynamics365Server91ReportingExtensionsUpdate09\<Language\> | 25 |  |
 | Server Update 1.10 | Dynamics365Server91Update10\<Language\> | 25 |  |
 | RS Extensions Update 1.10 | Dynamics365Server91ReportingExtensionsUpdate10\<Language\> | 25 |  |
+| Server Update 1.11 | Dynamics365Server91Update11\<Language\> | 25 |  |
+| RS Extensions Update 1.11 | Dynamics365Server91ReportingExtensionsUpdate11\<Language\> | 25 |  |
 | **Dynamics 8** |  |  |  |
 | RTM | CRM2016RTM\<Language\> | 25 |  |
 | Language pack | CRM2016LanguagePack<Language> | 45 |  |
@@ -1016,7 +1018,7 @@ The following file resources can be referenced in the module:
 | RS Extensions Update 2.28 | CRM2016ReportingExtensionsServicePack2Update28\<Language\> | 25 |  |
 | MUI Update 2.28 | CRM2016LanguagePackServicePack2Update28\<Language\> | 45 |  |
 | Prerequisites |  | 10 |  |
-| **Total** |  | 5271 |  |
+| **Total** |  | 5321 |  |
 
 ## Languages of RTM versions, for both v8 and v9
 

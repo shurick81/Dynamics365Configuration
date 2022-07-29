@@ -7,6 +7,7 @@
 
 ## Updates
 
+* Microsoft Dynamics 365 (on premises) Update 1.11
 * Microsoft Dynamics 365 (on premises) Update 1.10
 * Microsoft Dynamics 365 (on premises) Update 1.9
 * Microsoft Dynamics 365 (on premises) Update 1.7
