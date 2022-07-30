@@ -1,17 +1,17 @@
 # Run in pwsh
-Install-Module PowerHTML -ErrorAction Stop -Force
-Import-Module -ErrorAction Stop PowerHTML
-Import-Module .\src\Dynamics365Configuration
+Install-Module PowerHTML -ErrorAction Stop -Force;
+Import-Module -ErrorAction Stop PowerHTML;
+Import-Module .\src\Dynamics365Configuration;
 $resultDictionary = $Dynamics365Resources;
-$htmlDom = ConvertFrom-Html -URI https://support.microsoft.com/en-us/topic/microsoft-dynamics-365-on-premises-cumulative-updates-ed51f905-cf4e-3641-dc7c-afe2b868eeb9
-$sections = $htmlDom.SelectNodes('//section') | ? { $_.GetAttributeValue( "aria-label",'' ).StartsWith( "Cumulative updates available for Microsoft" ) }
+$htmlDom = ConvertFrom-Html -URI https://support.microsoft.com/en-us/topic/microsoft-dynamics-365-on-premises-cumulative-updates-ed51f905-cf4e-3641-dc7c-afe2b868eeb9;
+$sections = $htmlDom.SelectNodes('//section') | ? { $_.GetAttributeValue( "aria-label",'' ).StartsWith( "Cumulative updates available for Microsoft" ) };
 $sections.Elements('table').Elements('tbody').Elements('tr').Elements('td').Elements('p').Elements('a').GetAttributeValue('href','') | % {
     if ( $_.StartsWith( "/" ) ) {
-        $htmlDom = ConvertFrom-Html -URI https://support.microsoft.com$_
-        $link = $htmlDom.SelectNodes('//a') | ? { $_.GetAttributeValue( "class",'' ) -eq "ocpExternalLink" }
-        $downloadWelcomePageUrl = $link.GetAttributeValue('href','')
-        $htmlDom = ConvertFrom-Html -URI $downloadWelcomePageUrl
-        $newLocaleSelector = $htmlDom.SelectNodes('//select') | ? { $_.GetAttributeValue("Name",'') -eq "newlocale" }
+        $htmlDom = ConvertFrom-Html -URI https://support.microsoft.com$_;
+        $link = $htmlDom.SelectNodes('//a') | ? { $_.GetAttributeValue( "class",'' ) -eq "ocpExternalLink" };
+        $downloadWelcomePageUrl = $link.GetAttributeValue('href','');
+        $htmlDom = ConvertFrom-Html -URI $downloadWelcomePageUrl;
+        $newLocaleSelector = $htmlDom.SelectNodes('//select') | ? { $_.GetAttributeValue("Name",'') -eq "newlocale" };
         if ( $newLocaleSelector ) {
             $newLocaleSelector.Elements('option') | % {
                 $_.Attributes | ? { $_.Name -eq 'value' } | % {
@@ -81,7 +81,7 @@ $sections.Elements('table').Elements('tbody').Elements('tr').Elements('td').Elem
                                     if ( Get-Item $filePath ) {
                                         $downloadedBytes += ( Get-Item $filePath ).Length;
                                     }
-                                    Write-Host "Total downloaded bytes: $downloadedBytes"
+                                    Write-Host "Total downloaded bytes: $downloadedBytes";
                                     $ProgressPreference = $currentProgressPreference;
                                     Write-Host "$(Get-Date) Calculating hash for $filePath";
                                     $fileHash = ( Get-FileHash $filePath -Algorithm SHA1 ).Hash;
@@ -93,11 +93,11 @@ $sections.Elements('table').Elements('tbody').Elements('tr').Elements('td').Elem
                                         Sleep 1;
                                         $previousHash = $fileHash;
                                     }
-                                } until ( $lastMatches )
+                                } until ( $lastMatches );
 
-                                $downloadable = New-Object -TypeName PSCustomObject -Property @{URL = $resourceUrl; checksum = $fileHash; mediaFileVersion = $fileVersion.ToString()}
+                                $downloadable = New-Object -TypeName PSCustomObject -Property @{URL = $resourceUrl; checksum = $fileHash; mediaFileVersion = $fileVersion.ToString()};
                                 $resultDictionary | Add-Member -Name $resourceName -Type NoteProperty -Value $downloadable;
-                                $resultDictionary | ConvertTo-Json | Set-Content -Path ./src/misc/FileResources.json
+                                $resultDictionary | ConvertTo-Json | Set-Content -Path ./src/misc/FileResources.json;
                             } else {
                                 Write-Host "File name does not match the patterns";
                             }

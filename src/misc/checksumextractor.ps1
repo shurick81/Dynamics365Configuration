@@ -4,7 +4,7 @@ $Dynamics365Resources | Get-Member -MemberType NoteProperty | % {
     if ( !$Dynamics365Resources.( $_.Name ).Checksum ) {
         $previousHash = $Dynamics365Resources.( $_.Name ).Checksum;
         $resourceUrl = $Dynamics365Resources.( $_.Name ).URL;
-        $resourceUrl -match '[^/\\&\?]+\.\w{3,4}(?=([\?&].*$|$))' | Out-Null
+        $resourceUrl -match '[^/\\&\?]+\.\w{3,4}(?=([\?&].*$|$))' | Out-Null;
         $resourceFileName = $matches[0];
         do {
             $fileHash = "";
@@ -19,7 +19,7 @@ $Dynamics365Resources | Get-Member -MemberType NoteProperty | % {
             if ( Get-Item $filePath ) {
                 $downloadedBytes += ( Get-Item $filePath ).Length;
             }
-            Write-Host "Total downloaded bytes: $downloadedBytes"
+            Write-Host "Total downloaded bytes: $downloadedBytes";
             $ProgressPreference = $currentProgressPreference;
             Write-Host "$(Get-Date) Calculating hash for $filePath";
             $fileHash = ( Get-FileHash $filePath -Algorithm SHA1 ).Hash;
@@ -31,9 +31,9 @@ $Dynamics365Resources | Get-Member -MemberType NoteProperty | % {
                 Sleep 1;
                 $previousHash = $fileHash;
             }
-        } until ( $lastMatches )
+        } until ( $lastMatches );
         $resultDictionary.( $_.Name ).Checksum = $fileHash;
-        $resultDictionary | ConvertTo-Json | Set-Content -Path C:/projects/Dynamics365Configuration/src/misc/FileResources.json
+        $resultDictionary | ConvertTo-Json | Set-Content -Path C:/projects/Dynamics365Configuration/src/misc/FileResources.json;
     } else {
         Write-Host "Resource has checksum specified";
     }
