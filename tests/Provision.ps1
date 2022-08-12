@@ -1,8 +1,8 @@
-$serverUpdateResource = "Dynamics365Server91Update11Enu"
-$reportingExtensionsUpdateResource = "Dynamics365Server91ReportingExtensionsUpdate11Enu"
-$updatedVersion = "9.1.11"
-$updatedVersionFull = "9.1.11.26"
-$KbId = "KB9110026"
+$serverUpdateResource = "Dynamics365Server91Update12Enu"
+$reportingExtensionsUpdateResource = "Dynamics365Server91ReportingExtensionsUpdate12Enu"
+$updatedVersion = "9.1.12"
+$updatedVersionFull = "9.1.12.17"
+$KbId = "KB9120017"
 
 $dbHostName = $env:VMDEVOPSSTARTER_DBHOST;
 if ( !$dbHostName ) { $dbHostName = $env:COMPUTERNAME }
