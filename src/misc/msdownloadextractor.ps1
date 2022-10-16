@@ -7,9 +7,11 @@ $htmlDom = ConvertFrom-Html -URI https://support.microsoft.com/en-us/topic/micro
 $sections = $htmlDom.SelectNodes('//section') | ? { $_.GetAttributeValue( "aria-label",'' ).StartsWith( "Cumulative updates available for Microsoft" ) };
 $sections.Elements('table').Elements('tbody').Elements('tr').Elements('td').Elements('p').Elements('a').GetAttributeValue('href','') | % {
     if ( $_.StartsWith( "/" ) ) {
-        $htmlDom = ConvertFrom-Html -URI https://support.microsoft.com$_;
-        $link = $htmlDom.SelectNodes('//a') | ? { $_.GetAttributeValue( "class",'' ) -eq "ocpExternalLink" };
+        $kbPageUrl = "https://support.microsoft.com$_";
+        $htmlDom = ConvertFrom-Html -URI $kbPageUrl;
+        $link = $htmlDom.SelectNodes('//a') | ? { $_.GetAttributeValue( "class",'' ) -eq "ocpExternalLink" -and $_.InnerText -ne "Return to Release List" -and $_.InnerText -ne "JOIN MICROSOFT INSIDERS &gt;" };
         $downloadWelcomePageUrl = $link.GetAttributeValue('href','');
+        Write-Host "downloadWelcomePageUrl: $downloadWelcomePageUrl";
         $htmlDom = ConvertFrom-Html -URI $downloadWelcomePageUrl;
         $newLocaleSelector = $htmlDom.SelectNodes('//select') | ? { $_.GetAttributeValue("Name",'') -eq "newlocale" };
         if ( $newLocaleSelector ) {
