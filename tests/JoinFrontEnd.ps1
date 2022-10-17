@@ -1,5 +1,5 @@
-$serverUpdateResource = "Dynamics365Server91Update12Enu"
-$updatedVersion = "9.1.12"
+$serverUpdateResource = "Dynamics365Server91Update13Enu"
+$updatedVersion = "9.1.13"
 
 $dbHostName = $env:VMDEVOPSSTARTER_DBHOST;
 if ( !$dbHostName ) { $dbHostName = $env:COMPUTERNAME }

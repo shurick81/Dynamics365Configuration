@@ -252,6 +252,8 @@ try {
         "Dynamics365Server90ReportingExtensionsUpdate38Enu",
         "Dynamics365Server90Update40Enu",
         "Dynamics365Server90ReportingExtensionsUpdate40Enu",
+        "Dynamics365Server90Update42Enu",
+        "Dynamics365Server90ReportingExtensionsUpdate42Enu",
         "Dynamics365Server91Update01Enu",
         "Dynamics365Server91LanguagePackUpdate01Rus",
         "Dynamics365Server91ReportingExtensionsUpdate01Enu",
@@ -274,7 +276,9 @@ try {
         "Dynamics365Server91Update11Enu",
         "Dynamics365Server91ReportingExtensionsUpdate11Enu",
         "Dynamics365Server91Update12Enu",
-        "Dynamics365Server91ReportingExtensionsUpdate12Enu"
+        "Dynamics365Server91ReportingExtensionsUpdate12Enu",
+        "Dynamics365Server91Update13Enu",
+        "Dynamics365Server91ReportingExtensionsUpdate13Enu"
     ) | % { Save-Dynamics365Resource -Resource $_ -TargetDirectory C:\Install\Dynamics\$_ }
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
@@ -397,6 +401,8 @@ try {
     "Dynamics365Server90ReportingExtensionsUpdate38Enu",
     "Dynamics365Server90Update40Enu",
     "Dynamics365Server90ReportingExtensionsUpdate40Enu",
+    "Dynamics365Server90Update42Enu",
+    "Dynamics365Server90ReportingExtensionsUpdate42Enu",
     "Dynamics365Server91Update01Enu",
     "Dynamics365Server91LanguagePackUpdate01Rus",
     "Dynamics365Server91ReportingExtensionsUpdate01Enu",
@@ -419,7 +425,9 @@ try {
     "Dynamics365Server91Update11Enu",
     "Dynamics365Server91ReportingExtensionsUpdate11Enu",
     "Dynamics365Server91Update12Enu",
-    "Dynamics365Server91ReportingExtensionsUpdate12Enu"
+    "Dynamics365Server91ReportingExtensionsUpdate12Enu",
+    "Dynamics365Server91Update13Enu",
+    "Dynamics365Server91ReportingExtensionsUpdate13Enu"
 ) | % {
     if ( Get-ChildItem C:\Install\Dynamics\$_ ) {
         Write-Host "Test OK";
@@ -718,6 +726,8 @@ Test-InstallDynamics365Update Dynamics365Server90Update38Enu;
 Test-InstallDynamics365ReportingExtensionsUpdate Dynamics365Server90ReportingExtensionsUpdate38Enu;
 Test-InstallDynamics365Update Dynamics365Server90Update40Enu;
 Test-InstallDynamics365ReportingExtensionsUpdate Dynamics365Server90ReportingExtensionsUpdate40Enu;
+Test-InstallDynamics365Update Dynamics365Server90Update42Enu;
+Test-InstallDynamics365ReportingExtensionsUpdate Dynamics365Server90ReportingExtensionsUpdate42Enu;
 Test-InstallDynamics365Update Dynamics365Server91Update01Enu;
 Test-InstallDynamics365LanguageUpdate Dynamics365Server91LanguagePackUpdate01Rus;
 Test-InstallDynamics365ReportingExtensionsUpdate Dynamics365Server91ReportingExtensionsUpdate01Enu;
@@ -741,5 +751,7 @@ Test-InstallDynamics365Update Dynamics365Server91Update11Enu;
 Test-InstallDynamics365ReportingExtensionsUpdate Dynamics365Server91ReportingExtensionsUpdate11Enu;
 Test-InstallDynamics365Update Dynamics365Server91Update12Enu;
 Test-InstallDynamics365ReportingExtensionsUpdate Dynamics365Server91ReportingExtensionsUpdate12Enu;
+Test-InstallDynamics365Update Dynamics365Server91Update13Enu;
+Test-InstallDynamics365ReportingExtensionsUpdate Dynamics365Server91ReportingExtensionsUpdate13Enu;
 
 Exit 0;
