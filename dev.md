@@ -4,3 +4,8 @@ choco install -y packer
 choco install -y virtualbox
 choco install -y vagrant
 ```
+
+```
+Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1;
+.\src\misc\checksumextractor.ps1
+```
