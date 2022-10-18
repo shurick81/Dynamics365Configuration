@@ -1,0 +1,11 @@
+{
+	"name": "ps",
+	"build": { "dockerfile": "Dockerfile" },
+	// Add the IDs of extensions you want installed when the container is created.
+	"extensions": [
+		"editorconfig.editorconfig",
+		"dbaeumer.vscode-eslint",
+		"ms-vscode.PowerShell"
+	]
+
+}
