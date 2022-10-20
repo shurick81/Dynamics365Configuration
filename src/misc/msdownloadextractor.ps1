@@ -68,7 +68,7 @@ $sections.Elements('table').Elements('tbody').Elements('tr').Elements('td').Elem
                                 $resourceName;
                             }
                             if ( $resourceName ) {
-                                $previousHash = ( Get-FileHash $filePath -Algorithm SHA1 ).Hash;
+                                $previousHash = ( Get-FileHash $filePath -Algorithm SHA256 ).Hash;
                                 Remove-Item $tempDirPath -Recurse -Force;
                                 do {
                                     $fileHash = "";
@@ -86,18 +86,18 @@ $sections.Elements('table').Elements('tbody').Elements('tr').Elements('td').Elem
                                     Write-Host "Total downloaded bytes: $downloadedBytes";
                                     $ProgressPreference = $currentProgressPreference;
                                     Write-Host "$(Get-Date) Calculating hash for $filePath";
-                                    $fileHash = ( Get-FileHash $filePath -Algorithm SHA1 ).Hash;
+                                    $fileHash = ( Get-FileHash $filePath -Algorithm SHA256 ).Hash;
                                     Remove-Item $tempDirPath -Recurse -Force;
-                                    $lastMatches = $fileHash -and ( ( $fileHash -eq $previousHash ) -or ( $fileHash -eq $Dynamics365Resources.$resourceName.Checksum ) );
+                                    $lastMatches = $fileHash -and ( ( $fileHash -eq $previousHash ) -or ( $fileHash -eq $Dynamics365Resources.$resourceName.checksum_sha256 ) );
                                     if ( !$lastMatches ) {
-                                        Write-Host "Does not match with either previous or reference checksum: $( $_.Name ) checksum is $fileHash";
+                                        Write-Host "Does not match with either previous or reference checksum: $( $_.Name ) checksum_sha256 is $fileHash";
                                         Write-Host "Repeating download";
                                         Sleep 1;
                                         $previousHash = $fileHash;
                                     }
                                 } until ( $lastMatches );
 
-                                $downloadable = New-Object -TypeName PSCustomObject -Property @{URL = $resourceUrl; checksum = $fileHash; mediaFileVersion = $fileVersion.ToString()};
+                                $downloadable = New-Object -TypeName PSCustomObject -Property @{URL = $resourceUrl; checksum_sha256 = $fileHash; mediaFileVersion = $fileVersion.ToString()};
                                 $resultDictionary | Add-Member -Name $resourceName -Type NoteProperty -Value $downloadable;
                                 $resultDictionary | ConvertTo-Json | Set-Content -Path ./src/misc/FileResources.json;
                             } else {

@@ -35,7 +35,7 @@
             if ( Get-Item $filePath )
             {
                 Write-Output "$(Get-Date) Calculating hash for $filePath";
-                $fileHash = ( Get-FileHash $filePath -Algorithm SHA1 ).Hash;
+                $fileHash = ( Get-FileHash $filePath -Algorithm SHA256 ).Hash;
                 Write-Output "Hash of the downloaded file: $fileHash";
                 if ( ( $fileHash -eq $expectedFileChecksum ) -or !$expectedFileChecksum )
                 {
@@ -58,7 +58,7 @@
             if ( Get-Item $filePath )
             {
                 Write-Output "$(Get-Date) Calculating hash for $filePath";
-                $fileHash = ( Get-FileHash $filePath -Algorithm SHA1 ).Hash;
+                $fileHash = ( Get-FileHash $filePath -Algorithm SHA256 ).Hash;
                 Write-Output "Hash of the downloaded file: $fileHash";
                 if ( ( $fileHash -eq $expectedFileChecksum ) -or !$expectedFileChecksum )
                 {
