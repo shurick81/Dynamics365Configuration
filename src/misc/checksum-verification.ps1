@@ -9,7 +9,7 @@ $resources | % {
     $resourceUrl = $Dynamics365Resources.$resourceName.URL;
     $resourceUrl -match '[^/\\&\?]+\.\w{3,4}(?=([\?&].*$|$))' | Out-Null
     $resourceFileName = $matches[0];
-    $previousHash = $Dynamics365Resources.$resourceName.Checksum;
+    $previousHash = $Dynamics365Resources.$resourceName.checksum_sha256;
     do {
         $fileHash = "";
         $tempDirName = [guid]::NewGuid().Guid;
@@ -24,18 +24,18 @@ $resources | % {
         }
         Write-Host "Total downloaded bytes: $downloadedBytes"
         $ProgressPreference = $currentProgressPreference;
-        $fileHash = ( Get-FileHash $filePath -Algorithm SHA1 ).Hash;
+        $fileHash = ( Get-FileHash $filePath -Algorithm SHA256 ).Hash;
         Start-Sleep 20;
         Remove-Item $tempDirPath -Recurse -Force;
-        $lastMatches = $fileHash -and ( ( $fileHash -eq $previousHash ) -or ( $fileHash -eq $Dynamics365Resources.$resourceName.Checksum ) );
+        $lastMatches = $fileHash -and ( ( $fileHash -eq $previousHash ) -or ( $fileHash -eq $Dynamics365Resources.$resourceName.checksum_sha256 ) );
         if ( !$lastMatches ) {
-            Write-Host "Does not match with either previous or reference checksum: $resourceName checksum is $fileHash";
+            Write-Host "Does not match with either previous or reference checksum_sha256: $resourceName checksum_sha256 is $fileHash";
             Write-Host "Repeating download";
             $previousHash = $fileHash;
         }
     } until ( $lastMatches )
-    if ( $Dynamics365Resources.$resourceName.Checksum -ne $fileHash ) {
-        Write-Host "Incorrect data in module: $resourceName checksum is $fileHash";
+    if ( $Dynamics365Resources.$resourceName.checksum_sha256 -ne $fileHash ) {
+        Write-Host "Incorrect data in module: $resourceName checksum_sha256 is $fileHash";
     }
     $resourceCounter++;
 }

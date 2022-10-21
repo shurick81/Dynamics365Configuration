@@ -10,6 +10,8 @@
   * Dynamics365Server90Update42\<Language\>
   * Dynamics365Server90ReportingExtensionsUpdate42\<Language\>
 
+* SHA256 as a file checksum algorythm for consistency verification
+
 ## 2.21.0
 
 * New Dynamics 365 updates (100 new downloadables in total):
