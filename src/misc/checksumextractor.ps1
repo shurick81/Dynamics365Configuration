@@ -1,8 +1,8 @@
 $resultDictionary = $Dynamics365Resources;
 $downloadedBytes = 0;
 $Dynamics365Resources | Get-Member -MemberType NoteProperty | % {
-    if ( !$Dynamics365Resources.( $_.Name ).Checksum ) {
-        $previousHash = $Dynamics365Resources.( $_.Name ).Checksum;
+    if ( !$Dynamics365Resources.( $_.Name ).checksum_sha256 ) {
+        $previousHash = $Dynamics365Resources.( $_.Name ).checksum_sha256;
         $resourceUrl = $Dynamics365Resources.( $_.Name ).URL;
         $resourceUrl -match '[^/\\&\?]+\.\w{3,4}(?=([\?&].*$|$))' | Out-Null;
         $resourceFileName = $matches[0];
@@ -22,19 +22,19 @@ $Dynamics365Resources | Get-Member -MemberType NoteProperty | % {
             Write-Host "Total downloaded bytes: $downloadedBytes";
             $ProgressPreference = $currentProgressPreference;
             Write-Host "$(Get-Date) Calculating hash for $filePath";
-            $fileHash = ( Get-FileHash $filePath -Algorithm SHA1 ).Hash;
+            $fileHash = ( Get-FileHash $filePath -Algorithm SHA256 ).Hash;
             Remove-Item $tempDirPath -Recurse -Force;
-            $lastMatches = $fileHash -and ( ( $fileHash -eq $previousHash ) -or ( $fileHash -eq $Dynamics365Resources.$resourceName.Checksum ) );
+            $lastMatches = $fileHash -and ( ( $fileHash -eq $previousHash ) -or ( $fileHash -eq $Dynamics365Resources.$resourceName.checksum_sha256 ) );
             if ( !$lastMatches ) {
-                Write-Host "Does not match with either previous or reference checksum: $( $_.Name ) checksum is $fileHash";
+                Write-Host "Does not match with either previous or reference checksum_sha256: $( $_.Name ) checksum_sha256 is $fileHash";
                 Write-Host "Repeating download";
                 Start-Sleep 1;
                 $previousHash = $fileHash;
             }
         } until ( $lastMatches );
-        $resultDictionary.( $_.Name ).Checksum = $fileHash;
+        $resultDictionary.( $_.Name ).checksum_sha256 = $fileHash;
         $resultDictionary | ConvertTo-Json | Set-Content -Path ./src/misc/FileResources.json;
     } else {
-        Write-Host "Resource has checksum specified";
+        Write-Host "Resource has checksum_sha256 specified";
     }
 }

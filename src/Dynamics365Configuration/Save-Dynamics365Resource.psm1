@@ -32,7 +32,7 @@ function Save-Dynamics365Resource
             $directoryPath = ".\$directoryName";
             Write-Debug "Directory Path: $directoryPath";
         }
-        DownloadAndUnpack-Dynamics365Resource -ResourceUrl $resourceUrl -DirectoryPath $directoryPath -ExpectedFileChecksum $Dynamics365Resources.$resource.checksum;
+        DownloadAndUnpack-Dynamics365Resource -ResourceUrl $resourceUrl -DirectoryPath $directoryPath -ExpectedFileChecksum $Dynamics365Resources.$resource.checksum_sha256;
     } else {
         Write-Debug "Downloading all URLs"
         if ( $TargetDirectory )
