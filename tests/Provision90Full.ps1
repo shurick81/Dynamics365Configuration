@@ -15,6 +15,7 @@ function Test-InstallDynamics365Update {
     param (
         $ResourceName
     )
+    Get-PSDrive C;
     try {
         Invoke-Command "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
             param (
@@ -763,7 +764,6 @@ Test-InstallDynamics365Update Dynamics365Server91Update12Enu;
 Test-InstallDynamics365ReportingExtensionsUpdate Dynamics365Server91ReportingExtensionsUpdate12Enu;
 Test-InstallDynamics365Update Dynamics365Server91Update13Enu;
 Test-InstallDynamics365ReportingExtensionsUpdate Dynamics365Server91ReportingExtensionsUpdate13Enu;
-Start-Sleep 7200;
 Test-InstallDynamics365Update Dynamics365Server91Update14Enu;
 Test-InstallDynamics365ReportingExtensionsUpdate Dynamics365Server91ReportingExtensionsUpdate14Enu;
 

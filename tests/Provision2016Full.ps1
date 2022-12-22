@@ -15,6 +15,7 @@ function Test-InstallDynamics365Update {
     param (
         $ResourceName
     )
+    Get-PSDrive C;
     try {
         Invoke-Command "$env:COMPUTERNAME.$domainName" -Credential $CRMInstallAccountCredential -Authentication CredSSP {
             param (
