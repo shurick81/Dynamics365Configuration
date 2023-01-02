@@ -27,7 +27,7 @@ Author = 'Aleksandr Sapozhkov'
 # CompanyName = 'Unknown'
 
 # Copyright statement for this module
-Copyright = '(c) 2021 Aleksandr Sapozhkov. All rights reserved.'
+Copyright = '(c) 2023 Aleksandr Sapozhkov. All rights reserved.'
 
 # Description of the functionality provided by this module
 Description = 'A module to ease infrastructure as code tasks for Dynamics 365.'
