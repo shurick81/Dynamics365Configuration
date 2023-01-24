@@ -4,7 +4,7 @@ Import-Module -ErrorAction Stop PowerHTML;
 Import-Module .\src\Dynamics365Configuration;
 $resultDictionary = $Dynamics365Resources;
 $htmlDom = ConvertFrom-Html -URI https://support.microsoft.com/en-us/topic/microsoft-dynamics-365-on-premises-cumulative-updates-ed51f905-cf4e-3641-dc7c-afe2b868eeb9;
-$sections = $htmlDom.SelectNodes('//section') | ? { $_.GetAttributeValue( "aria-label",'' ).StartsWith( "Cumulative updates available for Microsoft" ) };
+$sections = ($htmlDom.SelectNodes('//section') | ? { $_.Elements('h2').InnerText -eq "More Information" }).Elements('section');
 $sections.Elements('table').Elements('tbody').Elements('tr').Elements('td').Elements('p').Elements('a').GetAttributeValue('href','') | % {
     if ( $_.StartsWith( "/" ) ) {
         $kbPageUrl = "https://support.microsoft.com$_";
