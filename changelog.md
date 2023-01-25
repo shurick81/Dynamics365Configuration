@@ -3,6 +3,11 @@
 
 ## Not released
 
+  * Dynamics365Server91Update15\<Language\>
+  * Dynamics365Server91ReportingExtensionsUpdate15\<Language\>
+  * Dynamics365Server90Update44\<Language\>
+  * Dynamics365Server90ReportingExtensionsUpdate44\<Language\>
+
 ## 2.23.0
 
   * Dynamics365Server91Update14\<Language\>

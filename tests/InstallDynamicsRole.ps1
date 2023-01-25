@@ -1,9 +1,9 @@
-$serverUpdateResource = "Dynamics365Server90Update43Enu"
-$serverUpdateResource2 = "Dynamics365Server91Update14Enu"
-$reportingExtensionsUpdateResource = "Dynamics365Server90ReportingExtensionsUpdate43Enu"
-$reportingExtensionsUpdateResource2 = "Dynamics365Server91ReportingExtensionsUpdate14Enu"
-$updatedVersion = "9.0.43"
-$updatedVersion2 = "9.1.14"
+$serverUpdateResource = "Dynamics365Server90Update44Enu"
+$serverUpdateResource2 = "Dynamics365Server91Update15Enu"
+$reportingExtensionsUpdateResource = "Dynamics365Server90ReportingExtensionsUpdate44Enu"
+$reportingExtensionsUpdateResource2 = "Dynamics365Server91ReportingExtensionsUpdate15Enu"
+$updatedVersion = "9.0.44"
+$updatedVersion2 = "9.1.15"
 
 $dbHostName = $env:VMDEVOPSSTARTER_DBHOST;
 if ( !$dbHostName ) { $dbHostName = $env:COMPUTERNAME }
