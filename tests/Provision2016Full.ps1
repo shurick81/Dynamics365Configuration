@@ -481,6 +481,7 @@ try {
 $testScriptBlock = {
     try {
         Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
+        Write-Host (Get-CrmAdvancedSetting -ConfigurationEntityName Deployment -Setting AutomaticallyInstallDatabaseUpdates);
         if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
             $crmServer = Get-CrmServer $env:COMPUTERNAME;
             $crmServer.Version;
