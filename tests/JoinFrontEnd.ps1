@@ -71,6 +71,7 @@ try {
 $msCRMRegistryValues = Get-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\MSCRM -ErrorAction Ignore;
 if ( $msCRMRegistryValues ) {
     $installedVersion = Get-Dynamics365ServerVersion;
+    Get-CrmAdvancedSetting -ConfigurationEntityName Deployment -Setting AutomaticallyInstallDatabaseUpdates;
     if ( $installedVersion ) {
         if ( $installedVersion -ne [version]"9.0.2.3034" ) {
             Write-Host "Incorrect version is installed: $($installedVersion.ToString())";
