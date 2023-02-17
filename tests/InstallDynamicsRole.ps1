@@ -140,6 +140,9 @@ try {
             -ReportingUrl http://$dbHostName/ReportServer_SSRS `
             -LogFilePullIntervalInSeconds 15 `
             -LogFilePullToOutput;
+        Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
+        Write-Host "(Get-CrmAdvancedSetting -ConfigurationEntityName Deployment -Setting AutomaticallyInstallDatabaseUpdates).Attributes";
+        Write-Host (Get-CrmAdvancedSetting -ConfigurationEntityName Deployment -Setting AutomaticallyInstallDatabaseUpdates).Attributes;
     } -ArgumentList $dbHostName, $serverUpdateResource;
 } catch {
     Write-Host "Failed in invoking of Install-Dynamics365Server";
@@ -149,8 +152,6 @@ try {
 $msCRMRegistryValues = Get-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\MSCRM -ErrorAction Ignore;
 if ( $msCRMRegistryValues ) {
     $installedVersion = Get-Dynamics365ServerVersion;
-    Write-Host "(Get-CrmAdvancedSetting -ConfigurationEntityName Deployment -Setting AutomaticallyInstallDatabaseUpdates).Attributes";
-    Write-Host (Get-CrmAdvancedSetting -ConfigurationEntityName Deployment -Setting AutomaticallyInstallDatabaseUpdates).Attributes;
     if ( $installedVersion ) {
         if ( $installedVersion.ToString(3) -ne $updatedVersion ) {
             Write-Host "Incorrect version is installed: $($installedVersion.ToString())";

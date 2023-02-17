@@ -26,6 +26,9 @@ function Test-InstallDynamics365Update {
                 -LogFilePath c:\tmp\$ResourceName-InstallLog.txt `
                 -LogFilePullIntervalInSeconds 15 `
                 -LogFilePullToOutput
+            Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
+            Write-Host "(Get-CrmAdvancedSetting -ConfigurationEntityName Deployment -Setting AutomaticallyInstallDatabaseUpdates).Attributes";
+            Write-Host (Get-CrmAdvancedSetting -ConfigurationEntityName Deployment -Setting AutomaticallyInstallDatabaseUpdates).Attributes;
         } -ArgumentList $ResourceName
     } catch {
         Write-Host $_.Exception.Message -ForegroundColor Red;
@@ -495,6 +498,9 @@ try {
             -LogFilePath c:\tmp\Dynamics365ServerInstallLog.txt `
             -LogFilePullIntervalInSeconds 15 `
             -LogFilePullToOutput
+        Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
+        Write-Host "(Get-CrmAdvancedSetting -ConfigurationEntityName Deployment -Setting AutomaticallyInstallDatabaseUpdates).Attributes";
+        Write-Host (Get-CrmAdvancedSetting -ConfigurationEntityName Deployment -Setting AutomaticallyInstallDatabaseUpdates).Attributes;
     } -ArgumentList $dbHostName;
 } catch {
     Write-Host "Failed in invoking of Install-Dynamics365Server";
@@ -503,9 +509,6 @@ try {
 }
 $testScriptBlock = {
     try {
-        Add-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore
-        Write-Host "(Get-CrmAdvancedSetting -ConfigurationEntityName Deployment -Setting AutomaticallyInstallDatabaseUpdates).Attributes";
-        Write-Host (Get-CrmAdvancedSetting -ConfigurationEntityName Deployment -Setting AutomaticallyInstallDatabaseUpdates).Attributes;
         if ( Get-PSSnapin Microsoft.Crm.PowerShell -ErrorAction Ignore ) {
             $crmServer = Get-CrmServer $env:COMPUTERNAME;
             $crmServer.Version;
