@@ -9,7 +9,7 @@ $sections.Elements('table').Elements('tbody').Elements('tr').Elements('td').Elem
     if ( $_.StartsWith( "/" ) ) {
         $kbPageUrl = "https://support.microsoft.com$_";
         $htmlDom = ConvertFrom-Html -URI $kbPageUrl;
-        $link = $htmlDom.SelectNodes('//a') | ? { $_.GetAttributeValue( "class",'' ) -eq "ocpExternalLink" -and $_.InnerText -ne "Return to Release List" -and $_.InnerText -ne "JOIN MICROSOFT INSIDERS &gt;" };
+        $link = $htmlDom.SelectNodes('//a') | ? { $_.GetAttributeValue( "class",'' ) -eq "ocpExternalLink" -and $_.InnerText -ne "Return to Release List" -and $_.InnerText -ne "JOIN MICROSOFT INSIDERS &gt;" -and $_.InnerText -ne "JOIN MICROSOFT 365 INSIDERS &gt;" };
         $downloadWelcomePageUrl = $link.GetAttributeValue('href','');
         Write-Host "downloadWelcomePageUrl: $downloadWelcomePageUrl";
         $htmlDom = ConvertFrom-Html -URI $downloadWelcomePageUrl;
