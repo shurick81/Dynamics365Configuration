@@ -1,5 +1,14 @@
 # Dynamics365Configuration module change log
 
+## Not Released
+
+* New Dynamics 365 updates (98 new downloadables in total):
+
+  * Dynamics365Server91Update17\<Language\>
+  * Dynamics365Server91ReportingExtensionsUpdate17\<Language\>
+  * Dynamics365Server90Update46\<Language\> (Heb language is missing)
+  * Dynamics365Server90ReportingExtensionsUpdate46\<Language\> (Heb language is missing)
+
 ## 2.25.0
 
 * New Dynamics 365 updates (98 new downloadables in total):
