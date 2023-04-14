@@ -264,6 +264,8 @@ try {
         "Dynamics365Server90ReportingExtensionsUpdate44Enu",
         "Dynamics365Server90Update45Enu",
         "Dynamics365Server90ReportingExtensionsUpdate45Enu",
+        "Dynamics365Server90Update46Enu",
+        "Dynamics365Server90ReportingExtensionsUpdate46Enu",
         "Dynamics365Server91Update01Enu",
         "Dynamics365Server91LanguagePackUpdate01Rus",
         "Dynamics365Server91ReportingExtensionsUpdate01Enu",
@@ -427,6 +429,8 @@ try {
     "Dynamics365Server90ReportingExtensionsUpdate44Enu",
     "Dynamics365Server90Update45Enu",
     "Dynamics365Server90ReportingExtensionsUpdate45Enu",
+    "Dynamics365Server90Update46Enu",
+    "Dynamics365Server90ReportingExtensionsUpdate46Enu",
     "Dynamics365Server91Update01Enu",
     "Dynamics365Server91LanguagePackUpdate01Rus",
     "Dynamics365Server91ReportingExtensionsUpdate01Enu",
@@ -766,6 +770,8 @@ Test-InstallDynamics365Update Dynamics365Server90Update43Enu;
 Test-InstallDynamics365ReportingExtensionsUpdate Dynamics365Server90ReportingExtensionsUpdate43Enu;
 Test-InstallDynamics365Update Dynamics365Server90Update44Enu;
 Test-InstallDynamics365ReportingExtensionsUpdate Dynamics365Server90ReportingExtensionsUpdate44Enu;
+Test-InstallDynamics365Update Dynamics365Server90Update45Enu;
+Test-InstallDynamics365ReportingExtensionsUpdate Dynamics365Server90ReportingExtensionsUpdate45Enu;
 Test-InstallDynamics365Update Dynamics365Server90Update45Enu;
 Test-InstallDynamics365ReportingExtensionsUpdate Dynamics365Server90ReportingExtensionsUpdate45Enu;
 Test-InstallDynamics365Update Dynamics365Server91Update01Enu;
