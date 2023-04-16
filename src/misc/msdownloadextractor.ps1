@@ -9,11 +9,14 @@ $sections.Elements('table').Elements('tbody').Elements('tr').Elements('td').Elem
     if ( $_.StartsWith( "/" ) ) {
         $kbPageUrl = "https://support.microsoft.com$_";
         $htmlDom = ConvertFrom-Html -URI $kbPageUrl;
-        $link = $htmlDom.SelectNodes('//a') | ? { $_.GetAttributeValue( "class",'' ) -eq "ocpExternalLink" -and $_.InnerText -ne "Return to Release List" -and $_.InnerText -ne "JOIN MICROSOFT INSIDERS &gt;" -and $_.InnerText -ne "JOIN MICROSOFT 365 INSIDERS &gt;" };
+        #$link = $htmlDom.SelectNodes('//a') | ? { $_.GetAttributeValue( "class",'' ) -eq "ocpExternalLink" -and $_.InnerText -ne "JOIN MICROSOFT INSIDERS &gt;" -and $_.InnerText -ne "JOIN MICROSOFT 365 INSIDERS &gt;" -and $_.InnerText -ne "Microsoft 365 subscription benefits" -and $_.InnerText -ne "Ask the Microsoft Community" -and $_.InnerText -ne "Microsoft Tech Community" -and $_.InnerText -ne "Windows Insiders" -and $_.InnerText -ne "Microsoft 365 Insiders" -and $_.InnerText -ne "Return to Release List" };
+        $link = $htmlDom.SelectNodes('//a') | ? { $_.GetAttributeValue( "class",'' ) -eq "ocpExternalLink" -and $_.InnerText -like "Download the*Dynamics 365 *" }
+        #Write-Host "`$link.length: $($link.length)";
+        #$link.InnerText;
         $downloadWelcomePageUrl = $link.GetAttributeValue('href','');
         Write-Host "downloadWelcomePageUrl: $downloadWelcomePageUrl";
         $htmlDom = ConvertFrom-Html -URI $downloadWelcomePageUrl;
-        $newLocaleSelector = $htmlDom.SelectNodes('//select') | ? { $_.GetAttributeValue("Name",'') -eq "newlocale" };
+        $newLocaleSelector = $htmlDom.SelectNodes('//select') | ? { $_ -and $_.GetAttributeValue("Name",'') -eq "newlocale" };
         if ( $newLocaleSelector ) {
             $newLocaleSelector.Elements('option') | % {
                 $_.Attributes | ? { $_.Name -eq 'value' } | % {
@@ -42,7 +45,7 @@ $sections.Elements('table').Elements('tbody').Elements('tr').Elements('td').Elem
                                 Invoke-WebRequest -Uri $resourceUrl -OutFile $filePath;
                                 $ProgressPreference = $currentProgressPreference;
                                 $fileVersion = [version]( Get-Command $filePath ).FileVersionInfo.FileVersion;
-                                $fileVersionRaw = ( Get-Command $filePath ).FileVersionInfo.FileVersionRaw;
+                                #$fileVersionRaw = ( Get-Command $filePath ).FileVersionInfo.FileVersionRaw;
                                 $minorVersion = $fileVersion.Minor;
                                 $buildVersionString = [string]$fileVersion.Build;
                                 $buildVersionStringPadded = $buildVersionString.PadLeft(2,'0');
@@ -58,7 +61,7 @@ $sections.Elements('table').Elements('tbody').Elements('tr').Elements('td').Elem
                                 Invoke-WebRequest -Uri $resourceUrl -OutFile $filePath;
                                 $ProgressPreference = $currentProgressPreference;
                                 $fileVersion = [version]( Get-Command $filePath ).FileVersionInfo.FileVersion;
-                                $fileVersionRaw = ( Get-Command $filePath ).FileVersionInfo.FileVersionRaw;
+                                #$fileVersionRaw = ( Get-Command $filePath ).FileVersionInfo.FileVersionRaw;
                                 $minorVersion = $fileVersion.Minor;
                                 $buildVersionString = [string]$fileVersion.Build;
                                 $buildVersionStringPadded = $buildVersionString.PadLeft(2,'0');
