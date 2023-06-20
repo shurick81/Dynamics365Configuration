@@ -1,5 +1,14 @@
 # Dynamics365Configuration module change log
 
+## Not Relesed
+
+* New Dynamics 365 updates (98 new downloadables in total):
+
+  * Dynamics365Server91Update18\<Language\> (Nld language is missing)
+  * Dynamics365Server91ReportingExtensionsUpdate18\<Language\> (Nld language is missing)
+  * Dynamics365Server90Update47\<Language\>
+  * Dynamics365Server90ReportingExtensionsUpdate47\<Language\>
+
 ## 2.26.0
 
 * New Dynamics 365 updates (98 new downloadables in total):
