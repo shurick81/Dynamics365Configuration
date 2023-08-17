@@ -16,8 +16,9 @@ $sections.Elements('table').Elements('tbody').Elements('tr').Elements('td').Elem
         $downloadWelcomePageUrl = $link.GetAttributeValue('href','');
         Write-Host "downloadWelcomePageUrl: $downloadWelcomePageUrl";
         $htmlDom = ConvertFrom-Html -URI $downloadWelcomePageUrl;
-        $newLocaleSelector = $htmlDom.SelectNodes('//select') | ? { $_ -and $_.GetAttributeValue("Name",'') -eq "newlocale" };
+        $newLocaleSelector = $htmlDom.SelectNodes('//select') | ? { $_ -and $_.GetAttributeValue("class",'') -eq "custom-select-input" };
         if ( $newLocaleSelector ) {
+            #Write-Host "Found newLocaleSelector";
             $newLocaleSelector.Elements('option') | % {
                 $_.Attributes | ? { $_.Name -eq 'value' } | % {
                     $selectedLocale = $_.Value;
