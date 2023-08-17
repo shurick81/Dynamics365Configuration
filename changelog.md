@@ -1,5 +1,12 @@
 # Dynamics365Configuration module change log
 
+## Not Released
+
+* New Dynamics 365 updates (50 new downloadables in total):
+
+  * Dynamics365Server91Update20\<Language\>
+  * Dynamics365Server91ReportingExtensionsUpdate20\<Language\>
+
 ## 2.28.0
 
 * New Dynamics 365 updates (100 new downloadables in total):

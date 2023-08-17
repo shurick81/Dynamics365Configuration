@@ -953,6 +953,8 @@ The following file resources can be referenced in the module:
 | RS Extensions Update 1.18 | Dynamics365Server91ReportingExtensionsUpdate18\<Language\> | 24 | Nld language missing |
 | Server Update 1.19 | Dynamics365Server91Update19\<Language\> | 25 |  |
 | RS Extensions Update 1.19 | Dynamics365Server91ReportingExtensionsUpdate19\<Language\> | 25 |  |
+| Server Update 1.20 | Dynamics365Server91Update20\<Language\> | 25 |  |
+| RS Extensions Update 1.20 | Dynamics365Server91ReportingExtensionsUpdate20\<Language\> | 25 |  |
 | **Dynamics 8** |  |  |  |
 | RTM | CRM2016RTM\<Language\> | 25 |  |
 | Language pack | CRM2016LanguagePack<Language> | 45 |  |
@@ -1050,7 +1052,7 @@ The following file resources can be referenced in the module:
 | RS Extensions Update 2.28 | CRM2016ReportingExtensionsServicePack2Update28\<Language\> | 25 |  |
 | MUI Update 2.28 | CRM2016LanguagePackServicePack2Update28\<Language\> | 45 |  |
 | Prerequisites |  | 10 |  |
-| **Total** |  | 6115 |  |
+| **Total** |  | 6165 |  |
 
 ## Languages of RTM versions, for both v8 and v9
 
