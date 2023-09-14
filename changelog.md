@@ -1,5 +1,14 @@
 # Dynamics365Configuration module change log
 
+## Not released
+
+* New Dynamics 365 updates (98 new downloadables in total):
+
+  * Dynamics365Server91Update21\<Language\> (Ita language is missing)
+  * Dynamics365Server91ReportingExtensionsUpdate21\<Language\> (Ita language is missing)
+  * Dynamics365Server90Update49\<Language\>
+  * Dynamics365Server90ReportingExtensionsUpdate49\<Language\>
+
 ## 2.29.0
 
 * New Dynamics 365 updates (50 new downloadables in total):
