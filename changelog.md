@@ -1,5 +1,14 @@
 # Dynamics365Configuration module change log
 
+## Not Released
+
+* New Dynamics 365 updates (74 new downloadables in total):
+
+  * Dynamics365Server91Update22\<Language\> (Trk, Hun, Ita, Jpn, Kor, Plk, Nor, Rus, Ptg, Ptb, Sve and Esn language are missing)
+  * Dynamics365Server91ReportingExtensionsUpdate22\<Language\> (Trk, Hun, Ita, Jpn, Kor, Plk, Nor, Rus, Ptg, Ptb, Sve and Esn language are missing)
+  * Dynamics365Server90Update50\<Language\> (Plk language is missing)
+  * Dynamics365Server90ReportingExtensionsUpdate50\<Language\> (Plk language is missing)
+
 ## 2.30.0
 
 * New Dynamics 365 updates (98 new downloadables in total):
