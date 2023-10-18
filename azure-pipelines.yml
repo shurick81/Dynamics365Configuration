@@ -4693,7 +4693,7 @@ jobs:
 - job:
   displayName: Running Full 9.0 tests on a self hosted agent
   pool: Default
-  timeoutInMinutes: 1440
+  timeoutInMinutes: 2160
   steps:
   - powershell: cd ci; ./booknode.ps1
     displayName: Booking the hypervisor node
