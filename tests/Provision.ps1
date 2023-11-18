@@ -1,5 +1,5 @@
-$serverUpdateResource = "Dynamics365Server91Update22Enu"
-$reportingExtensionsUpdateResource = "Dynamics365Server91ReportingExtensionsUpdate22Enu"
+$serverUpdateResource = "Dynamics365Server91Update23Enu"
+$reportingExtensionsUpdateResource = "Dynamics365Server91ReportingExtensionsUpdate23Enu"
 $updatedVersion = "9.1.23"
 $updatedVersionFull = "9.1.23.10"
 $KbId = "KB5032297"
