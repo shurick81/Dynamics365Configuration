@@ -238,42 +238,6 @@ try {
         "Dynamics365Server90ReportingExtensionsUpdate27Enu",
         "Dynamics365Server90Update28Enu",
         "Dynamics365Server90ReportingExtensionsUpdate28Enu",
-        "Dynamics365Server90Update30Enu",
-        "Dynamics365Server90ReportingExtensionsUpdate30Enu",
-        "Dynamics365Server90Update31Enu",
-        "Dynamics365Server90ReportingExtensionsUpdate31Enu",
-        "Dynamics365Server90Update32Enu",
-        "Dynamics365Server90ReportingExtensionsUpdate32Enu",
-        "Dynamics365Server90Update33Enu",
-        "Dynamics365Server90ReportingExtensionsUpdate33Enu",
-        "Dynamics365Server90Update34Enu",
-        "Dynamics365Server90ReportingExtensionsUpdate34Enu",
-        "Dynamics365Server90Update35Enu",
-        "Dynamics365Server90ReportingExtensionsUpdate35Enu",
-        "Dynamics365Server90Update37Enu",
-        "Dynamics365Server90ReportingExtensionsUpdate37Enu",
-        "Dynamics365Server90Update38Enu",
-        "Dynamics365Server90ReportingExtensionsUpdate38Enu",
-        "Dynamics365Server90Update40Enu",
-        "Dynamics365Server90ReportingExtensionsUpdate40Enu",
-        "Dynamics365Server90Update42Enu",
-        "Dynamics365Server90ReportingExtensionsUpdate42Enu",
-        "Dynamics365Server90Update43Enu",
-        "Dynamics365Server90ReportingExtensionsUpdate43Enu",
-        "Dynamics365Server90Update44Enu",
-        "Dynamics365Server90ReportingExtensionsUpdate44Enu",
-        "Dynamics365Server90Update45Enu",
-        "Dynamics365Server90ReportingExtensionsUpdate45Enu",
-        "Dynamics365Server90Update46Enu",
-        "Dynamics365Server90ReportingExtensionsUpdate46Enu",
-        "Dynamics365Server90Update47Enu",
-        "Dynamics365Server90ReportingExtensionsUpdate47Enu",
-        "Dynamics365Server90Update48Enu",
-        "Dynamics365Server90ReportingExtensionsUpdate48Enu",
-        "Dynamics365Server90Update49Enu",
-        "Dynamics365Server90ReportingExtensionsUpdate49Enu",
-        "Dynamics365Server90Update50Enu",
-        "Dynamics365Server90ReportingExtensionsUpdate50Enu",
         "Dynamics365Server91Update01Enu",
         "Dynamics365Server91LanguagePackUpdate01Rus",
         "Dynamics365Server91ReportingExtensionsUpdate01Enu",
@@ -421,42 +385,6 @@ try {
     "Dynamics365Server90ReportingExtensionsUpdate27Enu",
     "Dynamics365Server90Update28Enu",
     "Dynamics365Server90ReportingExtensionsUpdate28Enu",
-    "Dynamics365Server90Update30Enu",
-    "Dynamics365Server90ReportingExtensionsUpdate30Enu",
-    "Dynamics365Server90Update31Enu",
-    "Dynamics365Server90ReportingExtensionsUpdate31Enu",
-    "Dynamics365Server90Update32Enu",
-    "Dynamics365Server90ReportingExtensionsUpdate32Enu",
-    "Dynamics365Server90Update33Enu",
-    "Dynamics365Server90ReportingExtensionsUpdate33Enu",
-    "Dynamics365Server90Update34Enu",
-    "Dynamics365Server90ReportingExtensionsUpdate34Enu",
-    "Dynamics365Server90Update35Enu",
-    "Dynamics365Server90ReportingExtensionsUpdate35Enu",
-    "Dynamics365Server90Update37Enu",
-    "Dynamics365Server90ReportingExtensionsUpdate37Enu",
-    "Dynamics365Server90Update38Enu",
-    "Dynamics365Server90ReportingExtensionsUpdate38Enu",
-    "Dynamics365Server90Update40Enu",
-    "Dynamics365Server90ReportingExtensionsUpdate40Enu",
-    "Dynamics365Server90Update42Enu",
-    "Dynamics365Server90ReportingExtensionsUpdate42Enu",
-    "Dynamics365Server90Update43Enu",
-    "Dynamics365Server90ReportingExtensionsUpdate43Enu",
-    "Dynamics365Server90Update44Enu",
-    "Dynamics365Server90ReportingExtensionsUpdate44Enu",
-    "Dynamics365Server90Update45Enu",
-    "Dynamics365Server90ReportingExtensionsUpdate45Enu",
-    "Dynamics365Server90Update46Enu",
-    "Dynamics365Server90ReportingExtensionsUpdate46Enu",
-    "Dynamics365Server90Update47Enu",
-    "Dynamics365Server90ReportingExtensionsUpdate47Enu",
-    "Dynamics365Server90Update48Enu",
-    "Dynamics365Server90ReportingExtensionsUpdate48Enu",
-    "Dynamics365Server90Update49Enu",
-    "Dynamics365Server90ReportingExtensionsUpdate49Enu",
-    "Dynamics365Server90Update50Enu",
-    "Dynamics365Server90ReportingExtensionsUpdate50Enu",
     "Dynamics365Server91Update01Enu",
     "Dynamics365Server91LanguagePackUpdate01Rus",
     "Dynamics365Server91ReportingExtensionsUpdate01Enu",
@@ -782,44 +710,6 @@ Test-InstallDynamics365Update Dynamics365Server90Update27Enu;
 Test-InstallDynamics365ReportingExtensionsUpdate Dynamics365Server90ReportingExtensionsUpdate27Enu;
 Test-InstallDynamics365Update Dynamics365Server90Update28Enu;
 Test-InstallDynamics365ReportingExtensionsUpdate Dynamics365Server90ReportingExtensionsUpdate28Enu;
-Test-InstallDynamics365Update Dynamics365Server90Update30Enu;
-Test-InstallDynamics365ReportingExtensionsUpdate Dynamics365Server90ReportingExtensionsUpdate30Enu;
-Test-InstallDynamics365Update Dynamics365Server90Update31Enu;
-Test-InstallDynamics365ReportingExtensionsUpdate Dynamics365Server90ReportingExtensionsUpdate31Enu;
-Test-InstallDynamics365Update Dynamics365Server90Update32Enu;
-Test-InstallDynamics365ReportingExtensionsUpdate Dynamics365Server90ReportingExtensionsUpdate32Enu;
-Test-InstallDynamics365Update Dynamics365Server90Update33Enu;
-Test-InstallDynamics365ReportingExtensionsUpdate Dynamics365Server90ReportingExtensionsUpdate33Enu;
-Test-InstallDynamics365Update Dynamics365Server90Update34Enu;
-Test-InstallDynamics365ReportingExtensionsUpdate Dynamics365Server90ReportingExtensionsUpdate34Enu;
-Test-InstallDynamics365Update Dynamics365Server90Update35Enu;
-Test-InstallDynamics365ReportingExtensionsUpdate Dynamics365Server90ReportingExtensionsUpdate35Enu;
-Test-InstallDynamics365Update Dynamics365Server90Update37Enu;
-Test-InstallDynamics365ReportingExtensionsUpdate Dynamics365Server90ReportingExtensionsUpdate37Enu;
-Test-InstallDynamics365Update Dynamics365Server90Update38Enu;
-Test-InstallDynamics365ReportingExtensionsUpdate Dynamics365Server90ReportingExtensionsUpdate38Enu;
-Test-InstallDynamics365Update Dynamics365Server90Update40Enu;
-Test-InstallDynamics365ReportingExtensionsUpdate Dynamics365Server90ReportingExtensionsUpdate40Enu;
-Test-InstallDynamics365Update Dynamics365Server90Update42Enu;
-Test-InstallDynamics365ReportingExtensionsUpdate Dynamics365Server90ReportingExtensionsUpdate42Enu;
-Test-InstallDynamics365Update Dynamics365Server90Update43Enu;
-Test-InstallDynamics365ReportingExtensionsUpdate Dynamics365Server90ReportingExtensionsUpdate43Enu;
-Test-InstallDynamics365Update Dynamics365Server90Update44Enu;
-Test-InstallDynamics365ReportingExtensionsUpdate Dynamics365Server90ReportingExtensionsUpdate44Enu;
-Test-InstallDynamics365Update Dynamics365Server90Update45Enu;
-Test-InstallDynamics365ReportingExtensionsUpdate Dynamics365Server90ReportingExtensionsUpdate45Enu;
-Test-InstallDynamics365Update Dynamics365Server90Update45Enu;
-Test-InstallDynamics365ReportingExtensionsUpdate Dynamics365Server90ReportingExtensionsUpdate45Enu;
-Test-InstallDynamics365Update Dynamics365Server90Update46Enu;
-Test-InstallDynamics365ReportingExtensionsUpdate Dynamics365Server90ReportingExtensionsUpdate46Enu;
-Test-InstallDynamics365Update Dynamics365Server90Update47Enu;
-Test-InstallDynamics365ReportingExtensionsUpdate Dynamics365Server90ReportingExtensionsUpdate47Enu;
-Test-InstallDynamics365Update Dynamics365Server90Update48Enu;
-Test-InstallDynamics365ReportingExtensionsUpdate Dynamics365Server90ReportingExtensionsUpdate48Enu;
-Test-InstallDynamics365Update Dynamics365Server90Update49Enu;
-Test-InstallDynamics365ReportingExtensionsUpdate Dynamics365Server90ReportingExtensionsUpdate49Enu;
-Test-InstallDynamics365Update Dynamics365Server90Update50Enu;
-Test-InstallDynamics365ReportingExtensionsUpdate Dynamics365Server90ReportingExtensionsUpdate50Enu;
 Test-InstallDynamics365Update Dynamics365Server91Update01Enu;
 Test-InstallDynamics365LanguageUpdate Dynamics365Server91LanguagePackUpdate01Rus;
 Test-InstallDynamics365ReportingExtensionsUpdate Dynamics365Server91ReportingExtensionsUpdate01Enu;
