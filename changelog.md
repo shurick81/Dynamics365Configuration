@@ -1,6 +1,6 @@
 # Dynamics365Configuration module change log
 
-## Not released
+## 2.32.0
 
 * New Dynamics 365 updates (124 new downloadables in total):
 
