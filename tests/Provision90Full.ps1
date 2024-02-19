@@ -280,7 +280,13 @@ try {
         "Dynamics365Server91Update21Enu",
         "Dynamics365Server91ReportingExtensionsUpdate21Enu",
         "Dynamics365Server91Update22Enu",
-        "Dynamics365Server91ReportingExtensionsUpdate22Enu"
+        "Dynamics365Server91ReportingExtensionsUpdate22Enu",
+        "Dynamics365Server91Update23Enu",
+        "Dynamics365Server91ReportingExtensionsUpdate23Enu",
+        "Dynamics365Server91Update24Enu",
+        "Dynamics365Server91ReportingExtensionsUpdate24Enu",
+        "Dynamics365Server91Update25Enu",
+        "Dynamics365Server91ReportingExtensionsUpdate25Enu"
     ) | % { Save-Dynamics365Resource -Resource $_ -TargetDirectory C:\Install\Dynamics\$_ }
 } catch {
     Write-Host $_.Exception.Message -ForegroundColor Red;
@@ -427,7 +433,13 @@ try {
     "Dynamics365Server91Update21Enu",
     "Dynamics365Server91ReportingExtensionsUpdate21Enu",
     "Dynamics365Server91Update22Enu",
-    "Dynamics365Server91ReportingExtensionsUpdate22Enu"
+    "Dynamics365Server91ReportingExtensionsUpdate22Enu",
+    "Dynamics365Server91Update23Enu",
+    "Dynamics365Server91ReportingExtensionsUpdate23Enu",
+    "Dynamics365Server91Update24Enu",
+    "Dynamics365Server91ReportingExtensionsUpdate24Enu",
+    "Dynamics365Server91Update25Enu",
+    "Dynamics365Server91ReportingExtensionsUpdate25Enu"
 ) | % {
     if ( Get-ChildItem C:\Install\Dynamics\$_ ) {
         Write-Host "Test OK";
@@ -753,5 +765,11 @@ Test-InstallDynamics365Update Dynamics365Server91Update21Enu;
 Test-InstallDynamics365ReportingExtensionsUpdate Dynamics365Server91ReportingExtensionsUpdate21Enu;
 Test-InstallDynamics365Update Dynamics365Server91Update22Enu;
 Test-InstallDynamics365ReportingExtensionsUpdate Dynamics365Server91ReportingExtensionsUpdate22Enu;
+Test-InstallDynamics365Update Dynamics365Server91Update23Enu;
+Test-InstallDynamics365ReportingExtensionsUpdate Dynamics365Server91ReportingExtensionsUpdate23Enu;
+Test-InstallDynamics365Update Dynamics365Server91Update24Enu;
+Test-InstallDynamics365ReportingExtensionsUpdate Dynamics365Server91ReportingExtensionsUpdate24Enu;
+Test-InstallDynamics365Update Dynamics365Server91Update25Enu;
+Test-InstallDynamics365ReportingExtensionsUpdate Dynamics365Server91ReportingExtensionsUpdate25Enu;
 
 Exit 0;
