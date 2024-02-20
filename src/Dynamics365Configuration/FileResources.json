@@ -38180,10 +38180,10 @@
         "URL": "https://download.microsoft.com/download/8/7/a/87a4ddb4-e016-4a98-9782-e072fb2b125c/CRM9.1-Server-KB5033202-FRA-amd64.exe",
         "mediaFileVersion": "9.1.24.11"
     },
-    "Dynamics365Server9ReportingExtensionsUpdate00Fra": {
-        "checksum_sha256": "3C9EF799DE387EF6C35BB276016FF66AB994C0E9E81E335C2E304FA67A22470D",
-        "URL": "https://download.microsoft.com/download/8/7/a/87a4ddb4-e016-4a98-9782-e072fb2b125c/CRM9.1-Server-KB5033202-FRA-amd64.exe",
-        "mediaFileVersion": "9.1.24.11"
+    "Dynamics365Server91ReportingExtensionsUpdate24Fra":  {
+        "checksum_sha256":  "13D57956AF02F5FC2D9FD3BC169D33245D9938E89A0D8F8EFB4E9E7745F2ECDC",
+        "URL":  "https://download.microsoft.com/download/8/7/a/87a4ddb4-e016-4a98-9782-e072fb2b125c/CRM9.1-Srs-KB5033202-FRA-amd64.exe",
+        "mediaFileVersion":  "9.1.24.11"
     },
     "Dynamics365Server91Update24Ell": {
         "checksum_sha256": "B739982FF7609962F6ABA86C3153A774C17BDE3BE87114268B73A1FFB4AC59AF",
