@@ -39,6 +39,7 @@ jobs:
   displayName: Running ValidUrls test on MS agent
   pool:
     vmImage: windows-2019
+  timeoutInMinutes: 180
   steps:
   - powershell: Import-Module ./src/Dynamics365Configuration/Dynamics365Configuration.psd1; ./tests/ValidUrls.ps1
     displayName: ValidUrls
