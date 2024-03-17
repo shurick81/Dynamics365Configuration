@@ -1,5 +1,9 @@
 # Dynamics365Configuration module change log
 
+## Not Released
+
+* Replaced 9.1.25.17 with 9.1.25.21 checksums
+
 ## 2.33.0
 
 * New Dynamics 365 updates (100 new downloadables in total):
