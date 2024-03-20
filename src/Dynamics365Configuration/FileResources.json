@@ -30104,7 +30104,7 @@
     "CRM2016ReportingExtensionsServicePack2Update23Chk": {
         "URL": "https://download.microsoft.com/download/9/c/0/9c0b3778-b9f7-46b1-b5e9-27278e1a56ae/CRM2016-Srs-KB4578105-CHK-Amd64.exe",
         "checksum": "2E678D6FE03EEA6DF61150D78F88948B992037F6",
-        "checksum_sha256": "22D085ED3A38BCB8007F01CE18E132EA7B0040B92B1F0C7D886A3DEF547B00AD",
+        "checksum_sha256": "DD00FBC95755C984361CA0D790E2DDF40038073852C3AD5032E367E9B6509E9A",
         "mediaFileVersion": "8.2.23.16"
     },
     "CRM2016ReportingExtensionsServicePack2Update23Chs": {
@@ -37797,7 +37797,7 @@
     },
     "Dynamics365Server91Update23Esn": {
         "URL": "https://download.microsoft.com/download/8/2/0/82062fb5-cf33-4160-a5e2-05232b01b8d0/CRM9.1-Server-KB5032297-ESN-amd64.exe",
-        "checksum_sha256": "6264BE26AA07AE5744A510D655A67A4949C106717ABADCF7877A430BA3F932E2",
+        "checksum_sha256": "082021A9B35CE72CA0819D976039F35E8C6D2A8247F9592D01E8020CA68BC85E",
         "mediaFileVersion": "9.1.23.10"
     },
     "Dynamics365Server91ReportingExtensionsUpdate23Esn": {
