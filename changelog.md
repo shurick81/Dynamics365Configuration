@@ -2,6 +2,11 @@
 
 ## Not Released
 
+* New Dynamics 365 updates (50 new downloadables in total):
+
+  * Dynamics365Server91Update26\<Language\>
+  * Dynamics365Server91ReportingExtensionsUpdate26\<Language\>
+
 * Replaced 9.1.25.17 with 9.1.25.21 checksums
 * Replaced checksums for CRM2016ReportingExtensionsServicePack2Update23Chk, Dynamics365Server91Update23Esn
 
