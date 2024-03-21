@@ -8,7 +8,7 @@
   * Dynamics365Server91ReportingExtensionsUpdate26\<Language\>
 
 * Replaced 9.1.25.17 with 9.1.25.21 checksums
-* Replaced checksums for CRM2016ReportingExtensionsServicePack2Update23Chk, Dynamics365Server91Update23Esn
+* Replaced checksums for Dynamics365Server91Update23Esn
 
 ## 2.33.0
 
